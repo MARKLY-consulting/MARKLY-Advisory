@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markly Advisory | Conseil Stratégique</title>
+    <style>
+        /* Styles de base */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: #1a237e;
+            color: white;
+            padding: 1.2rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            padding: 150px 2rem 100px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        .btn {
+            display: inline-block;
+            background: #ff6d00;
+            color: white;
+            padding: 14px 35px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            background: #ff9100;
+            transform: translateY(-3px);
+        }
+        
+        /* Services */
+        .services {
+            padding: 80px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .services h2 {
+            text-align: center;
+            color: #1a237e;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        .service-card h3 {
+            color: #1a237e;
+            margin: 1rem 0;
+        }
+        .service-icon {
+            font-size: 2.5rem;
+            color: #3949ab;
+            margin-bottom: 1rem;
+        }
+        
+        /* Contact */
+        .contact {
+            background: #283593;
+            color: white;
+            padding: 80px 2rem;
+            text-align: center;
+        }
+        .contact h2 {
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a237e;
+            color: #e8eaf6;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
+            .services { padding: 60px 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">MARKLY ADVISORY</div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Conseil Stratégique d'Excellence</h1>
+        <p>Accélérez la croissance de votre entreprise avec nos solutions sur mesure en conseil stratégique et transformation digitale.</p>
+        <a href="#contact" class="btn">Prendre rendez-vous</a>
+    </section>
+
+    <!-- Services -->
+    <section class="services">
+        <h2>Nos Expertises</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <div class="service-icon">📈</div>
+                <h3>Stratégie Business</h3>
+                <p>Développement de plans stratégiques pour une croissance durable et rentable.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">💻</div>
+                <h3>Transformation Digitale</h3>
+                <p>Accompagnement dans votre transition numérique avec des solutions innovantes.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">⚙️</div>
+                <h3>Optimisation Organisationnelle</h3>
+                <p>Amélioration des processus et des structures pour maximiser l'efficacité.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <h2>Prêt à Transformer Votre Entreprise ?</h2>
+        <p>Contactez-nous pour une consultation initiale gratuite</p>
+        <a href="mailto:contact@marklyadvisory.com" class="btn">Nous Contacter</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Markly Advisory. Tous droits réservés.</p>
+        <p style="margin-top: 1rem; opacity: 0.8;">
+            contact@marklyadvisory.com | Paris, France
+        </p>
+    </footer>
+</body>
+</html>
+Create index.html
