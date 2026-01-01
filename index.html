@@ -6,13 +6,8 @@
     <title>MARKLY - Digital Marketing Agency</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* RESET ET BASE */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         :root {
             --primary-blue: #3A56E4;
             --electric-blue: #4A6EFF;
@@ -33,19 +28,10 @@
             background-color: var(--light-bg);
         }
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        /* LOGO MARKLY - Version moderne */
-        .logo-container {
-            text-align: center;
-            padding: 40px 0 20px;
-        }
-
+        /* LOGO */
+        .logo-container { text-align: center; padding: 40px 0 20px; }
         .markly-logo {
             font-size: 4.5rem;
             font-weight: 900;
@@ -59,7 +45,6 @@
             position: relative;
             display: inline-block;
         }
-
         .markly-logo::after {
             content: '';
             position: absolute;
@@ -70,7 +55,6 @@
             background: linear-gradient(90deg, var(--primary-blue), var(--violet));
             border-radius: 3px;
         }
-
         .logo-tagline {
             font-size: 1.2rem;
             color: var(--gray);
@@ -78,13 +62,9 @@
             font-weight: 300;
             margin-top: 20px;
         }
+        .logo-highlight { color: var(--orange); font-weight: 600; }
 
-        .logo-highlight {
-            color: var(--orange);
-            font-weight: 600;
-        }
-
-        /* HERO SECTION */
+        /* HERO */
         .hero {
             background: linear-gradient(rgba(26, 29, 40, 0.9), rgba(26, 29, 40, 0.95)), 
                         url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
@@ -97,7 +77,6 @@
             margin: 30px auto;
             max-width: 95%;
         }
-
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 20px;
@@ -106,14 +85,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            color: rgba(255, 255, 255, 0.85);
-        }
-
+        .hero p { font-size: 1.3rem; max-width: 800px; margin: 0 auto 30px; color: rgba(255, 255, 255, 0.85); }
         .cta-button {
             display: inline-block;
             background: linear-gradient(90deg, var(--primary-blue), var(--violet));
@@ -126,25 +98,16 @@
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(58, 86, 228, 0.4);
         }
+        .cta-button:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(58, 86, 228, 0.6); }
 
-        .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(58, 86, 228, 0.6);
-        }
-
-        /* SERVICES SECTION */
-        .services {
-            padding: 80px 0;
-            text-align: center;
-        }
-
+        /* SERVICES */
+        .services { padding: 80px 0; text-align: center; }
         .section-title {
             font-size: 2.5rem;
             margin-bottom: 50px;
             color: var(--text-dark);
             position: relative;
         }
-
         .section-title::after {
             content: '';
             position: absolute;
@@ -156,14 +119,12 @@
             transform: translateX(-50%);
             border-radius: 2px;
         }
-
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             margin-top: 50px;
         }
-
         .service-card {
             background: white;
             padding: 40px 25px;
@@ -172,12 +133,10 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: center;
         }
-
         .service-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(58, 86, 228, 0.15);
         }
-
         .service-icon {
             font-size: 3rem;
             margin-bottom: 20px;
@@ -186,18 +145,10 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--text-dark); }
+        .service-card p { color: var(--gray); }
 
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--text-dark);
-        }
-
-        .service-card p {
-            color: var(--gray);
-        }
-
-        /* PALETTE DE COULEURS */
+        /* PALETTE */
         .color-palette {
             padding: 60px 0;
             background-color: #f5f7ff;
@@ -205,7 +156,6 @@
             margin: 50px auto;
             max-width: 95%;
         }
-
         .color-grid {
             display: flex;
             justify-content: center;
@@ -213,11 +163,7 @@
             gap: 20px;
             margin-top: 40px;
         }
-
-        .color-item {
-            text-align: center;
-        }
-
+        .color-item { text-align: center; }
         .color-box {
             width: 100px;
             height: 100px;
@@ -227,11 +173,7 @@
         }
 
         /* LOGO VARIANTS */
-        .logo-variants {
-            padding: 60px 0;
-            text-align: center;
-        }
-
+        .logo-variants { padding: 60px 0; text-align: center; }
         .variants-container {
             display: flex;
             justify-content: center;
@@ -239,7 +181,6 @@
             gap: 40px;
             margin-top: 40px;
         }
-
         .logo-variant {
             padding: 30px;
             border-radius: 15px;
@@ -247,18 +188,8 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             min-width: 280px;
         }
-
-        .logo-black {
-            color: var(--text-dark);
-            font-weight: 900;
-            font-size: 2.5rem;
-            letter-spacing: 1px;
-        }
-
-        .logo-black .highlight {
-            color: var(--orange);
-        }
-
+        .logo-black { color: var(--text-dark); font-weight: 900; font-size: 2.5rem; letter-spacing: 1px; }
+        .logo-black .highlight { color: var(--orange); }
         .logo-green {
             background: linear-gradient(90deg, #2E8B57, var(--neon-green));
             -webkit-background-clip: text;
@@ -277,7 +208,6 @@
             margin-top: 80px;
             text-align: center;
         }
-
         .footer-logo {
             font-size: 2.5rem;
             font-weight: 900;
@@ -287,14 +217,12 @@
             background-clip: text;
             margin-bottom: 20px;
         }
-
         .social-icons {
             display: flex;
             justify-content: center;
             gap: 20px;
             margin: 30px 0;
         }
-
         .social-icon {
             width: 45px;
             height: 45px;
@@ -307,12 +235,7 @@
             font-size: 1.2rem;
             transition: all 0.3s ease;
         }
-
-        .social-icon:hover {
-            background: var(--primary-blue);
-            transform: translateY(-5px);
-        }
-
+        .social-icon:hover { background: var(--primary-blue); transform: translateY(-5px); }
         .copyright {
             margin-top: 40px;
             padding-top: 20px;
@@ -323,26 +246,11 @@
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
-            .markly-logo {
-                font-size: 3rem;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .variants-container {
-                flex-direction: column;
-                align-items: center;
-            }
+            .markly-logo { font-size: 3rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.1rem; }
+            .section-title { font-size: 2rem; }
+            .variants-container { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
@@ -366,30 +274,22 @@
             <h2 class="section-title">Nos Services</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
+                    <div class="service-icon"><i class="fas fa-chart-line"></i></div>
                     <h3>SEO & Référencement</h3>
                     <p>Optimisation pour les moteurs de recherche pour améliorer votre visibilité et attirer un trafic qualifié.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-bullhorn"></i>
-                    </div>
+                    <div class="service-icon"><i class="fas fa-bullhorn"></i></div>
                     <h3>Publicité Digitale</h3>
                     <p>Campagnes publicitaires ciblées sur les réseaux sociaux et moteurs de recherche pour maximiser votre portée.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
+                    <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
                     <h3>Création de Contenu</h3>
                     <p>Contenu engageant et stratégique qui captive votre audience et renforce votre image de marque.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-analytics"></i>
-                    </div>
+                    <div class="service-icon"><i class="fas fa-analytics"></i></div>
                     <h3>Analyse de Données</h3>
                     <p>Suivi, analyse et reporting des performances pour optimiser continuellement vos stratégies digitales.</p>
                 </div>
@@ -436,9 +336,7 @@
                     <p>Version croissance & innovation</p>
                 </div>
                 <div class="logo-variant">
-                    <div style="background: linear-gradient(90deg, #FF7A45, #8A2BE2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 900; font-size: 2.5rem; letter-spacing: 1px;">
-                        MARKLY
-                    </div>
+                    <div style="background: linear-gradient(90deg, #FF7A45, #8A2BE2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 900; font-size: 2.5rem; letter-spacing: 1px;">MARKLY</div>
                     <p>Version dégradé énergique</p>
                 </div>
             </div>
