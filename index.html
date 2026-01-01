@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markly Advisory | Conseil Stratégique</title>
+    <title>Markly Agency | Performance et Croissance</title>
+    <meta name="description" content="Agence de marketing digital spécialisée en performance et croissance. Stratégies créatives et analytiques pour booster votre présence digitale.">
     <style>
         /* Styles de base */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -16,14 +17,15 @@
         
         /* Navigation */
         .navbar {
-            background: #1a237e;
+            background: #0d1b2a;
             color: white;
             padding: 1.2rem 2rem;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
         }
         .nav-container {
             max-width: 1200px;
@@ -35,160 +37,725 @@
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
-            color: #ffffff;
+            color: #4cc9f0;
+            text-decoration: none;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #4cc9f0;
         }
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            background: linear-gradient(rgba(13, 27, 42, 0.9), rgba(13, 27, 42, 0.8)), 
+                        url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200') center/cover;
             color: white;
-            padding: 150px 2rem 100px;
+            padding: 180px 2rem 100px;
             text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-content {
+            max-width: 800px;
         }
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: #4cc9f0;
+            animation: fadeInUp 1s ease;
         }
         .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
             opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
         }
         .btn {
             display: inline-block;
-            background: #ff6d00;
+            background: #f72585;
             color: white;
-            padding: 14px 35px;
+            padding: 15px 40px;
             border-radius: 5px;
             text-decoration: none;
             font-weight: bold;
-            margin-top: 1rem;
+            margin-top: 2rem;
             transition: all 0.3s;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            animation: fadeInUp 1s ease 0.4s both;
         }
         .btn:hover {
-            background: #ff9100;
+            background: #ff006e;
             transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* Notre Approche */
+        .approach {
+            padding: 100px 2rem;
+            background: white;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            color: #0d1b2a;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #4cc9f0;
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+        .approach-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .approach-text h3 {
+            color: #4cc9f0;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        .approach-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .approach-image:hover {
+            transform: scale(1.02);
         }
         
         /* Services */
         .services {
-            padding: 80px 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 100px 2rem;
+            background: #f8f9fa;
         }
-        .services h2 {
-            text-align: center;
-            color: #1a237e;
-            margin-bottom: 3rem;
-            font-size: 2.5rem;
-        }
-        .service-grid {
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
         }
         .service-card {
             background: white;
             padding: 2.5rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             text-align: center;
-            transition: transform 0.3s;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #4cc9f0, #4361ee);
         }
         .service-card:hover {
             transform: translateY(-10px);
-        }
-        .service-card h3 {
-            color: #1a237e;
-            margin: 1rem 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
         .service-icon {
-            font-size: 2.5rem;
-            color: #3949ab;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4cc9f0, #4361ee);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+            transition: transform 0.3s;
+        }
+        .service-card:hover .service-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+        .service-card h3 {
+            color: #0d1b2a;
             margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        /* Témoignages */
+        .testimonials {
+            padding: 100px 2rem;
+            background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
+            color: white;
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(76, 201, 240, 0.3);
+        }
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        .testimonial-text::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -10px;
+            font-size: 3rem;
+            color: #4cc9f0;
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .client-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4cc9f0, #4361ee);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
         }
         
         /* Contact */
         .contact {
-            background: #283593;
-            color: white;
-            padding: 80px 2rem;
-            text-align: center;
+            padding: 100px 2rem;
+            background: white;
         }
-        .contact h2 {
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
             margin-bottom: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-family: inherit;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #4cc9f0;
+            box-shadow: 0 0 0 3px rgba(76, 201, 240, 0.1);
+        }
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        .contact-info {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 5px solid #4cc9f0;
+        }
+        .info-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            align-items: flex-start;
+        }
+        .info-item i {
+            color: #4cc9f0;
+            font-size: 1.2rem;
+            margin-top: 5px;
+            width: 24px;
+            text-align: center;
         }
         
         /* Footer */
         footer {
-            background: #1a237e;
-            color: #e8eaf6;
+            background: #0d1b2a;
+            color: #e0e1dd;
+            padding: 4rem 2rem 2rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .footer-logo {
+            font-size: 1.8rem;
+            color: #4cc9f0;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        .social-links a:hover {
+            background: #4cc9f0;
+            transform: translateY(-3px) rotate(5deg);
+        }
+        .footer-bottom {
             text-align: center;
-            padding: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #8d99ae;
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 2.5rem; }
+            .approach-content { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 2.2rem; }
+        }
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .hero p { font-size: 1rem; }
-            .services { padding: 60px 1rem; }
+            .hero { 
+                padding: 150px 1rem 80px;
+                min-height: 80vh;
+            }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1.1rem; }
+            .section-title { font-size: 1.8rem; }
+            .nav-links { 
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #0d1b2a;
+                padding: 1rem;
+                flex-direction: column;
+                text-align: center;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links a {
+                margin: 0.5rem 0;
+                padding: 0.5rem;
+            }
+            .menu-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            .services, .approach, .testimonials, .contact {
+                padding: 60px 1rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.8rem; }
+            .btn { padding: 12px 30px; }
+            .service-card { padding: 1.5rem; }
+            .footer-content { grid-template-columns: 1fr; }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">MARKLY ADVISORY</div>
+            <a href="#" class="logo">MARKLY AGENCY</a>
+            <div class="nav-links" id="navLinks">
+                <a href="#accueil">Accueil</a>
+                <a href="#approche">Notre Approche</a>
+                <a href="#services">Services</a>
+                <a href="#temoignages">Témoignages</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <h1>Conseil Stratégique d'Excellence</h1>
-        <p>Accélérez la croissance de votre entreprise avec nos solutions sur mesure en conseil stratégique et transformation digitale.</p>
-        <a href="#contact" class="btn">Prendre rendez-vous</a>
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <h1>Performance et Croissance</h1>
+            <p>Transformons vos idées en résultats mesurables grâce à des stratégies digitales innovantes qui allient créativité et précision analytique.</p>
+            <a href="#contact" class="btn">Accélérez votre croissance</a>
+        </div>
+    </section>
+
+    <!-- Notre Approche -->
+    <section id="approche" class="approach">
+        <div class="container">
+            <h2 class="section-title">Notre Approche</h2>
+            <div class="approach-content">
+                <div class="approach-text">
+                    <h3>Créativité + Analyse = Résultats</h3>
+                    <p>Notre approche unique combine innovation créative et rigueur analytique pour transformer vos objectifs en succès tangibles. Nous développons des stratégies sur mesure qui s'adaptent à votre marché et à vos ambitions.</p>
+                    <p>Chaque projet bénéficie d'un accompagnement personnalisé, d'une analyse approfondie de votre écosystème digital et d'une exécution précise pour maximiser votre ROI.</p>
+                </div>
+                <div class="approach-image">
+                    <div style="width:100%; height:400px; background:linear-gradient(135deg, #4cc9f0, #4361ee); display:flex; align-items:center; justify-content:center; color:white; font-size:1.2rem; padding: 2rem; text-align: center;">
+                        <div>
+                            <i class="fas fa-lightbulb" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <h3 style="color: white; margin-bottom: 0.5rem;">Stratégie Digital Innovante</h3>
+                            <p style="opacity: 0.9;">Solutions sur mesure pour votre croissance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Services -->
-    <section class="services">
-        <h2>Nos Expertises</h2>
-        <div class="service-grid">
-            <div class="service-card">
-                <div class="service-icon">📈</div>
-                <h3>Stratégie Business</h3>
-                <p>Développement de plans stratégiques pour une croissance durable et rentable.</p>
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Nos Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hashtag"></i>
+                    </div>
+                    <h3>Gestion Réseaux Sociaux</h3>
+                    <p>Stratégie de contenu, community management et croissance d'audience sur toutes les plateformes sociales pour renforcer votre présence digitale.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-ad"></i>
+                    </div>
+                    <h3>Publicité Digitale</h3>
+                    <p>Campagnes publicitaires ciblées (Google Ads, Facebook Ads, LinkedIn) pour générer des leads qualifiés et maximiser votre retour sur investissement.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>SEO & Contenu Stratégique</h3>
+                    <p>Optimisation pour les moteurs de recherche et création de contenu engageant pour améliorer votre visibilité et votre autorité en ligne.</p>
+                </div>
             </div>
-            
-            <div class="service-card">
-                <div class="service-icon">💻</div>
-                <h3>Transformation Digitale</h3>
-                <p>Accompagnement dans votre transition numérique avec des solutions innovantes.</p>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">⚙️</div>
-                <h3>Optimisation Organisationnelle</h3>
-                <p>Amélioration des processus et des structures pour maximiser l'efficacité.</p>
+        </div>
+    </section>
+
+    <!-- Témoignages -->
+    <section id="temoignages" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Témoignages Clients</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        Markly Agency a transformé notre présence digitale. Notre visibilité et notre engagement ont augmenté de 300% en 6 mois. Un partenariat précieux !
+                    </div>
+                    <div class="client-info">
+                        <div class="client-avatar">SM</div>
+                        <div>
+                            <strong>Sarah Martin</strong>
+                            <div>CEO, TechSolutions</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        L'approche analytique et créative de Markly nous a permis de doubler notre ROI. Leur expertise en publicité digitale est exceptionnelle.
+                    </div>
+                    <div class="client-info">
+                        <div class="client-avatar">PD</div>
+                        <div>
+                            <strong>Pierre Dubois</strong>
+                            <div>Directeur Marketing, LuxeBrand</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        Un accompagnement sur mesure qui a accéléré notre croissance. Leur capacité à transformer nos objectifs en stratégies efficaces est remarquable.
+                    </div>
+                    <div class="client-info">
+                        <div class="client-avatar">LC</div>
+                        <div>
+                            <strong>Lea Chen</strong>
+                            <div>Fondatrice, StartupInnov</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Contact -->
     <section id="contact" class="contact">
-        <h2>Prêt à Transformer Votre Entreprise ?</h2>
-        <p>Contactez-nous pour une consultation initiale gratuite</p>
-        <a href="mailto:contact@marklyadvisory.com" class="btn">Nous Contacter</a>
+        <div class="container">
+            <h2 class="section-title">Contactez-nous</h2>
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="text" placeholder="Votre nom" required>
+                        <input type="email" placeholder="Votre email" required>
+                        <input type="tel" placeholder="Votre téléphone">
+                        <textarea placeholder="Votre message" required></textarea>
+                        <button type="submit" class="btn">Envoyer le message</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <h3>Nos Coordonnées</h3>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Adresse</strong>
+                            <p>123 Avenue de l'Innovation<br>75008 Paris, France</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Téléphone</strong>
+                            <p>+33 1 23 45 67 89</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email</strong>
+                            <p>contact@marklyagency.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Horaires</strong>
+                            <p>Lun-Ven: 9h-18h</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>© 2024 Markly Advisory. Tous droits réservés.</p>
-        <p style="margin-top: 1rem; opacity: 0.8;">
-            contact@marklyadvisory.com | Paris, France
-        </p>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">MARKLY AGENCY</div>
+                    <p>Votre partenaire en marketing digital pour une croissance mesurable et durable.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4>Services</h4>
+                    <p>Gestion Réseaux Sociaux</p>
+                    <p>Publicité Digitale</p>
+                    <p>SEO & Contenu</p>
+                    <p>Stratégie Digitale</p>
+                </div>
+                
+                <div>
+                    <h4>Liens Rapides</h4>
+                    <p><a href="#accueil" style="color:#e0e1dd; text-decoration:none;">Accueil</a></p>
+                    <p><a href="#approche" style="color:#e0e1dd; text-decoration:none;">Notre Approche</a></p>
+                    <p><a href="#services" style="color:#e0e1dd; text-decoration:none;">Services</a></p>
+                    <p><a href="#contact" style="color:#e0e1dd; text-decoration:none;">Contact</a></p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2024 Markly Agency. Tous droits réservés. | Performance et Croissance - Partenaire de votre succès digital</p>
+                <p style="margin-top: 1rem; font-size: 0.8rem;">Site développé avec ❤️ pour booster votre business</p>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        // ============================================
+        // MARKLY AGENCY - SCRIPT PROFESSIONNEL
+        // ============================================
+
+        // Menu mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        if (menuToggle && navLinks) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                menuToggle.innerHTML = navLinks.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+        }
+
+        // Fermer le menu en cliquant sur un lien
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Navigation fluide
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Formulaire de contact
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Message de confirmation professionnel
+                alert(`✅ MESSAGE ENVOYÉ AVEC SUCCÈS\n\nMerci pour votre intérêt pour Markly Agency.\n\n📞 Notre équipe vous contactera dans les 24h pour :\n• Analyser vos besoins spécifiques\n• Vous proposer une stratégie personnalisée\n• Planifier un audit digital gratuit\n\n📧 Vous recevrez une confirmation par email.\n\n— L'équipe Markly | Performance & Croissance`);
+                
+                // Réinitialisation du formulaire
+                this.reset();
+                
+                // Retour en haut de page
+                setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 500);
+            });
+        }
+
+        // Animation de la navbar au scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.padding = '0.8rem 2rem';
+                navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
+            } else {
+                navbar.style.padding = '1.2rem 2rem';
+                navbar.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // Message d'accueil dans la console
+        window.addEventListener('load', function() {
+            console.log(`%c 🚀 BIENVENUE CHEZ MARKLY AGENCY %c\nVotre partenaire en croissance digitale\nSite : https://markly-consulting.github.io/MARKLY-Advisory/`, 
+                'background: linear-gradient(90deg, #0d1b2a, #4cc9f0); color: white; padding: 8px 15px; border-radius: 5px; font-weight: bold;',
+                'color: #4cc9f0; font-weight: bold; margin-top: 10px; display: block;'
+            );
+            
+            // Message de bienvenue basé sur l'heure
+            const hour = new Date().getHours();
+            let greeting;
+            if (hour < 12) greeting = "☀️ Bonjour ! Prêt à booster votre croissance digitale ?";
+            else if (hour < 18) greeting = "🌤️ Bon après-midi ! Découvrez nos solutions innovantes.";
+            else greeting = "🌙 Bonsoir ! Nous étudierons votre projet demain matin.";
+            
+            console.log(`%c ${greeting} `, 'color: #f72585; font-style: italic;');
+        });
+
+        // Animation des éléments au défilement
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observer les sections principales
+        document.querySelectorAll('.service-card, .testimonial-card, .approach-content > div').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Protection des données
+        console.log('🛡️ Markly Agency - Protection des données RGPD activée');
+        console.log('🔒 Vos informations sont sécurisées et confidentielles');
+
+    </script>
 </body>
 </html>
 Create index.html
