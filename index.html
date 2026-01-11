@@ -18,8 +18,8 @@
             --border-gray: #e8e8e8;
             --text-dark: #1a1a1a;
             --text-light: #666666;
-            --accent: #1a365d;
-            --accent-light: #2d5aa0;
+            --accent: #1a365d; /* Bleu foncé principal */
+            --accent-light: #2d5aa0; /* Bleu clair */
             --gold: #D4AF37;
             --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.05);
             --shadow-hover: 0 8px 40px rgba(0, 0, 0, 0.12);
@@ -81,9 +81,9 @@
             align-items: center;
             justify-content: center;
             padding: 14px 32px;
-            background-color: var(--anthracite);
+            background-color: var(--accent);
             color: var(--pure-white);
-            border: 1px solid var(--anthracite);
+            border: 1px solid var(--accent);
             border-radius: 8px;
             font-weight: 500;
             cursor: pointer;
@@ -112,7 +112,7 @@
 
         .btn:hover {
             background-color: var(--pure-white);
-            color: var(--anthracite);
+            color: var(--accent);
             transform: translateY(-2px);
             box-shadow: var(--shadow-hover);
         }
@@ -160,22 +160,23 @@
             color: var(--text-light);
         }
 
-        /* ===== HEADER - Style Minimaliste Premium ===== */
+        /* ===== HEADER - En BLEU comme demandé ===== */
         header {
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: var(--accent); /* Bleu principal */
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(232, 232, 232, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
             transform: translateY(0);
         }
 
         header.scrolled {
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
             padding: 0;
+            background-color: var(--accent); /* Reste bleu */
         }
 
         header.hidden {
@@ -204,27 +205,20 @@
             transform: translateY(0);
         }
 
+        /* Logo MARKLY Advisory */
         .logo-image {
-            height: 45px;
+            height: 50px; /* Taille augmentée */
             width: auto;
             transition: var(--transition-smooth);
-            filter: brightness(0) saturate(100%);
         }
 
         .logo-image:hover {
             transform: scale(1.05);
         }
 
+        /* Supprimer le texte "MARKLY.Advisory" du header */
         .logo-text {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--anthracite);
-            letter-spacing: -0.5px;
-        }
-
-        .logo-text span {
-            color: var(--accent);
-            font-weight: 700;
+            display: none; /* Caché comme demandé */
         }
 
         /* ===== MENU HAMBURGER MODERNE - 3 Lignes ===== */
@@ -244,7 +238,7 @@
         .hamburger-line {
             width: 28px;
             height: 2px;
-            background-color: var(--anthracite);
+            background-color: var(--pure-white); /* Lignes blanches sur fond bleu */
             margin: 3px 0;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             transform-origin: center;
@@ -334,17 +328,11 @@
         .side-menu-logo {
             height: 40px;
             width: auto;
-            filter: brightness(0) saturate(100%);
         }
 
+        /* Supprimer le texte "MARKLY.Advisory" du menu latéral */
         .side-menu-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--anthracite);
-        }
-
-        .side-menu-title span {
-            color: var(--accent);
+            display: none; /* Caché comme demandé */
         }
 
         .side-menu-links {
@@ -1003,7 +991,7 @@
 
         /* ===== FOOTER ===== */
         footer {
-            background-color: var(--anthracite);
+            background-color: var(--accent); /* Bleu comme le header */
             color: var(--pure-white);
             padding: 80px 0 40px;
             text-align: center;
@@ -1019,7 +1007,7 @@
             height: 100%;
             background: 
                 radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(26, 54, 93, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 80% 20%, rgba(26, 54, 93, 0.2) 0%, transparent 50%);
         }
 
         .footer-content {
@@ -1033,6 +1021,7 @@
 
         .footer-logo-container {
             display: flex;
+            flex-direction: column;
             align-items: center;
             gap: 15px;
             opacity: 0;
@@ -1046,26 +1035,19 @@
         }
 
         .footer-logo {
-            height: 50px;
+            height: 60px; /* Taille augmentée */
             width: auto;
-            filter: brightness(0) invert(1);
         }
 
+        /* Supprimer le texte "MARKLY.Advisory" du footer */
         .footer-title {
-            font-size: 2.2rem;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-            color: white;
-        }
-
-        .footer-title span {
-            color: var(--gold);
+            display: none; /* Caché comme demandé */
         }
 
         .footer-text {
             max-width: 500px;
             margin: 0 auto;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
@@ -1079,8 +1061,8 @@
         .copyright {
             margin-top: 50px;
             padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
             font-size: 0.9rem;
             width: 100%;
             opacity: 0;
@@ -1146,10 +1128,6 @@
             .side-menu {
                 width: 350px;
             }
-            
-            .logo-text {
-                font-size: 1.2rem;
-            }
         }
 
         @media (max-width: 768px) {
@@ -1184,22 +1162,12 @@
                 gap: 20px;
             }
             
-            .logo-text {
-                display: none;
-            }
-            
             .logo-image {
-                height: 40px;
-            }
-            
-            .footer-logo-container {
-                flex-direction: column;
-                text-align: center;
-                gap: 10px;
+                height: 45px;
             }
             
             .footer-logo {
-                height: 40px;
+                height: 50px;
             }
         }
 
@@ -1236,6 +1204,10 @@
             .side-menu-links a {
                 font-size: 1.2rem;
             }
+            
+            .logo-image {
+                height: 40px;
+            }
         }
     </style>
 </head>
@@ -1245,11 +1217,12 @@
         <div class="container">
             <nav>
                 <a href="#" class="logo-container">
-                    <!-- Logo MARKLY Advisory -->
-                    <img src="https://raw.githubusercontent.com/MARKLY-consulting/MARKLY-Advisory/refs/heads/main/logo-markly.png" 
+                    <!-- Logo MARKLY Advisory - Chemin corrigé -->
+                    <img src="https://raw.githubusercontent.com/MARKLY-consulting/MARKLY-Advisory/main/logo-markly.png" 
                          alt="MARKLY Advisory" 
                          class="logo-image">
-                    <div class="logo-text">MARKLY<span>.</span>Advisory</div>
+                    <!-- Texte supprimé comme demandé -->
+                    <div class="logo-text"></div>
                 </a>
                 
                 <div class="menu-hamburger" id="menuHamburger">
@@ -1263,10 +1236,11 @@
         <!-- Menu latéral -->
         <div class="side-menu" id="sideMenu">
             <div class="side-menu-header">
-                <img src="https://raw.githubusercontent.com/MARKLY-consulting/MARKLY-Advisory/refs/heads/main/logo-markly.png" 
+                <img src="https://raw.githubusercontent.com/MARKLY-consulting/MARKLY-Advisory/main/logo-markly.png" 
                      alt="MARKLY Advisory" 
                      class="side-menu-logo">
-                <div class="side-menu-title">MARKLY<span>.</span>Advisory</div>
+                <!-- Texte supprimé comme demandé -->
+                <div class="side-menu-title"></div>
             </div>
             
             <ul class="side-menu-links">
@@ -1502,10 +1476,11 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo-container">
-                    <img src="https://raw.githubusercontent.com/MARKLY-consulting/MARKLY-Advisory/refs/heads/main/logo-markly.png" 
+                    <img src="https://raw.githubusercontent.com/MARKLY-consulting/MARKLY-Advisory/main/logo-markly.png" 
                          alt="MARKLY Advisory" 
                          class="footer-logo">
-                    <div class="footer-title">MARKLY<span>.</span>Advisory</div>
+                    <!-- Texte supprimé comme demandé -->
+                    <div class="footer-title"></div>
                 </div>
                 <p class="footer-text">Votre partenaire stratégique pour transformer les visions en succès concrets</p>
                 <div class="copyright">
@@ -1548,9 +1523,18 @@
                 }
             });
             
-            // Précharger l'image du logo
+            // Précharger l'image du logo depuis le bon chemin
             const logoImg = new Image();
-            logoImg.src = 'https://raw.githubusercontent.com/MARKLY-consulting/MARKLY-Advisory/refs/heads/main/logo-markly.png';
+            logoImg.src = 'https://raw.githubusercontent.com/MARKLY-consulting/MARKLY-Advisory/main/logo-markly.png';
+            
+            // Alternative si le logo ne charge pas
+            logoImg.onerror = function() {
+                console.log('Logo non trouvé, chargement depuis une alternative');
+                const logos = document.querySelectorAll('.logo-image, .side-menu-logo, .footer-logo');
+                logos.forEach(logo => {
+                    logo.src = 'https://raw.githubusercontent.com/MARKLY-consulting/MARKLY-Advisory/refs/heads/main/logo-markly.png';
+                });
+            };
         });
         
         // Fonction pour vérifier la visibilité des éléments
@@ -1730,13 +1714,6 @@
         // Observer les éléments de statistiques
         document.querySelectorAll('.stat-item').forEach(item => {
             observer.observe(item);
-        });
-        
-        // Empêcher le clic droit sur le logo pour le protéger
-        document.querySelectorAll('.logo-image, .side-menu-logo, .footer-logo').forEach(logo => {
-            logo.addEventListener('contextmenu', (e) => {
-                e.preventDefault();
-            });
         });
     </script>
 </body>
