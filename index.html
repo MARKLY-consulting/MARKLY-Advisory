@@ -186,97 +186,272 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 0;
+            padding: 20px 0;
             transition: var(--transition-smooth);
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: var(--anthracite);
-            letter-spacing: -0.5px;
+        .logo-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
             opacity: 0;
             transform: translateY(-20px);
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .logo.animated {
+        .logo-container.animated {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .logo-icon {
-            color: var(--gold);
-            font-size: 2rem;
-            animation: pulse 2s infinite;
+        .logo-image {
+            height: 45px;
+            width: auto;
+            transition: var(--transition-smooth);
+            filter: brightness(0) saturate(100%);
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        .logo-image:hover {
+            transform: scale(1.05);
         }
 
-        .logo span {
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--anthracite);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
             color: var(--accent);
             font-weight: 700;
         }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .nav-links li {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-
-        .nav-links li:nth-child(1) { transition-delay: 0.1s; }
-        .nav-links li:nth-child(2) { transition-delay: 0.2s; }
-        .nav-links li:nth-child(3) { transition-delay: 0.3s; }
-        .nav-links li:nth-child(4) { transition-delay: 0.4s; }
-        .nav-links li:nth-child(5) { transition-delay: 0.5s; }
-
-        .nav-links.animated li {
-            opacity: 1;
-            transform: translateY(0);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .nav-links li a {
-            font-weight: 500;
-            font-size: 0.95rem;
+        /* ===== MENU HAMBURGER MODERNE - 3 Lignes ===== */
+        .menu-hamburger {
             position: relative;
-            padding: 5px 0;
-        }
-
-        .nav-links li a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--gold);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1001;
             transition: var(--transition-smooth);
         }
 
-        .nav-links li a:hover::after {
+        .hamburger-line {
+            width: 28px;
+            height: 2px;
+            background-color: var(--anthracite);
+            margin: 3px 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+            border-radius: 1px;
+        }
+
+        /* Animation des 3 lignes */
+        .hamburger-line:nth-child(1) {
+            transform: translateY(0) rotate(0deg);
+        }
+
+        .hamburger-line:nth-child(2) {
+            width: 24px;
+            align-self: flex-end;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hamburger-line:nth-child(3) {
+            transform: translateY(0) rotate(0deg);
+        }
+
+        /* Animation quand le menu est ouvert */
+        .menu-hamburger.active .hamburger-line:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+            width: 28px;
+        }
+
+        .menu-hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-10px);
+            width: 0;
+        }
+
+        .menu-hamburger.active .hamburger-line:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+            width: 28px;
+        }
+
+        /* Effet hover sur le hamburger */
+        .menu-hamburger:hover .hamburger-line:nth-child(1) {
+            transform: translateY(-1px);
+        }
+
+        .menu-hamburger:hover .hamburger-line:nth-child(2) {
+            width: 28px;
+        }
+
+        .menu-hamburger:hover .hamburger-line:nth-child(3) {
+            transform: translateY(1px);
+        }
+
+        .menu-hamburger.active:hover .hamburger-line:nth-child(1),
+        .menu-hamburger.active:hover .hamburger-line:nth-child(3) {
+            background-color: var(--gold);
+        }
+
+        /* Menu latéral */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100vh;
+            background: var(--pure-white);
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 100px 40px 40px;
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid var(--border-gray);
+        }
+
+        .side-menu.active {
+            right: 0;
+        }
+
+        .side-menu-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-gray);
+        }
+
+        .side-menu-logo {
+            height: 40px;
+            width: auto;
+            filter: brightness(0) saturate(100%);
+        }
+
+        .side-menu-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--anthracite);
+        }
+
+        .side-menu-title span {
+            color: var(--accent);
+        }
+
+        .side-menu-links {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .side-menu-links li {
+            margin-bottom: 25px;
+            opacity: 0;
+            transform: translateX(30px);
+        }
+
+        .side-menu.active .side-menu-links li {
+            opacity: 1;
+            transform: translateX(0);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .side-menu.active .side-menu-links li:nth-child(1) { transition-delay: 0.1s; }
+        .side-menu.active .side-menu-links li:nth-child(2) { transition-delay: 0.2s; }
+        .side-menu.active .side-menu-links li:nth-child(3) { transition-delay: 0.3s; }
+        .side-menu.active .side-menu-links li:nth-child(4) { transition-delay: 0.4s; }
+
+        .side-menu-links a {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--anthracite);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .side-menu-links a::before {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 0;
+            background: var(--gold);
+            border-radius: 2px;
+            transition: var(--transition-smooth);
+        }
+
+        .side-menu-links a:hover::before {
+            height: 24px;
+        }
+
+        .side-menu-links a:hover {
+            color: var(--accent);
+            padding-left: 10px;
+        }
+
+        .side-menu-links i {
+            width: 24px;
+            color: var(--gold);
+            font-size: 1.1rem;
+        }
+
+        .side-menu-contact {
+            margin-top: auto;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-gray);
+        }
+
+        .contact-info-mini {
+            margin-bottom: 25px;
+        }
+
+        .contact-info-mini p {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-info-mini i {
+            color: var(--gold);
+            width: 20px;
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(3px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
         }
 
-        .nav-links .btn {
-            padding: 10px 24px;
-            font-size: 0.9rem;
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
-        /* ===== HERO - Style Apple-esque ===== */
+        /* ===== HERO ===== */
         .hero {
             background: linear-gradient(135deg, rgba(248, 249, 250, 0.95) 0%, rgba(255, 255, 255, 1) 100%);
             padding: 200px 0 120px;
@@ -856,10 +1031,7 @@
             gap: 30px;
         }
 
-        .footer-logo {
-            font-size: 2.5rem;
-            font-weight: 600;
-            letter-spacing: -0.5px;
+        .footer-logo-container {
             display: flex;
             align-items: center;
             gap: 15px;
@@ -868,12 +1040,25 @@
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .footer-logo.animated {
+        .footer-logo-container.animated {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .footer-logo span {
+        .footer-logo {
+            height: 50px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: white;
+        }
+
+        .footer-title span {
             color: var(--gold);
         }
 
@@ -957,21 +1142,17 @@
             .performance-section.animated {
                 transform: translateY(0);
             }
+            
+            .side-menu {
+                width: 350px;
+            }
+            
+            .logo-text {
+                font-size: 1.2rem;
+            }
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .menu-toggle {
-                display: block;
-                font-size: 1.5rem;
-                cursor: pointer;
-                color: var(--anthracite);
-                z-index: 1001;
-            }
-            
             .hero {
                 padding: 150px 0 80px;
                 text-align: center;
@@ -1002,6 +1183,24 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 20px;
             }
+            
+            .logo-text {
+                display: none;
+            }
+            
+            .logo-image {
+                height: 40px;
+            }
+            
+            .footer-logo-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .footer-logo {
+                height: 40px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1028,61 +1227,15 @@
             .stat-number {
                 font-size: 2.8rem;
             }
-        }
-
-        /* Animation pour le menu mobile */
-        .mobile-menu {
-            position: fixed;
-            top: 80px;
-            left: 0;
-            width: 100%;
-            background: var(--pure-white);
-            border-top: 1px solid var(--border-gray);
-            box-shadow: var(--shadow-subtle);
-            padding: 20px;
-            display: none;
-            z-index: 999;
-            transform: translateY(-100%);
-            transition: transform 0.3s ease;
-        }
-
-        .mobile-menu.active {
-            transform: translateY(0);
-            display: block;
-        }
-
-        .mobile-menu ul {
-            list-style: none;
-        }
-
-        .mobile-menu li {
-            margin-bottom: 20px;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu.active li {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .mobile-menu li:nth-child(1) { transition-delay: 0.1s; }
-        .mobile-menu li:nth-child(2) { transition-delay: 0.2s; }
-        .mobile-menu li:nth-child(3) { transition-delay: 0.3s; }
-        .mobile-menu li:nth-child(4) { transition-delay: 0.4s; }
-
-        .mobile-menu a {
-            display: block;
-            padding: 15px 0;
-            border-bottom: 1px solid var(--border-gray);
-            font-weight: 500;
-            font-size: 1.1rem;
-        }
-
-        .mobile-menu .btn {
-            width: 100%;
-            margin-top: 20px;
+            
+            .side-menu {
+                width: 100%;
+                padding: 80px 20px 40px;
+            }
+            
+            .side-menu-links a {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
@@ -1091,32 +1244,52 @@
     <header id="header">
         <div class="container">
             <nav>
-                <a href="#" class="logo">
-                    <i class="fas fa-crown logo-icon"></i>
-                    MARKLY<span>.</span>Advisory
+                <a href="#" class="logo-container">
+                    <!-- Logo MARKLY Advisory -->
+                    <img src="https://raw.githubusercontent.com/MARKLY-consulting/MARKLY-Advisory/refs/heads/main/logo-markly.png" 
+                         alt="MARKLY Advisory" 
+                         class="logo-image">
+                    <div class="logo-text">MARKLY<span>.</span>Advisory</div>
                 </a>
-                <div class="menu-toggle">
-                    <i class="fas fa-bars"></i>
+                
+                <div class="menu-hamburger" id="menuHamburger">
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
                 </div>
-                <ul class="nav-links">
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#stats">Impact</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#contact" class="btn">Réserver</a></li>
-                </ul>
             </nav>
         </div>
-        <!-- Menu Mobile -->
-        <div class="mobile-menu" id="mobileMenu">
-            <ul>
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#stats">Impact</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#contact" class="btn">Réserver une consultation</a></li>
+        
+        <!-- Menu latéral -->
+        <div class="side-menu" id="sideMenu">
+            <div class="side-menu-header">
+                <img src="https://raw.githubusercontent.com/MARKLY-consulting/MARKLY-Advisory/refs/heads/main/logo-markly.png" 
+                     alt="MARKLY Advisory" 
+                     class="side-menu-logo">
+                <div class="side-menu-title">MARKLY<span>.</span>Advisory</div>
+            </div>
+            
+            <ul class="side-menu-links">
+                <li><a href="#accueil"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="#services"><i class="fas fa-briefcase"></i> Services</a></li>
+                <li><a href="#stats"><i class="fas fa-chart-line"></i> Impact</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
             </ul>
+            
+            <div class="side-menu-contact">
+                <div class="contact-info-mini">
+                    <p><i class="fas fa-phone"></i> +212 6 36 33 19 00</p>
+                    <p><i class="fas fa-envelope"></i> khadijaoulkaid4@gmail.com</p>
+                </div>
+                <a href="mailto:khadijaoulkaid4@gmail.com?subject=Demande de consultation MARKLY Advisory" class="btn" style="width: 100%;">
+                    <i class="fas fa-calendar-check"></i>
+                    Réserver une consultation
+                </a>
+            </div>
         </div>
+        
+        <!-- Overlay du menu -->
+        <div class="menu-overlay" id="menuOverlay"></div>
     </header>
 
     <!-- Hero Section -->
@@ -1328,9 +1501,11 @@
         <div class="footer-bg"></div>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">
-                    <i class="fas fa-crown"></i>
-                    MARKLY<span>.</span>Advisory
+                <div class="footer-logo-container">
+                    <img src="https://raw.githubusercontent.com/MARKLY-consulting/MARKLY-Advisory/refs/heads/main/logo-markly.png" 
+                         alt="MARKLY Advisory" 
+                         class="footer-logo">
+                    <div class="footer-title">MARKLY<span>.</span>Advisory</div>
                 </div>
                 <p class="footer-text">Votre partenaire stratégique pour transformer les visions en succès concrets</p>
                 <div class="copyright">
@@ -1345,12 +1520,16 @@
         let lastScrollTop = 0;
         let ticking = false;
         
+        // Éléments du menu
+        const menuHamburger = document.getElementById('menuHamburger');
+        const sideMenu = document.getElementById('sideMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        
         // Initialiser les animations au chargement
         document.addEventListener('DOMContentLoaded', () => {
             // Animer le header au chargement
             setTimeout(() => {
-                document.querySelector('.logo').classList.add('animated');
-                document.querySelector('.nav-links').classList.add('animated');
+                document.querySelector('.logo-container').classList.add('animated');
             }, 300);
             
             // Animer la section hero
@@ -1368,12 +1547,16 @@
                     }, index * 200);
                 }
             });
+            
+            // Précharger l'image du logo
+            const logoImg = new Image();
+            logoImg.src = 'https://raw.githubusercontent.com/MARKLY-consulting/MARKLY-Advisory/refs/heads/main/logo-markly.png';
         });
         
         // Fonction pour vérifier la visibilité des éléments
         function checkVisibility() {
             const elements = document.querySelectorAll(
-                '.service-card, .stat-item, .contact-info, .performance-section, .progress-fill, .percentage-value, .percentage-label, .footer-logo, .footer-text, .copyright'
+                '.service-card, .stat-item, .contact-info, .performance-section, .progress-fill, .percentage-value, .percentage-label, .footer-logo-container, .footer-text, .copyright'
             );
             
             elements.forEach(element => {
@@ -1440,6 +1623,11 @@
                 header.classList.remove('scrolled', 'hidden');
             }
             
+            // Fermer le menu si ouvert pendant le scroll
+            if (sideMenu.classList.contains('active')) {
+                closeMenu();
+            }
+            
             // Vérifier la visibilité des éléments
             if (!ticking) {
                 window.requestAnimationFrame(() => {
@@ -1459,26 +1647,36 @@
             handleScroll();
         });
         
-        // Menu mobile
-        const menuToggle = document.querySelector('.menu-toggle');
-        const mobileMenu = document.getElementById('mobileMenu');
+        // Fonctions pour ouvrir/fermer le menu
+        function openMenu() {
+            menuHamburger.classList.add('active');
+            sideMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
         
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            // Changer l'icône
-            const icon = menuToggle.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
+        function closeMenu() {
+            menuHamburger.classList.remove('active');
+            sideMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Menu hamburger
+        menuHamburger.addEventListener('click', () => {
+            if (sideMenu.classList.contains('active')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
         });
         
-        // Fermer le menu mobile en cliquant sur un lien
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                const icon = menuToggle.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            });
+        // Overlay pour fermer le menu
+        menuOverlay.addEventListener('click', closeMenu);
+        
+        // Fermer le menu en cliquant sur les liens
+        document.querySelectorAll('.side-menu-links a').forEach(link => {
+            link.addEventListener('click', closeMenu);
         });
         
         // Smooth scroll
@@ -1532,6 +1730,13 @@
         // Observer les éléments de statistiques
         document.querySelectorAll('.stat-item').forEach(item => {
             observer.observe(item);
+        });
+        
+        // Empêcher le clic droit sur le logo pour le protéger
+        document.querySelectorAll('.logo-image, .side-menu-logo, .footer-logo').forEach(logo => {
+            logo.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+            });
         });
     </script>
 </body>
