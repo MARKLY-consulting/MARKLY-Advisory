@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -219,6 +219,38 @@
         /* Supprimer le texte "MARKLY.Advisory" du header */
         .logo-text {
             display: none; /* Caché comme demandé */
+        }
+
+        /* ===== NOUVELLE IMAGE EN HAUT À DROITE ===== */
+        .header-right-image {
+            margin-left: auto;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+        }
+
+        .header-right-image.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .header-image {
+            width: 40px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-image:hover {
+            transform: scale(1.1);
+            border-color: var(--gold);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
 
         /* ===== MENU HAMBURGER MODERNE - 3 Lignes ===== */
@@ -1128,6 +1160,11 @@
             .side-menu {
                 width: 350px;
             }
+            
+            .header-image {
+                width: 35px;
+                height: 52px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1169,6 +1206,15 @@
             .footer-logo {
                 height: 50px;
             }
+            
+            .header-right-image {
+                margin-right: 10px;
+            }
+            
+            .header-image {
+                width: 30px;
+                height: 45px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1208,6 +1254,11 @@
             .logo-image {
                 height: 40px;
             }
+            
+            .header-image {
+                width: 25px;
+                height: 37px;
+            }
         }
     </style>
 </head>
@@ -1217,13 +1268,20 @@
         <div class="container">
             <nav>
                 <a href="#" class="logo-container">
-                    <!-- Logo MARKLY Advisory - REMPLACÉ PAR VOTRE IMAGE -->
+                    <!-- Logo MARKLY Advisory -->
                     <img src="https://github.com/user-attachments/assets/9b3157fb-47fa-43d6-aa57-c2857141ec27" 
                          alt="MARKLY Advisory" 
                          class="logo-image">
                     <!-- Texte supprimé comme demandé -->
                     <div class="logo-text"></div>
                 </a>
+                
+                <!-- NOUVELLE IMAGE EN HAUT À DROITE -->
+                <div class="header-right-image">
+                    <img src="https://github.com/user-attachments/assets/87e53a92-c9f2-4fa8-bde4-a159854242cd" 
+                         alt="Image décorative" 
+                         class="header-image">
+                </div>
                 
                 <div class="menu-hamburger" id="menuHamburger">
                     <div class="hamburger-line"></div>
@@ -1236,7 +1294,6 @@
         <!-- Menu latéral -->
         <div class="side-menu" id="sideMenu">
             <div class="side-menu-header">
-                <!-- Logo REMPLACÉ PAR VOTRE IMAGE -->
                 <img src="https://github.com/user-attachments/assets/9b3157fb-47fa-43d6-aa57-c2857141ec27" 
                      alt="MARKLY Advisory" 
                      class="side-menu-logo">
@@ -1477,7 +1534,6 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo-container">
-                    <!-- Logo REMPLACÉ PAR VOTRE IMAGE -->
                     <img src="https://github.com/user-attachments/assets/9b3157fb-47fa-43d6-aa57-c2857141ec27" 
                          alt="MARKLY Advisory" 
                          class="footer-logo">
@@ -1507,6 +1563,7 @@
             // Animer le header au chargement
             setTimeout(() => {
                 document.querySelector('.logo-container').classList.add('animated');
+                document.querySelector('.header-right-image').classList.add('animated');
             }, 300);
             
             // Animer la section hero
@@ -1525,17 +1582,20 @@
                 }
             });
             
-            // Précharger l'image du logo depuis le bon chemin
+            // Précharger les images
             const logoImg = new Image();
             logoImg.src = 'https://github.com/user-attachments/assets/9b3157fb-47fa-43d6-aa57-c2857141ec27';
             
-            // Alternative si le logo ne charge pas
+            const rightImage = new Image();
+            rightImage.src = 'https://github.com/user-attachments/assets/87e53a92-c9f2-4fa8-bde4-a159854242cd';
+            
+            // Alternative si les images ne chargent pas
             logoImg.onerror = function() {
-                console.log('Logo non trouvé, chargement depuis une alternative');
-                const logos = document.querySelectorAll('.logo-image, .side-menu-logo, .footer-logo');
-                logos.forEach(logo => {
-                    logo.src = 'https://github.com/user-attachments/assets/9b3157fb-47fa-43d6-aa57-c2857141ec27';
-                });
+                console.log('Logo non trouvé');
+            };
+            
+            rightImage.onerror = function() {
+                console.log('Image droite non trouvée');
             };
         });
         
