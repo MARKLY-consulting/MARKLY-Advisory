@@ -44,8 +44,8 @@
             overflow-x: hidden;
         }
 
-        /* ===== VIDEO BACKGROUND ===== */
-        .video-background {
+        /* ===== VIDEO BACKGROUND AVEC ROTATION ===== */
+        .video-background-container {
             position: fixed;
             top: 0;
             left: 0;
@@ -55,17 +55,57 @@
             overflow: hidden;
         }
 
-        .video-background video {
+        .video-slide {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            filter: brightness(0.3) sepia(0.2) hue-rotate(200deg);
-            opacity: 0.4;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .video-slide.active {
+            opacity: 1;
+        }
+
+        .video-slide video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.4) contrast(1.1);
+        }
+
+        .video-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 15px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .video-controls button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .video-controls button:hover {
+            background: var(--royal-blue);
+            transform: scale(1.1);
         }
 
         .video-overlay {
@@ -75,7 +115,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(45deg, 
-                rgba(26, 43, 60, 0.9) 0%, 
+                rgba(26, 43, 60, 0.85) 0%, 
                 rgba(42, 92, 255, 0.25) 50%, 
                 rgba(16, 185, 129, 0.15) 100%);
             z-index: -1;
@@ -150,13 +190,13 @@
             );
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             animation: fadeInUp 1s ease;
         }
 
         .hero p {
             font-size: 1.4rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
             margin-bottom: 3rem;
             line-height: 1.8;
             animation: fadeInUp 1s ease 0.3s both;
@@ -185,7 +225,7 @@
             gap: 12px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(42, 92, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(42, 92, 255, 0.4);
             text-decoration: none;
         }
 
@@ -478,6 +518,10 @@
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
+            
+            .video-controls {
+                display: none;
+            }
         }
 
         @media (max-width: 768px) {
@@ -527,13 +571,57 @@
     </style>
 </head>
 <body>
-    <!-- Video Background -->
-    <div class="video-background">
-        <video autoplay muted loop playsinline>
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-businessman-looking-at-digital-graphics-4935-large.mp4" type="video/mp4">
-            <source src="https://cdn.pixabay.com/vimeo/808233104/business-193442.mp4?width=1920&hash=3db7e4e0d5b41af80a514553ffc53d290f43338e" type="video/mp4">
-        </video>
+    <!-- Video Background avec rotation -->
+    <div class="video-background-container">
+        <!-- Vidéo 1 -->
+        <div class="video-slide active" data-id="1">
+            <video autoplay muted loop playsinline>
+                <source src="https://github.com/user-attachments/assets/ed3e1a7f-9b87-42a6-990e-b0ac339ba345" type="video/mp4">
+            </video>
+        </div>
+        
+        <!-- Vidéo 2 -->
+        <div class="video-slide" data-id="2">
+            <video autoplay muted loop playsinline>
+                <source src="https://github.com/user-attachments/assets/037967e6-9bef-4acb-bce6-8ad32f4f21aa" type="video/mp4">
+            </video>
+        </div>
+        
+        <!-- Vidéo 3 -->
+        <div class="video-slide" data-id="3">
+            <video autoplay muted loop playsinline>
+                <source src="https://github.com/user-attachments/assets/24da5c31-505a-40be-90ff-8198b912d469" type="video/mp4">
+            </video>
+        </div>
+        
+        <!-- Vidéo 4 -->
+        <div class="video-slide" data-id="4">
+            <video autoplay muted loop playsinline>
+                <source src="https://github.com/user-attachments/assets/9980c02c-8593-442c-b10e-aaaeffbc8bf6" type="video/mp4">
+            </video>
+        </div>
+        
+        <!-- Vidéo 5 -->
+        <div class="video-slide" data-id="5">
+            <video autoplay muted loop playsinline>
+                <source src="https://github.com/user-attachments/assets/de173946-56af-416e-b455-52796d049a50" type="video/mp4">
+            </video>
+        </div>
     </div>
+    
+    <!-- Contrôles vidéo -->
+    <div class="video-controls">
+        <button id="prev-video" title="Vidéo précédente">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button id="play-pause" title="Pause/Play">
+            <i class="fas fa-pause"></i>
+        </button>
+        <button id="next-video" title="Vidéo suivante">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+    
     <div class="video-overlay"></div>
 
     <!-- Header -->
@@ -761,7 +849,83 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Observer pour animer les éléments au scroll
+            // Système de rotation des vidéos
+            const videoSlides = document.querySelectorAll('.video-slide');
+            let currentVideoIndex = 0;
+            let isPlaying = true;
+            let rotationInterval;
+            
+            // Fonction pour changer de vidéo
+            function showVideo(index) {
+                // Masquer toutes les vidéos
+                videoSlides.forEach(slide => {
+                    slide.classList.remove('active');
+                    const video = slide.querySelector('video');
+                    if (video) video.pause();
+                });
+                
+                // Afficher la vidéo sélectionnée
+                currentVideoIndex = (index + videoSlides.length) % videoSlides.length;
+                videoSlides[currentVideoIndex].classList.add('active');
+                
+                // Jouer la vidéo si en mode play
+                const currentVideo = videoSlides[currentVideoIndex].querySelector('video');
+                if (currentVideo && isPlaying) {
+                    currentVideo.play();
+                }
+            }
+            
+            // Rotation automatique des vidéos
+            function startRotation() {
+                rotationInterval = setInterval(() => {
+                    showVideo(currentVideoIndex + 1);
+                }, 10000); // Change toutes les 10 secondes
+            }
+            
+            // Contrôles vidéo
+            document.getElementById('prev-video').addEventListener('click', () => {
+                showVideo(currentVideoIndex - 1);
+                resetRotation();
+            });
+            
+            document.getElementById('next-video').addEventListener('click', () => {
+                showVideo(currentVideoIndex + 1);
+                resetRotation();
+            });
+            
+            document.getElementById('play-pause').addEventListener('click', () => {
+                const playPauseBtn = document.getElementById('play-pause');
+                const currentVideo = videoSlides[currentVideoIndex].querySelector('video');
+                
+                if (isPlaying) {
+                    // Pause
+                    if (currentVideo) currentVideo.pause();
+                    clearInterval(rotationInterval);
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    playPauseBtn.title = 'Play';
+                } else {
+                    // Play
+                    if (currentVideo) currentVideo.play();
+                    startRotation();
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    playPauseBtn.title = 'Pause';
+                }
+                
+                isPlaying = !isPlaying;
+            });
+            
+            // Réinitialiser le timer de rotation
+            function resetRotation() {
+                clearInterval(rotationInterval);
+                if (isPlaying) {
+                    startRotation();
+                }
+            }
+            
+            // Démarrer la rotation automatique
+            startRotation();
+            
+            // Observer pour animer les statistiques
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
