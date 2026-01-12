@@ -1,4 +1,4 @@
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -219,38 +219,6 @@
         /* Supprimer le texte "MARKLY.Advisory" du header */
         .logo-text {
             display: none; /* Caché comme demandé */
-        }
-
-        /* ===== NOUVELLE IMAGE EN HAUT À DROITE ===== */
-        .header-right-image {
-            margin-left: auto;
-            margin-right: 20px;
-            display: flex;
-            align-items: center;
-            opacity: 0;
-            transform: translateY(-20px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
-        }
-
-        .header-right-image.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .header-image {
-            width: 40px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            transition: var(--transition-smooth);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .header-image:hover {
-            transform: scale(1.1);
-            border-color: var(--gold);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
 
         /* ===== MENU HAMBURGER MODERNE - 3 Lignes ===== */
@@ -552,20 +520,21 @@
             transform: translateY(0);
         }
 
+        /* NOUVELLE IMAGE HERO - REMPLACE L'ANCIENNE FILLE */
         .hero-image {
             position: absolute;
             right: 5%;
             top: 50%;
             transform: translateY(-50%);
-            width: 35%;
-            height: 70%;
-            background: linear-gradient(45deg, var(--accent), var(--accent-light));
+            width: 30%; /* Ajusté pour votre image verticale */
+            height: 80%;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--shadow-hover);
             opacity: 0;
             transform: translateY(-50%) translateX(100px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s;
+            background-color: var(--pure-white);
         }
 
         .hero-image.animated {
@@ -573,17 +542,16 @@
             transform: translateY(-50%) translateX(0);
         }
 
-        .hero-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .hero-image img {
             width: 100%;
             height: 100%;
-            background: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.9;
+            object-fit: cover;
+            border-radius: 20px;
+            transition: var(--transition-smooth);
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.03);
         }
 
         /* ===== SERVICES ===== */
@@ -1139,7 +1107,8 @@
             }
             
             .hero-image {
-                width: 40%;
+                width: 35%;
+                height: 75%;
             }
             
             .contact-content {
@@ -1160,11 +1129,6 @@
             .side-menu {
                 width: 350px;
             }
-            
-            .header-image {
-                width: 35px;
-                height: 52px;
-            }
         }
 
         @media (max-width: 768px) {
@@ -1178,7 +1142,7 @@
             }
             
             .hero-image {
-                display: none;
+                display: none; /* Cacher l'image sur mobile pour plus de lisibilité */
             }
             
             .hero-btns {
@@ -1205,15 +1169,6 @@
             
             .footer-logo {
                 height: 50px;
-            }
-            
-            .header-right-image {
-                margin-right: 10px;
-            }
-            
-            .header-image {
-                width: 30px;
-                height: 45px;
             }
         }
 
@@ -1254,11 +1209,6 @@
             .logo-image {
                 height: 40px;
             }
-            
-            .header-image {
-                width: 25px;
-                height: 37px;
-            }
         }
     </style>
 </head>
@@ -1275,13 +1225,6 @@
                     <!-- Texte supprimé comme demandé -->
                     <div class="logo-text"></div>
                 </a>
-                
-                <!-- NOUVELLE IMAGE EN HAUT À DROITE -->
-                <div class="header-right-image">
-                    <img src="https://github.com/user-attachments/assets/87e53a92-c9f2-4fa8-bde4-a159854242cd" 
-                         alt="Image décorative" 
-                         class="header-image">
-                </div>
                 
                 <div class="menu-hamburger" id="menuHamburger">
                     <div class="hamburger-line"></div>
@@ -1343,7 +1286,11 @@
                 </div>
             </div>
         </div>
-        <div class="hero-image"></div>
+        <!-- NOUVELLE IMAGE HERO - REMPLACE L'ANCIENNE FILLE -->
+        <div class="hero-image">
+            <img src="https://github.com/user-attachments/assets/87e53a92-c9f2-4fa8-bde4-a159854242cd" 
+                 alt="Consultante MARKLY Advisory">
+        </div>
     </section>
 
     <!-- Services Section -->
@@ -1563,7 +1510,6 @@
             // Animer le header au chargement
             setTimeout(() => {
                 document.querySelector('.logo-container').classList.add('animated');
-                document.querySelector('.header-right-image').classList.add('animated');
             }, 300);
             
             // Animer la section hero
@@ -1586,16 +1532,16 @@
             const logoImg = new Image();
             logoImg.src = 'https://github.com/user-attachments/assets/9b3157fb-47fa-43d6-aa57-c2857141ec27';
             
-            const rightImage = new Image();
-            rightImage.src = 'https://github.com/user-attachments/assets/87e53a92-c9f2-4fa8-bde4-a159854242cd';
+            const heroImage = new Image();
+            heroImage.src = 'https://github.com/user-attachments/assets/87e53a92-c9f2-4fa8-bde4-a159854242cd';
             
             // Alternative si les images ne chargent pas
             logoImg.onerror = function() {
                 console.log('Logo non trouvé');
             };
             
-            rightImage.onerror = function() {
-                console.log('Image droite non trouvée');
+            heroImage.onerror = function() {
+                console.log('Image hero non trouvée');
             };
         });
         
