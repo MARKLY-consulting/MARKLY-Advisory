@@ -44,7 +44,7 @@
             overflow-x: hidden;
         }
 
-        /* ===== VIDEO BACKGROUND ===== */
+        /* ===== VIDEO BACKGROUND MULTIPLE ===== */
         .video-background {
             position: fixed;
             top: 0;
@@ -55,17 +55,21 @@
             overflow: hidden;
         }
 
-        .video-background video {
+        .video-slider {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            filter: brightness(0.3) sepia(0.3) hue-rotate(180deg);
-            opacity: 0.4;
+            top: 0;
+            left: 0;
+            width: 500%; /* 5 vidéos = 500% */
+            height: 100%;
+            display: flex;
+            animation: slideVideos 50s infinite linear;
+        }
+
+        .video-slider video {
+            width: 20%; /* Chaque vidéo prend 20% de l'espace */
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.4) sepia(0.3) hue-rotate(180deg);
         }
 
         .video-overlay {
@@ -118,14 +122,15 @@
             transform: rotate(-5deg) scale(1.1);
         }
 
-        /* ===== HERO SECTION ===== */
+        /* ===== HERO SECTION CENTRÉE ===== */
         .hero {
-            padding: 200px 0 150px;
-            margin-top: 80px;
+            padding: 0;
+            margin: 0;
             position: relative;
             min-height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
             text-align: center;
         }
 
@@ -134,11 +139,18 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1.5s ease;
         }
 
         .hero h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 3.8rem;
+            font-size: 4rem;
             font-weight: 800;
             margin-bottom: 2rem;
             line-height: 1.1;
@@ -150,30 +162,31 @@
             );
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            animation: fadeInUp 1s ease;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: textGlow 3s ease-in-out infinite alternate;
         }
 
         .hero p {
-            font-size: 1.4rem;
-            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.6rem;
+            color: rgba(255, 255, 255, 0.95);
             margin-bottom: 3rem;
             line-height: 1.8;
-            animation: fadeInUp 1s ease 0.3s both;
+            font-weight: 300;
+            animation: fadeInUp 1s ease 0.5s both;
         }
 
         .hero-btns {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             justify-content: center;
-            animation: fadeInUp 1s ease 0.6s both;
+            animation: fadeInUp 1s ease 0.8s both;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 16px 36px;
+            padding: 18px 40px;
             background: linear-gradient(45deg, var(--electric-blue), var(--cyber-teal));
             color: var(--pure-white);
             border: none;
@@ -181,26 +194,30 @@
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition-bounce);
-            font-size: 1rem;
-            gap: 12px;
+            font-size: 1.1rem;
+            gap: 15px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
+            box-shadow: 0 8px 25px rgba(0, 180, 216, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: var(--shadow-neon);
+            transform: translateY(-8px) scale(1.08);
+            box-shadow: var(--shadow-neon), 0 15px 40px rgba(0, 180, 216, 0.6);
         }
 
         .btn-secondary {
             background: transparent;
             color: var(--pure-white);
             border: 2px solid var(--cyber-teal);
+            backdrop-filter: blur(10px);
         }
 
         .btn-secondary:hover {
             background: linear-gradient(45deg, var(--cyber-teal), var(--electric-blue));
+            border-color: transparent;
         }
 
         /* ===== SERVICES ===== */
@@ -296,7 +313,7 @@
             opacity: 0.9;
         }
 
-        /* ===== SECTION CONTACT RESTAURÉE ===== */
+        /* ===== SECTION CONTACT ===== */
         .contact {
             padding: 120px 0;
             background: rgba(255, 255, 255, 0.95);
@@ -352,7 +369,7 @@
             margin-bottom: 5px;
         }
 
-        /* ===== SECTION PERFORMANCE CORRIGÉE ===== */
+        /* ===== SECTION PERFORMANCE ===== */
         .performance-section {
             background: var(--pure-white);
             padding: 50px 40px;
@@ -397,8 +414,9 @@
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, var(--electric-blue), var(--cyber-teal));
-            width: 90%;
+            width: 0;
             border-radius: 4px;
+            transition: width 2s ease;
         }
 
         .percentage-display {
@@ -455,6 +473,17 @@
         }
 
         /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -466,10 +495,49 @@
             }
         }
 
+        @keyframes textGlow {
+            from {
+                text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            }
+            to {
+                text-shadow: 0 10px 50px rgba(0, 245, 212, 0.5), 0 0 30px rgba(255, 214, 10, 0.3);
+            }
+        }
+
+        @keyframes slideVideos {
+            0% {
+                transform: translateX(0);
+            }
+            20% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-20%);
+            }
+            45% {
+                transform: translateX(-20%);
+            }
+            50% {
+                transform: translateX(-40%);
+            }
+            70% {
+                transform: translateX(-40%);
+            }
+            75% {
+                transform: translateX(-60%);
+            }
+            95% {
+                transform: translateX(-60%);
+            }
+            100% {
+                transform: translateX(-80%);
+            }
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .hero h1 {
-                font-size: 3rem;
+                font-size: 3.2rem;
             }
             
             .contact-content {
@@ -479,16 +547,12 @@
         }
 
         @media (max-width: 768px) {
-            .hero {
-                padding: 150px 0 100px;
-            }
-            
             .hero h1 {
                 font-size: 2.5rem;
             }
             
             .hero p {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
             }
             
             .hero-btns {
@@ -503,6 +567,11 @@
             .section-title h2 {
                 font-size: 2.2rem;
             }
+            
+            .hero-content {
+                padding: 30px 20px;
+                margin: 0 20px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -514,6 +583,10 @@
                 font-size: 2rem;
             }
             
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
             .service-card {
                 padding: 30px 20px;
             }
@@ -521,18 +594,39 @@
             .contact-info {
                 padding: 30px 20px;
             }
+            
+            .btn {
+                padding: 15px 30px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Video Background -->
+    <!-- Video Background avec 5 vidéos -->
     <div class="video-background">
-        <!-- Vidéo d'animation consulting professionnelle -->
-        <video autoplay muted loop playsinline>
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-businessman-looking-at-digital-graphics-4935-large.mp4" type="video/mp4">
-            <!-- Alternative si la vidéo ne charge pas -->
-            <source src="https://cdn.pixabay.com/vimeo/808233104/business-193442.mp4?width=1920&hash=3db7e4e0d5b41af80a514553ffc53d290f43338e" type="video/mp4">
-        </video>
+        <div class="video-slider">
+            <!-- Vidéo 1 -->
+            <video autoplay muted loop playsinline>
+                <source src="https://github.com/user-attachments/assets/ed3e1a7f-9b87-42a6-990e-b0ac339ba345" type="video/mp4">
+            </video>
+            <!-- Vidéo 2 -->
+            <video autoplay muted loop playsinline>
+                <source src="https://github.com/user-attachments/assets/037967e6-9bef-4acb-bce6-8ad32f4f21aa" type="video/mp4">
+            </video>
+            <!-- Vidéo 3 -->
+            <video autoplay muted loop playsinline>
+                <source src="https://github.com/user-attachments/assets/24da5c31-505a-40be-90ff-8198b912d469" type="video/mp4">
+            </video>
+            <!-- Vidéo 4 -->
+            <video autoplay muted loop playsinline>
+                <source src="https://github.com/user-attachments/assets/9980c02c-8593-442c-b10e-aaaeffbc8bf6" type="video/mp4">
+            </video>
+            <!-- Vidéo 5 -->
+            <video autoplay muted loop playsinline>
+                <source src="https://github.com/user-attachments/assets/de173946-56af-416e-b455-52796d049a50" type="video/mp4">
+            </video>
+        </div>
     </div>
     <div class="video-overlay"></div>
 
@@ -549,22 +643,20 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section CENTRÉE - SANS IMAGE -->
     <section class="hero" id="accueil">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Excellence en Conseil Business & Stratégie de Projet</h1>
-                <p>MARKLY Advisory transforme les visions entrepreneuriales en succès tangibles grâce à une approche stratégique sur-mesure et un accompagnement d'excellence.</p>
-                <div class="hero-btns">
-                    <a href="#services" class="btn">
-                        <i class="fas fa-rocket"></i>
-                        Découvrir nos services
-                    </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        <i class="fas fa-calendar-check"></i>
-                        Consultation gratuite
-                    </a>
-                </div>
+        <div class="hero-content">
+            <h1>Excellence en Conseil Business & Stratégie de Projet</h1>
+            <p>MARKLY Advisory transforme les visions entrepreneuriales en succès tangibles grâce à une approche stratégique sur-mesure et un accompagnement d'excellence.</p>
+            <div class="hero-btns">
+                <a href="#services" class="btn">
+                    <i class="fas fa-rocket"></i>
+                    Découvrir nos services
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-calendar-check"></i>
+                    Consultation gratuite
+                </a>
             </div>
         </div>
     </section>
@@ -785,12 +877,22 @@
                                 }, 20);
                             }
                         }
+                        
+                        // Animer la barre de progression
+                        if (entry.target.classList.contains('performance-section')) {
+                            const progressFill = document.querySelector('.progress-fill');
+                            if (progressFill) {
+                                setTimeout(() => {
+                                    progressFill.style.width = '95%';
+                                }, 500);
+                            }
+                        }
                     }
                 });
             }, { threshold: 0.5 });
 
-            // Observer les éléments de statistiques
-            document.querySelectorAll('.stat-item').forEach(el => {
+            // Observer les éléments
+            document.querySelectorAll('.stat-item, .performance-section').forEach(el => {
                 observer.observe(el);
             });
 
@@ -803,14 +905,6 @@
                     header.style.background = 'rgba(255, 255, 255, 0.95)';
                 }
             });
-
-            // Animation de la barre de progression
-            const progressFill = document.querySelector('.progress-fill');
-            if (progressFill) {
-                setTimeout(() => {
-                    progressFill.style.width = '95%';
-                }, 500);
-            }
         });
     </script>
 </body>
