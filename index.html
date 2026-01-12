@@ -40,6 +40,48 @@
             overflow-x: hidden;
         }
 
+        /* ===== VIDEO BACKGROUND ===== */
+        .video-background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .video-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .video-slide.active {
+            opacity: 1;
+        }
+
+        .video-slide video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.5);
+        }
+
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
         .container {
             width: 100%;
             max-width: 1200px;
@@ -108,8 +150,9 @@
             padding: 180px 0 100px;
             margin-top: 80px;
             text-align: center;
-            background: linear-gradient(rgba(0, 102, 204, 0.05), rgba(0, 102, 204, 0.02));
-            border-radius: 0 0 20px 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
         }
 
         .hero-content {
@@ -122,13 +165,14 @@
             font-size: 2.8rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
-            color: var(--blue);
+            color: var(--white);
             line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .hero p {
             font-size: 1.2rem;
-            color: var(--gray);
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 2.5rem;
             line-height: 1.8;
         }
@@ -165,19 +209,21 @@
 
         .btn-secondary {
             background: transparent;
-            color: var(--blue);
-            border: 2px solid var(--blue);
+            color: var(--white);
+            border: 2px solid var(--white);
         }
 
         .btn-secondary:hover {
-            background: var(--blue);
-            color: var(--white);
+            background: var(--white);
+            color: var(--blue);
         }
 
         /* ===== SERVICES ===== */
         .services {
             padding: 80px 0;
             background: var(--white);
+            position: relative;
+            z-index: 1;
         }
 
         .section-title {
@@ -248,6 +294,8 @@
             padding: 60px 0;
             background: var(--light-gray);
             margin: 40px 0;
+            position: relative;
+            z-index: 1;
         }
 
         .stats-grid {
@@ -281,6 +329,8 @@
         .contact {
             padding: 80px 0;
             background: var(--white);
+            position: relative;
+            z-index: 1;
         }
 
         .contact-content {
@@ -411,6 +461,8 @@
             padding: 60px 0 30px;
             text-align: center;
             margin-top: 60px;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-content {
@@ -455,6 +507,40 @@
             font-size: 0.9rem;
         }
 
+        /* ===== VIDEO CONTROLS ===== */
+        .video-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 12px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 102, 204, 0.2);
+        }
+
+        .video-controls button {
+            background: var(--blue);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .video-controls button:hover {
+            background: var(--dark-blue);
+            transform: scale(1.1);
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .hero h1 {
@@ -464,6 +550,10 @@
             .contact-content {
                 grid-template-columns: 1fr;
                 gap: 40px;
+            }
+            
+            .video-controls {
+                display: none;
             }
         }
 
@@ -527,6 +617,60 @@
     </style>
 </head>
 <body>
+    <!-- Video Background avec rotation -->
+    <div class="video-background-container">
+        <!-- Vidéo 1 -->
+        <div class="video-slide active" data-id="1">
+            <video autoplay muted loop playsinline>
+                <source src="https://github.com/user-attachments/assets/ed3e1a7f-9b87-42a6-990e-b0ac339ba345" type="video/mp4">
+            </video>
+        </div>
+        
+        <!-- Vidéo 2 -->
+        <div class="video-slide" data-id="2">
+            <video autoplay muted loop playsinline>
+                <source src="https://github.com/user-attachments/assets/037967e6-9bef-4acb-bce6-8ad32f4f21aa" type="video/mp4">
+            </video>
+        </div>
+        
+        <!-- Vidéo 3 -->
+        <div class="video-slide" data-id="3">
+            <video autoplay muted loop playsinline>
+                <source src="https://github.com/user-attachments/assets/24da5c31-505a-40be-90ff-8198b912d469" type="video/mp4">
+            </video>
+        </div>
+        
+        <!-- Vidéo 4 -->
+        <div class="video-slide" data-id="4">
+            <video autoplay muted loop playsinline>
+                <source src="https://github.com/user-attachments/assets/9980c02c-8593-442c-b10e-aaaeffbc8bf6" type="video/mp4">
+            </video>
+        </div>
+        
+        <!-- Vidéo 5 -->
+        <div class="video-slide" data-id="5">
+            <video autoplay muted loop playsinline>
+                <source src="https://github.com/user-attachments/assets/de173946-56af-416e-b455-52796d049a50" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    
+    <!-- Overlay pour meilleure lisibilité -->
+    <div class="video-overlay"></div>
+    
+    <!-- Contrôles vidéo -->
+    <div class="video-controls">
+        <button id="prev-video" title="Vidéo précédente">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button id="play-pause" title="Pause/Play">
+            <i class="fas fa-pause"></i>
+        </button>
+        <button id="next-video" title="Vidéo suivante">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
     <!-- Header -->
     <header id="header">
         <div class="container">
@@ -767,6 +911,79 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Système de rotation des vidéos
+            const videoSlides = document.querySelectorAll('.video-slide');
+            let currentVideoIndex = 0;
+            let isPlaying = true;
+            let rotationInterval;
+            
+            // Fonction pour changer de vidéo
+            function showVideo(index) {
+                videoSlides.forEach(slide => {
+                    slide.classList.remove('active');
+                    const video = slide.querySelector('video');
+                    if (video) video.pause();
+                });
+                
+                currentVideoIndex = (index + videoSlides.length) % videoSlides.length;
+                videoSlides[currentVideoIndex].classList.add('active');
+                
+                const currentVideo = videoSlides[currentVideoIndex].querySelector('video');
+                if (currentVideo && isPlaying) {
+                    currentVideo.play();
+                }
+            }
+            
+            // Rotation automatique des vidéos
+            function startRotation() {
+                rotationInterval = setInterval(() => {
+                    showVideo(currentVideoIndex + 1);
+                }, 8000); // Change toutes les 8 secondes
+            }
+            
+            // Contrôles vidéo
+            document.getElementById('prev-video').addEventListener('click', () => {
+                showVideo(currentVideoIndex - 1);
+                resetRotation();
+            });
+            
+            document.getElementById('next-video').addEventListener('click', () => {
+                showVideo(currentVideoIndex + 1);
+                resetRotation();
+            });
+            
+            document.getElementById('play-pause').addEventListener('click', () => {
+                const playPauseBtn = document.getElementById('play-pause');
+                const currentVideo = videoSlides[currentVideoIndex].querySelector('video');
+                
+                if (isPlaying) {
+                    // Pause
+                    if (currentVideo) currentVideo.pause();
+                    clearInterval(rotationInterval);
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    playPauseBtn.title = 'Play';
+                } else {
+                    // Play
+                    if (currentVideo) currentVideo.play();
+                    startRotation();
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    playPauseBtn.title = 'Pause';
+                }
+                
+                isPlaying = !isPlaying;
+            });
+            
+            // Réinitialiser le timer de rotation
+            function resetRotation() {
+                clearInterval(rotationInterval);
+                if (isPlaying) {
+                    startRotation();
+                }
+            }
+            
+            // Démarrer la rotation automatique
+            startRotation();
+            
             // Animation des statistiques
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
