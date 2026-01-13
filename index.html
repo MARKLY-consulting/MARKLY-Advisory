@@ -3,23 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MARKLY Advisory - Conseil Business & Stratégie Projet</title>
+    <title>MARKLY Advisory - Excellence en Conseil Business</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ===== VARIABLES SIMPLES ===== */
+        /* ===== VARIABLES DESIGN INTELLIGENT ===== */
         :root {
-            --blue: #0066cc;
-            --dark-blue: #004080;
-            --green: #00a86b;
-            --gray: #666666;
-            --light-gray: #f5f5f5;
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #60a5fa;
+            --secondary: #7c3aed;
+            --accent: #10b981;
+            --accent-dark: #059669;
+            --dark: #1e293b;
+            --darker: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
             --white: #ffffff;
-            --black: #333333;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --border-radius: 8px;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.15);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 30px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.3s ease;
         }
 
         * {
@@ -30,14 +42,21 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--black);
-            background: var(--white);
+            line-height: 1.7;
+            color: var(--dark);
+            background: var(--light);
             overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
         }
 
         /* ===== VIDEO BACKGROUND ===== */
@@ -58,7 +77,7 @@
             width: 100%;
             height: 100%;
             opacity: 0;
-            transition: opacity 1.5s ease-in-out;
+            transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .video-slide.active {
@@ -69,7 +88,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.5);
+            filter: brightness(0.4) contrast(1.2);
         }
 
         .video-overlay {
@@ -78,103 +97,157 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, 
+                rgba(15, 23, 42, 0.9) 0%, 
+                rgba(37, 99, 235, 0.4) 50%, 
+                rgba(124, 58, 237, 0.2) 100%);
             z-index: -1;
         }
 
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
-        /* ===== HEADER COMPLET ===== */
+        /* ===== HEADER MODERNE ===== */
         header {
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 2px solid var(--blue);
-            box-shadow: var(--shadow);
-            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-md);
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 18px 0;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
+            text-decoration: none;
         }
 
         .logo-image {
-            height: 50px;
+            height: 48px;
             width: auto;
+            transition: var(--transition-fast);
         }
 
         .logo-text {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--blue);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 32px;
             list-style: none;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--black);
-            font-weight: 500;
-            padding: 5px 10px;
-            border-radius: var(--border-radius);
-            transition: all 0.3s ease;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition-fast);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: var(--transition-fast);
         }
 
         .nav-links a:hover {
-            color: var(--blue);
-            background: var(--light-gray);
+            color: var(--primary);
         }
 
-        /* ===== HERO SECTION ===== */
+        .nav-links a:hover::after {
+            width: 80%;
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        .nav-links a.active::after {
+            width: 80%;
+        }
+
+        /* ===== HERO SECTION MODERNE ===== */
         .hero {
-            padding: 180px 0 100px;
+            padding: 200px 0 120px;
             margin-top: 80px;
             text-align: center;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
+            position: relative;
+            overflow: hidden;
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.8rem;
-            font-weight: 700;
+            font-size: 4rem;
+            font-weight: 800;
             margin-bottom: 1.5rem;
-            color: var(--white);
-            line-height: 1.2;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(90deg, 
+                var(--white) 0%, 
+                var(--primary-light) 50%, 
+                var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
             line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-btns {
@@ -188,55 +261,86 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 14px 30px;
-            background: var(--blue);
+            padding: 16px 36px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             color: var(--white);
             border: none;
-            border-radius: var(--border-radius);
+            border-radius: var(--radius-md);
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             font-size: 1rem;
-            gap: 10px;
+            gap: 12px;
             text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn:hover {
-            background: var(--dark-blue);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.4);
         }
 
         .btn-secondary {
             background: transparent;
             color: var(--white);
-            border: 2px solid var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
         }
 
         .btn-secondary:hover {
-            background: var(--white);
-            color: var(--blue);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--white);
         }
 
-        /* ===== SERVICES ===== */
+        /* ===== SERVICES SECTION MODERNE ===== */
         .services {
-            padding: 80px 0;
-            background: var(--white);
+            padding: 120px 0;
             position: relative;
-            z-index: 1;
+            background: var(--white);
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
 
         .section-title h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 600;
+            font-size: 3rem;
             margin-bottom: 1rem;
-            color: var(--blue);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
         }
 
         .section-title p {
@@ -248,135 +352,198 @@
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
-            margin-top: 30px;
+            margin-top: 40px;
         }
 
         .service-card {
             background: var(--white);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            border: 1px solid #e0e0e0;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            padding: 40px 30px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border: 1px solid var(--gray-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 102, 204, 0.1);
-            border-color: var(--blue);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
         }
 
         .service-icon {
-            font-size: 2.2rem;
-            color: var(--blue);
-            margin-bottom: 20px;
+            font-size: 2.8rem;
+            margin-bottom: 25px;
             display: inline-block;
-            padding: 15px;
-            background: var(--light-gray);
-            border-radius: 50%;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: var(--radius-md);
+            color: var(--white);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.2);
         }
 
         .service-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 15px;
-            color: var(--black);
+            color: var(--darker);
         }
 
         .service-card p {
             color: var(--gray);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
-        /* ===== SECTION PROCESSUS VERTICAL SIMPLE ===== */
+        /* ===== PROCESS SECTION AVEC IMAGES IA ===== */
         .process-section {
-            padding: 80px 0;
-            background: var(--light-gray);
+            padding: 120px 0;
+            background: linear-gradient(135deg, var(--darker) 0%, #1e293b 100%);
             position: relative;
-            z-index: 1;
+            overflow: hidden;
         }
 
-        .process-container {
-            max-width: 800px;
-            margin: 0 auto;
+        .process-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
         }
 
-        /* Timeline verticale */
-        .process-timeline-vertical {
+        .process-section .section-title h2 {
+            background: linear-gradient(90deg, var(--white), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .process-section .section-title p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .process-timeline {
             position: relative;
-            margin: 50px 0;
+            max-width: 1000px;
+            margin: 60px auto 0;
         }
 
-        /* Ligne verticale centrale */
-        .process-timeline-vertical::before {
+        /* Ligne centrale */
+        .process-timeline::before {
             content: '';
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
             width: 3px;
             height: 100%;
-            background: var(--blue);
-            opacity: 0.3;
+            background: linear-gradient(to bottom, 
+                transparent 0%, 
+                var(--primary) 15%, 
+                var(--primary) 85%, 
+                transparent 100%);
+            opacity: 0.5;
         }
 
-        .process-step-vertical {
+        .process-step {
             display: flex;
             align-items: center;
-            margin-bottom: 40px;
-            opacity: 0.3;
-            transform: translateX(-20px);
-            transition: all 0.6s ease;
-            position: relative;
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .process-step-vertical:nth-child(even) {
+        .process-step:nth-child(even) {
             flex-direction: row-reverse;
-            transform: translateX(20px);
         }
 
-        .process-step-vertical.active {
+        .process-step.active {
             opacity: 1;
-            transform: translateX(0);
+            transform: translateY(0);
         }
 
-        .process-step-vertical.active:nth-child(even) {
-            transform: translateX(0);
+        .step-image {
+            flex: 0 0 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            border: 4px solid var(--primary);
         }
 
-        /* Cercle sur la ligne */
-        .step-circle {
+        .step-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .step-image:hover img {
+            transform: scale(1.1);
+        }
+
+        .step-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 35px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            margin: 0 40px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .process-step:nth-child(odd) .step-content {
+            margin-left: 60px;
+        }
+
+        .process-step:nth-child(even) .step-content {
+            margin-right: 60px;
+        }
+
+        .step-number {
             position: absolute;
+            top: -25px;
             left: 50%;
             transform: translateX(-50%);
-            width: 24px;
-            height: 24px;
-            background: var(--white);
-            border: 4px solid var(--blue);
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
             border-radius: 50%;
-            z-index: 2;
-            transition: all 0.3s ease;
-        }
-
-        .process-step-vertical.active .step-circle {
-            background: var(--blue);
-            transform: translateX(-50%) scale(1.2);
-        }
-
-        /* Contenu de l'étape */
-        .step-content-vertical {
-            width: 45%;
-            background: var(--white);
-            padding: 25px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            border-top: 4px solid var(--blue);
-        }
-
-        .step-content-vertical h3 {
-            color: var(--blue);
-            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
             font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            border: 3px solid var(--white);
+        }
+
+        .step-content h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -385,155 +552,149 @@
         .step-icon {
             width: 40px;
             height: 40px;
-            background: var(--blue);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.2rem;
         }
 
-        .step-content-vertical p {
+        .step-content p {
             color: var(--gray);
-            font-size: 0.95rem;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
-        /* Numéro d'étape */
-        .step-number-vertical {
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            width: 30px;
-            height: 30px;
-            background: var(--blue);
+        /* Contrôles du processus */
+        .process-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .process-btn {
+            padding: 12px 28px;
+            background: rgba(255, 255, 255, 0.1);
             color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        .process-step-vertical:nth-child(even) .step-number-vertical {
-            left: auto;
-            right: -10px;
-        }
-
-        /* Contrôles simples */
-        .process-controls-simple {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 40px;
-        }
-
-        .process-control-btn {
-            padding: 10px 20px;
-            background: var(--blue);
-            color: white;
-            border: none;
-            border-radius: var(--border-radius);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-md);
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
+            transition: var(--transition);
+            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 8px;
+            backdrop-filter: blur(10px);
         }
 
-        .process-control-btn:hover {
-            background: var(--dark-blue);
+        .process-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--white);
+            transform: translateY(-2px);
         }
 
-        .process-control-btn:disabled {
-            background: var(--gray);
-            cursor: not-allowed;
+        .process-btn:disabled {
             opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
         }
 
-        /* Indicateur */
-        .process-indicator-simple {
+        .process-indicator {
             text-align: center;
-            margin-top: 20px;
-            color: var(--gray);
+            margin-top: 30px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
         }
 
-        .current-step-display {
-            color: var(--blue);
+        .current-step {
+            color: var(--primary-light);
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
 
-        /* ===== STATISTIQUES ===== */
+        /* ===== STATS SECTION ===== */
         .stats-section {
-            padding: 60px 0;
+            padding: 100px 0;
             background: var(--white);
-            margin: 40px 0;
             position: relative;
-            z-index: 1;
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 30px;
+            margin-top: 50px;
         }
 
         .stat-item {
             text-align: center;
-            padding: 30px 20px;
-            background: var(--light-gray);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
+            padding: 40px 30px;
+            background: linear-gradient(135deg, var(--light), var(--white));
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-light);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
 
         .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            font-family: 'Montserrat', sans-serif;
-            color: var(--blue);
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .stat-item.visible .stat-number {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .stat-label {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--gray);
+            font-weight: 600;
         }
 
-        /* ===== SECTION CONTACT ===== */
+        /* ===== CONTACT SECTION ===== */
         .contact {
-            padding: 80px 0;
-            background: var(--white);
+            padding: 120px 0;
+            background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);
             position: relative;
-            z-index: 1;
         }
 
         .contact-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            gap: 60px;
             align-items: start;
         }
 
         .contact-info {
             background: var(--white);
-            padding: 40px;
-            border-radius: var(--border-radius);
-            border: 1px solid #e0e0e0;
-            box-shadow: var(--shadow);
+            padding: 50px 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-light);
         }
 
         .contact-item {
             display: flex;
             align-items: flex-start;
-            gap: 15px;
-            margin-bottom: 25px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid #f0f0f0;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--gray-light);
         }
 
         .contact-item:last-child {
@@ -543,187 +704,203 @@
         }
 
         .contact-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--blue);
-            border-radius: 8px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: var(--radius-md);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
         }
 
-        .contact-item h4 {
-            color: var(--blue);
-            margin-bottom: 5px;
-            font-size: 1.1rem;
+        .contact-details h4 {
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1.2rem;
         }
 
-        .contact-item p {
+        .contact-details p {
             color: var(--gray);
         }
 
-        /* ===== SECTION PERFORMANCE ===== */
-        .performance-section {
+        /* Performance Card */
+        .performance-card {
             background: var(--white);
-            padding: 40px;
-            border-radius: var(--border-radius);
-            border: 1px solid #e0e0e0;
-            box-shadow: var(--shadow);
+            padding: 50px 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-light);
             text-align: center;
         }
 
-        .performance-image {
-            width: 80px;
-            height: 80px;
-            background: var(--blue);
+        .performance-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: 50%;
-            margin: 0 auto 20px;
+            margin: 0 auto 30px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 2rem;
+            font-size: 2.5rem;
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
         }
 
-        .progress-container {
-            margin-bottom: 25px;
+        .performance-progress {
+            margin: 40px 0;
         }
 
         .progress-label {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-            color: var(--black);
+            margin-bottom: 10px;
+            font-size: 1rem;
+            color: var(--dark);
         }
 
         .progress-bar {
-            height: 6px;
-            background: var(--light-gray);
-            border-radius: 3px;
+            height: 10px;
+            background: var(--gray-light);
+            border-radius: 5px;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
-            background: var(--green);
+            background: linear-gradient(90deg, var(--accent), var(--accent-dark));
             width: 0%;
-            border-radius: 3px;
-            transition: width 1.5s ease-out;
+            border-radius: 5px;
+            transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .percentage-display {
-            margin-top: 20px;
+        .performance-value {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Poppins', sans-serif;
+            margin: 20px 0 10px;
         }
 
-        .percentage-value {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--blue);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .percentage-label {
-            font-size: 0.9rem;
+        .performance-label {
             color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
         }
 
         /* ===== FOOTER ===== */
         footer {
-            background: var(--blue);
+            background: var(--darker);
             color: var(--white);
-            padding: 60px 0 30px;
-            text-align: center;
-            margin-top: 60px;
+            padding: 100px 0 50px;
             position: relative;
-            z-index: 1;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
         }
 
         .footer-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 25px;
+            gap: 30px;
         }
 
         .footer-logo {
-            height: 50px;
+            height: 60px;
             width: auto;
+            margin-bottom: 20px;
         }
 
         .footer-text {
             max-width: 500px;
-            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
 
         .footer-links {
             display: flex;
             gap: 30px;
-            margin: 20px 0;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: var(--transition-fast);
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
         }
 
         .footer-links a:hover {
             color: var(--white);
-            text-decoration: underline;
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .copyright {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            color: rgba(255, 255, 255, 0.7);
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
             font-size: 0.9rem;
+            text-align: center;
+            width: 100%;
         }
 
         /* ===== VIDEO CONTROLS ===== */
         .video-controls {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 30px;
+            right: 30px;
             z-index: 1000;
             display: flex;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 8px 12px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 102, 204, 0.2);
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 12px 16px;
+            border-radius: var(--radius-xl);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-md);
         }
 
         .video-controls button {
-            background: var(--blue);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             border: none;
             color: white;
-            width: 36px;
-            height: 36px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
         }
 
         .video-controls button:hover {
-            background: var(--dark-blue);
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
         }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .hero h1 {
-                font-size: 2.4rem;
+                font-size: 3.2rem;
             }
             
             .contact-content {
@@ -731,18 +908,36 @@
                 gap: 40px;
             }
             
-            .video-controls {
+            .process-timeline::before {
+                left: 30px;
+            }
+            
+            .process-step {
+                flex-direction: row !important;
+                margin-left: 80px;
+            }
+            
+            .step-content {
+                margin: 0 0 0 40px !important;
+            }
+            
+            .step-number {
+                left: 30px;
+                transform: translateX(-50%);
+            }
+            
+            .step-image {
                 display: none;
             }
         }
 
         @media (max-width: 768px) {
             .hero {
-                padding: 140px 0 80px;
+                padding: 160px 0 80px;
             }
             
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
             .hero p {
@@ -759,73 +954,53 @@
             }
             
             .section-title h2 {
-                font-size: 1.8rem;
+                font-size: 2.2rem;
             }
             
             .nav-links {
                 display: none;
             }
             
-            /* Timeline responsive pour mobile */
-            .process-timeline-vertical::before {
-                left: 30px;
+            .video-controls {
+                bottom: 20px;
+                right: 20px;
+                padding: 10px;
             }
             
-            .process-step-vertical {
-                flex-direction: row !important;
-                margin-left: 60px;
-                margin-right: 0;
-            }
-            
-            .process-step-vertical:nth-child(even) {
-                flex-direction: row !important;
-            }
-            
-            .step-circle {
-                left: 30px;
-            }
-            
-            .step-content-vertical {
-                width: 100%;
-            }
-            
-            .step-number-vertical {
-                left: -10px !important;
-                right: auto !important;
+            .video-controls button {
+                width: 36px;
+                height: 36px;
             }
         }
 
         @media (max-width: 480px) {
             .container {
-                padding: 0 15px;
+                padding: 0 20px;
             }
             
             .hero h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .service-card {
-                padding: 20px;
+                padding: 30px 20px;
             }
             
-            .contact-info {
-                padding: 25px 20px;
-            }
-            
-            .performance-section {
-                padding: 25px 20px;
+            .contact-info, .performance-card {
+                padding: 30px 20px;
             }
             
             .footer-links {
                 flex-direction: column;
+                align-items: center;
                 gap: 15px;
             }
             
-            .step-content-vertical {
-                padding: 20px;
+            .step-content {
+                padding: 25px;
             }
             
-            .process-controls-simple {
+            .process-controls {
                 flex-direction: column;
                 align-items: center;
             }
@@ -833,7 +1008,7 @@
     </style>
 </head>
 <body>
-    <!-- Video Background avec rotation -->
+    <!-- Video Background -->
     <div class="video-background-container">
         <!-- Vidéo 1 -->
         <div class="video-slide active" data-id="1">
@@ -871,7 +1046,7 @@
         </div>
     </div>
     
-    <!-- Overlay pour meilleure lisibilité -->
+    <!-- Overlay -->
     <div class="video-overlay"></div>
     
     <!-- Contrôles vidéo -->
@@ -891,19 +1066,17 @@
     <header id="header">
         <div class="container">
             <nav>
-                <div class="logo-container">
-                    <a href="#" class="logo-container">
-                        <img src="https://github.com/user-attachments/assets/9b3157fb-47fa-43d6-aa57-c2857141ec27" 
-                             alt="MARKLY Advisory" 
-                             class="logo-image">
-                    </a>
+                <a href="#accueil" class="logo-container">
+                    <img src="https://github.com/user-attachments/assets/9b3157fb-47fa-43d6-aa57-c2857141ec27" 
+                         alt="MARKLY Advisory" 
+                         class="logo-image">
                     <span class="logo-text">MARKLY Advisory</span>
-                </div>
+                </a>
                 <ul class="nav-links">
-                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#accueil" class="active">Accueil</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#process">Processus</a></li>
-                    <li><a href="#stats">Chiffres</a></li>
+                    <li><a href="#stats">Impact</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -944,7 +1117,7 @@
                     </div>
                     <h3>Business Plan Stratégique</h3>
                     <p>Création de business plans complets et convaincants pour projets naissants ou en cours de développement.</p>
-                    <a href="#contact" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">
+                    <a href="#contact" class="btn" style="padding: 12px 24px; font-size: 0.95rem;">
                         En savoir plus
                     </a>
                 </div>
@@ -954,7 +1127,7 @@
                     </div>
                     <h3>Suivi de Projet Expert</h3>
                     <p>Accompagnement continu et analyse régulière pour garantir le succès et l'efficacité de votre projet.</p>
-                    <a href="#contact" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">
+                    <a href="#contact" class="btn" style="padding: 12px 24px; font-size: 0.95rem;">
                         En savoir plus
                     </a>
                 </div>
@@ -964,37 +1137,7 @@
                     </div>
                     <h3>Analyse Stratégique Avancée</h3>
                     <p>Études approfondies et recommandations pour optimiser la performance et la rentabilité de votre entreprise.</p>
-                    <a href="#contact" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">
-                        En savoir plus
-                    </a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Développement Web Élite</h3>
-                    <p>Création de sites web professionnels et performants pour présenter votre activité avec élégance.</p>
-                    <a href="#contact" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">
-                        En savoir plus
-                    </a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <h3>Consultation Business Exclusive</h3>
-                    <p>Conseils stratégiques personnalisés pour surmonter les défis et saisir les opportunités de marché.</p>
-                    <a href="#contact" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">
-                        En savoir plus
-                    </a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <h3>Résolution Stratégique</h3>
-                    <p>Aide spécialisée pour identifier et résoudre les difficultés spécifiques de votre entreprise.</p>
-                    <a href="#contact" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">
+                    <a href="#contact" class="btn" style="padding: 12px 24px; font-size: 0.95rem;">
                         En savoir plus
                     </a>
                 </div>
@@ -1002,7 +1145,7 @@
         </div>
     </section>
 
-    <!-- Processus Section VERTICAL SIMPLE -->
+    <!-- Processus Section AVEC IMAGES IA -->
     <section class="process-section" id="process">
         <div class="container">
             <div class="section-title">
@@ -1010,139 +1153,145 @@
                 <p>Une méthode éprouvée en 7 étapes pour transformer vos idées en succès concrets</p>
             </div>
             
-            <div class="process-container">
-                <!-- Timeline verticale -->
-                <div class="process-timeline-vertical">
-                    <!-- Étape 1 -->
-                    <div class="process-step-vertical" data-step="1">
-                        <div class="step-circle"></div>
-                        <div class="step-content-vertical">
-                            <div class="step-number-vertical">1</div>
-                            <h3>
-                                <span class="step-icon">
-                                    <i class="fas fa-handshake"></i>
-                                </span>
-                                Contact
-                            </h3>
-                            <p>Premier contact pour comprendre vos besoins et objectifs. Nous écoutons votre vision et identifions vos défis.</p>
-                        </div>
+            <div class="process-timeline">
+                <!-- Étape 1 -->
+                <div class="process-step" data-step="1">
+                    <div class="step-image">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Contact Initial">
                     </div>
-                    
-                    <!-- Étape 2 -->
-                    <div class="process-step-vertical" data-step="2">
-                        <div class="step-circle"></div>
-                        <div class="step-content-vertical">
-                            <div class="step-number-vertical">2</div>
-                            <h3>
-                                <span class="step-icon">
-                                    <i class="fas fa-search"></i>
-                                </span>
-                                Pré-analyse
-                            </h3>
-                            <p>Évaluation initiale approfondie de votre projet et analyse du contexte marché. Étude des opportunités et risques.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Étape 3 -->
-                    <div class="process-step-vertical" data-step="3">
-                        <div class="step-circle"></div>
-                        <div class="step-content-vertical">
-                            <div class="step-number-vertical">3</div>
-                            <h3>
-                                <span class="step-icon">
-                                    <i class="fas fa-comments"></i>
-                                </span>
-                                Consultation gratuite
-                            </h3>
-                            <p>Session détaillée pour définir les enjeux, opportunités et établir une feuille de route initiale personnalisée.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Étape 4 -->
-                    <div class="process-step-vertical" data-step="4">
-                        <div class="step-circle"></div>
-                        <div class="step-content-vertical">
-                            <div class="step-number-vertical">4</div>
-                            <h3>
-                                <span class="step-icon">
-                                    <i class="fas fa-lightbulb"></i>
-                                </span>
-                                Proposition stratégique
-                            </h3>
-                            <p>Élaboration d'une stratégie sur-mesure, avec objectifs clairs, plan d'action détaillé et indicateurs de performance.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Étape 5 -->
-                    <div class="process-step-vertical" data-step="5">
-                        <div class="step-circle"></div>
-                        <div class="step-content-vertical">
-                            <div class="step-number-vertical">5</div>
-                            <h3>
-                                <span class="step-icon">
-                                    <i class="fas fa-check-circle"></i>
-                                </span>
-                                Validation
-                            </h3>
-                            <p>Approbation de la stratégie et planification de la mise en œuvre. Définition des ressources et échéanciers.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Étape 6 -->
-                    <div class="process-step-vertical" data-step="6">
-                        <div class="step-circle"></div>
-                        <div class="step-content-vertical">
-                            <div class="step-number-vertical">6</div>
-                            <h3>
-                                <span class="step-icon">
-                                    <i class="fas fa-user-tie"></i>
-                                </span>
-                                Accompagnement
-                            </h3>
-                            <p>Suivi régulier et ajustements stratégiques. Support continu pour garantir le succès et résoudre les obstacles.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Étape 7 -->
-                    <div class="process-step-vertical" data-step="7">
-                        <div class="step-circle"></div>
-                        <div class="step-content-vertical">
-                            <div class="step-number-vertical">7</div>
-                            <h3>
-                                <span class="step-icon">
-                                    <i class="fas fa-trophy"></i>
-                                </span>
-                                Résultats & optimisation
-                            </h3>
-                            <p>Analyse des résultats obtenus et optimisation continue. Préparation pour la croissance future et nouveaux défis.</p>
-                        </div>
+                    <div class="step-content">
+                        <div class="step-number">1</div>
+                        <h3>
+                            <span class="step-icon">
+                                <i class="fas fa-handshake"></i>
+                            </span>
+                            Contact
+                        </h3>
+                        <p>Premier contact pour comprendre vos besoins et objectifs. Nous écoutons votre vision et identifions vos défis pour établir une base solide de collaboration.</p>
                     </div>
                 </div>
                 
-                <!-- Indicateur -->
-                <div class="process-indicator-simple">
-                    Étape <span class="current-step-display">1</span> sur 7
+                <!-- Étape 2 -->
+                <div class="process-step" data-step="2">
+                    <div class="step-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Pré-analyse">
+                    </div>
+                    <div class="step-content">
+                        <div class="step-number">2</div>
+                        <h3>
+                            <span class="step-icon">
+                                <i class="fas fa-search"></i>
+                            </span>
+                            Pré-analyse
+                        </h3>
+                        <p>Évaluation approfondie de votre projet et analyse du contexte marché. Étude des opportunités, risques et élaboration d'une première cartographie stratégique.</p>
+                    </div>
                 </div>
                 
-                <!-- Contrôles simples -->
-                <div class="process-controls-simple">
-                    <button class="process-control-btn" id="prev-step-simple">
-                        <i class="fas fa-chevron-left"></i>
-                        Précédent
-                    </button>
-                    <button class="process-control-btn" id="play-pause-simple">
-                        <i class="fas fa-play"></i>
-                        Démarrer
-                    </button>
-                    <button class="process-control-btn" id="next-step-simple">
-                        Suivant
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                    <button class="process-control-btn" id="reset-simple">
-                        <i class="fas fa-redo"></i>
-                        Recommencer
-                    </button>
+                <!-- Étape 3 -->
+                <div class="process-step" data-step="3">
+                    <div class="step-image">
+                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Consultation">
+                    </div>
+                    <div class="step-content">
+                        <div class="step-number">3</div>
+                        <h3>
+                            <span class="step-icon">
+                                <i class="fas fa-comments"></i>
+                            </span>
+                            Consultation gratuite
+                        </h3>
+                        <p>Session détaillée pour définir les enjeux, opportunités et établir une feuille de route initiale personnalisée. Co-création de la vision stratégique.</p>
+                    </div>
                 </div>
+                
+                <!-- Étape 4 -->
+                <div class="process-step" data-step="4">
+                    <div class="step-image">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Proposition">
+                    </div>
+                    <div class="step-content">
+                        <div class="step-number">4</div>
+                        <h3>
+                            <span class="step-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </span>
+                            Proposition stratégique
+                        </h3>
+                        <p>Élaboration d'une stratégie sur-mesure, avec objectifs SMART, plan d'action détaillé et indicateurs de performance clés (KPI).</p>
+                    </div>
+                </div>
+                
+                <!-- Étape 5 -->
+                <div class="process-step" data-step="5">
+                    <div class="step-image">
+                        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Validation">
+                    </div>
+                    <div class="step-content">
+                        <div class="step-number">5</div>
+                        <h3>
+                            <span class="step-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </span>
+                            Validation
+                        </h3>
+                        <p>Approbation collaborative de la stratégie et planification de la mise en œuvre. Définition des ressources, échéanciers et responsabilités.</p>
+                    </div>
+                </div>
+                
+                <!-- Étape 6 -->
+                <div class="process-step" data-step="6">
+                    <div class="step-image">
+                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Accompagnement">
+                    </div>
+                    <div class="step-content">
+                        <div class="step-number">6</div>
+                        <h3>
+                            <span class="step-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </span>
+                            Accompagnement
+                        </h3>
+                        <p>Suivi régulier et ajustements stratégiques en temps réel. Support continu pour garantir le succès et résoudre les obstacles rapidement.</p>
+                    </div>
+                </div>
+                
+                <!-- Étape 7 -->
+                <div class="process-step" data-step="7">
+                    <div class="step-image">
+                        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Résultats">
+                    </div>
+                    <div class="step-content">
+                        <div class="step-number">7</div>
+                        <h3>
+                            <span class="step-icon">
+                                <i class="fas fa-trophy"></i>
+                            </span>
+                            Résultats & optimisation
+                        </h3>
+                        <p>Analyse des résultats obtenus et optimisation continue des performances. Préparation stratégique pour la croissance future et nouveaux défis.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contrôles -->
+            <div class="process-controls">
+                <button class="process-btn" id="prev-step">
+                    <i class="fas fa-chevron-left"></i>
+                    Précédent
+                </button>
+                <button class="process-btn" id="play-pause-process">
+                    <i class="fas fa-play"></i>
+                    Démarrer
+                </button>
+                <button class="process-btn" id="next-step">
+                    Suivant
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="process-indicator">
+                Étape <span class="current-step">1</span> sur 7
             </div>
         </div>
     </section>
@@ -1188,7 +1337,7 @@
                         <div class="contact-icon">
                             <i class="fas fa-phone"></i>
                         </div>
-                        <div>
+                        <div class="contact-details">
                             <h4>Téléphone</h4>
                             <p>+212 6 36 33 19 00</p>
                         </div>
@@ -1197,7 +1346,7 @@
                         <div class="contact-icon">
                             <i class="fas fa-envelope"></i>
                         </div>
-                        <div>
+                        <div class="contact-details">
                             <h4>Email</h4>
                             <p>khadijaoulkaid4@gmail.com</p>
                         </div>
@@ -1206,7 +1355,7 @@
                         <div class="contact-icon">
                             <i class="fas fa-calendar-check"></i>
                         </div>
-                        <div>
+                        <div class="contact-details">
                             <h4>Disponibilité</h4>
                             <p>Consultations sur réservation uniquement</p>
                         </div>
@@ -1215,7 +1364,7 @@
                         <div class="contact-icon">
                             <i class="fas fa-laptop-house"></i>
                         </div>
-                        <div>
+                        <div class="contact-details">
                             <h4>Modalités</h4>
                             <p>Au choix : en présentiel ou à distance</p>
                         </div>
@@ -1225,11 +1374,11 @@
                         Réserver une consultation
                     </a>
                 </div>
-                <div class="performance-section">
-                    <div class="performance-image">
+                <div class="performance-card">
+                    <div class="performance-icon">
                         <i class="fas fa-trophy"></i>
                     </div>
-                    <div class="progress-container">
+                    <div class="performance-progress">
                         <div class="progress-label">
                             <span>Taux de satisfaction clients</span>
                             <span>95%</span>
@@ -1238,11 +1387,9 @@
                             <div class="progress-fill"></div>
                         </div>
                     </div>
-                    <div class="percentage-display">
-                        <div class="percentage-value">95%</div>
-                        <div class="percentage-label">Excellence Garantie</div>
-                    </div>
-                    <p style="text-align: center; margin-top: 15px; font-size: 0.9rem; color: var(--gray);">
+                    <div class="performance-value">95%</div>
+                    <div class="performance-label">Excellence Garantie</div>
+                    <p style="text-align: center; margin-top: 15px; font-size: 0.95rem; color: var(--gray);">
                         Basé sur nos 150+ projets accompagnés avec succès
                     </p>
                 </div>
@@ -1262,7 +1409,7 @@
                     <a href="#accueil">Accueil</a>
                     <a href="#services">Services</a>
                     <a href="#process">Processus</a>
-                    <a href="#stats">Chiffres</a>
+                    <a href="#stats">Impact</a>
                     <a href="#contact">Contact</a>
                 </div>
                 <div class="copyright">
@@ -1274,13 +1421,12 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Système de rotation des vidéos
+            // ===== SYSTÈME VIDÉO =====
             const videoSlides = document.querySelectorAll('.video-slide');
             let currentVideoIndex = 0;
-            let isPlaying = true;
-            let rotationInterval;
+            let isVideoPlaying = true;
+            let videoRotationInterval;
             
-            // Fonction pour changer de vidéo
             function showVideo(index) {
                 videoSlides.forEach(slide => {
                     slide.classList.remove('active');
@@ -1292,249 +1438,223 @@
                 videoSlides[currentVideoIndex].classList.add('active');
                 
                 const currentVideo = videoSlides[currentVideoIndex].querySelector('video');
-                if (currentVideo && isPlaying) {
+                if (currentVideo && isVideoPlaying) {
                     currentVideo.play();
                 }
             }
             
-            // Rotation automatique des vidéos
-            function startRotation() {
-                rotationInterval = setInterval(() => {
+            function startVideoRotation() {
+                videoRotationInterval = setInterval(() => {
                     showVideo(currentVideoIndex + 1);
-                }, 8000);
+                }, 10000);
             }
             
             // Contrôles vidéo
             document.getElementById('prev-video').addEventListener('click', () => {
                 showVideo(currentVideoIndex - 1);
-                resetRotation();
+                resetVideoRotation();
             });
             
             document.getElementById('next-video').addEventListener('click', () => {
                 showVideo(currentVideoIndex + 1);
-                resetRotation();
+                resetVideoRotation();
             });
             
             document.getElementById('play-pause').addEventListener('click', () => {
                 const playPauseBtn = document.getElementById('play-pause');
                 const currentVideo = videoSlides[currentVideoIndex].querySelector('video');
                 
-                if (isPlaying) {
+                if (isVideoPlaying) {
                     // Pause
                     if (currentVideo) currentVideo.pause();
-                    clearInterval(rotationInterval);
+                    clearInterval(videoRotationInterval);
                     playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
                     playPauseBtn.title = 'Play';
                 } else {
                     // Play
                     if (currentVideo) currentVideo.play();
-                    startRotation();
+                    startVideoRotation();
                     playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
                     playPauseBtn.title = 'Pause';
                 }
                 
-                isPlaying = !isPlaying;
+                isVideoPlaying = !isVideoPlaying;
             });
             
-            // Réinitialiser le timer de rotation
-            function resetRotation() {
-                clearInterval(rotationInterval);
-                if (isPlaying) {
-                    startRotation();
+            function resetVideoRotation() {
+                clearInterval(videoRotationInterval);
+                if (isVideoPlaying) {
+                    startVideoRotation();
                 }
             }
             
-            // Démarrer la rotation automatique
-            startRotation();
+            startVideoRotation();
             
-            // ===== SYSTÈME DU PROCESSUS VERTICAL SIMPLE =====
-            const processSteps = document.querySelectorAll('.process-step-vertical');
-            const currentStepDisplay = document.querySelector('.current-step-display');
+            // ===== GESTION HEADER =====
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // ===== PROCESSUS ANIMATION =====
+            const processSteps = document.querySelectorAll('.process-step');
+            const currentStepElement = document.querySelector('.current-step');
             let currentProcessStep = 1;
             const totalSteps = processSteps.length;
-            let autoPlayInterval = null;
-            let isAutoPlaying = false;
+            let processAutoPlay = null;
+            let isProcessPlaying = false;
             
-            // Fonction pour afficher une étape spécifique
-            function showStep(stepNumber) {
-                // Mettre à jour l'étape courante
-                currentProcessStep = Math.max(1, Math.min(stepNumber, totalSteps));
-                
-                // Mettre à jour l'affichage
-                currentStepDisplay.textContent = currentProcessStep;
-                
-                // Masquer toutes les étapes
-                processSteps.forEach(step => {
-                    step.classList.remove('active');
-                });
-                
-                // Afficher les étapes jusqu'à l'étape courante
-                for (let i = 0; i < currentProcessStep; i++) {
-                    setTimeout(() => {
-                        if (processSteps[i]) {
-                            processSteps[i].classList.add('active');
-                        }
-                    }, i * 200);
-                }
+            function showProcessStep(step) {
+                currentProcessStep = Math.max(1, Math.min(step, totalSteps));
+                currentStepElement.textContent = currentProcessStep;
                 
                 // Mettre à jour l'état des boutons
                 updateProcessButtons();
+                
+                // Animer les étapes
+                processSteps.forEach((stepElement, index) => {
+                    if (index < currentProcessStep) {
+                        setTimeout(() => {
+                            stepElement.classList.add('active');
+                        }, index * 300);
+                    } else {
+                        stepElement.classList.remove('active');
+                    }
+                });
             }
             
-            // Fonction pour mettre à jour l'état des boutons
             function updateProcessButtons() {
-                const prevBtn = document.getElementById('prev-step-simple');
-                const nextBtn = document.getElementById('next-step-simple');
-                const playPauseBtn = document.getElementById('play-pause-simple');
+                const prevBtn = document.getElementById('prev-step');
+                const nextBtn = document.getElementById('next-step');
+                const playPauseBtn = document.getElementById('play-pause-process');
                 
                 prevBtn.disabled = currentProcessStep === 1;
                 nextBtn.disabled = currentProcessStep === totalSteps;
                 
-                // Mettre à jour le bouton play/pause
-                if (isAutoPlaying) {
-                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i> Pause';
-                } else {
-                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i> Démarrer';
-                }
+                playPauseBtn.innerHTML = isProcessPlaying ? 
+                    '<i class="fas fa-pause"></i> Pause' : 
+                    '<i class="fas fa-play"></i> Démarrer';
             }
             
             // Navigation manuelle
-            document.getElementById('prev-step-simple').addEventListener('click', () => {
-                stopAutoPlay();
-                showStep(currentProcessStep - 1);
+            document.getElementById('prev-step').addEventListener('click', () => {
+                stopProcessAutoPlay();
+                showProcessStep(currentProcessStep - 1);
             });
             
-            document.getElementById('next-step-simple').addEventListener('click', () => {
-                stopAutoPlay();
-                showStep(currentProcessStep + 1);
+            document.getElementById('next-step').addEventListener('click', () => {
+                stopProcessAutoPlay();
+                showProcessStep(currentProcessStep + 1);
             });
             
-            // Play/Pause auto-play
-            document.getElementById('play-pause-simple').addEventListener('click', () => {
-                if (isAutoPlaying) {
-                    stopAutoPlay();
+            // Auto-play
+            document.getElementById('play-pause-process').addEventListener('click', () => {
+                if (isProcessPlaying) {
+                    stopProcessAutoPlay();
                 } else {
-                    startAutoPlay();
+                    startProcessAutoPlay();
                 }
             });
             
-            // Reset
-            document.getElementById('reset-simple').addEventListener('click', () => {
-                stopAutoPlay();
-                showStep(1);
-            });
-            
-            // Fonction pour démarrer l'auto-play
-            function startAutoPlay() {
-                isAutoPlaying = true;
+            function startProcessAutoPlay() {
+                isProcessPlaying = true;
                 updateProcessButtons();
                 
-                autoPlayInterval = setInterval(() => {
+                processAutoPlay = setInterval(() => {
                     if (currentProcessStep < totalSteps) {
-                        showStep(currentProcessStep + 1);
+                        showProcessStep(currentProcessStep + 1);
                     } else {
-                        stopAutoPlay();
+                        stopProcessAutoPlay();
                         // Recommencer après 3 secondes
                         setTimeout(() => {
-                            showStep(1);
-                            setTimeout(startAutoPlay, 1000);
+                            showProcessStep(1);
+                            setTimeout(startProcessAutoPlay, 1000);
                         }, 3000);
                     }
-                }, 1800); // Changement toutes les 1.8 secondes
+                }, 2000);
             }
             
-            // Fonction pour arrêter l'auto-play
-            function stopAutoPlay() {
-                isAutoPlaying = false;
-                if (autoPlayInterval) {
-                    clearInterval(autoPlayInterval);
-                    autoPlayInterval = null;
+            function stopProcessAutoPlay() {
+                isProcessPlaying = false;
+                if (processAutoPlay) {
+                    clearInterval(processAutoPlay);
+                    processAutoPlay = null;
                 }
                 updateProcessButtons();
             }
             
-            // Observer pour l'animation au scroll
+            // Observer pour animation au scroll
             const processObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Lancer l'animation initiale
-                        showStep(1);
-                        
-                        // Démarrer l'auto-play après 1.5 secondes
+                        showProcessStep(1);
                         setTimeout(() => {
-                            startAutoPlay();
+                            if (!isProcessPlaying) {
+                                startProcessAutoPlay();
+                            }
                         }, 1500);
                     }
                 });
             }, { threshold: 0.2 });
-
-            // Observer la section processus
+            
             const processSection = document.querySelector('.process-section');
             if (processSection) {
                 processObserver.observe(processSection);
             }
             
-            // Animation des statistiques
+            // ===== STATISTIQUES ANIMATION =====
+            const statItems = document.querySelectorAll('.stat-item');
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
             const statsObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Animer les statistiques
-                        if (entry.target.classList.contains('stat-item')) {
-                            const number = entry.target.querySelector('.stat-number');
-                            if (number && !number.classList.contains('animated')) {
-                                number.classList.add('animated');
-                                const text = number.textContent;
-                                const finalValue = parseFloat(text);
-                                let current = 0;
-                                const increment = finalValue / 50;
-                                const timer = setInterval(() => {
-                                    current += increment;
-                                    if (current >= finalValue) {
-                                        current = finalValue;
-                                        clearInterval(timer);
-                                    }
-                                    number.textContent = Math.round(current) + (text.includes('+') ? '+' : '');
-                                }, 30);
-                            }
-                        }
+                        entry.target.classList.add('visible');
                         
-                        // Animer la barre de progression
-                        if (entry.target.classList.contains('performance-section')) {
-                            const progressFill = document.querySelector('.progress-fill');
-                            if (progressFill) {
-                                setTimeout(() => {
-                                    progressFill.style.width = '95%';
-                                }, 300);
-                            }
+                        // Animer les chiffres
+                        const statNumber = entry.target.querySelector('.stat-number');
+                        if (statNumber) {
+                            const text = statNumber.textContent;
+                            const finalValue = parseFloat(text);
+                            let current = 0;
+                            const increment = finalValue / 60;
+                            const timer = setInterval(() => {
+                                current += increment;
+                                if (current >= finalValue) {
+                                    current = finalValue;
+                                    clearInterval(timer);
+                                }
+                                statNumber.textContent = Math.round(current) + (text.includes('+') ? '+' : '');
+                            }, 20);
                         }
                     }
                 });
             }, { threshold: 0.5 });
-
-            // Observer les statistiques et performance
-            document.querySelectorAll('.stat-item, .performance-section').forEach(el => {
-                statsObserver.observe(el);
-            });
-
-            // Gestion du header au scroll
-            window.addEventListener('scroll', () => {
-                const header = document.getElementById('header');
-                if (window.scrollY > 50) {
-                    header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
-                } else {
-                    header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
-                }
-            });
-
-            // Animation initiale de la barre de progression
-            setTimeout(() => {
-                const progressFill = document.querySelector('.progress-fill');
-                if (progressFill) {
-                    progressFill.style.width = '95%';
-                }
-            }, 500);
-
-            // Smooth scroll pour les liens de navigation
+            
+            statItems.forEach(item => statsObserver.observe(item));
+            
+            // ===== PROGRESS BAR ANIMATION =====
+            const progressFill = document.querySelector('.progress-fill');
+            const progressObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            progressFill.style.width = '95%';
+                        }, 500);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            const contactSection = document.querySelector('.contact');
+            if (contactSection) {
+                progressObserver.observe(contactSection);
+            }
+            
+            // ===== SMOOTH SCROLL =====
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -1543,13 +1663,104 @@
                     
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
+                        // Mettre à jour la navigation active
+                        document.querySelectorAll('.nav-links a').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                        
+                        // Scroll
                         window.scrollTo({
-                            top: targetElement.offsetTop - 80,
+                            top: targetElement.offsetTop - 100,
                             behavior: 'smooth'
                         });
                     }
                 });
             });
+            
+            // ===== ANIMATION D'ENTRÉE =====
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.service-card, .section-title');
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.style.opacity = "1";
+                        element.style.transform = "translateY(0)";
+                    }
+                });
+            };
+            
+            // Initial setup
+            document.querySelectorAll('.service-card, .section-title').forEach(el => {
+                el.style.opacity = "0";
+                el.style.transform = "translateY(30px)";
+                el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+            });
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll();
+            
+            // ===== TOOLTIPS =====
+            const tooltips = document.querySelectorAll('[title]');
+            tooltips.forEach(tooltip => {
+                tooltip.addEventListener('mouseenter', (e) => {
+                    const title = e.target.getAttribute('title');
+                    if (title) {
+                        const tooltipEl = document.createElement('div');
+                        tooltipEl.className = 'custom-tooltip';
+                        tooltipEl.textContent = title;
+                        document.body.appendChild(tooltipEl);
+                        
+                        const rect = e.target.getBoundingClientRect();
+                        tooltipEl.style.left = `${rect.left + rect.width / 2}px`;
+                        tooltipEl.style.top = `${rect.top - 40}px`;
+                        tooltipEl.style.transform = 'translateX(-50%)';
+                        
+                        e.target.removeAttribute('title');
+                        e.target.dataset.originalTitle = title;
+                    }
+                });
+                
+                tooltip.addEventListener('mouseleave', (e) => {
+                    const tooltipEl = document.querySelector('.custom-tooltip');
+                    if (tooltipEl) {
+                        tooltipEl.remove();
+                    }
+                    if (e.target.dataset.originalTitle) {
+                        e.target.setAttribute('title', e.target.dataset.originalTitle);
+                        delete e.target.dataset.originalTitle;
+                    }
+                });
+            });
+            
+            // Style pour tooltips
+            const style = document.createElement('style');
+            style.textContent = `
+                .custom-tooltip {
+                    position: fixed;
+                    background: rgba(0, 0, 0, 0.9);
+                    color: white;
+                    padding: 8px 16px;
+                    border-radius: 6px;
+                    font-size: 0.9rem;
+                    z-index: 9999;
+                    pointer-events: none;
+                    white-space: nowrap;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                }
+                .custom-tooltip::after {
+                    content: '';
+                    position: absolute;
+                    top: 100%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    border: 6px solid transparent;
+                    border-top-color: rgba(0, 0, 0, 0.9);
+                }
+            `;
+            document.head.appendChild(style);
         });
     </script>
 </body>
