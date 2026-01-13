@@ -289,7 +289,7 @@
             margin-bottom: 20px;
         }
 
-        /* ===== SECTION PROCESSUS CONSULTING AVEC ICÔNES ===== */
+        /* ===== SECTION PROCESSUS VERTICAL SIMPLE ===== */
         .process-section {
             padding: 80px 0;
             background: var(--light-gray);
@@ -298,49 +298,115 @@
         }
 
         .process-container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
-        /* Grille des étapes */
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+        /* Timeline verticale */
+        .process-timeline-vertical {
+            position: relative;
+            margin: 50px 0;
         }
 
-        .process-card {
+        /* Ligne verticale centrale */
+        .process-timeline-vertical::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: var(--blue);
+            opacity: 0.3;
+        }
+
+        .process-step-vertical {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            opacity: 0.3;
+            transform: translateX(-20px);
+            transition: all 0.6s ease;
+            position: relative;
+        }
+
+        .process-step-vertical:nth-child(even) {
+            flex-direction: row-reverse;
+            transform: translateX(20px);
+        }
+
+        .process-step-vertical.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .process-step-vertical.active:nth-child(even) {
+            transform: translateX(0);
+        }
+
+        /* Cercle sur la ligne */
+        .step-circle {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 24px;
             background: var(--white);
-            padding: 30px;
+            border: 4px solid var(--blue);
+            border-radius: 50%;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .process-step-vertical.active .step-circle {
+            background: var(--blue);
+            transform: translateX(-50%) scale(1.2);
+        }
+
+        /* Contenu de l'étape */
+        .step-content-vertical {
+            width: 45%;
+            background: var(--white);
+            padding: 25px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
             border-top: 4px solid var(--blue);
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.6s ease;
         }
 
-        .process-card.active {
-            opacity: 1;
-            transform: translateY(0);
+        .step-content-vertical h3 {
+            color: var(--blue);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .process-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0, 102, 204, 0.15);
-        }
-
-        /* Numéro de l'étape */
-        .process-number {
-            position: absolute;
-            top: 15px;
-            right: 15px;
+        .step-icon {
             width: 40px;
             height: 40px;
+            background: var(--blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .step-content-vertical p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Numéro d'étape */
+        .step-number-vertical {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 30px;
+            height: 30px;
             background: var(--blue);
             color: var(--white);
             border-radius: 50%;
@@ -349,111 +415,57 @@
             justify-content: center;
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
         }
 
-        /* Icône de l'étape */
-        .process-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--blue), var(--dark-blue));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            color: white;
-            font-size: 2rem;
-            box-shadow: 0 6px 15px rgba(0, 102, 204, 0.2);
+        .process-step-vertical:nth-child(even) .step-number-vertical {
+            left: auto;
+            right: -10px;
         }
 
-        .process-card h3 {
-            color: var(--blue);
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-            min-height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .process-card p {
-            color: var(--gray);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        /* Flèche de connexion entre les cartes */
-        .process-connector {
-            display: none;
-        }
-
-        /* Contrôles d'animation */
-        .process-animation-controls {
+        /* Contrôles simples */
+        .process-controls-simple {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             margin-top: 40px;
         }
 
-        .anim-btn {
-            padding: 12px 24px;
+        .process-control-btn {
+            padding: 10px 20px;
             background: var(--blue);
             color: white;
             border: none;
             border-radius: var(--border-radius);
             cursor: pointer;
             transition: all 0.3s ease;
+            font-weight: 500;
             display: flex;
             align-items: center;
             gap: 8px;
-            font-weight: 500;
         }
 
-        .anim-btn:hover {
+        .process-control-btn:hover {
             background: var(--dark-blue);
-            transform: translateY(-2px);
         }
 
-        .anim-btn:disabled {
+        .process-control-btn:disabled {
             background: var(--gray);
             cursor: not-allowed;
             opacity: 0.5;
-            transform: none;
         }
 
-        /* Indicateur d'étape */
-        .process-indicator {
+        /* Indicateur */
+        .process-indicator-simple {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 20px;
             color: var(--gray);
-            font-size: 1rem;
         }
 
-        .process-indicator .current-step {
+        .current-step-display {
             color: var(--blue);
             font-weight: 700;
             font-size: 1.2rem;
-        }
-
-        /* Barre de progression */
-        .process-progress-bar {
-            width: 100%;
-            height: 6px;
-            background: var(--light-gray);
-            border-radius: 3px;
-            margin: 20px auto;
-            overflow: hidden;
-            max-width: 400px;
-        }
-
-        .process-progress-fill {
-            height: 100%;
-            background: var(--green);
-            width: 0%;
-            border-radius: 3px;
-            transition: width 0.5s ease;
         }
 
         /* ===== STATISTIQUES ===== */
@@ -722,11 +734,6 @@
             .video-controls {
                 display: none;
             }
-            
-            /* Process grid responsive */
-            .process-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
 
         @media (max-width: 768px) {
@@ -759,22 +766,32 @@
                 display: none;
             }
             
-            /* Process grid responsive mobile */
-            .process-grid {
-                grid-template-columns: 1fr;
-                max-width: 400px;
-                margin-left: auto;
-                margin-right: auto;
+            /* Timeline responsive pour mobile */
+            .process-timeline-vertical::before {
+                left: 30px;
             }
             
-            .process-animation-controls {
-                flex-direction: column;
-                align-items: center;
+            .process-step-vertical {
+                flex-direction: row !important;
+                margin-left: 60px;
+                margin-right: 0;
             }
             
-            .anim-btn {
-                width: 200px;
-                justify-content: center;
+            .process-step-vertical:nth-child(even) {
+                flex-direction: row !important;
+            }
+            
+            .step-circle {
+                left: 30px;
+            }
+            
+            .step-content-vertical {
+                width: 100%;
+            }
+            
+            .step-number-vertical {
+                left: -10px !important;
+                right: auto !important;
             }
         }
 
@@ -804,14 +821,13 @@
                 gap: 15px;
             }
             
-            .process-card {
-                padding: 25px 20px;
+            .step-content-vertical {
+                padding: 20px;
             }
             
-            .process-icon {
-                width: 70px;
-                height: 70px;
-                font-size: 1.8rem;
+            .process-controls-simple {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
@@ -986,7 +1002,7 @@
         </div>
     </section>
 
-    <!-- Processus Section AVEC ICÔNES -->
+    <!-- Processus Section VERTICAL SIMPLE -->
     <section class="process-section" id="process">
         <div class="container">
             <div class="section-title">
@@ -995,106 +1011,136 @@
             </div>
             
             <div class="process-container">
-                <!-- Barre de progression -->
-                <div class="process-progress-bar">
-                    <div class="process-progress-fill"></div>
-                </div>
-                
-                <!-- Grille des étapes -->
-                <div class="process-grid">
+                <!-- Timeline verticale -->
+                <div class="process-timeline-vertical">
                     <!-- Étape 1 -->
-                    <div class="process-card" data-step="1">
-                        <div class="process-number">1</div>
-                        <div class="process-icon">
-                            <i class="fas fa-handshake"></i>
+                    <div class="process-step-vertical" data-step="1">
+                        <div class="step-circle"></div>
+                        <div class="step-content-vertical">
+                            <div class="step-number-vertical">1</div>
+                            <h3>
+                                <span class="step-icon">
+                                    <i class="fas fa-handshake"></i>
+                                </span>
+                                Contact
+                            </h3>
+                            <p>Premier contact pour comprendre vos besoins et objectifs. Nous écoutons votre vision et identifions vos défis.</p>
                         </div>
-                        <h3>Contact</h3>
-                        <p>Premier contact pour comprendre vos besoins et objectifs. Nous écoutons votre vision et identifions vos défis.</p>
                     </div>
                     
                     <!-- Étape 2 -->
-                    <div class="process-card" data-step="2">
-                        <div class="process-number">2</div>
-                        <div class="process-icon">
-                            <i class="fas fa-search"></i>
+                    <div class="process-step-vertical" data-step="2">
+                        <div class="step-circle"></div>
+                        <div class="step-content-vertical">
+                            <div class="step-number-vertical">2</div>
+                            <h3>
+                                <span class="step-icon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                                Pré-analyse
+                            </h3>
+                            <p>Évaluation initiale approfondie de votre projet et analyse du contexte marché. Étude des opportunités et risques.</p>
                         </div>
-                        <h3>Pré-analyse</h3>
-                        <p>Évaluation initiale approfondie de votre projet et analyse du contexte marché. Étude des opportunités et risques.</p>
                     </div>
                     
                     <!-- Étape 3 -->
-                    <div class="process-card" data-step="3">
-                        <div class="process-number">3</div>
-                        <div class="process-icon">
-                            <i class="fas fa-comments"></i>
+                    <div class="process-step-vertical" data-step="3">
+                        <div class="step-circle"></div>
+                        <div class="step-content-vertical">
+                            <div class="step-number-vertical">3</div>
+                            <h3>
+                                <span class="step-icon">
+                                    <i class="fas fa-comments"></i>
+                                </span>
+                                Consultation gratuite
+                            </h3>
+                            <p>Session détaillée pour définir les enjeux, opportunités et établir une feuille de route initiale personnalisée.</p>
                         </div>
-                        <h3>Consultation gratuite</h3>
-                        <p>Session détaillée pour définir les enjeux, opportunités et établir une feuille de route initiale personnalisée.</p>
                     </div>
                     
                     <!-- Étape 4 -->
-                    <div class="process-card" data-step="4">
-                        <div class="process-number">4</div>
-                        <div class="process-icon">
-                            <i class="fas fa-lightbulb"></i>
+                    <div class="process-step-vertical" data-step="4">
+                        <div class="step-circle"></div>
+                        <div class="step-content-vertical">
+                            <div class="step-number-vertical">4</div>
+                            <h3>
+                                <span class="step-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </span>
+                                Proposition stratégique
+                            </h3>
+                            <p>Élaboration d'une stratégie sur-mesure, avec objectifs clairs, plan d'action détaillé et indicateurs de performance.</p>
                         </div>
-                        <h3>Proposition stratégique</h3>
-                        <p>Élaboration d'une stratégie sur-mesure, avec objectifs clairs, plan d'action détaillé et indicateurs de performance.</p>
                     </div>
                     
                     <!-- Étape 5 -->
-                    <div class="process-card" data-step="5">
-                        <div class="process-number">5</div>
-                        <div class="process-icon">
-                            <i class="fas fa-check-circle"></i>
+                    <div class="process-step-vertical" data-step="5">
+                        <div class="step-circle"></div>
+                        <div class="step-content-vertical">
+                            <div class="step-number-vertical">5</div>
+                            <h3>
+                                <span class="step-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </span>
+                                Validation
+                            </h3>
+                            <p>Approbation de la stratégie et planification de la mise en œuvre. Définition des ressources et échéanciers.</p>
                         </div>
-                        <h3>Validation</h3>
-                        <p>Approbation de la stratégie et planification de la mise en œuvre. Définition des ressources et échéanciers.</p>
                     </div>
                     
                     <!-- Étape 6 -->
-                    <div class="process-card" data-step="6">
-                        <div class="process-number">6</div>
-                        <div class="process-icon">
-                            <i class="fas fa-user-tie"></i>
+                    <div class="process-step-vertical" data-step="6">
+                        <div class="step-circle"></div>
+                        <div class="step-content-vertical">
+                            <div class="step-number-vertical">6</div>
+                            <h3>
+                                <span class="step-icon">
+                                    <i class="fas fa-user-tie"></i>
+                                </span>
+                                Accompagnement
+                            </h3>
+                            <p>Suivi régulier et ajustements stratégiques. Support continu pour garantir le succès et résoudre les obstacles.</p>
                         </div>
-                        <h3>Accompagnement</h3>
-                        <p>Suivi régulier et ajustements stratégiques. Support continu pour garantir le succès et résoudre les obstacles.</p>
                     </div>
                     
                     <!-- Étape 7 -->
-                    <div class="process-card" data-step="7">
-                        <div class="process-number">7</div>
-                        <div class="process-icon">
-                            <i class="fas fa-trophy"></i>
+                    <div class="process-step-vertical" data-step="7">
+                        <div class="step-circle"></div>
+                        <div class="step-content-vertical">
+                            <div class="step-number-vertical">7</div>
+                            <h3>
+                                <span class="step-icon">
+                                    <i class="fas fa-trophy"></i>
+                                </span>
+                                Résultats & optimisation
+                            </h3>
+                            <p>Analyse des résultats obtenus et optimisation continue. Préparation pour la croissance future et nouveaux défis.</p>
                         </div>
-                        <h3>Résultats & optimisation</h3>
-                        <p>Analyse des résultats obtenus et optimisation continue. Préparation pour la croissance future et nouveaux défis.</p>
                     </div>
                 </div>
                 
-                <!-- Indicateur d'étape -->
-                <div class="process-indicator">
-                    Étape <span class="current-step">1</span> sur 7
+                <!-- Indicateur -->
+                <div class="process-indicator-simple">
+                    Étape <span class="current-step-display">1</span> sur 7
                 </div>
                 
-                <!-- Contrôles d'animation -->
-                <div class="process-animation-controls">
-                    <button class="anim-btn" id="prev-process">
-                        <i class="fas fa-step-backward"></i>
+                <!-- Contrôles simples -->
+                <div class="process-controls-simple">
+                    <button class="process-control-btn" id="prev-step-simple">
+                        <i class="fas fa-chevron-left"></i>
                         Précédent
                     </button>
-                    <button class="anim-btn" id="play-pause-process">
+                    <button class="process-control-btn" id="play-pause-simple">
                         <i class="fas fa-play"></i>
-                        Démarrer l'animation
+                        Démarrer
                     </button>
-                    <button class="anim-btn" id="next-process">
+                    <button class="process-control-btn" id="next-step-simple">
                         Suivant
-                        <i class="fas fa-step-forward"></i>
+                        <i class="fas fa-chevron-right"></i>
                     </button>
-                    <button class="anim-btn" id="show-all-process">
-                        <i class="fas fa-eye"></i>
-                        Tout afficher
+                    <button class="process-control-btn" id="reset-simple">
+                        <i class="fas fa-redo"></i>
+                        Recommencer
                     </button>
                 </div>
             </div>
@@ -1301,54 +1347,51 @@
             // Démarrer la rotation automatique
             startRotation();
             
-            // ===== SYSTÈME DU PROCESSUS AVEC ICÔNES =====
-            const processCards = document.querySelectorAll('.process-card');
-            const progressFill = document.querySelector('.process-progress-fill');
-            const currentStepElement = document.querySelector('.current-step');
-            let currentStep = 1;
-            const totalSteps = processCards.length;
-            let processAutoPlay = null;
-            let isProcessPlaying = false;
+            // ===== SYSTÈME DU PROCESSUS VERTICAL SIMPLE =====
+            const processSteps = document.querySelectorAll('.process-step-vertical');
+            const currentStepDisplay = document.querySelector('.current-step-display');
+            let currentProcessStep = 1;
+            const totalSteps = processSteps.length;
+            let autoPlayInterval = null;
+            let isAutoPlaying = false;
             
             // Fonction pour afficher une étape spécifique
-            function showProcessStep(step) {
+            function showStep(stepNumber) {
                 // Mettre à jour l'étape courante
-                currentStep = Math.max(1, Math.min(step, totalSteps));
+                currentProcessStep = Math.max(1, Math.min(stepNumber, totalSteps));
                 
-                // Mettre à jour la barre de progression
-                const progressPercent = ((currentStep - 1) / (totalSteps - 1)) * 100;
-                progressFill.style.width = `${progressPercent}%`;
+                // Mettre à jour l'affichage
+                currentStepDisplay.textContent = currentProcessStep;
                 
-                // Mettre à jour l'indicateur d'étape
-                currentStepElement.textContent = currentStep;
-                
-                // Masquer toutes les cartes
-                processCards.forEach(card => {
-                    card.classList.remove('active');
+                // Masquer toutes les étapes
+                processSteps.forEach(step => {
+                    step.classList.remove('active');
                 });
                 
-                // Afficher les cartes jusqu'à l'étape courante
-                for (let i = 0; i < currentStep; i++) {
+                // Afficher les étapes jusqu'à l'étape courante
+                for (let i = 0; i < currentProcessStep; i++) {
                     setTimeout(() => {
-                        processCards[i].classList.add('active');
-                    }, i * 150);
+                        if (processSteps[i]) {
+                            processSteps[i].classList.add('active');
+                        }
+                    }, i * 200);
                 }
                 
                 // Mettre à jour l'état des boutons
-                updateProcessControls();
+                updateProcessButtons();
             }
             
-            // Fonction pour mettre à jour l'état des contrôles
-            function updateProcessControls() {
-                const prevBtn = document.getElementById('prev-process');
-                const nextBtn = document.getElementById('next-process');
-                const playPauseBtn = document.getElementById('play-pause-process');
+            // Fonction pour mettre à jour l'état des boutons
+            function updateProcessButtons() {
+                const prevBtn = document.getElementById('prev-step-simple');
+                const nextBtn = document.getElementById('next-step-simple');
+                const playPauseBtn = document.getElementById('play-pause-simple');
                 
-                prevBtn.disabled = currentStep === 1;
-                nextBtn.disabled = currentStep === totalSteps;
+                prevBtn.disabled = currentProcessStep === 1;
+                nextBtn.disabled = currentProcessStep === totalSteps;
                 
                 // Mettre à jour le bouton play/pause
-                if (isProcessPlaying) {
+                if (isAutoPlaying) {
                     playPauseBtn.innerHTML = '<i class="fas fa-pause"></i> Pause';
                 } else {
                     playPauseBtn.innerHTML = '<i class="fas fa-play"></i> Démarrer';
@@ -1356,64 +1399,58 @@
             }
             
             // Navigation manuelle
-            document.getElementById('prev-process').addEventListener('click', () => {
+            document.getElementById('prev-step-simple').addEventListener('click', () => {
                 stopAutoPlay();
-                showProcessStep(currentStep - 1);
+                showStep(currentProcessStep - 1);
             });
             
-            document.getElementById('next-process').addEventListener('click', () => {
+            document.getElementById('next-step-simple').addEventListener('click', () => {
                 stopAutoPlay();
-                showProcessStep(currentStep + 1);
+                showStep(currentProcessStep + 1);
             });
             
             // Play/Pause auto-play
-            document.getElementById('play-pause-process').addEventListener('click', () => {
-                if (isProcessPlaying) {
+            document.getElementById('play-pause-simple').addEventListener('click', () => {
+                if (isAutoPlaying) {
                     stopAutoPlay();
                 } else {
                     startAutoPlay();
                 }
             });
             
-            // Afficher toutes les étapes
-            document.getElementById('show-all-process').addEventListener('click', () => {
+            // Reset
+            document.getElementById('reset-simple').addEventListener('click', () => {
                 stopAutoPlay();
-                processCards.forEach(card => {
-                    card.classList.add('active');
-                });
-                progressFill.style.width = '100%';
-                currentStepElement.textContent = totalSteps;
-                currentStep = totalSteps;
-                updateProcessControls();
+                showStep(1);
             });
             
             // Fonction pour démarrer l'auto-play
             function startAutoPlay() {
-                isProcessPlaying = true;
-                updateProcessControls();
+                isAutoPlaying = true;
+                updateProcessButtons();
                 
-                processAutoPlay = setInterval(() => {
-                    if (currentStep < totalSteps) {
-                        showProcessStep(currentStep + 1);
+                autoPlayInterval = setInterval(() => {
+                    if (currentProcessStep < totalSteps) {
+                        showStep(currentProcessStep + 1);
                     } else {
                         stopAutoPlay();
                         // Recommencer après 3 secondes
                         setTimeout(() => {
-                            showProcessStep(1);
+                            showStep(1);
                             setTimeout(startAutoPlay, 1000);
                         }, 3000);
                     }
-                }, 1500);
+                }, 1800); // Changement toutes les 1.8 secondes
             }
             
             // Fonction pour arrêter l'auto-play
             function stopAutoPlay() {
-                isProcessPlaying = false;
-                if (processAutoPlay) {
-                    clearInterval(processAutoPlay);
-                    processAutoPlay = null;
+                isAutoPlaying = false;
+                if (autoPlayInterval) {
+                    clearInterval(autoPlayInterval);
+                    autoPlayInterval = null;
                 }
-                updateProcessControls();
+                updateProcessButtons();
             }
             
             // Observer pour l'animation au scroll
@@ -1421,15 +1458,15 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         // Lancer l'animation initiale
-                        showProcessStep(1);
+                        showStep(1);
                         
-                        // Démarrer l'auto-play après 2 secondes
+                        // Démarrer l'auto-play après 1.5 secondes
                         setTimeout(() => {
                             startAutoPlay();
-                        }, 2000);
+                        }, 1500);
                     }
                 });
-            }, { threshold: 0.3 });
+            }, { threshold: 0.2 });
 
             // Observer la section processus
             const processSection = document.querySelector('.process-section');
