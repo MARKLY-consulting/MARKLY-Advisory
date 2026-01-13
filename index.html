@@ -289,10 +289,123 @@
             margin-bottom: 20px;
         }
 
+        /* ===== SECTION PROCESSUS CONSULTING ===== */
+        .process-section {
+            padding: 80px 0;
+            background: var(--light-gray);
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+            margin-top: 50px;
+        }
+
+        /* Ligne verticale au centre */
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: var(--blue);
+            opacity: 0.3;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: center;
+            opacity: 0.3;
+            transform: translateX(0);
+            transition: all 0.8s ease;
+            position: relative;
+        }
+
+        .process-step.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .process-step:nth-child(odd) {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+
+        .step-content {
+            flex: 1;
+            padding: 20px;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--blue);
+            position: relative;
+        }
+
+        .process-step:nth-child(odd) .step-content {
+            border-left: none;
+            border-right: 4px solid var(--blue);
+        }
+
+        .step-number {
+            position: absolute;
+            left: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: var(--blue);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            z-index: 2;
+        }
+
+        .process-step:nth-child(odd) .step-number {
+            left: auto;
+            right: -25px;
+        }
+
+        .step-content h3 {
+            color: var(--blue);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .step-content p {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        /* Flèche entre les étapes */
+        .step-arrow {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--blue);
+            font-size: 1.5rem;
+            z-index: 2;
+            opacity: 0.5;
+        }
+
         /* ===== STATISTIQUES ===== */
         .stats-section {
             padding: 60px 0;
-            background: var(--light-gray);
+            background: var(--white);
             margin: 40px 0;
             position: relative;
             z-index: 1;
@@ -307,7 +420,7 @@
         .stat-item {
             text-align: center;
             padding: 30px 20px;
-            background: var(--white);
+            background: var(--light-gray);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
         }
@@ -555,6 +668,26 @@
             .video-controls {
                 display: none;
             }
+            
+            .process-steps::before {
+                left: 30px;
+            }
+            
+            .process-step {
+                flex-direction: row !important;
+                text-align: left !important;
+            }
+            
+            .process-step .step-content {
+                border-left: 4px solid var(--blue) !important;
+                border-right: none !important;
+                margin-left: 70px;
+            }
+            
+            .step-number {
+                left: 0 !important;
+                right: auto !important;
+            }
         }
 
         @media (max-width: 768px) {
@@ -612,6 +745,16 @@
             .footer-links {
                 flex-direction: column;
                 gap: 15px;
+            }
+            
+            .step-content {
+                padding: 15px;
+            }
+            
+            .step-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
             }
         }
     </style>
@@ -686,6 +829,7 @@
                 <ul class="nav-links">
                     <li><a href="#accueil">Accueil</a></li>
                     <li><a href="#services">Services</a></li>
+                    <li><a href="#process">Processus</a></li>
                     <li><a href="#stats">Chiffres</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -780,6 +924,82 @@
                     <a href="#contact" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">
                         En savoir plus
                     </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Processus Section -->
+    <section class="process-section" id="process">
+        <div class="container">
+            <div class="section-title">
+                <h2>Notre Processus de Consulting</h2>
+                <p>Une méthode éprouvée pour transformer vos idées en succès concrets</p>
+            </div>
+            <div class="process-container">
+                <div class="process-steps">
+                    <!-- Étape 1 -->
+                    <div class="process-step" data-step="1">
+                        <div class="step-content">
+                            <div class="step-number">1</div>
+                            <h3>Contact</h3>
+                            <p>Premier contact pour comprendre vos besoins et objectifs</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Étape 2 -->
+                    <div class="process-step" data-step="2">
+                        <div class="step-content">
+                            <div class="step-number">2</div>
+                            <h3>Pré-analyse</h3>
+                            <p>Évaluation initiale de votre projet et analyse du contexte</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Étape 3 -->
+                    <div class="process-step" data-step="3">
+                        <div class="step-content">
+                            <div class="step-number">3</div>
+                            <h3>Consultation gratuite</h3>
+                            <p>Première session pour définir les enjeux et opportunités</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Étape 4 -->
+                    <div class="process-step" data-step="4">
+                        <div class="step-content">
+                            <div class="step-number">4</div>
+                            <h3>Proposition stratégique</h3>
+                            <p>Élaboration d'une stratégie sur-mesure pour votre projet</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Étape 5 -->
+                    <div class="process-step" data-step="5">
+                        <div class="step-content">
+                            <div class="step-number">5</div>
+                            <h3>Validation</h3>
+                            <p>Approbation de la stratégie et planification de la mise en œuvre</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Étape 6 -->
+                    <div class="process-step" data-step="6">
+                        <div class="step-content">
+                            <div class="step-number">6</div>
+                            <h3>Accompagnement</h3>
+                            <p>Suivi régulier et ajustements pour garantir le succès</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Étape 7 -->
+                    <div class="process-step" data-step="7">
+                        <div class="step-content">
+                            <div class="step-number">7</div>
+                            <h3>Résultats & optimisation</h3>
+                            <p>Analyse des résultats et optimisation continue</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -899,6 +1119,7 @@
                 <div class="footer-links">
                     <a href="#accueil">Accueil</a>
                     <a href="#services">Services</a>
+                    <a href="#process">Processus</a>
                     <a href="#stats">Chiffres</a>
                     <a href="#contact">Contact</a>
                 </div>
@@ -938,7 +1159,7 @@
             function startRotation() {
                 rotationInterval = setInterval(() => {
                     showVideo(currentVideoIndex + 1);
-                }, 8000); // Change toutes les 8 secondes
+                }, 8000);
             }
             
             // Contrôles vidéo
@@ -1021,10 +1242,33 @@
                 });
             }, { threshold: 0.5 });
 
-            // Observer les éléments
+            // Observer les statistiques et performance
             document.querySelectorAll('.stat-item, .performance-section').forEach(el => {
                 observer.observe(el);
             });
+
+            // Animation des étapes du processus
+            const processObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const processSteps = document.querySelectorAll('.process-step');
+                        let delay = 0;
+                        
+                        processSteps.forEach((step, index) => {
+                            setTimeout(() => {
+                                step.classList.add('active');
+                            }, delay);
+                            delay += 300; // 300ms entre chaque étape
+                        });
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            // Observer la section processus
+            const processSection = document.querySelector('.process-section');
+            if (processSection) {
+                processObserver.observe(processSection);
+            }
 
             // Gestion du header au scroll
             window.addEventListener('scroll', () => {
