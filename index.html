@@ -450,37 +450,38 @@
             background: linear-gradient(135deg, rgba(192, 86, 33, 0.2) 0%, rgba(192, 86, 33, 0.1) 100%);
         }
 
-        /* ===== SECTION EQUIPE UNIQUE ===== */
-        .team-section {
-            padding: 100px 0;
+        /* ===== SECTION EXPERTISE UNIQUE ===== */
+        .expertise-section {
+            padding: 120px 0;
             background: linear-gradient(135deg, #f8f5f0 0%, #f0ebe3 100%);
-            text-align: center;
             position: relative;
             z-index: 1;
         }
 
-        .team-container {
+        .expertise-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 80px;
             align-items: center;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .team-photo-container {
+        .expertise-photo-container {
             position: relative;
             animation: revealContent 0.8s ease-out 0.3s backwards;
         }
 
-        .team-photo {
-            width: 400px;
-            height: 500px;
+        .expertise-photo {
+            width: 100%;
+            max-width: 500px;
+            height: 600px;
             border-radius: var(--border-radius);
             object-fit: cover;
             box-shadow: var(--shadow);
-            border: 5px solid var(--white);
+            border: 8px solid var(--white);
             animation: floatImage 8s ease-in-out infinite;
+            object-position: top center;
         }
 
         .photo-badge {
@@ -489,18 +490,20 @@
             right: 20px;
             background: var(--gradient-secondary);
             color: white;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 30px;
             font-weight: 600;
+            font-size: 0.9rem;
             box-shadow: 0 4px 15px rgba(192, 86, 33, 0.3);
+            z-index: 2;
         }
 
-        .team-content {
+        .expertise-content {
             text-align: left;
             animation: revealContent 0.8s ease-out;
         }
 
-        .team-content h2 {
+        .expertise-content h2 {
             font-family: 'Montserrat', sans-serif;
             font-size: 2.8rem;
             font-weight: 700;
@@ -508,23 +511,31 @@
             color: var(--primary);
         }
 
-        .team-content h3 {
+        .expertise-content h3 {
             font-size: 1.5rem;
             color: var(--secondary);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .expertise-content h4 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
             font-weight: 600;
         }
 
         .expertise-list {
             list-style: none;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
         }
 
         .expertise-list li {
-            margin-bottom: 15px;
-            padding-left: 30px;
+            margin-bottom: 12px;
+            padding-left: 32px;
             position: relative;
             color: var(--dark);
+            line-height: 1.6;
         }
 
         .expertise-list li::before {
@@ -533,18 +544,55 @@
             left: 0;
             color: var(--secondary);
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            top: -2px;
+        }
+
+        .qualifications-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 1.5rem 0;
+        }
+
+        .qualification-item {
+            background: rgba(26, 54, 93, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary);
         }
 
         .experience-badge {
             display: inline-block;
             background: var(--gradient-primary);
             color: white;
-            padding: 8px 20px;
+            padding: 10px 25px;
             border-radius: 30px;
             font-weight: 600;
             margin-top: 1rem;
             animation: highlightPulse 2s infinite;
+            font-size: 0.9rem;
+        }
+
+        .quote-box {
+            background: var(--white);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--secondary);
+            margin-top: 2rem;
+            box-shadow: var(--shadow);
+            font-style: italic;
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 3rem;
+            color: rgba(192, 86, 33, 0.2);
+            font-family: serif;
         }
 
         /* ===== SECTION STATISTIQUES ===== */
@@ -754,9 +802,8 @@
                 font-size: 3rem;
             }
             
-            .team-photo {
-                width: 350px;
-                height: 450px;
+            .expertise-photo {
+                height: 550px;
             }
             
             .footer-container {
@@ -766,7 +813,7 @@
 
         @media (max-width: 992px) {
             .hero-container,
-            .team-container,
+            .expertise-container,
             .contact-container {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -784,10 +831,14 @@
                 height: 400px;
             }
             
-            .team-photo {
-                width: 300px;
-                height: 400px;
+            .expertise-photo {
+                height: 500px;
                 margin: 0 auto;
+                max-width: 400px;
+            }
+            
+            .qualifications-grid {
+                grid-template-columns: 1fr;
             }
             
             .video-controls {
@@ -816,13 +867,13 @@
                 font-size: 2.2rem;
             }
             
-            .team-content h2 {
+            .expertise-content h2 {
                 font-size: 2.2rem;
             }
             
-            .team-photo {
-                width: 250px;
-                height: 350px;
+            .expertise-photo {
+                height: 450px;
+                max-width: 350px;
             }
         }
 
@@ -839,9 +890,9 @@
                 height: 300px;
             }
             
-            .team-photo {
-                width: 200px;
-                height: 300px;
+            .expertise-photo {
+                height: 400px;
+                max-width: 300px;
             }
             
             .footer-container {
@@ -854,6 +905,13 @@
             
             .stat-number {
                 font-size: 2.5rem;
+            }
+            
+            .photo-badge {
+                padding: 8px 15px;
+                font-size: 0.8rem;
+                bottom: 10px;
+                right: 10px;
             }
         }
     </style>
@@ -1018,48 +1076,68 @@
             </section>
 
             <!-- Section Expertise Unique -->
-            <section class="team-section" id="expertise">
+            <section class="expertise-section" id="expertise">
                 <div class="container">
                     <div class="section-title">
-                        <h2>Notre Expertise</h2>
-                        <p>Une experte dédiée à votre succès</p>
+                        <h2>Notre Expertise Exclusive</h2>
+                        <p>Une experte dédiée à votre succès stratégique et juridique</p>
                     </div>
                     
-                    <div class="team-container">
-                        <div class="team-photo-container">
-                            <img src="https://github.com/user-attachments/assets/1bb8e1a3-2993-4a84-9b1f-6f01aa06ca39" 
-                                 alt="Khadija Oulkaid" 
-                                 class="team-photo">
+                    <div class="expertise-container">
+                        <div class="expertise-photo-container">
+                            <img src="https://github.com/user-attachments/assets/3a419edb-c95a-4650-8397-94aa47dcb1f5" 
+                                 alt="Khadija Oulkaid - Juriste & Consultante en Stratégie d'Entreprise" 
+                                 class="expertise-photo">
                             <div class="photo-badge">
-                                <i class="fas fa-award"></i> Experte Certifiée
+                                <i class="fas fa-award"></i> Expert Juridique & Stratégique
                             </div>
                         </div>
                         
-                        <div class="team-content">
+                        <div class="expertise-content">
                             <h2>Khadija Oulkaid</h2>
                             <h3>Juriste & Consultante en Stratégie d'Entreprise</h3>
                             
-                            <p style="margin-bottom: 2rem; color: var(--dark); line-height: 1.8;">
-                                Spécialiste en droit des affaires et stratégie d'entreprise, je vous accompagne dans la transformation de vos projets en succès durables grâce à une approche pluridisciplinaire unique.
+                            <p style="margin-bottom: 1.5rem; color: var(--dark); line-height: 1.8; font-size: 1.1rem;">
+                                Spécialiste en droit des affaires contentieux et stratégie d'entreprise, je vous accompagne dans la transformation de vos projets en succès durables grâce à une approche pluridisciplinaire unique combinant expertise juridique et vision business.
                             </p>
                             
-                            <h4 style="color: var(--primary); margin-bottom: 1rem;">Expertises Clés :</h4>
+                            <h4>Expertises Clés :</h4>
                             <ul class="expertise-list">
-                                <li><strong>Droit des Affaires Contentieux</strong> - Master spécialisé</li>
-                                <li><strong>Difficultés des Entreprises</strong> - Résolution stratégique</li>
-                                <li><strong>Business Management</strong> - Gestion optimisée</li>
-                                <li><strong>Analyse Stratégique</strong> - Décisions éclairées</li>
-                                <li><strong>Conformité Juridique</strong> - Sécurité opérationnelle</li>
-                                <li><strong>Stratégie de Croissance</strong> - Développement durable</li>
+                                <li><strong>Droit des Affaires Contentieux</strong> - Master spécialisé avec une approche pragmatique des litiges commerciaux</li>
+                                <li><strong>Difficultés des Entreprises</strong> - Accompagnement stratégique dans les situations complexes</li>
+                                <li><strong>Business Management</strong> - Optimisation des processus et gestion opérationnelle</li>
+                                <li><strong>Analyse Stratégique</strong> - Études de marché et recommandations éclairées</li>
+                                <li><strong>Conformité Juridique</strong> - Sécurisation des activités et prévention des risques</li>
+                                <li><strong>Stratégie de Croissance</strong> - Développement durable et expansion maîtrisée</li>
                             </ul>
                             
-                            <div class="experience-badge">
-                                <i class="fas fa-star"></i> 4+ années d'expérience réussie
+                            <h4>Qualifications Professionnelles :</h4>
+                            <div class="qualifications-grid">
+                                <div class="qualification-item">
+                                    <strong>Master en Droit des Affaires Contentieux</strong>
+                                    <p>Spécialisation approfondie</p>
+                                </div>
+                                <div class="qualification-item">
+                                    <strong>Profession Judiciaire</strong>
+                                    <p>Expertise procédurale et contentieuse</p>
+                                </div>
+                                <div class="qualification-item">
+                                    <strong>Business Management</strong>
+                                    <p>Gestion stratégique des entreprises</p>
+                                </div>
+                                <div class="qualification-item">
+                                    <strong>Analyse des Affaires</strong>
+                                    <p>Diagnostic et recommandations opérationnelles</p>
+                                </div>
                             </div>
                             
-                            <p style="margin-top: 2rem; color: var(--dark); font-style: italic;">
-                                "Votre succès juridique et commercial est ma priorité. Je combine expertise juridique et vision stratégique pour créer des solutions sur-mesure qui protègent et développent votre entreprise."
-                            </p>
+                            <div class="experience-badge">
+                                <i class="fas fa-star"></i> 4+ années d'expérience réussie en conseil stratégique
+                            </div>
+                            
+                            <div class="quote-box">
+                                "Votre succès juridique et commercial est ma priorité absolue. Je combine une expertise juridique solide avec une vision stratégique pragmatique pour créer des solutions sur-mesure qui protègent, optimisent et développent durablement votre entreprise."
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1400,13 +1478,13 @@
             });
 
             // Animation au hover de la photo
-            const teamPhoto = document.querySelector('.team-photo');
-            if (teamPhoto) {
-                teamPhoto.addEventListener('mouseenter', () => {
-                    teamPhoto.style.transform = 'scale(1.02)';
+            const expertisePhoto = document.querySelector('.expertise-photo');
+            if (expertisePhoto) {
+                expertisePhoto.addEventListener('mouseenter', () => {
+                    expertisePhoto.style.transform = 'scale(1.02)';
                 });
-                teamPhoto.addEventListener('mouseleave', () => {
-                    teamPhoto.style.transform = 'scale(1)';
+                expertisePhoto.addEventListener('mouseleave', () => {
+                    expertisePhoto.style.transform = 'scale(1)';
                 });
             }
         });
