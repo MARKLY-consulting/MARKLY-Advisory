@@ -173,6 +173,17 @@
             }
         }
 
+        @keyframes stepGlow {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 5px 15px rgba(192, 86, 33, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 10px 25px rgba(192, 86, 33, 0.5);
+            }
+        }
+
         /* ===== HEADER HORIZONTAL ===== */
         header {
             background: rgba(255, 255, 255, 0.98);
@@ -301,19 +312,87 @@
             line-height: 1.8;
         }
 
-        .hero-image-container {
+        /* ===== COMMENTAIRES CLIENTS ===== */
+        .testimonials-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--light) 0%, #f0ebe3 100%);
             position: relative;
-            animation: revealContent 1s ease-out 0.3s backwards;
+            z-index: 1;
         }
 
-        .hero-image {
-            width: 100%;
-            height: 500px;
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 40px 30px;
             border-radius: var(--border-radius);
-            object-fit: cover;
+            border: 1px solid rgba(26, 54, 93, 0.1);
             box-shadow: var(--shadow);
-            border: 5px solid rgba(255, 255, 255, 0.1);
-            animation: floatImage 6s ease-in-out infinite;
+            position: relative;
+            transition: var(--transition);
+            opacity: 0;
+            animation: revealContent 0.8s ease-out forwards;
+        }
+
+        .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
+        .testimonial-card:nth-child(2) { animation-delay: 0.2s; }
+        .testimonial-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 25px;
+            font-size: 4rem;
+            color: rgba(192, 86, 33, 0.2);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 25px;
+            line-height: 1.8;
+            color: var(--dark);
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(26, 54, 93, 0.1);
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--secondary);
+        }
+
+        .author-info h4 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: var(--dark);
+            opacity: 0.7;
+            font-size: 0.9rem;
         }
 
         /* ===== BOUTONS ===== */
@@ -450,6 +529,103 @@
             background: linear-gradient(135deg, rgba(192, 86, 33, 0.2) 0%, rgba(192, 86, 33, 0.1) 100%);
         }
 
+        /* ===== PROCESSUS UNIQUE ===== */
+        .process-section {
+            padding: 100px 0;
+            background: var(--gradient-primary);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .process-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .process-line {
+            position: absolute;
+            left: 50%;
+            top: 150px;
+            bottom: 150px;
+            width: 4px;
+            background: linear-gradient(to bottom, 
+                rgba(255, 255, 255, 0.2) 0%,
+                var(--secondary) 50%,
+                rgba(255, 255, 255, 0.2) 100%);
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: revealContent 0.8s ease-out forwards;
+        }
+
+        .process-step:nth-child(1) { animation-delay: 0.1s; }
+        .process-step:nth-child(2) { animation-delay: 0.2s; }
+        .process-step:nth-child(3) { animation-delay: 0.3s; }
+        .process-step:nth-child(4) { animation-delay: 0.4s; }
+        .process-step:nth-child(5) { animation-delay: 0.5s; }
+        .process-step:nth-child(6) { animation-delay: 0.6s; }
+        .process-step:nth-child(7) { animation-delay: 0.7s; }
+
+        .process-step:nth-child(even) {
+            flex-direction: row-reverse;
+            transform: translateX(50px);
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 3;
+            animation: stepGlow 3s ease-in-out infinite;
+            box-shadow: 0 5px 15px rgba(192, 86, 33, 0.3);
+        }
+
+        .step-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .step-content h3 {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .step-content p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
         /* ===== SECTION EXPERTISE UNIQUE ===== */
         .expertise-section {
             padding: 120px 0;
@@ -507,21 +683,14 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 2.8rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             color: var(--primary);
         }
 
         .expertise-content h3 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--secondary);
             margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-
-        .expertise-content h4 {
-            font-size: 1.2rem;
-            color: var(--primary);
-            margin: 2rem 0 1rem;
             font-weight: 600;
         }
 
@@ -546,20 +715,6 @@
             font-weight: bold;
             font-size: 1.3rem;
             top: -2px;
-        }
-
-        .qualifications-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin: 1.5rem 0;
-        }
-
-        .qualification-item {
-            background: rgba(26, 54, 93, 0.05);
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid var(--secondary);
         }
 
         .experience-badge {
@@ -647,7 +802,7 @@
             text-transform: uppercase;
         }
 
-        /* ===== SECTION CONTACT HORIZONTALE ===== */
+        /* ===== SECTION CONTACT ===== */
         .contact-section {
             padding: 100px 0;
             background: var(--light);
@@ -806,6 +961,10 @@
                 height: 550px;
             }
             
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
             .footer-container {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -827,18 +986,18 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .hero-image {
-                height: 400px;
-            }
-            
-            .expertise-photo {
-                height: 500px;
-                margin: 0 auto;
-                max-width: 400px;
-            }
-            
-            .qualifications-grid {
+            .testimonials-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .process-step {
+                flex-direction: column !important;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .process-line {
+                display: none;
             }
             
             .video-controls {
@@ -886,10 +1045,6 @@
                 font-size: 2rem;
             }
             
-            .hero-image {
-                height: 300px;
-            }
-            
             .expertise-photo {
                 height: 400px;
                 max-width: 300px;
@@ -912,6 +1067,12 @@
                 font-size: 0.8rem;
                 bottom: 10px;
                 right: 10px;
+            }
+            
+            .step-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -986,7 +1147,9 @@
                 <ul class="nav-links">
                     <li><a href="#accueil">Accueil</a></li>
                     <li><a href="#services">Services</a></li>
+                    <li><a href="#temoignages">Témoignages</a></li>
                     <li><a href="#expertise">Expertise</a></li>
+                    <li><a href="#processus">Processus</a></li>
                     <li><a href="#stats">Résultats</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -1011,11 +1174,6 @@
                                     Consultation gratuite
                                 </a>
                             </div>
-                        </div>
-                        <div class="hero-image-container">
-                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                                 alt="Conseil d'entreprise" 
-                                 class="hero-image">
                         </div>
                     </div>
                 </div>
@@ -1075,6 +1233,60 @@
                 </div>
             </section>
 
+            <!-- Témoignages Section -->
+            <section class="testimonials-section" id="temoignages">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Témoignages Clients</h2>
+                        <p>Ce que nos clients disent de notre accompagnement</p>
+                    </div>
+                    <div class="testimonials-grid">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                "MARKLY Advisory a transformé notre vision en un plan d'action concret. Leur approche stratégique nous a permis de doubler notre chiffre d'affaires en seulement 6 mois."
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+                                     alt="Ahmed B." 
+                                     class="author-avatar">
+                                <div class="author-info">
+                                    <h4>Ahmed B.</h4>
+                                    <p>CEO, TechStart Maroc</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                "L'expertise juridique et stratégique de Khadija a été déterminante pour notre expansion. Elle a su identifier des opportunités que nous n'avions même pas envisagées."
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+                                     alt="Sophie M." 
+                                     class="author-avatar">
+                                <div class="author-info">
+                                    <h4>Sophie M.</h4>
+                                    <p>Directrice, GreenFood SA</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                "Un accompagnement sur-mesure qui a dépassé nos attentes. Le business plan élaboré nous a permis d'obtenir le financement nécessaire pour notre projet."
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+                                     alt="Karim L." 
+                                     class="author-avatar">
+                                <div class="author-info">
+                                    <h4>Karim L.</h4>
+                                    <p>Fondateur, Artisan Digital</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Section Expertise Unique -->
             <section class="expertise-section" id="expertise">
                 <div class="container">
@@ -1085,8 +1297,8 @@
                     
                     <div class="expertise-container">
                         <div class="expertise-photo-container">
-                            <img src="https://github.com/user-attachments/assets/3a419edb-c95a-4650-8397-94aa47dcb1f5" 
-                                 alt="Khadija Oulkaid - Juriste & Consultante en Stratégie d'Entreprise" 
+                            <img src="https://github.com/user-attachments/assets/87e53a92-c9f2-4fa8-bde4-a159854242cd" 
+                                 alt="Khadija.O - Juriste & Consultante en Stratégie d'Entreprise" 
                                  class="expertise-photo">
                             <div class="photo-badge">
                                 <i class="fas fa-award"></i> Expert Juridique & Stratégique
@@ -1094,49 +1306,122 @@
                         </div>
                         
                         <div class="expertise-content">
-                            <h2>Khadija Oulkaid</h2>
+                            <h2>Khadija.O</h2>
                             <h3>Juriste & Consultante en Stratégie d'Entreprise</h3>
                             
                             <p style="margin-bottom: 1.5rem; color: var(--dark); line-height: 1.8; font-size: 1.1rem;">
-                                Spécialiste en droit des affaires contentieux et stratégie d'entreprise, je vous accompagne dans la transformation de vos projets en succès durables grâce à une approche pluridisciplinaire unique combinant expertise juridique et vision business.
+                                Spécialiste en droit des affaires contentieux et stratégie d'entreprise, je vous accompagne dans la transformation de vos projets en succès durables grâce à une approche pluridisciplinaire unique.
                             </p>
                             
                             <h4>Expertises Clés :</h4>
                             <ul class="expertise-list">
-                                <li><strong>Droit des Affaires Contentieux</strong> - Master spécialisé avec une approche pragmatique des litiges commerciaux</li>
-                                <li><strong>Difficultés des Entreprises</strong> - Accompagnement stratégique dans les situations complexes</li>
-                                <li><strong>Business Management</strong> - Optimisation des processus et gestion opérationnelle</li>
-                                <li><strong>Analyse Stratégique</strong> - Études de marché et recommandations éclairées</li>
-                                <li><strong>Conformité Juridique</strong> - Sécurisation des activités et prévention des risques</li>
-                                <li><strong>Stratégie de Croissance</strong> - Développement durable et expansion maîtrisée</li>
+                                <li>Droit des Affaires Contentieux - Approche pragmatique des litiges commerciaux</li>
+                                <li>Difficultés des Entreprises - Accompagnement stratégique dans les situations complexes</li>
+                                <li>Business Management - Optimisation des processus et gestion opérationnelle</li>
+                                <li>Analyse Stratégique - Études de marché et recommandations éclairées</li>
+                                <li>Conformité Juridique - Sécurisation des activités et prévention des risques</li>
+                                <li>Stratégie de Croissance - Développement durable et expansion maîtrisée</li>
                             </ul>
                             
-                            <h4>Qualifications Professionnelles :</h4>
-                            <div class="qualifications-grid">
-                                <div class="qualification-item">
-                                    <strong>Master en Droit des Affaires Contentieux</strong>
-                                    <p>Spécialisation approfondie</p>
-                                </div>
-                                <div class="qualification-item">
-                                    <strong>Profession Judiciaire</strong>
-                                    <p>Expertise procédurale et contentieuse</p>
-                                </div>
-                                <div class="qualification-item">
-                                    <strong>Business Management</strong>
-                                    <p>Gestion stratégique des entreprises</p>
-                                </div>
-                                <div class="qualification-item">
-                                    <strong>Analyse des Affaires</strong>
-                                    <p>Diagnostic et recommandations opérationnelles</p>
-                                </div>
-                            </div>
-                            
                             <div class="experience-badge">
-                                <i class="fas fa-star"></i> 4+ années d'expérience réussie en conseil stratégique
+                                <i class="fas fa-star"></i> 2 ans d'expérience réussie en conseil stratégique
                             </div>
                             
                             <div class="quote-box">
                                 "Votre succès juridique et commercial est ma priorité absolue. Je combine une expertise juridique solide avec une vision stratégique pragmatique pour créer des solutions sur-mesure qui protègent, optimisent et développent durablement votre entreprise."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Processus Section -->
+            <section class="process-section" id="processus">
+                <div class="container">
+                    <div class="section-title" style="color: white;">
+                        <h2 style="color: white;">Notre Processus</h2>
+                        <p style="color: rgba(255, 255, 255, 0.9);">Une méthodologie éprouvée pour garantir votre succès</p>
+                    </div>
+                    
+                    <div class="process-container">
+                        <div class="process-line"></div>
+                        
+                        <div class="process-steps">
+                            <!-- Étape 1 -->
+                            <div class="process-step">
+                                <div class="step-icon">
+                                    <i class="fas fa-handshake"></i>
+                                </div>
+                                <div class="step-content">
+                                    <h3>Contact</h3>
+                                    <p>Premier échange pour comprendre vos besoins et objectifs spécifiques.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Étape 2 -->
+                            <div class="process-step">
+                                <div class="step-icon">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <div class="step-content">
+                                    <h3>Pré-analyse</h3>
+                                    <p>Évaluation initiale de votre situation et identification des opportunités.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Étape 3 -->
+                            <div class="process-step">
+                                <div class="step-icon">
+                                    <i class="fas fa-calendar-check"></i>
+                                </div>
+                                <div class="step-content">
+                                    <h3>Consultation gratuite</h3>
+                                    <p>Rencontre détaillée pour définir les axes stratégiques prioritaires.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Étape 4 -->
+                            <div class="process-step">
+                                <div class="step-icon">
+                                    <i class="fas fa-file-contract"></i>
+                                </div>
+                                <div class="step-content">
+                                    <h3>Proposition stratégique</h3>
+                                    <p>Élaboration d'un plan d'action personnalisé avec objectifs mesurables.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Étape 5 -->
+                            <div class="process-step">
+                                <div class="step-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="step-content">
+                                    <h3>Validation</h3>
+                                    <p>Validation commune du plan stratégique et définition du calendrier.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Étape 6 -->
+                            <div class="process-step">
+                                <div class="step-icon">
+                                    <i class="fas fa-hands-helping"></i>
+                                </div>
+                                <div class="step-content">
+                                    <h3>Accompagnement</h3>
+                                    <p>Mise en œuvre avec suivi régulier et ajustements si nécessaire.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Étape 7 -->
+                            <div class="process-step">
+                                <div class="step-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="step-content">
+                                    <h3>Résultats & optimisation</h3>
+                                    <p>Analyse des résultats et optimisation continue pour performance maximale.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1300,7 +1585,9 @@
                         <ul class="footer-links">
                             <li><a href="#accueil">Accueil</a></li>
                             <li><a href="#services">Services</a></li>
+                            <li><a href="#temoignages">Témoignages</a></li>
                             <li><a href="#expertise">Expertise</a></li>
+                            <li><a href="#processus">Processus</a></li>
                             <li><a href="#stats">Résultats</a></li>
                             <li><a href="#contact">Contact</a></li>
                         </ul>
