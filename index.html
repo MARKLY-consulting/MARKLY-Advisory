@@ -273,22 +273,24 @@
             width: 80%;
         }
 
-        /* ===== HERO SECTION HORIZONTALE ===== */
+        /* ===== HERO SECTION CENTRÉE ===== */
         .hero-section {
-            padding: 180px 0 80px;
-            margin-top: 80px;
+            padding: 0;
+            margin-top: 0;
             display: flex;
             align-items: center;
-            min-height: 85vh;
+            justify-content: center;
+            min-height: 100vh;
             position: relative;
             z-index: 1;
+            text-align: center;
         }
 
         .hero-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+            display: block;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         .hero-content {
@@ -297,19 +299,30 @@
 
         .hero-content h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             color: var(--white);
             line-height: 1.2;
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .hero-content p {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
             line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
         }
 
         /* ===== BOUTONS ===== */
@@ -954,7 +967,7 @@
             }
             
             .hero-content h1 {
-                font-size: 3rem;
+                font-size: 3.2rem;
             }
             
             .expertise-photo {
@@ -971,6 +984,14 @@
         }
 
         @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            
             .hero-container,
             .expertise-container,
             .contact-container {
@@ -1018,6 +1039,16 @@
                 font-size: 1.1rem;
             }
             
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
             .services-grid {
                 grid-template-columns: 1fr;
             }
@@ -1033,6 +1064,7 @@
             .expertise-photo {
                 height: 450px;
                 max-width: 350px;
+                margin: 0 auto;
             }
         }
 
@@ -1042,7 +1074,11 @@
             }
             
             .hero-content h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
             }
             
             .expertise-photo {
@@ -1156,14 +1192,14 @@
         </header>
 
         <main class="main-content">
-            <!-- Hero Section -->
+            <!-- Hero Section Centrée -->
             <section class="hero-section" id="accueil">
                 <div class="container">
                     <div class="hero-container">
                         <div class="hero-content">
                             <h1>Excellence en Conseil Business & Stratégie de Projet</h1>
                             <p>MARKLY Advisory transforme les visions entrepreneuriales en succès tangibles grâce à une approche stratégique sur-mesure et un accompagnement d'excellence.</p>
-                            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                            <div class="hero-buttons">
                                 <a href="#services" class="btn">
                                     <i class="fas fa-rocket"></i>
                                     Découvrir nos services
