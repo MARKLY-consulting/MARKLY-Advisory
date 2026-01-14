@@ -43,11 +43,91 @@
             overflow-x: hidden;
         }
 
+        /* ===== VIDEO BACKGROUND ===== */
+        .video-background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .video-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .video-slide.active {
+            opacity: 1;
+        }
+
+        .video-slide video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.4) saturate(1.2);
+        }
+
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(26, 54, 93, 0.85) 0%, 
+                rgba(45, 55, 72, 0.9) 50%, 
+                rgba(192, 86, 33, 0.2) 100%);
+            z-index: -1;
+        }
+
+        /* ===== CONTROLES VIDEO ===== */
+        .video-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 12px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 102, 204, 0.2);
+        }
+
+        .video-controls button {
+            background: var(--gradient-secondary);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .video-controls button:hover {
+            transform: scale(1.1);
+        }
+
         /* ===== DESIGN HORIZONTAL ===== */
         .horizontal-layout {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            position: relative;
+            z-index: 1;
         }
 
         .main-content {
@@ -67,55 +147,20 @@
         @keyframes revealContent {
             0% {
                 opacity: 0;
-                transform: translateY(30px) scale(0.95);
-                filter: blur(5px);
+                transform: translateY(30px);
             }
             100% {
                 opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
-
-        @keyframes slideFromLeft {
-            0% {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideFromRight {
-            0% {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes scaleIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.8) rotate(-5deg);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) rotate(0);
+                transform: translateY(0);
             }
         }
 
         @keyframes floatImage {
             0%, 100% {
-                transform: translateY(0) rotate(0deg);
+                transform: translateY(0);
             }
             50% {
-                transform: translateY(-10px) rotate(2deg);
+                transform: translateY(-10px);
             }
         }
 
@@ -215,9 +260,8 @@
             display: flex;
             align-items: center;
             min-height: 85vh;
-            background: var(--gradient-primary);
             position: relative;
-            overflow: hidden;
+            z-index: 1;
         }
 
         .hero-container {
@@ -228,7 +272,7 @@
         }
 
         .hero-content {
-            animation: slideFromLeft 1s ease-out;
+            animation: revealContent 1s ease-out;
         }
 
         .hero-content h1 {
@@ -250,7 +294,7 @@
 
         .hero-image-container {
             position: relative;
-            animation: slideFromRight 1s ease-out;
+            animation: revealContent 1s ease-out 0.3s backwards;
         }
 
         .hero-image {
@@ -259,26 +303,7 @@
             border-radius: var(--border-radius);
             object-fit: cover;
             box-shadow: var(--shadow);
-            transform: perspective(1000px) rotateY(-10deg);
-            transition: var(--transition);
             border: 5px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .hero-image:hover {
-            transform: perspective(1000px) rotateY(0deg);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, 
-                rgba(26, 54, 93, 0.4) 0%, 
-                rgba(192, 86, 33, 0.2) 100%);
-            border-radius: var(--border-radius);
             animation: floatImage 6s ease-in-out infinite;
         }
 
@@ -339,6 +364,7 @@
             padding: 100px 0;
             background: var(--white);
             position: relative;
+            z-index: 1;
         }
 
         .section-title {
@@ -382,7 +408,16 @@
             position: relative;
             overflow: hidden;
             text-align: center;
+            opacity: 0;
+            animation: revealContent 0.8s ease-out forwards;
         }
+
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+        .service-card:nth-child(4) { animation-delay: 0.4s; }
+        .service-card:nth-child(5) { animation-delay: 0.5s; }
+        .service-card:nth-child(6) { animation-delay: 0.6s; }
 
         .service-card:hover {
             transform: translateY(-10px);
@@ -411,6 +446,7 @@
             padding: 100px 0;
             background: linear-gradient(135deg, var(--light) 0%, #f0ebe3 100%);
             position: relative;
+            z-index: 1;
         }
 
         .testimonials-container {
@@ -441,7 +477,12 @@
             border-radius: var(--border-radius);
             border: 1px solid rgba(26, 54, 93, 0.1);
             box-shadow: var(--shadow);
+            opacity: 0;
+            animation: revealContent 0.8s ease-out forwards;
         }
+
+        .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
+        .testimonial-card:nth-child(2) { animation-delay: 0.2s; }
 
         .client-photo {
             width: 60px;
@@ -465,7 +506,14 @@
             object-fit: cover;
             transition: var(--transition);
             box-shadow: var(--shadow);
+            opacity: 0;
+            animation: revealContent 0.8s ease-out forwards;
         }
+
+        .testimonial-img:nth-child(1) { animation-delay: 0.3s; }
+        .testimonial-img:nth-child(2) { animation-delay: 0.4s; }
+        .testimonial-img:nth-child(3) { animation-delay: 0.5s; }
+        .testimonial-img:nth-child(4) { animation-delay: 0.6s; }
 
         .testimonial-img:hover {
             transform: scale(1.05);
@@ -477,6 +525,8 @@
             padding: 100px 0;
             background: var(--white);
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         .team-grid {
@@ -489,7 +539,14 @@
         .team-member {
             text-align: center;
             transition: var(--transition);
+            opacity: 0;
+            animation: revealContent 0.8s ease-out forwards;
         }
+
+        .team-member:nth-child(1) { animation-delay: 0.1s; }
+        .team-member:nth-child(2) { animation-delay: 0.2s; }
+        .team-member:nth-child(3) { animation-delay: 0.3s; }
+        .team-member:nth-child(4) { animation-delay: 0.4s; }
 
         .team-member:hover {
             transform: translateY(-10px);
@@ -516,6 +573,7 @@
             background: var(--gradient-primary);
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
 
         .stats-grid {
@@ -532,7 +590,14 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: var(--transition);
+            opacity: 0;
+            animation: revealContent 0.8s ease-out forwards;
         }
+
+        .stat-item:nth-child(1) { animation-delay: 0.1s; }
+        .stat-item:nth-child(2) { animation-delay: 0.2s; }
+        .stat-item:nth-child(3) { animation-delay: 0.3s; }
+        .stat-item:nth-child(4) { animation-delay: 0.4s; }
 
         .stat-item:hover {
             transform: translateY(-5px);
@@ -558,6 +623,8 @@
         .contact-section {
             padding: 100px 0;
             background: var(--light);
+            position: relative;
+            z-index: 1;
         }
 
         .contact-container {
@@ -574,6 +641,8 @@
             border: 1px solid rgba(26, 54, 93, 0.1);
             box-shadow: var(--shadow);
             position: relative;
+            opacity: 0;
+            animation: revealContent 0.8s ease-out forwards;
         }
 
         .contact-info::before {
@@ -612,6 +681,8 @@
             padding: 50px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
+            opacity: 0;
+            animation: revealContent 0.8s ease-out 0.2s forwards;
         }
 
         .form-group {
@@ -649,6 +720,8 @@
             color: var(--white);
             padding: 60px 0 30px;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-container {
@@ -729,6 +802,10 @@
             .hero-image {
                 height: 400px;
             }
+            
+            .video-controls {
+                display: none;
+            }
         }
 
         @media (max-width: 768px) {
@@ -782,6 +859,60 @@
     </style>
 </head>
 <body>
+    <!-- Video Background avec rotation -->
+    <div class="video-background-container">
+        <!-- Vidéo 1 -->
+        <div class="video-slide active" data-id="1">
+            <video autoplay muted loop playsinline>
+                <source src="https://github.com/user-attachments/assets/ed3e1a7f-9b87-42a6-990e-b0ac339ba345" type="video/mp4">
+            </video>
+        </div>
+        
+        <!-- Vidéo 2 -->
+        <div class="video-slide" data-id="2">
+            <video autoplay muted loop playsinline>
+                <source src="https://github.com/user-attachments/assets/037967e6-9bef-4acb-bce6-8ad32f4f21aa" type="video/mp4">
+            </video>
+        </div>
+        
+        <!-- Vidéo 3 -->
+        <div class="video-slide" data-id="3">
+            <video autoplay muted loop playsinline>
+                <source src="https://github.com/user-attachments/assets/24da5c31-505a-40be-90ff-8198b912d469" type="video/mp4">
+            </video>
+        </div>
+        
+        <!-- Vidéo 4 -->
+        <div class="video-slide" data-id="4">
+            <video autoplay muted loop playsinline>
+                <source src="https://github.com/user-attachments/assets/9980c02c-8593-442c-b10e-aaaeffbc8bf6" type="video/mp4">
+            </video>
+        </div>
+        
+        <!-- Vidéo 5 -->
+        <div class="video-slide" data-id="5">
+            <video autoplay muted loop playsinline>
+                <source src="https://github.com/user-attachments/assets/de173946-56af-416e-b455-52796d049a50" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    
+    <!-- Overlay pour meilleure lisibilité -->
+    <div class="video-overlay"></div>
+    
+    <!-- Contrôles vidéo -->
+    <div class="video-controls">
+        <button id="prev-video" title="Vidéo précédente">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button id="play-pause" title="Pause/Play">
+            <i class="fas fa-pause"></i>
+        </button>
+        <button id="next-video" title="Vidéo suivante">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
     <div class="horizontal-layout">
         <!-- Header -->
         <header id="header">
@@ -828,7 +959,6 @@
                             <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                                  alt="Conseil d'entreprise" 
                                  class="hero-image">
-                            <div class="image-overlay"></div>
                         </div>
                     </div>
                 </div>
@@ -913,11 +1043,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="testimonials-images">
+                        <div class="testimonial-images">
                             <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                                  alt="Réunion d'équipe" 
                                  class="testimonial-img">
-                            <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w-600&q=80" 
+                            <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
                                  alt="Présentation stratégique" 
                                  class="testimonial-img">
                             <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
@@ -944,32 +1074,37 @@
                                  alt="Directeur Stratégique" 
                                  class="member-photo">
                             <h3>Mohamed K.</h3>
-                            <p>Directeur Stratégique</p>
-                            <p>15 ans d'expérience</p>
+                            <p><strong>Directeur Stratégique</strong></p>
+                            <p>15 ans d'expérience en conseil</p>
+                            <p>Expert en transformation digitale</p>
                         </div>
                         <div class="team-member">
                             <img src="https://images.unsplash.com/photo-1494790108755-2616b786d4c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-                                 alt="Consultante Senior" 
+                                 alt="Khadija Oulkaid" 
                                  class="member-photo">
-                            <h3>Khadija O.</h3>
-                            <p>Consultante Senior</p>
-                            <p>Expertise en Business Plan</p>
+                            <h3>Khadija Oulkaid</h3>
+                            <p><strong>Master en Droit des Affaires Contentieux</strong></p>
+                            <p>Spécialiste en Droit des Affaires & Difficultés des Entreprises</p>
+                            <p>Business Management & Analyse des Affaires</p>
+                            <p>4 ans d'expérience</p>
                         </div>
                         <div class="team-member">
                             <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
                                  alt="Analyste Financier" 
                                  class="member-photo">
                             <h3>Youssef A.</h3>
-                            <p>Analyste Financier</p>
-                            <p>Spécialiste ROI</p>
+                            <p><strong>Analyste Financier Senior</strong></p>
+                            <p>Expert en modélisation financière</p>
+                            <p>Spécialiste ROI & optimisation fiscale</p>
                         </div>
                         <div class="team-member">
                             <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
                                  alt="Développeur Web" 
                                  class="member-photo">
                             <h3>Karim B.</h3>
-                            <p>Développeur Web</p>
-                            <p>Solutions Digitales</p>
+                            <p><strong>Développeur Web Senior</strong></p>
+                            <p>Solutions Digitales sur mesure</p>
+                            <p>Expert en UX/UI & performance web</p>
                         </div>
                     </div>
                 </div>
@@ -1155,40 +1290,108 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Animation au scroll
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
+            // Système de rotation des vidéos
+            const videoSlides = document.querySelectorAll('.video-slide');
+            let currentVideoIndex = 0;
+            let isPlaying = true;
+            let rotationInterval;
+            
+            // Fonction pour changer de vidéo
+            function showVideo(index) {
+                videoSlides.forEach(slide => {
+                    slide.classList.remove('active');
+                    const video = slide.querySelector('video');
+                    if (video) video.pause();
+                });
+                
+                currentVideoIndex = (index + videoSlides.length) % videoSlides.length;
+                videoSlides[currentVideoIndex].classList.add('active');
+                
+                const currentVideo = videoSlides[currentVideoIndex].querySelector('video');
+                if (currentVideo && isPlaying) {
+                    currentVideo.play();
+                }
+            }
+            
+            // Rotation automatique des vidéos
+            function startRotation() {
+                rotationInterval = setInterval(() => {
+                    showVideo(currentVideoIndex + 1);
+                }, 8000); // Change toutes les 8 secondes
+            }
+            
+            // Contrôles vidéo
+            document.getElementById('prev-video').addEventListener('click', () => {
+                showVideo(currentVideoIndex - 1);
+                resetRotation();
+            });
+            
+            document.getElementById('next-video').addEventListener('click', () => {
+                showVideo(currentVideoIndex + 1);
+                resetRotation();
+            });
+            
+            document.getElementById('play-pause').addEventListener('click', () => {
+                const playPauseBtn = document.getElementById('play-pause');
+                const currentVideo = videoSlides[currentVideoIndex].querySelector('video');
+                
+                if (isPlaying) {
+                    // Pause
+                    if (currentVideo) currentVideo.pause();
+                    clearInterval(rotationInterval);
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    playPauseBtn.title = 'Play';
+                } else {
+                    // Play
+                    if (currentVideo) currentVideo.play();
+                    startRotation();
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    playPauseBtn.title = 'Pause';
+                }
+                
+                isPlaying = !isPlaying;
+            });
+            
+            // Réinitialiser le timer de rotation
+            function resetRotation() {
+                clearInterval(rotationInterval);
+                if (isPlaying) {
+                    startRotation();
+                }
+            }
+            
+            // Démarrer la rotation automatique
+            startRotation();
+            
+            // Animation des statistiques
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        if (entry.target.classList.contains('service-card')) {
-                            entry.target.style.animation = 'revealContent 0.8s ease-out forwards';
-                        }
+                        // Animer les statistiques
                         if (entry.target.classList.contains('stat-item')) {
                             const number = entry.target.querySelector('.stat-number');
-                            const text = number.textContent;
-                            const finalValue = parseFloat(text);
-                            let current = 0;
-                            const increment = finalValue / 30;
-                            
-                            const timer = setInterval(() => {
-                                current += increment;
-                                if (current >= finalValue) {
-                                    current = finalValue;
-                                    clearInterval(timer);
-                                }
-                                number.textContent = Math.round(current) + (text.includes('+') ? '+' : '');
-                            }, 40);
+                            if (number && !number.classList.contains('animated')) {
+                                number.classList.add('animated');
+                                const text = number.textContent;
+                                const finalValue = parseFloat(text);
+                                let current = 0;
+                                const increment = finalValue / 50;
+                                const timer = setInterval(() => {
+                                    current += increment;
+                                    if (current >= finalValue) {
+                                        current = finalValue;
+                                        clearInterval(timer);
+                                    }
+                                    number.textContent = Math.round(current) + (text.includes('+') ? '+' : '');
+                                }, 30);
+                            }
                         }
                     }
                 });
-            }, observerOptions);
+            }, { threshold: 0.5 });
 
             // Observer les éléments
-            document.querySelectorAll('.service-card, .stat-item').forEach(el => {
+            document.querySelectorAll('.stat-item').forEach(el => {
                 observer.observe(el);
             });
 
@@ -1245,10 +1448,10 @@
             const teamPhotos = document.querySelectorAll('.member-photo');
             teamPhotos.forEach(photo => {
                 photo.addEventListener('mouseenter', () => {
-                    photo.style.transform = 'scale(1.05) rotate(5deg)';
+                    photo.style.transform = 'scale(1.05)';
                 });
                 photo.addEventListener('mouseleave', () => {
-                    photo.style.transform = 'scale(1) rotate(0deg)';
+                    photo.style.transform = 'scale(1)';
                 });
             });
         });
