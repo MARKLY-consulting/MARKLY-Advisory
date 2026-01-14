@@ -43,6 +43,103 @@
             overflow-x: hidden;
         }
 
+        /* ===== ANIMATIONS INTELLIGENTES ===== */
+        @keyframes revealContent {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+                filter: blur(5px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes slideFromLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideFromRight {
+            0% {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) rotate(-5deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0);
+            }
+        }
+
+        @keyframes typewriter {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes fadeInStagger {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Classes d'animation */
+        .reveal-animation {
+            animation: revealContent 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
+        }
+
+        .slide-left {
+            animation: slideFromLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
+        }
+
+        .slide-right {
+            animation: slideFromRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
+        }
+
+        .scale-in {
+            animation: scaleIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
+        }
+
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .stagger-item.animated {
+            animation: fadeInStagger 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
         /* ===== VIDEO BACKGROUND AVEC ANIMATIONS ===== */
         .video-background-container {
             position: fixed;
@@ -69,18 +166,7 @@
         .video-slide.active {
             opacity: 1;
             transform: scale(1);
-            animation: videoReveal 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes videoReveal {
-            0% {
-                opacity: 0;
-                transform: scale(1.15) rotate(-2deg);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) rotate(0);
-            }
+            animation: revealContent 1.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .video-slide video {
@@ -118,7 +204,7 @@
             }
         }
 
-        /* ===== PARTICULES FLOTTANTES SUR VIDEOS ===== */
+        /* ===== PARTICULES FLOTTANTES ===== */
         .floating-particles {
             position: fixed;
             top: 0;
@@ -134,35 +220,6 @@
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             animation: floatParticle 20s infinite linear;
-        }
-
-        .particle:nth-child(1) {
-            width: 150px;
-            height: 150px;
-            top: 10%;
-            left: 5%;
-            animation-delay: 0s;
-            animation-duration: 25s;
-        }
-
-        .particle:nth-child(2) {
-            width: 80px;
-            height: 80px;
-            top: 70%;
-            right: 10%;
-            animation-delay: -5s;
-            animation-duration: 20s;
-            background: rgba(192, 86, 33, 0.08);
-        }
-
-        .particle:nth-child(3) {
-            width: 120px;
-            height: 120px;
-            bottom: 20%;
-            left: 20%;
-            animation-delay: -10s;
-            animation-duration: 30s;
-            background: rgba(45, 90, 39, 0.06);
         }
 
         @keyframes floatParticle {
@@ -190,43 +247,7 @@
             padding: 0 20px;
         }
 
-        /* ===== ANIMATIONS GLOBALES ===== */
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(192, 86, 33, 0.4);
-            }
-            70% {
-                box-shadow: 0 0 0 15px rgba(192, 86, 33, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(192, 86, 33, 0);
-            }
-        }
-
-        @keyframes gradientShift {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        /* ===== HEADER ===== */
+        /* ===== HEADER ANIME ===== */
         header {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -237,6 +258,16 @@
             border-bottom: 1px solid rgba(26, 54, 93, 0.1);
             transition: var(--transition);
             padding: 15px 0;
+            animation: slideFromTop 0.6s ease-out;
+        }
+
+        @keyframes slideFromTop {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
         }
 
         header.scrolled {
@@ -267,6 +298,7 @@
             width: auto;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
             transition: var(--transition);
+            animation: scaleIn 0.8s ease-out 0.2s backwards;
         }
 
         .logo-text {
@@ -277,6 +309,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: slideFromLeft 0.8s ease-out 0.3s backwards;
         }
 
         .nav-links {
@@ -284,6 +317,17 @@
             gap: 30px;
             list-style: none;
         }
+
+        .nav-links li {
+            opacity: 0;
+            transform: translateY(-10px);
+            animation: fadeInStagger 0.6s ease-out forwards;
+        }
+
+        .nav-links li:nth-child(1) { animation-delay: 0.4s; }
+        .nav-links li:nth-child(2) { animation-delay: 0.5s; }
+        .nav-links li:nth-child(3) { animation-delay: 0.6s; }
+        .nav-links li:nth-child(4) { animation-delay: 0.7s; }
 
         .nav-links a {
             text-decoration: none;
@@ -317,7 +361,7 @@
             width: 80%;
         }
 
-        /* ===== CONTROLES VIDEO AVEC ANIMATION ===== */
+        /* ===== CONTROLES VIDEO ===== */
         .video-controls {
             position: fixed;
             bottom: 30px;
@@ -331,14 +375,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(26, 54, 93, 0.1);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            animation: slideInUp 0.6s ease-out 1s backwards;
-            transform: translateY(0);
-            transition: var(--transition);
-        }
-
-        .video-controls:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            animation: revealContent 0.6s ease-out 1.5s backwards;
         }
 
         .video-controls button {
@@ -353,30 +390,9 @@
             align-items: center;
             justify-content: center;
             transition: var(--transition);
-            position: relative;
-            overflow: hidden;
         }
 
-        .video-controls button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: var(--transition);
-        }
-
-        .video-controls button:hover {
-            transform: scale(1.1);
-        }
-
-        .video-controls button:hover::before {
-            left: 100%;
-        }
-
-        /* ===== HERO SECTION ===== */
+        /* ===== HERO SECTION ANIMEE ===== */
         .hero {
             padding: 200px 0 100px;
             margin-top: 80px;
@@ -391,7 +407,6 @@
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
-            animation: slideInUp 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .hero h1 {
@@ -405,7 +420,10 @@
             background-clip: text;
             line-height: 1.2;
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            animation: slideInUp 0.8s ease-out;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typewriter 1.5s steps(40, end) 0.5s forwards;
+            width: 0;
         }
 
         .hero p {
@@ -414,7 +432,7 @@
             margin-bottom: 2.5rem;
             line-height: 1.8;
             opacity: 0;
-            animation: slideInUp 0.8s ease-out 0.3s forwards;
+            animation: revealContent 0.8s ease-out 1.8s forwards;
         }
 
         .hero-btns {
@@ -423,10 +441,10 @@
             justify-content: center;
             flex-wrap: wrap;
             opacity: 0;
-            animation: slideInUp 0.8s ease-out 0.6s forwards;
+            animation: fadeInStagger 0.8s ease-out 2.2s forwards;
         }
 
-        /* ===== BOUTONS ===== */
+        /* ===== BOUTONS ANIMES ===== */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -445,6 +463,12 @@
             position: relative;
             overflow: hidden;
             transform: translateY(0);
+            opacity: 0;
+            animation: scaleIn 0.6s ease-out 2.4s forwards;
+        }
+
+        .btn:nth-child(2) {
+            animation-delay: 2.6s;
         }
 
         .btn::before {
@@ -474,13 +498,7 @@
             backdrop-filter: blur(5px);
         }
 
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--white);
-            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
-        }
-
-        /* ===== SERVICES ===== */
+        /* ===== SERVICES ANIMES ===== */
         .services {
             padding: 100px 0;
             background: var(--white);
@@ -503,6 +521,12 @@
             text-align: center;
             margin-bottom: 4rem;
             position: relative;
+            opacity: 0;
+            animation: revealContent 0.8s ease-out forwards;
+        }
+
+        .section-title.animated {
+            opacity: 1;
         }
 
         .section-title h2 {
@@ -539,9 +563,12 @@
             transition: var(--transition);
             position: relative;
             overflow: hidden;
-            transform: translateY(0);
+            transform: translateY(30px);
             opacity: 0;
-            animation: slideInUp 0.6s ease-out forwards;
+        }
+
+        .service-card.animated {
+            animation: revealContent 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
         .service-card:nth-child(1) { animation-delay: 0.1s; }
@@ -587,34 +614,13 @@
             background: linear-gradient(135deg, rgba(192, 86, 33, 0.2) 0%, rgba(192, 86, 33, 0.1) 100%);
         }
 
-        .service-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-            transition: var(--transition);
-        }
-
-        .service-card:hover h3 {
-            color: var(--secondary);
-        }
-
-        /* ===== STATISTIQUES ===== */
+        /* ===== STATISTIQUES ANIMEES ===== */
         .stats-section {
             padding: 80px 0;
             background: var(--gradient-primary);
             position: relative;
             overflow: hidden;
             z-index: 1;
-        }
-
-        .stats-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
         }
 
         .stats-grid {
@@ -634,28 +640,17 @@
             position: relative;
             overflow: hidden;
             opacity: 0;
-            transform: translateY(20px);
+            transform: scale(0.9);
         }
 
         .stat-item.animated {
-            opacity: 1;
-            transform: translateY(0);
+            animation: scaleIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
-        .stat-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: var(--transition);
-        }
-
-        .stat-item:hover::before {
-            left: 100%;
-        }
+        .stat-item:nth-child(1) { animation-delay: 0.1s; }
+        .stat-item:nth-child(2) { animation-delay: 0.2s; }
+        .stat-item:nth-child(3) { animation-delay: 0.3s; }
+        .stat-item:nth-child(4) { animation-delay: 0.4s; }
 
         .stat-number {
             font-size: 3rem;
@@ -666,14 +661,7 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .stat-label {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.9);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        /* ===== CONTACT ===== */
+        /* ===== CONTACT ANIME ===== */
         .contact {
             padding: 100px 0;
             background: var(--light);
@@ -696,7 +684,12 @@
             box-shadow: var(--shadow);
             position: relative;
             overflow: hidden;
-            animation: slideInUp 0.8s ease-out;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .contact-info.animated {
+            animation: slideFromLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
         .contact-info::before {
@@ -719,11 +712,18 @@
             padding-bottom: 30px;
             border-bottom: 1px solid rgba(26, 54, 93, 0.05);
             transition: var(--transition);
+            opacity: 0;
+            transform: translateX(-20px);
         }
 
-        .contact-item:hover {
-            transform: translateX(10px);
+        .contact-item.animated {
+            animation: slideFromLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
+
+        .contact-item:nth-child(1) { animation-delay: 0.2s; }
+        .contact-item:nth-child(2) { animation-delay: 0.3s; }
+        .contact-item:nth-child(3) { animation-delay: 0.4s; }
+        .contact-item:nth-child(4) { animation-delay: 0.5s; }
 
         .contact-icon {
             width: 50px;
@@ -738,11 +738,7 @@
             transition: var(--transition);
         }
 
-        .contact-item:hover .contact-icon {
-            transform: rotate(10deg) scale(1.1);
-        }
-
-        /* ===== PERFORMANCE ===== */
+        /* ===== PERFORMANCE ANIMEE ===== */
         .performance-section {
             background: var(--white);
             padding: 50px;
@@ -752,18 +748,12 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            animation: slideInUp 0.8s ease-out 0.2s backwards;
+            opacity: 0;
+            transform: translateX(30px);
         }
 
-        .performance-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(192, 86, 33, 0.05) 0%, transparent 70%);
-            animation: floatParticle 20s infinite linear;
+        .performance-section.animated {
+            animation: slideFromRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
         .performance-image {
@@ -788,22 +778,6 @@
             z-index: 1;
         }
 
-        .progress-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 0.95rem;
-            color: var(--dark);
-        }
-
-        .progress-bar {
-            height: 8px;
-            background: rgba(26, 54, 93, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-            position: relative;
-        }
-
         .progress-fill {
             height: 100%;
             background: var(--gradient-accent);
@@ -813,43 +787,13 @@
             transition: width 2s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: gradientShift 2s infinite;
-        }
-
         .percentage-display {
             margin-top: 30px;
             position: relative;
             z-index: 1;
         }
 
-        .percentage-value {
-            font-size: 3.5rem;
-            font-weight: 700;
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .percentage-label {
-            font-size: 1rem;
-            color: var(--dark);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 10px;
-            font-weight: 600;
-        }
-
-        /* ===== FOOTER ===== */
+        /* ===== FOOTER ANIME ===== */
         footer {
             background: var(--gradient-primary);
             color: var(--white);
@@ -858,16 +802,11 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
+            opacity: 0;
         }
 
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-secondary);
+        footer.animated {
+            animation: revealContent 0.8s ease-out forwards;
         }
 
         .footer-content {
@@ -879,55 +818,26 @@
             z-index: 1;
         }
 
-        .footer-logo {
-            height: 60px;
-            width: auto;
-            filter: brightness(0) invert(1);
-            transition: var(--transition);
-        }
-
-        .footer-logo:hover {
-            transform: scale(1.05);
-        }
-
-        .footer-text {
-            max-width: 500px;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.1rem;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 30px;
-            margin: 30px 0;
-        }
-
         .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: var(--transition);
-            padding: 8px 16px;
-            border-radius: 20px;
+            opacity: 0;
+            transform: translateY(10px);
         }
 
-        .footer-links a:hover {
-            color: var(--white);
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
+        .footer-links a.animated {
+            animation: fadeInStagger 0.6s ease-out forwards;
         }
 
-        .copyright {
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-        }
+        .footer-links a:nth-child(1) { animation-delay: 0.1s; }
+        .footer-links a:nth-child(2) { animation-delay: 0.2s; }
+        .footer-links a:nth-child(3) { animation-delay: 0.3s; }
+        .footer-links a:nth-child(4) { animation-delay: 0.4s; }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .hero h1 {
                 font-size: 2.8rem;
+                white-space: normal;
+                animation: revealContent 0.8s ease-out 0.5s forwards;
             }
             
             .contact-content {
@@ -975,8 +885,12 @@
                 padding: 30px 25px;
             }
             
-            .video-slide video {
-                object-position: 60% center;
+            .performance-section {
+                transform: translateY(30px);
+            }
+            
+            .performance-section.animated {
+                animation: revealContent 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
             }
         }
 
@@ -992,16 +906,6 @@
             .footer-links {
                 flex-direction: column;
                 gap: 15px;
-            }
-            
-            .percentage-value {
-                font-size: 2.8rem;
-            }
-            
-            .video-controls {
-                bottom: 15px;
-                right: 15px;
-                padding: 10px;
             }
         }
     </style>
@@ -1055,7 +959,7 @@
         <div class="particle"></div>
     </div>
     
-    <!-- Contrôles vidéo améliorés -->
+    <!-- Contrôles vidéo -->
     <div class="video-controls">
         <button id="prev-video" title="Vidéo précédente">
             <i class="fas fa-chevron-left"></i>
@@ -1308,60 +1212,35 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Système de rotation des vidéos amélioré
+            // Système de rotation des vidéos
             const videoSlides = document.querySelectorAll('.video-slide');
             let currentVideoIndex = 0;
             let isPlaying = true;
             let rotationInterval;
             
-            // Fonction pour changer de vidéo avec animation
             function showVideo(index) {
-                // Animation de sortie
-                const currentSlide = videoSlides[currentVideoIndex];
-                if (currentSlide) {
-                    currentSlide.style.transition = 'opacity 1s ease, transform 1s ease';
-                    currentSlide.style.opacity = '0';
-                    currentSlide.style.transform = 'scale(1.05)';
-                    
-                    const video = currentSlide.querySelector('video');
+                videoSlides.forEach(slide => {
+                    slide.classList.remove('active');
+                    const video = slide.querySelector('video');
                     if (video) video.pause();
-                }
+                });
                 
                 currentVideoIndex = (index + videoSlides.length) % videoSlides.length;
+                videoSlides[currentVideoIndex].classList.add('active');
                 
-                // Animation d'entrée avec délai
-                setTimeout(() => {
-                    const newSlide = videoSlides[currentVideoIndex];
-                    newSlide.classList.add('active');
-                    newSlide.style.opacity = '1';
-                    newSlide.style.transform = 'scale(1)';
-                    
-                    const newVideo = newSlide.querySelector('video');
-                    if (newVideo && isPlaying) {
-                        newVideo.currentTime = 0;
-                        newVideo.play().catch(e => console.log("Auto-play prevented:", e));
-                    }
-                }, 300);
-                
-                // Retirer la classe active des autres slides
-                setTimeout(() => {
-                    videoSlides.forEach((slide, i) => {
-                        if (i !== currentVideoIndex) {
-                            slide.classList.remove('active');
-                            slide.style.transform = 'scale(1.1)';
-                        }
-                    });
-                }, 1500);
+                const currentVideo = videoSlides[currentVideoIndex].querySelector('video');
+                if (currentVideo && isPlaying) {
+                    currentVideo.play();
+                }
             }
             
-            // Rotation automatique des vidéos
             function startRotation() {
                 rotationInterval = setInterval(() => {
                     showVideo(currentVideoIndex + 1);
-                }, 8000); // Change toutes les 8 secondes
+                }, 8000);
             }
             
-            // Contrôles vidéo améliorés
+            // Contrôles vidéo
             document.getElementById('prev-video').addEventListener('click', () => {
                 showVideo(currentVideoIndex - 1);
                 resetRotation();
@@ -1377,27 +1256,20 @@
                 const currentVideo = videoSlides[currentVideoIndex].querySelector('video');
                 
                 if (isPlaying) {
-                    // Pause
                     if (currentVideo) currentVideo.pause();
                     clearInterval(rotationInterval);
                     playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
                     playPauseBtn.title = 'Play';
-                    playPauseBtn.style.background = 'var(--gradient-accent)';
                 } else {
-                    // Play
-                    if (currentVideo) {
-                        currentVideo.play().catch(e => console.log("Play prevented:", e));
-                    }
+                    if (currentVideo) currentVideo.play();
                     startRotation();
                     playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
                     playPauseBtn.title = 'Pause';
-                    playPauseBtn.style.background = 'var(--gradient-secondary)';
                 }
                 
                 isPlaying = !isPlaying;
             });
             
-            // Réinitialiser le timer de rotation
             function resetRotation() {
                 clearInterval(rotationInterval);
                 if (isPlaying) {
@@ -1405,89 +1277,131 @@
                 }
             }
             
-            // Démarrer la rotation automatique
             startRotation();
             
-            // Animation des statistiques au scroll
-            const observer = new IntersectionObserver((entries) => {
+            // SYSTEME D'ANIMATION INTELLIGENT AU SCROLL
+            const animationObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Animer les statistiques
+                        // Animations des sections
+                        if (entry.target.classList.contains('section-title')) {
+                            entry.target.classList.add('animated');
+                        }
+                        
+                        // Animations des cartes de service
+                        if (entry.target.classList.contains('service-card')) {
+                            entry.target.classList.add('animated');
+                        }
+                        
+                        // Animations des statistiques
                         if (entry.target.classList.contains('stat-item')) {
                             entry.target.classList.add('animated');
                             
+                            // Animation des nombres
                             const number = entry.target.querySelector('.stat-number');
                             if (number && !number.classList.contains('animated')) {
                                 number.classList.add('animated');
                                 const text = number.textContent;
                                 const finalValue = parseFloat(text);
                                 let current = 0;
-                                const increment = finalValue / 25;
+                                const increment = finalValue / 20;
                                 const timer = setInterval(() => {
                                     current += increment;
                                     if (current >= finalValue) {
                                         current = finalValue;
                                         clearInterval(timer);
                                     }
-                                    number.textContent = Math.round(current) + (text.includes('+') ? '+' : text.includes('/') ? '/' : '');
-                                }, 40);
+                                    number.textContent = Math.round(current) + 
+                                        (text.includes('+') ? '+' : 
+                                         text.includes('/') ? '/' : '');
+                                }, 60);
                             }
                         }
                         
-                        // Animer la barre de progression
+                        // Animation du formulaire de contact
+                        if (entry.target.classList.contains('contact-info')) {
+                            entry.target.classList.add('animated');
+                            
+                            // Animation des éléments de contact
+                            const contactItems = entry.target.querySelectorAll('.contact-item');
+                            contactItems.forEach((item, index) => {
+                                setTimeout(() => {
+                                    item.classList.add('animated');
+                                }, index * 100);
+                            });
+                        }
+                        
+                        // Animation de la section performance
                         if (entry.target.classList.contains('performance-section')) {
+                            entry.target.classList.add('animated');
+                            
+                            // Animation de la barre de progression
                             const progressFill = entry.target.querySelector('.progress-fill');
-                            if (progressFill && progressFill.style.width === '0%') {
+                            if (progressFill) {
                                 setTimeout(() => {
                                     progressFill.style.width = '95%';
-                                }, 300);
+                                }, 500);
                             }
+                        }
+                        
+                        // Animation du footer
+                        if (entry.target.classList.contains('footer')) {
+                            entry.target.classList.add('animated');
+                            
+                            // Animation des liens du footer
+                            const footerLinks = entry.target.querySelectorAll('.footer-links a');
+                            footerLinks.forEach((link, index) => {
+                                setTimeout(() => {
+                                    link.classList.add('animated');
+                                }, index * 100 + 300);
+                            });
                         }
                     }
                 });
-            }, { 
-                threshold: 0.3,
-                rootMargin: '0px 0px -50px 0px'
+            }, {
+                threshold: 0.2,
+                rootMargin: '0px 0px -100px 0px'
             });
-
-            // Observer les éléments
-            document.querySelectorAll('.stat-item, .performance-section').forEach(el => {
-                observer.observe(el);
+            
+            // Observer tous les éléments à animer
+            const elementsToAnimate = [
+                ...document.querySelectorAll('.section-title'),
+                ...document.querySelectorAll('.service-card'),
+                ...document.querySelectorAll('.stat-item'),
+                ...document.querySelectorAll('.contact-info'),
+                ...document.querySelectorAll('.performance-section'),
+                ...document.querySelectorAll('footer')
+            ];
+            
+            elementsToAnimate.forEach(element => {
+                animationObserver.observe(element);
             });
-
-            // Gestion du header au scroll avec parallaxe
+            
+            // Animation au chargement pour les éléments visibles immédiatement
+            setTimeout(() => {
+                const visibleElements = elementsToAnimate.filter(el => {
+                    const rect = el.getBoundingClientRect();
+                    return rect.top < window.innerHeight * 0.8;
+                });
+                
+                visibleElements.forEach(el => {
+                    if (el.classList.contains('stat-item')) {
+                        el.classList.add('animated');
+                    }
+                });
+            }, 500);
+            
+            // Animation du header au scroll
             const header = document.getElementById('header');
             window.addEventListener('scroll', () => {
-                // Header scroll effect
                 if (window.scrollY > 50) {
                     header.classList.add('scrolled');
                 } else {
                     header.classList.remove('scrolled');
                 }
-                
-                // Effet de parallaxe sur les particules
-                const scrolled = window.pageYOffset;
-                const rate = scrolled * -0.3;
-                document.querySelector('.floating-particles').style.transform = `translateY(${rate}px)`;
-                
-                // Effet de fondu sur le hero
-                const hero = document.querySelector('.hero');
-                if (hero) {
-                    const heroHeight = hero.offsetHeight;
-                    const scrollPercent = Math.min(window.scrollY / heroHeight, 1);
-                    hero.style.opacity = 1 - scrollPercent * 0.5;
-                }
             });
-
-            // Animation initiale de la barre de progression
-            setTimeout(() => {
-                const progressFill = document.querySelector('.progress-fill');
-                if (progressFill && !progressFill.style.width) {
-                    progressFill.style.width = '95%';
-                }
-            }, 1000);
-
-            // Smooth scroll amélioré pour les liens de navigation
+            
+            // Smooth scroll amélioré
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -1496,41 +1410,40 @@
                     
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
-                        // Animation de scroll fluide
-                        const targetPosition = targetElement.offsetTop - 80;
-                        const startPosition = window.pageYOffset;
-                        const distance = targetPosition - startPosition;
-                        const duration = 800;
-                        let start = null;
+                        const headerHeight = 80;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
                         
-                        function animation(currentTime) {
-                            if (start === null) start = currentTime;
-                            const timeElapsed = currentTime - start;
-                            const run = ease(timeElapsed, startPosition, distance, duration);
-                            window.scrollTo(0, run);
-                            if (timeElapsed < duration) requestAnimationFrame(animation);
-                        }
-                        
-                        function ease(t, b, c, d) {
-                            t /= d / 2;
-                            if (t < 1) return c / 2 * t * t + b;
-                            t--;
-                            return -c / 2 * (t * (t - 2) - 1) + b;
-                        }
-                        
-                        requestAnimationFrame(animation);
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
                     }
                 });
             });
-
-            // Préchargement des vidéos pour des transitions plus fluides
+            
+            // Effet de parallaxe sur les particules
+            const particles = document.querySelector('.floating-particles');
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.2;
+                particles.style.transform = `translateY(${rate}px)`;
+            });
+            
+            // Préchargement des vidéos
             videoSlides.forEach(slide => {
                 const video = slide.querySelector('video');
                 if (video) {
                     video.load();
-                    video.preload = 'auto';
                 }
             });
+            
+            // Animation de la barre de progression initiale
+            setTimeout(() => {
+                const progressFill = document.querySelector('.progress-fill');
+                if (progressFill) {
+                    progressFill.style.width = '95%';
+                }
+            }, 1000);
         });
     </script>
 </body>
