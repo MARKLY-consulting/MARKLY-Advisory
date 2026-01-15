@@ -4,19 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MARKLY Advisory - Conseil Business & Stratégie Projet</title>
+    
+    <!-- Liens externes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* ===== NOUVELLE PALETTE DE COULEURS ===== */
+        /* ===== VARIABLES CSS ===== */
         :root {
-            --primary: #1a365d; /* Bleu foncé élégant */
-            --secondary: #c05621; /* Orange terre cuite */
-            --accent: #2d5a27; /* Vert forestier */
-            --light: #f8f5f0; /* Beige clair */
-            --dark: #2d3748; /* Gris anthracite */
+            /* Couleurs */
+            --primary: #1a365d;
+            --secondary: #c05621;
+            --accent: #2d5a27;
+            --light: #f8f5f0;
+            --dark: #2d3748;
             --white: #ffffff;
+            
+            /* Effets */
             --shadow: 0 10px 30px rgba(26, 54, 93, 0.15);
             --gradient-primary: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
             --gradient-secondary: linear-gradient(135deg, #c05621 0%, #dd6b20 100%);
@@ -25,6 +31,7 @@
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
+        /* ===== RESET ET BASE ===== */
         * {
             margin: 0;
             padding: 0;
@@ -41,6 +48,94 @@
             color: var(--dark);
             background: var(--light);
             overflow-x: hidden;
+        }
+
+        /* ===== LAYOUT GENERAL ===== */
+        .horizontal-layout {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--dark);
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes revealContent {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatImage {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes highlightPulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(192, 86, 33, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 20px rgba(192, 86, 33, 0);
+            }
+        }
+
+        @keyframes stepGlow {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 5px 15px rgba(192, 86, 33, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 10px 25px rgba(192, 86, 33, 0.5);
+            }
         }
 
         /* ===== VIDEO BACKGROUND ===== */
@@ -121,126 +216,6 @@
             transform: scale(1.1);
         }
 
-        /* ===== DESIGN HORIZONTAL ===== */
-        .horizontal-layout {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            position: relative;
-            z-index: 1;
-        }
-
-        .main-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        /* ===== ANIMATIONS ===== */
-        @keyframes revealContent {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes floatImage {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes highlightPulse {
-            0%, 100% {
-                box-shadow: 0 0 0 0 rgba(192, 86, 33, 0.4);
-            }
-            50% {
-                box-shadow: 0 0 0 20px rgba(192, 86, 33, 0);
-            }
-        }
-
-        @keyframes stepGlow {
-            0%, 100% {
-                transform: scale(1);
-                box-shadow: 0 5px 15px rgba(192, 86, 33, 0.3);
-            }
-            50% {
-                transform: scale(1.05);
-                box-shadow: 0 10px 25px rgba(192, 86, 33, 0.5);
-            }
-        }
-
-        /* ===== HEADER HORIZONTAL - MODIFIÉ ===== */
-        header {
-            display: none !important; /* Cache complètement le header */
-        }
-
-        /* ===== HERO SECTION CENTRÉE ===== */
-        .hero-section {
-            padding: 0;
-            margin-top: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            position: relative;
-            z-index: 1;
-            text-align: center;
-        }
-
-        .hero-container {
-            display: block;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .hero-content {
-            animation: revealContent 1s ease-out;
-        }
-
-        .hero-content h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3.8rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            color: var(--white);
-            line-height: 1.2;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-content p {
-            font-size: 1.4rem;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 3rem;
-            line-height: 1.8;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 3rem;
-        }
-
         /* ===== BOUTONS ===== */
         .btn {
             display: inline-flex;
@@ -293,37 +268,64 @@
             border-color: var(--white);
         }
 
-        /* ===== SERVICES SECTION HORIZONTALE ===== */
+        /* ===== HERO SECTION ===== */
+        .hero-section {
+            padding: 0;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .hero-container {
+            display: block;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            animation: revealContent 1s ease-out;
+        }
+
+        .hero-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--white);
+            line-height: 1.2;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        /* ===== SERVICES SECTION ===== */
         .services-section {
             padding: 100px 0;
             background: var(--white);
             position: relative;
             z-index: 1;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
-            position: relative;
-        }
-
-        .section-title h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section-title p {
-            font-size: 1.2rem;
-            color: var(--dark);
-            max-width: 600px;
-            margin: 0 auto;
-            opacity: 0.8;
         }
 
         .services-grid {
@@ -375,104 +377,7 @@
             background: linear-gradient(135deg, rgba(192, 86, 33, 0.2) 0%, rgba(192, 86, 33, 0.1) 100%);
         }
 
-        /* ===== PROCESSUS UNIQUE ===== */
-        .process-section {
-            padding: 100px 0;
-            background: var(--gradient-primary);
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .process-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .process-line {
-            position: absolute;
-            left: 50%;
-            top: 150px;
-            bottom: 150px;
-            width: 4px;
-            background: linear-gradient(to bottom, 
-                rgba(255, 255, 255, 0.2) 0%,
-                var(--secondary) 50%,
-                rgba(255, 255, 255, 0.2) 100%);
-            transform: translateX(-50%);
-            z-index: 1;
-        }
-
-        .process-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 60px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .process-step {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            opacity: 0;
-            transform: translateX(-50px);
-            animation: revealContent 0.8s ease-out forwards;
-        }
-
-        .process-step:nth-child(1) { animation-delay: 0.1s; }
-        .process-step:nth-child(2) { animation-delay: 0.2s; }
-        .process-step:nth-child(3) { animation-delay: 0.3s; }
-        .process-step:nth-child(4) { animation-delay: 0.4s; }
-        .process-step:nth-child(5) { animation-delay: 0.5s; }
-        .process-step:nth-child(6) { animation-delay: 0.6s; }
-        .process-step:nth-child(7) { animation-delay: 0.7s; }
-
-        .process-step:nth-child(even) {
-            flex-direction: row-reverse;
-            transform: translateX(50px);
-        }
-
-        .step-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--gradient-secondary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.8rem;
-            flex-shrink: 0;
-            position: relative;
-            z-index: 3;
-            animation: stepGlow 3s ease-in-out infinite;
-            box-shadow: 0 5px 15px rgba(192, 86, 33, 0.3);
-        }
-
-        .step-content {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .step-content h3 {
-            color: var(--white);
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .step-content p {
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.6;
-        }
-
-        /* ===== SECTION EXPERTISE UNIQUE ===== */
+        /* ===== SECTION EXPERTISE ===== */
         .expertise-section {
             padding: 120px 0;
             background: linear-gradient(135deg, #f8f5f0 0%, #f0ebe3 100%);
@@ -596,7 +501,104 @@
             font-family: serif;
         }
 
-        /* ===== SECTION STATISTIQUES ===== */
+        /* ===== PROCESSUS SECTION ===== */
+        .process-section {
+            padding: 100px 0;
+            background: var(--gradient-primary);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .process-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .process-line {
+            position: absolute;
+            left: 50%;
+            top: 150px;
+            bottom: 150px;
+            width: 4px;
+            background: linear-gradient(to bottom, 
+                rgba(255, 255, 255, 0.2) 0%,
+                var(--secondary) 50%,
+                rgba(255, 255, 255, 0.2) 100%);
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: revealContent 0.8s ease-out forwards;
+        }
+
+        .process-step:nth-child(1) { animation-delay: 0.1s; }
+        .process-step:nth-child(2) { animation-delay: 0.2s; }
+        .process-step:nth-child(3) { animation-delay: 0.3s; }
+        .process-step:nth-child(4) { animation-delay: 0.4s; }
+        .process-step:nth-child(5) { animation-delay: 0.5s; }
+        .process-step:nth-child(6) { animation-delay: 0.6s; }
+        .process-step:nth-child(7) { animation-delay: 0.7s; }
+
+        .process-step:nth-child(even) {
+            flex-direction: row-reverse;
+            transform: translateX(50px);
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 3;
+            animation: stepGlow 3s ease-in-out infinite;
+            box-shadow: 0 5px 15px rgba(192, 86, 33, 0.3);
+        }
+
+        .step-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .step-content h3 {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .step-content p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        /* ===== STATISTIQUES SECTION ===== */
         .stats-section {
             padding: 80px 0;
             background: var(--gradient-primary);
@@ -648,7 +650,7 @@
             text-transform: uppercase;
         }
 
-        /* ===== COMMENTAIRES CLIENTS ===== */
+        /* ===== TEMOIGNAGES SECTION ===== */
         .testimonials-section {
             padding: 100px 0;
             background: linear-gradient(135deg, var(--light) 0%, #f0ebe3 100%);
@@ -731,7 +733,7 @@
             font-size: 0.9rem;
         }
 
-        /* ===== SECTION CONTACT ===== */
+        /* ===== CONTACT SECTION ===== */
         .contact-section {
             padding: 100px 0;
             background: var(--light);
@@ -797,36 +799,7 @@
             animation: revealContent 0.8s ease-out 0.2s forwards;
         }
 
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--primary);
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid rgba(26, 54, 93, 0.1);
-            border-radius: 8px;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--secondary);
-            box-shadow: 0 0 0 3px rgba(192, 86, 33, 0.1);
-        }
-
-        /* ===== FOOTER HORIZONTAL ===== */
+        /* ===== FOOTER ===== */
         footer {
             background: var(--gradient-primary);
             color: var(--white);
@@ -876,9 +849,9 @@
             text-align: center;
         }
 
-        /* ===== RESPONSIVE ===== */
+        /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 1200px) {
-            .container, .header-container {
+            .container {
                 padding: 0 30px;
             }
             
@@ -981,7 +954,7 @@
         }
 
         @media (max-width: 576px) {
-            .container, .header-container {
+            .container {
                 padding: 0 20px;
             }
             
@@ -1026,37 +999,32 @@
     </style>
 </head>
 <body>
-    <!-- Video Background avec rotation -->
+    <!-- ===== VIDEO BACKGROUND ===== -->
     <div class="video-background-container">
-        <!-- Vidéo 1 -->
         <div class="video-slide active" data-id="1">
             <video autoplay muted loop playsinline>
                 <source src="https://github.com/user-attachments/assets/ed3e1a7f-9b87-42a6-990e-b0ac339ba345" type="video/mp4">
             </video>
         </div>
         
-        <!-- Vidéo 2 -->
         <div class="video-slide" data-id="2">
             <video autoplay muted loop playsinline>
                 <source src="https://github.com/user-attachments/assets/037967e6-9bef-4acb-bce6-8ad32f4f21aa" type="video/mp4">
             </video>
         </div>
         
-        <!-- Vidéo 3 -->
         <div class="video-slide" data-id="3">
             <video autoplay muted loop playsinline>
                 <source src="https://github.com/user-attachments/assets/24da5c31-505a-40be-90ff-8198b912d469" type="video/mp4">
             </video>
         </div>
         
-        <!-- Vidéo 4 -->
         <div class="video-slide" data-id="4">
             <video autoplay muted loop playsinline>
                 <source src="https://github.com/user-attachments/assets/9980c02c-8593-442c-b10e-aaaeffbc8bf6" type="video/mp4">
             </video>
         </div>
         
-        <!-- Vidéo 5 -->
         <div class="video-slide" data-id="5">
             <video autoplay muted loop playsinline>
                 <source src="https://github.com/user-attachments/assets/de173946-56af-416e-b455-52796d049a50" type="video/mp4">
@@ -1064,10 +1032,9 @@
         </div>
     </div>
     
-    <!-- Overlay pour meilleure lisibilité -->
     <div class="video-overlay"></div>
     
-    <!-- Contrôles vidéo -->
+    <!-- ===== CONTROLES VIDEO ===== -->
     <div class="video-controls">
         <button id="prev-video" title="Vidéo précédente">
             <i class="fas fa-chevron-left"></i>
@@ -1080,13 +1047,10 @@
         </button>
     </div>
 
+    <!-- ===== MAIN CONTENT ===== -->
     <div class="horizontal-layout">
-        <!-- Header SUPPRIMÉ -->
-        <!-- <header id="header"> SUPPRIMÉ -->
-        <!-- </header> SUPPRIMÉ -->
-
         <main class="main-content">
-            <!-- Hero Section Centrée -->
+            <!-- SECTION HERO -->
             <section class="hero-section" id="accueil">
                 <div class="container">
                     <div class="hero-container">
@@ -1108,7 +1072,7 @@
                 </div>
             </section>
 
-            <!-- Services Section -->
+            <!-- SECTION SERVICES -->
             <section class="services-section" id="services">
                 <div class="container">
                     <div class="section-title">
@@ -1162,7 +1126,7 @@
                 </div>
             </section>
 
-            <!-- Section Expertise Unique -->
+            <!-- SECTION EXPERTISE -->
             <section class="expertise-section" id="expertise">
                 <div class="container">
                     <div class="section-title">
@@ -1210,7 +1174,7 @@
                 </div>
             </section>
 
-            <!-- Processus Section -->
+            <!-- SECTION PROCESSUS -->
             <section class="process-section" id="processus">
                 <div class="container">
                     <div class="section-title" style="color: white;">
@@ -1303,7 +1267,7 @@
                 </div>
             </section>
 
-            <!-- Stats Section -->
+            <!-- SECTION STATISTIQUES -->
             <section class="stats-section" id="stats">
                 <div class="container">
                     <div class="section-title" style="color: white;">
@@ -1331,7 +1295,7 @@
                 </div>
             </section>
 
-            <!-- Contact Section -->
+            <!-- SECTION CONTACT -->
             <section class="contact-section" id="contact">
                 <div class="container">
                     <div class="section-title">
@@ -1436,7 +1400,7 @@
             </section>
         </main>
 
-        <!-- Footer -->
+        <!-- ===== FOOTER ===== -->
         <footer>
             <div class="container">
                 <div class="footer-container">
@@ -1493,6 +1457,7 @@
         </footer>
     </div>
 
+    <!-- ===== JAVASCRIPT ===== -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Système de rotation des vidéos
@@ -1611,7 +1576,7 @@
                 });
             }
 
-            // Smooth scroll pour les liens internes (gardé pour les ancres dans la page)
+            // Smooth scroll pour les liens internes
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1621,7 +1586,6 @@
                     
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
-                        // Ajustement de la position de scroll (pas de hauteur de header à soustraire)
                         const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
                         
                         window.scrollTo({
