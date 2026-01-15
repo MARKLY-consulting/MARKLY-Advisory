@@ -184,72 +184,53 @@
             }
         }
 
-        /* ===== HEADER HORIZONTAL ===== */
+        /* ===== HEADER HORIZONTAL - MODIFIÉ ===== */
         header {
-            background: rgba(255, 255, 255, 0.98);
+            background: transparent !important; /* Fond transparent */
             backdrop-filter: blur(10px);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(26, 54, 93, 0.1);
             transition: var(--transition);
-            padding: 15px 0;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
         }
 
         .header-container {
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* Centrer les liens de navigation */
             align-items: center;
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 40px;
         }
 
+        /* Logo container - CACHÉ */
         .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: var(--transition);
-        }
-
-        .logo-container:hover {
-            transform: translateX(5px);
-        }
-
-        .logo-image {
-            height: 55px;
-            width: auto;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-            transition: var(--transition);
-        }
-
-        .logo-text {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 700;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            display: none !important;
         }
 
         .nav-links {
             display: flex;
             gap: 35px;
             list-style: none;
+            background: rgba(255, 255, 255, 0.1); /* Léger fond pour lisibilité */
+            backdrop-filter: blur(15px);
+            padding: 15px 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--dark);
+            color: var(--white) !important; /* Blanc */
             font-weight: 500;
-            padding: 8px 16px;
+            padding: 10px 20px;
             border-radius: 20px;
             transition: var(--transition);
             position: relative;
             overflow: hidden;
+            font-size: 1.05rem;
         }
 
         .nav-links a::before {
@@ -265,8 +246,8 @@
         }
 
         .nav-links a:hover {
-            color: var(--secondary);
-            background: rgba(192, 86, 33, 0.05);
+            color: var(--white) !important;
+            background: rgba(255, 255, 255, 0.15);
         }
 
         .nav-links a:hover::before {
@@ -1024,11 +1005,29 @@
             .video-controls {
                 display: none;
             }
+            
+            /* Responsive navigation */
+            .nav-links {
+                gap: 15px;
+                padding: 12px 25px;
+            }
+            
+            .nav-links a {
+                padding: 8px 15px;
+                font-size: 0.95rem;
+            }
         }
 
         @media (max-width: 768px) {
             .nav-links {
-                display: none;
+                gap: 10px;
+                padding: 10px 20px;
+                border-radius: 20px;
+            }
+            
+            .nav-links a {
+                padding: 6px 12px;
+                font-size: 0.9rem;
             }
             
             .hero-content h1 {
@@ -1071,6 +1070,18 @@
         @media (max-width: 576px) {
             .container, .header-container {
                 padding: 0 20px;
+            }
+            
+            .nav-links {
+                gap: 5px;
+                padding: 8px 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links a {
+                padding: 6px 10px;
+                font-size: 0.85rem;
             }
             
             .hero-content h1 {
@@ -1169,17 +1180,10 @@
     </div>
 
     <div class="horizontal-layout">
-        <!-- Header -->
+        <!-- Header - MODIFIÉ -->
         <header id="header">
             <div class="header-container">
-                <div class="logo-container">
-                    <a href="#" class="logo-container">
-                        <img src="https://github.com/user-attachments/assets/9b3157fb-47fa-43d6-aa57-c2857141ec27" 
-                             alt="MARKLY Advisory" 
-                             class="logo-image">
-                    </a>
-                    <span class="logo-text">MARKLY Advisory</span>
-                </div>
+                <!-- Logo supprimé -->
                 <ul class="nav-links">
                     <li><a href="#accueil">Accueil</a></li>
                     <li><a href="#services">Services</a></li>
@@ -1706,15 +1710,17 @@
                 observer.observe(el);
             });
 
-            // Header scroll effect
+            // Header scroll effect - MODIFIÉ
             const header = document.getElementById('header');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 50) {
-                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                    header.style.background = 'rgba(255, 255, 255, 0.1)';
+                    header.querySelector('.nav-links').style.background = 'rgba(255, 255, 255, 0.15)';
+                    header.querySelector('.nav-links').style.backdropFilter = 'blur(15px)';
                 } else {
-                    header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                    header.style.background = 'transparent';
+                    header.querySelector('.nav-links').style.background = 'rgba(255, 255, 255, 0.1)';
+                    header.querySelector('.nav-links').style.backdropFilter = 'blur(15px)';
                 }
             });
 
