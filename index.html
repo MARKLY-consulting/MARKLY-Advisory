@@ -31,7 +31,7 @@
         h2.section-title { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: var(--primary); text-align: center; margin-bottom: 10px; }
         .gold-line { width: 80px; height: 3px; background: var(--gold); margin: 0 auto 50px; }
 
-        /* ===== BACKGROUND VIDEO SYSTEM (FIXÉ) ===== */
+        /* ===== BACKGROUND VIDEO SYSTEM ===== */
         .video-background-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: -2; overflow: hidden;
@@ -40,7 +40,7 @@
             position: absolute; width: 100%; height: 100%;
             opacity: 0; transition: opacity 2s ease;
         }
-        .video-slide.active { opacity: 0.15; } /* Opacité subtile pour garder le design lisible */
+        .video-slide.active { opacity: 0.15; }
         .video-slide video { width: 100%; height: 100%; object-fit: cover; }
 
         /* ===== HERO ===== */
@@ -62,12 +62,24 @@
         .service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; margin-bottom: 15px; }
         .service-card:hover h3, .service-card:hover p { color: white; }
 
-        /* ===== EXPERTISE (SECTION BLEUE) ===== */
+        /* ===== EXPERTISE (MODIFIÉE) ===== */
         .expertise-section { background: var(--primary); color: white; }
         .expertise-section h2.section-title { color: white; }
         .expertise-flex { display: flex; align-items: center; gap: 80px; flex-wrap: wrap; }
         .expertise-img img { width: 100%; border-radius: 4px; box-shadow: 20px 20px 0 var(--gold); }
-        .stat-item b { font-size: 3rem; color: var(--gold); display: block; font-family: 'Cormorant Garamond', serif; }
+        
+        .success-badge {
+            margin-top: 35px;
+            padding: 20px 30px;
+            background: rgba(197, 160, 89, 0.15);
+            border: 1px solid var(--gold);
+            display: inline-block;
+            font-size: 1.2rem;
+            color: var(--gold);
+            font-weight: 600;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
 
         /* ===== PROCESSUS ===== */
         .process-section { background: var(--cream); }
@@ -80,7 +92,7 @@
         /* ===== IMPACT (SECTION OR) ===== */
         .impact-section { background: var(--gold); color: white; padding: 60px 0; text-align: center; }
         .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
-        .impact-item b { font-size: 3.5rem; color: var(--primary); display: block; }
+        .impact-item b { font-size: 3.5rem; color: var(--primary); display: block; font-family: 'Cormorant Garamond', serif; }
 
         /* ===== CONTACT ===== */
         .contact-section { background: var(--bg-soft); }
@@ -157,10 +169,8 @@
                     <h4 style="color: var(--gold); margin-bottom: 25px;">Juriste & Consultante en Stratégie d'Entreprise</h4>
                     <p style="font-size: 1.15rem; line-height: 1.8; opacity: 0.9;">Spécialiste en droit des affaires, je vous accompagne dans la transformation de vos projets en succès durables grâce à une approche pluridisciplinaire unique.</p>
                     
-                    <div class="stats-row" style="display:flex; gap:40px; margin-top:30px;">
-                        <div class="stat-item"><b class="counter" data-target="150">0</b><span>Projets</span></div>
-                        <div class="stat-item"><b class="counter" data-target="95">0</b><span>% Satisfaction</span></div>
-                        <div class="stat-item"><b class="counter" data-target="2">0</b><span>Ans Exp.</span></div>
+                    <div class="success-badge" data-aos="zoom-in" data-aos-delay="300">
+                        A réussi à mener à bien plusieurs projets stratégiques ✅
                     </div>
                 </div>
             </div>
@@ -242,7 +252,7 @@
 
     <footer>
         <div class="container" style="text-align:center;">
-            <h2 style="color:var(--gold); font-family:Cormorant Garamond; font-size:2rem; margin-bottom:10px;">MARKLY ADVISORY</h2>
+            <h2 style="color:var(--gold); font-family:Cormorant Garamond; font-size:2rem;">MARKLY ADVISORY</h2>
             <p style="opacity:0.6; margin-bottom:30px;">Votre partenaire stratégique pour transformer les visions en succès concrets.</p>
             <div style="opacity:0.4; font-size:0.8rem;">© 2026 MARKLY ADVISORY. TOUS DROITS RÉSERVÉS.</div>
         </div>
@@ -261,7 +271,7 @@
             slides[current].classList.add('active');
         }, 10000);
 
-        // Compteurs animés
+        // Compteurs animés (Impact section)
         const counters = document.querySelectorAll('.counter');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
