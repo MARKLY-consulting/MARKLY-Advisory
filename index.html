@@ -11,10 +11,10 @@
 
     <style>
         :root {
-            --primary: #0a1428;      /* Bleu nuit */
-            --secondary: #1a365d;    /* Navy */
-            --gold: #c5a059;         /* Or */
-            --cream: #f4ece1;        /* Champagne */
+            --primary: #0a1428;
+            --secondary: #1a365d;
+            --gold: #c5a059;
+            --cream: #f4ece1;
             --bg-soft: #f9f7f5;      
             --text: #2d3748;
             --white: #ffffff;
@@ -31,21 +31,53 @@
         h2.section-title { font-family: 'Cormorant Garamond', serif; font-size: 3.8rem; color: var(--primary); text-align: center; margin-bottom: 10px; }
         .gold-line { width: 80px; height: 3px; background: var(--gold); margin: 0 auto 50px; }
 
-        /* ===== BACKGROUND VIDEO ===== */
+        /* ===== BACKGROUND VIDEO SYSTEM ===== */
         .video-background-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden; }
         .video-slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 2s ease; }
         .video-slide.active { opacity: 0.15; }
         .video-slide video { width: 100%; height: 100%; object-fit: cover; }
 
-        /* ===== HERO ===== */
-        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(244,236,225,0.6) 100%); position: relative; }
-        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 8vw, 6.5rem); color: var(--primary); line-height: 1.1; }
-        .hero p { font-size: 1.4rem; max-width: 850px; margin: 30px auto 45px; font-weight: 300; }
+        /* ===== NEW LANDING PAGE DESIGN (MODIFIÉ) ===== */
+        .hero { 
+            height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            position: relative;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.9) 0%, rgba(244,236,225,0.4) 100%);
+        }
+        .hero-content { max-width: 1000px; z-index: 1; }
+        .hero-tagline { 
+            font-weight: 700; 
+            color: var(--gold); 
+            letter-spacing: 5px; 
+            text-transform: uppercase; 
+            margin-bottom: 20px;
+            display: block;
+            animation: fadeInDown 1s ease;
+        }
+        .hero h1 { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: clamp(3.5rem, 8vw, 7rem); 
+            color: var(--primary); 
+            line-height: 1.05;
+            margin-bottom: 30px;
+        }
+        .hero p { 
+            font-size: 1.4rem; 
+            color: var(--text); 
+            max-width: 750px; 
+            margin: 0 auto 50px;
+            line-height: 1.7;
+            font-weight: 300;
+        }
         
-        .btn { padding: 20px 45px; text-decoration: none; font-weight: 700; transition: var(--transition); display: inline-flex; align-items: center; gap: 12px; border: 1px solid var(--gold); cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
-        .btn-gold { background: var(--gold); color: white; }
-        .btn-gold:hover { background: var(--primary); border-color: var(--primary); transform: translateY(-5px); }
-        .btn-outline { color: var(--primary); border-color: var(--primary); margin-left: 15px; }
+        .btn { padding: 22px 50px; text-decoration: none; font-weight: 700; transition: var(--transition); display: inline-flex; align-items: center; gap: 12px; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; }
+        .btn-gold { background: var(--gold); color: white; border: 1px solid var(--gold); }
+        .btn-gold:hover { background: var(--primary); border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(10,20,40,0.2); }
+        .btn-outline { color: var(--primary); border: 1px solid var(--primary); margin-left: 15px; }
+        .btn-outline:hover { background: var(--primary); color: white; transform: translateY(-5px); }
 
         /* ===== SERVICES ===== */
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
@@ -60,12 +92,10 @@
         .expertise-flex { display: flex; align-items: center; gap: 60px; flex-wrap: wrap; }
         .expertise-img { flex: 1; min-width: 350px; }
         .expertise-img img { width: 100%; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 25px 25px 0 var(--gold); }
-        
         .expertise-text { flex: 1.5; min-width: 380px; }
         .expertise-text .label { color: var(--gold); font-weight: 700; letter-spacing: 3px; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 15px; display: block; }
-        .expertise-text h2 { font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; line-height: 1; margin-bottom: 20px; color: white; }
+        .expertise-text h2 { font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; line-height: 1; margin-bottom: 20px; color: white; text-align: left; }
         .expertise-text h4 { font-size: 1.5rem; color: var(--gold); margin-bottom: 30px; font-weight: 500; font-family: 'Cormorant Garamond', serif; }
-        .expertise-text p { font-size: 1.25rem; line-height: 1.8; opacity: 0.9; margin-bottom: 40px; font-weight: 300; }
         .success-check { font-size: 1.4rem; color: var(--gold); font-weight: 600; display: flex; align-items: center; gap: 15px; padding: 25px; border: 1px dashed rgba(197, 160, 89, 0.4); border-radius: 4px; background: rgba(197, 160, 89, 0.05); }
 
         /* ===== PROCESSUS ===== */
@@ -74,26 +104,96 @@
         .process-card { background: white; padding: 45px; position: relative; transition: var(--transition); border: 1px solid rgba(197, 160, 89, 0.1); }
         .process-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
         .process-num { position: absolute; top: 15px; right: 25px; font-size: 4.5rem; font-weight: 900; color: rgba(10, 20, 40, 0.04); }
-        .process-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--primary); margin-bottom: 15px; }
-        .process-card p { font-size: 1.1rem; line-height: 1.6; opacity: 0.8; }
 
-        /* ===== IMPACT ===== */
-        .impact-section { background: var(--gold); color: white; padding: 80px 0; text-align: center; }
-        .impact-grid { display: flex; justify-content: center; gap: 80px; flex-wrap: wrap; }
-        .impact-item b { font-size: 4rem; color: var(--primary); display: block; font-family: 'Cormorant Garamond', serif; }
-        .impact-item span { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; }
+        /* ===== TÉMOIGNAGES (NOUVELLE SECTION ANIMÉE) ===== */
+        .testimonials-section { padding: 120px 0; background: white; }
+        .testimonials-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); 
+            gap: 30px; 
+            margin-top: 50px;
+        }
+        .testimonial-card {
+            background: var(--bg-soft);
+            padding: 40px;
+            border-radius: 2px;
+            position: relative;
+            transition: var(--transition);
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            border-color: var(--gold);
+        }
+        .testimonial-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            font-style: italic;
+            color: var(--text);
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .testimonial-content::before {
+            content: "\f10d";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--gold);
+            opacity: 0.2;
+            font-size: 3rem;
+            position: absolute;
+            top: -20px;
+            left: -10px;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--gold);
+        }
+        .author-info h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            color: var(--primary);
+        }
+        .author-info p {
+            font-size: 0.85rem;
+            color: var(--gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
         /* ===== CONTACT ===== */
         .contact-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
         .contact-box { background: white; padding: 60px; border-left: 10px solid var(--gold); box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
         .contact-box.dark { background: var(--primary); color: white; }
-        .contact-box i { font-size: 2.5rem; color: var(--gold); margin-bottom: 25px; }
-        .contact-box h3 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; margin-bottom: 15px; }
 
-        footer { background: #050a14; color: white; padding: 100px 0 50px; }
+        footer { background: #050a14; color: white; padding: 100px 0 50px; text-align: center; }
 
-        @media (max-width: 992px) { .expertise-text h2 { font-size: 3.5rem; } }
-        @media (max-width: 768px) { .contact-methods, .expertise-flex { grid-template-columns: 1fr; } .expertise-img { order: 2; } .expertise-text { order: 1; } }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) { 
+            .contact-methods, .expertise-flex { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 3.5rem; }
+            .btn { width: 100%; margin: 10px 0; justify-content: center; }
+            .btn-outline { margin-left: 0; }
+        }
     </style>
 </head>
 <body>
@@ -104,13 +204,15 @@
     </div>
 
     <section class="hero">
-        <div class="container" data-aos="fade-up">
-            <p style="letter-spacing: 8px; font-weight: 700; color: var(--gold); margin-bottom: 25px; text-transform: uppercase;">MARKLY ADVISORY</p>
-            <h1>Excellence en Conseil Business<br>& Stratégie Projet</h1>
-            <p>Nous transformons vos visions entrepreneuriales en succès tangibles grâce à une approche stratégique sur-mesure.</p>
-            <div class="hero-btns">
-                <a href="#services" class="btn btn-gold">NOS SERVICES</a>
-                <a href="#contact" class="btn btn-outline">CONSULTATION</a>
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-tagline">Stratégie • Conseil • Excellence</span>
+                <h1>L'Architecture de votre Réussite Business</h1>
+                <p>MARKLY Advisory transforme les visions entrepreneuriales complexes en succès tangibles grâce à une ingénierie stratégique de précision.</p>
+                <div class="hero-btns">
+                    <a href="#services" class="btn btn-gold">Nos Solutions</a>
+                    <a href="#contact" class="btn btn-outline">Consultation Experte</a>
+                </div>
             </div>
         </div>
     </section>
@@ -149,10 +251,7 @@
                     <span class="label">Votre Experte Dédiée</span>
                     <h2>Khadija.O</h2>
                     <h4>Juriste & Consultante en Stratégie d'Entreprise</h4>
-                    <p>
-                        Spécialiste en droit des affaires, je vous accompagne dans la transformation de vos projets en succès durables grâce à une approche pluridisciplinaire unique alliant rigueur juridique et agilité business.
-                    </p>
-                    
+                    <p>Spécialiste en droit des affaires, je vous accompagne dans la transformation de vos projets en succès durables grâce à une approche pluridisciplinaire unique alliant rigueur juridique et agilité business.</p>
                     <div class="success-check" data-aos="zoom-in" data-aos-delay="300">
                         <span>A réussi à mener à bien plusieurs projets stratégiques ✅</span>
                     </div>
@@ -200,12 +299,62 @@
         </div>
     </section>
 
-    <section class="impact-section">
+    <section class="testimonials-section" id="testimonials">
         <div class="container">
-            <div class="impact-grid">
-                <div class="impact-item"><b>98%</b><span>Satisfaction</span></div>
-                <div class="impact-item"><b>45%</b><span>Croissance</span></div>
-                <div class="impact-item"><b>24/7</b><span>Support</span></div>
+            <div class="section-title" data-aos="fade-up">
+                <h2>Témoignages Clients</h2>
+                <p>Ce que disent nos clients de leur expérience MARKLY Advisory</p>
+            </div>
+            <div class="gold-line"></div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-content">
+                        "MARKLY Advisory a transformé notre vision en un plan d'action concret. Leur approche stratégique nous a permis de doubler notre chiffre d'affaires en seulement 6 mois."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Ahmed B." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Ahmed B.</h4>
+                            <p>CEO, TechStart Maroc</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-content">
+                        "L'expertise juridique et stratégique de Khadija a été déterminante pour notre expansion. Elle a su identifier des opportunités que nous n'avions même pas envisagées."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Sophie M." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Sophie M.</h4>
+                            <p>Directrice, GreenFood SA</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-content">
+                        "Un accompagnement sur-mesure qui a dépassé nos attentes. Le business plan élaboré nous a permis d'obtenir le financement nécessaire pour notre projet."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Karim L." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Karim L.</h4>
+                            <p>Fondateur, Artisan Digital</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="testimonial-content">
+                        "La rigueur juridique combinée à la vision stratégique a sécurisé notre développement international. Une expertise rare et précieuse."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Youssef K." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Youssef K.</h4>
+                            <p>Dir. Général, ExportPlus</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -220,25 +369,21 @@
                     <h3>Réservation Directe</h3>
                     <p style="font-size: 1.5rem; font-weight: 700; color: var(--primary); margin: 10px 0;">+212 6 36 22 19 00</p>
                     <p>khadijaoulkaid4@gmail.com</p>
-                    <a href="https://wa.me/212636221900?text=Bonjour%20MARKLY%20Advisory,%20je%20souhaite%20réserver%20une%20consultation%20stratégique" 
-                       target="_blank" 
-                       class="btn btn-gold" style="margin-top: 30px; width: 100%; justify-content: center;">
-                        Réserver maintenant
-                    </a>
+                    <a href="https://wa.me/212636221900?text=Bonjour%20MARKLY%20Advisory,%20je%20souhaite%20réserver%20une%20consultation%20stratégique" target="_blank" class="btn btn-gold" style="margin-top: 30px; width: 100%; justify-content: center;">Réserver maintenant</a>
                 </div>
                 <div class="contact-box dark" data-aos="fade-up" data-aos-delay="100">
                     <i class="fas fa-video"></i>
                     <h3>Visioconférence</h3>
                     <p>Première consultation gratuite</p>
                     <p style="opacity: 0.7; margin: 10px 0;">Sécurisée & Confidentielle (45 min)</p>
-                    <a href="mailto:khadijaoulkaid4@gmail.com" class="btn btn-gold" style="margin-top: 30px; width: 100%; justify-content: center;">PLANIFIER UNE VISIO</a>
+                    <a href="mailto:khadijaoulkaid4@gmail.com" class="btn btn-gold" style="margin-top: 30px; width: 100%; justify-content: center;">Planifier une Visio</a>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="container" style="text-align: center;">
+        <div class="container">
             <h2 style="color: var(--gold); font-family: Cormorant Garamond; font-size: 2.5rem; margin-bottom: 20px;">MARKLY ADVISORY</h2>
             <p style="opacity: 0.6; max-width: 600px; margin: 0 auto 40px; line-height: 1.8;">Votre partenaire stratégique pour transformer les visions en succès concrets. Excellence en Conseil Business & Stratégie Projet.</p>
             <div style="opacity: 0.3; font-size: 0.8rem; letter-spacing: 2px;">© 2025 MARKLY ADVISORY. TOUS DROITS RÉSERVÉS.</div>
