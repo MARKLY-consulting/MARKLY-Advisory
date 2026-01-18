@@ -31,25 +31,30 @@
         h2.section-title { font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; color: var(--primary); text-align: center; margin-bottom: 10px; }
         .gold-line { width: 60px; height: 3px; background: var(--gold); margin: 0 auto 30px; }
 
-        /* ===== BACKGROUND VIDEO SYSTEM ===== */
-        .video-background-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden; }
+        /* ===== BACKGROUND VIDEO SYSTEM (ÉCLAIRCIE) ===== */
+        .video-background-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden; background: #000; }
         .video-slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 2s ease; }
-        .video-slide.active { opacity: 0.15; }
+        
+        /* Augmentation de l'opacité de 0.15 à 0.40 pour une meilleure visibilité */
+        .video-slide.active { opacity: 0.40; } 
+        
         .video-slide video { width: 100%; height: 100%; object-fit: cover; }
 
-        /* ===== LANDING PAGE DESIGN ===== */
+        /* ===== LANDING PAGE DESIGN (Moins de blanc sur le dessus) ===== */
         .hero { 
             height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative;
-            background: radial-gradient(circle at center, rgba(255,255,255,0.9) 0%, rgba(244,236,225,0.4) 100%);
+            /* Dégradé plus transparent pour voir la vidéo à travers */
+            background: radial-gradient(circle at center, rgba(255,255,255,0.4) 0%, rgba(244,236,225,0.2) 100%);
         }
-        .hero-tagline { font-weight: 700; color: var(--gold); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 20px; display: block; }
-        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.2rem, 7vw, 6.5rem); color: var(--primary); line-height: 1.05; margin-bottom: 30px; }
-        .hero p { font-size: 1.3rem; color: var(--text); max-width: 750px; margin: 0 auto 45px; line-height: 1.7; font-weight: 300; }
+        .hero-tagline { font-weight: 700; color: var(--gold); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 20px; display: block; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.2rem, 7vw, 6.5rem); color: var(--primary); line-height: 1.05; margin-bottom: 30px; text-shadow: 0 2px 10px rgba(255,255,255,0.5); }
+        .hero p { font-size: 1.3rem; color: var(--primary); max-width: 750px; margin: 0 auto 45px; line-height: 1.7; font-weight: 600; text-shadow: 0 1px 2px rgba(255,255,255,0.8); }
         
         .btn { padding: 20px 45px; text-decoration: none; font-weight: 700; transition: var(--transition); display: inline-flex; align-items: center; gap: 12px; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; }
         .btn-gold { background: var(--gold); color: white; border: 1px solid var(--gold); }
         .btn-gold:hover { background: var(--primary); border-color: var(--primary); transform: translateY(-5px); }
-        .btn-outline { color: var(--primary); border: 1px solid var(--primary); margin-left: 15px; }
+        .btn-outline { color: var(--primary); border: 2px solid var(--primary); margin-left: 15px; background: rgba(255,255,255,0.3); }
+        .btn-outline:hover { background: var(--primary); color: white; }
 
         /* ===== SERVICES ===== */
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
@@ -69,7 +74,7 @@
         .expertise-text h4 { font-size: 1.4rem; color: var(--gold); margin-bottom: 25px; font-family: 'Cormorant Garamond', serif; }
         .success-check { font-size: 1.2rem; color: var(--gold); font-weight: 600; display: inline-flex; align-items: center; gap: 15px; padding: 20px; border: 1px dashed rgba(197, 160, 89, 0.4); border-radius: 4px; background: rgba(197, 160, 89, 0.05); }
 
-        /* ===== PROCESSUS (ORDRE 3x2) ===== */
+        /* ===== PROCESSUS ===== */
         .process-section { background: var(--cream); }
         .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .process-card { background: white; padding: 35px; position: relative; border: 1px solid rgba(197, 160, 89, 0.1); transition: var(--transition); }
