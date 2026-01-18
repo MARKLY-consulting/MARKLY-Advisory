@@ -46,6 +46,8 @@
         .btn-gold { background: var(--gold); color: white; }
         .btn-gold:hover { background: var(--primary); border-color: var(--primary); transform: translateY(-5px); }
         .btn-outline { color: var(--primary); border-color: var(--primary); margin-left: 15px; }
+        .btn-whatsapp { background: #25D366; border-color: #25D366; color: white; }
+        .btn-whatsapp:hover { background: #128C7E; border-color: #128C7E; color: white; transform: translateY(-5px); }
 
         /* ===== SERVICES ===== */
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
@@ -60,13 +62,11 @@
         .expertise-flex { display: flex; align-items: center; gap: 60px; flex-wrap: wrap; }
         .expertise-img { flex: 1; min-width: 350px; }
         .expertise-img img { width: 100%; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 25px 25px 0 var(--gold); }
-        
         .expertise-text { flex: 1.5; min-width: 380px; }
         .expertise-text .label { color: var(--gold); font-weight: 700; letter-spacing: 3px; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 15px; display: block; }
         .expertise-text h2 { font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; line-height: 1; margin-bottom: 20px; color: white; }
         .expertise-text h4 { font-size: 1.5rem; color: var(--gold); margin-bottom: 30px; font-weight: 500; font-family: 'Cormorant Garamond', serif; }
         .expertise-text p { font-size: 1.25rem; line-height: 1.8; opacity: 0.9; margin-bottom: 40px; font-weight: 300; }
-        
         .success-check { font-size: 1.4rem; color: var(--gold); font-weight: 600; display: flex; align-items: center; gap: 15px; padding: 25px; border: 1px dashed rgba(197, 160, 89, 0.4); border-radius: 4px; background: rgba(197, 160, 89, 0.05); }
 
         /* ===== PROCESSUS ===== */
@@ -78,7 +78,7 @@
         .process-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--primary); margin-bottom: 15px; }
         .process-card p { font-size: 1.1rem; line-height: 1.6; opacity: 0.8; }
 
-        /* ===== IMPACT (150+ SUPPRIMÉ) ===== */
+        /* ===== IMPACT ===== */
         .impact-section { background: var(--gold); color: white; padding: 80px 0; text-align: center; }
         .impact-grid { display: flex; justify-content: center; gap: 80px; flex-wrap: wrap; }
         .impact-item b { font-size: 4rem; color: var(--primary); display: block; font-family: 'Cormorant Garamond', serif; }
@@ -217,11 +217,15 @@
             <div class="gold-line"></div>
             <div class="contact-methods">
                 <div class="contact-box" data-aos="fade-up">
-                    <i class="fas fa-phone-alt"></i>
-                    <h3>Appel Direct</h3>
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>WhatsApp Direct</h3>
                     <p style="font-size: 1.5rem; font-weight: 700; color: var(--primary); margin: 10px 0;">+212 6 36 22 19 00</p>
                     <p>khadijaoulkaid4@gmail.com</p>
-                    <a href="tel:+212636221900" class="btn btn-gold" style="margin-top: 30px; width: 100%; justify-content: center;">RÉSERVER MAINTENANT</a>
+                    <a href="https://wa.me/212636221900?text=Bonjour%20MARKLY%20Advisory,%20je%20souhaite%20réserver%20une%20consultation%20stratégique" 
+                       target="_blank" 
+                       class="btn btn-whatsapp" style="margin-top: 30px; width: 100%; justify-content: center;">
+                        <i class="fab fa-whatsapp"></i> Réserver sur WhatsApp
+                    </a>
                 </div>
                 <div class="contact-box dark" data-aos="fade-up" data-aos-delay="100">
                     <i class="fas fa-video"></i>
