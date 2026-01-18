@@ -3,313 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MARKLY Advisory - Excellence & Stratégie</title>
+    <title>MARKLY Advisory | Stratégie Haute Couture</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Montserrat:wght@800&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         :root {
-            --primary: #1a365d;
+            --primary: #0f172a;
             --secondary: #c05621;
-            --accent: #2d5a27;
-            --light: #f8f5f0;
-            --dark: #1a202c;
-            --white: #ffffff;
-            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            --gradient-gold: linear-gradient(135deg, #c05621 0%, #ed8936 100%);
+            --accent: #ed8936;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-light: #f8fafc;
+            --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
         body { 
-            font-family: 'Inter', sans-serif; 
-            background: var(--light); 
-            color: var(--dark); 
-            overflow-x: hidden; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background: var(--primary); 
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Barre de progression */
-        #scroll-progress {
-            position: fixed; top: 0; left: 0; width: 0%; height: 4px;
-            background: var(--gradient-gold); z-index: 9999;
-        }
-
-        /* ===== BACKGROUND VIDEO & OVERLAY ===== */
-        .video-background-container {
+        /* Effet de grain de fond pour le luxe */
+        body::before {
+            content: "";
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -2; overflow: hidden;
+            background: url(https://grainy-gradients.vercel.app/noise.svg);
+            opacity: 0.05; pointer-events: none; z-index: 999;
+        }
+
+        /* ===== VIDEO BACKGROUND UNIFIÉ ===== */
+        .bg-wrapper {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2; filter: brightness(0.4);
         }
         .video-slide {
             position: absolute; width: 100%; height: 100%;
-            opacity: 0; transition: opacity 1.5s ease;
+            opacity: 0; transition: opacity 2s ease-in-out;
         }
         .video-slide.active { opacity: 1; }
-        .video-slide video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.3); }
-        
-        .video-overlay {
+        video { width: 100%; height: 100%; object-fit: cover; }
+        .overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, rgba(26,54,93,0.4) 0%, rgba(10,20,40,0.8) 100%);
+            background: linear-gradient(to bottom, transparent, var(--primary));
             z-index: -1;
         }
 
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 40px; }
+
         /* ===== HERO SECTION ===== */
-        .hero-section {
+        .hero {
             height: 100vh; display: flex; align-items: center; justify-content: center;
-            text-align: center; color: white; padding: 0 20px;
+            text-align: center; position: relative;
         }
-        .hero-content h1 {
-            font-family: 'Montserrat', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem);
-            line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px;
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif; font-size: clamp(3rem, 8vw, 6rem);
+            text-transform: uppercase; line-height: 0.9; margin-bottom: 30px;
+            background: linear-gradient(to right, #fff, var(--secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .hero-content p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 40px; opacity: 0.9; }
+        .hero p { font-size: 1.4rem; max-width: 700px; margin: 0 auto 40px; opacity: 0.8; font-weight: 300; }
 
-        /* ===== BUTTONS ANIMÉS ===== */
+        .btn-group { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
         .btn {
-            padding: 16px 35px; border-radius: 50px; text-decoration: none;
-            font-weight: 600; transition: var(--transition); display: inline-flex;
-            align-items: center; gap: 10px; position: relative; overflow: hidden;
-            z-index: 1;
+            padding: 20px 40px; border-radius: 2px; text-decoration: none;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
+            transition: var(--transition); position: relative; overflow: hidden;
         }
-        .btn-primary { background: var(--gradient-gold); color: white; }
-        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(192, 86, 33, 0.3); }
-        
-        .btn-secondary { border: 2px solid white; color: white; margin-left: 15px; }
-        .btn-secondary:hover { background: white; color: var(--primary); }
+        .btn-gold { background: var(--secondary); color: white; }
+        .btn-gold:hover { background: white; color: var(--primary); transform: translateY(-5px); }
+        .btn-outline { border: 1px solid rgba(255,255,255,0.3); color: white; }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
 
-        /* ===== SERVICES - CARTES INTERACTIVES ===== */
-        .services-section { padding: 100px 0; background: white; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; }
-
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        /* ===== SECTION SERVICES (GLASS CARDS) ===== */
+        .section-padding { padding: 140px 0; }
+        .grid-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
         
-        .service-card {
-            background: #fff; padding: 40px; border-radius: 20px;
-            border: 1px solid #eee; transition: var(--transition);
-            position: relative; cursor: pointer;
+        .card {
+            background: var(--glass); border: 1px solid var(--glass-border);
+            padding: 50px; backdrop-filter: blur(10px); transition: var(--transition);
         }
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        .card:hover { 
+            background: rgba(255,255,255,0.07); transform: translateY(-10px);
             border-color: var(--secondary);
         }
-        .service-icon { 
-            font-size: 2.5rem; color: var(--secondary); margin-bottom: 20px;
-            transition: transform 0.5s ease;
-        }
-        .service-card:hover .service-icon { transform: rotateY(180deg); }
+        .card i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 30px; }
+        .card h3 { font-size: 1.8rem; margin-bottom: 20px; font-weight: 600; }
 
-        /* ===== EXPERTISE - EFFET FLOAT ===== */
-        .expertise-section { padding: 100px 0; background: var(--light); overflow: hidden; }
-        .expertise-flex { display: flex; align-items: center; gap: 60px; flex-wrap: wrap; }
-        .expertise-image-wrapper { flex: 1; min-width: 300px; position: relative; }
-        .expertise-photo { 
-            width: 100%; border-radius: 30px; 
-            box-shadow: 20px 20px 60px rgba(0,0,0,0.1); 
-            transition: transform 0.3s ease-out;
+        /* ===== SECTION PROCESSUS (SCROLL ANIMATION) ===== */
+        .process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; }
+        .process-visual { position: sticky; top: 150px; }
+        .circle-progress {
+            width: 300px; height: 300px; border-radius: 50%;
+            border: 2px dashed var(--secondary); display: flex;
+            align-items: center; justify-content: center; font-size: 5rem;
+            color: var(--secondary); animation: rotate 20s linear infinite;
         }
-        .expertise-content { flex: 1.2; min-width: 300px; }
+        @keyframes rotate { from { transform: rotate(0); } to { transform: rotate(360deg); } }
 
-        /* ===== STATS ANIMÉES ===== */
-        .stats-section { 
-            padding: 80px 0; background: var(--primary); color: white;
-            background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+        .step-item { 
+            margin-bottom: 100px; padding-left: 40px; 
+            border-left: 2px solid var(--glass-border); position: relative;
         }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); text-align: center; }
-        .stat-number { font-size: 3.5rem; font-weight: 700; color: var(--secondary); display: block; }
+        .step-item::before {
+            content: ""; position: absolute; left: -6px; top: 0;
+            width: 10px; height: 10px; background: var(--secondary); border-radius: 50%;
+        }
+        .step-item h3 { color: var(--secondary); font-size: 2rem; margin-bottom: 15px; }
 
-        /* ===== PROCESSUS TIMELINE ===== */
-        .process-step { 
-            display: flex; gap: 30px; margin-bottom: 50px; 
-            background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px;
-            backdrop-filter: blur(5px); transition: var(--transition);
+        /* ===== EXPERTISE (IMAGE FLOATING) ===== */
+        .expertise-box {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
         }
-        .process-step:hover { background: rgba(255,255,255,0.1); transform: translateX(10px); }
-        .step-number { 
-            font-size: 2rem; font-weight: 700; color: var(--secondary); 
-            opacity: 0.5; min-width: 50px; 
+        .expertise-img-container { position: relative; }
+        .expertise-img {
+            width: 100%; height: 600px; object-fit: cover;
+            filter: grayscale(0.5); transition: var(--transition);
+            border: 1px solid var(--glass-border);
         }
+        .expertise-img:hover { filter: grayscale(0); }
+        
+        .floating-badge {
+            position: absolute; bottom: -30px; right: -30px;
+            background: var(--secondary); padding: 30px;
+            font-weight: 800; font-size: 1.5rem;
+        }
+
+        /* ===== STATS ===== */
+        .stats-bar {
+            display: flex; justify-content: space-between; padding: 60px;
+            background: white; color: var(--primary); margin-top: -50px;
+            position: relative; z-index: 10;
+        }
+        .stat-item h2 { font-size: 3.5rem; font-weight: 800; }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.5rem; }
-            .btn-secondary { margin-left: 0; margin-top: 15px; }
-            .expertise-flex { flex-direction: column; }
+        @media (max-width: 992px) {
+            .process-grid, .expertise-box { grid-template-columns: 1fr; }
+            .process-visual { display: none; }
+            .stats-bar { flex-direction: column; gap: 40px; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <div id="scroll-progress"></div>
-
-    <div class="video-background-container">
+    <div class="bg-wrapper">
         <div class="video-slide active"><video autoplay muted loop playsinline><source src="https://github.com/user-attachments/assets/ed3e1a7f-9b87-42a6-990e-b0ac339ba345" type="video/mp4"></video></div>
         <div class="video-slide"><video autoplay muted loop playsinline><source src="https://github.com/user-attachments/assets/037967e6-9bef-4acb-bce6-8ad32f4f21aa" type="video/mp4"></video></div>
+        <div class="video-slide"><video autoplay muted loop playsinline><source src="https://github.com/user-attachments/assets/24da5c31-505a-40be-90ff-8198b912d469" type="video/mp4"></video></div>
     </div>
-    <div class="video-overlay"></div>
+    <div class="overlay"></div>
 
-    <section class="hero-section">
-        <div class="hero-content" data-aos="zoom-out" data-aos-duration="1500">
-            <h1 data-aos="fade-up" data-aos-delay="200">MARKLY <span style="color:var(--secondary)">Advisory</span></h1>
-            <p data-aos="fade-up" data-aos-delay="400">Architecte de votre réussite business. Nous transformons vos défis complexes en stratégies de croissance exponentielle.</p>
-            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
-                <a href="#services" class="btn btn-primary"><i class="fas fa-lightbulb"></i> Nos Solutions</a>
-                <a href="#contact" class="btn btn-secondary">Expertise Directe</a>
+    <section class="hero">
+        <div class="container" data-aos="zoom-in">
+            <p style="letter-spacing: 5px; color: var(--secondary); font-weight: 700;">STRATÉGIE • CONSEIL • DROIT</p>
+            <h1>MARKLY<br>ADVISORY</h1>
+            <p>Nous ne nous contentons pas de conseiller. Nous bâtissons les fondations de votre futur empire commercial avec une précision chirurgicale.</p>
+            <div class="btn-group">
+                <a href="#expertise" class="btn btn-gold">L'Expertise</a>
+                <a href="#contact" class="btn btn-outline">Consultation</a>
             </div>
         </div>
     </section>
 
-    <section class="services-section" id="services">
-        <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <h2>Ingénierie Stratégique</h2>
-                <p>Des services haute performance pour leaders exigeants.</p>
+    <div class="container">
+        <div class="stats-bar" data-aos="fade-up">
+            <div class="stat-item">
+                <h2 class="counter" data-target="150">0</h2>
+                <p>PROJETS ÉLITES</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <i class="fas fa-chart-line service-icon"></i>
-                    <h3>Business Scaling</h3>
-                    <p>Business plans structurés pour lever des fonds et conquérir de nouveaux marchés.</p>
+            <div class="stat-item">
+                <h2 class="counter" data-target="95">0</h2>
+                <p>% RÉUSSITE JURIDIQUE</p>
+            </div>
+            <div class="stat-item">
+                <h2 class="counter" data-target="45">0</h2>
+                <p>% CROISSANCE MOYENNE</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="grid-services">
+                <div class="card" data-aos="fade-up">
+                    <i class="fas fa-gem"></i>
+                    <h3>Business Architecture</h3>
+                    <p>Conception de Business Plans à fort impact pour investisseurs et institutions bancaires.</p>
                 </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-shield-halved service-icon"></i>
-                    <h3>Audit & Conformité</h3>
-                    <p>Sécurisation juridique intégrale de vos actifs et de vos opérations commerciales.</p>
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-balance-scale"></i>
+                    <h3>Legal Strategy</h3>
+                    <p>Audit complet, conformité et sécurisation contractuelle de vos opérations.</p>
                 </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <i class="fas fa-rocket service-icon"></i>
-                    <h3>Digital Mastery</h3>
-                    <p>Développement d'écosystèmes web optimisés pour la conversion et l'autorité.</p>
+                <div class="card" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-fingerprint"></i>
+                    <h3>Digital Authority</h3>
+                    <p>Création de plateformes web exclusives reflétant le prestige de votre entreprise.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="expertise-section">
+    <section class="section-padding" id="expertise">
         <div class="container">
-            <div class="expertise-flex">
-                <div class="expertise-image-wrapper" data-aos="fade-right">
-                    <img src="https://github.com/user-attachments/assets/87e53a92-c9f2-4fa8-bde4-a159854242cd" alt="Expertise" class="expertise-photo" id="tilt-image">
+            <div class="expertise-box">
+                <div class="expertise-img-container" data-aos="fade-right">
+                    <img src="https://github.com/user-attachments/assets/87e53a92-c9f2-4fa8-bde4-a159854242cd" class="expertise-img" alt="Khadija O.">
+                    <div class="floating-badge">2 ANS<br><span style="font-size: 0.8rem; font-weight: 400;">D'EXCELLENCE</span></div>
                 </div>
-                <div class="expertise-content" data-aos="fade-left">
-                    <span style="color:var(--secondary); font-weight:bold; text-transform:uppercase">Profil Elite</span>
-                    <h2 style="font-size:2.5rem; margin:10px 0 25px">Khadija.O</h2>
-                    <p style="font-size:1.1rem; line-height:1.8; margin-bottom:20px">
-                        Juriste de formation et stratège par passion. J'allie la rigueur du droit à l'agilité du business management pour offrir une vision à 360° de vos projets.
+                <div class="expertise-text" data-aos="fade-left">
+                    <h2 style="font-size: 4rem; font-family: Montserrat; margin-bottom: 20px;">KHADIJA.O</h2>
+                    <p style="color: var(--secondary); font-weight: 700; margin-bottom: 30px; letter-spacing: 2px;">JURISTE & STRATÈGE BUSINESS</p>
+                    <p style="font-size: 1.2rem; margin-bottom: 30px; opacity: 0.8;">
+                        « Le droit n'est pas une contrainte, c'est une arme stratégique. Mon rôle est de transformer vos idées en structures invulnérables et rentables. »
                     </p>
-                    <div class="stats-grid" style="text-align:left; margin-top:30px">
-                        <div>
-                            <span class="stat-number" data-target="150">0</span>
-                            <p>Projets Propulsés</p>
-                        </div>
-                        <div>
-                            <span class="stat-number" data-target="95">0</span>
-                            <p>% Satisfaction</p>
-                        </div>
+                    <div style="border-top: 1px solid var(--glass-border); padding-top: 30px;">
+                        <p><strong>Expertises clés :</strong> Droit des affaires, Gestion de crise, Croissance organique, Scaling Digital.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="stats-section">
+    <section class="section-padding">
         <div class="container">
-            <div class="section-title" style="color:white">
-                <h2>Méthode MARKLY</h2>
-            </div>
-            <div class="process-list" style="max-width:800px; margin: 0 auto">
-                <div class="process-step" data-aos="fade-left">
-                    <div class="step-number">01</div>
-                    <div>
-                        <h3>Diagnostic Profond</h3>
-                        <p>Analyse chirurgicale de votre modèle actuel pour identifier les leviers cachés.</p>
+            <h2 style="font-size: 3rem; text-align: center; margin-bottom: 80px;">NOTRE MÉTHODOLOGIE</h2>
+            <div class="process-grid">
+                <div class="process-visual">
+                    <div class="circle-progress">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
                 </div>
-                <div class="process-step" data-aos="fade-left" data-aos-delay="200">
-                    <div class="step-number">02</div>
-                    <div>
-                        <h3>Architecture de Solution</h3>
-                        <p>Conception d'un plan d'action sur-mesure avec des KPIs de réussite clairs.</p>
+                <div class="process-steps">
+                    <div class="step-item" data-aos="fade-up">
+                        <h3>01. IMMERSION</h3>
+                        <p>Audit complet de votre écosystème. Nous identifions les failles juridiques et les opportunités de marché inexploitées.</p>
                     </div>
-                </div>
-                <div class="process-step" data-aos="fade-left" data-aos-delay="400">
-                    <div class="step-number">03</div>
-                    <div>
-                        <h3>Exécution & Suivi</h3>
-                        <p>Accompagnement terrain pour garantir l'atteinte des objectifs stratégiques.</p>
+                    <div class="step-item" data-aos="fade-up">
+                        <h3>02. ARCHITECTURE</h3>
+                        <p>Élaboration d'une stratégie sur-mesure : Business plan, structure juridique optimale et roadmap digitale.</p>
+                    </div>
+                    <div class="step-item" data-aos="fade-up">
+                        <h3>03. DÉPLOIEMENT</h3>
+                        <p>Mise en œuvre rigoureuse. Nous vous accompagnons dans chaque signature, chaque décision, chaque étape du scaling.</p>
+                    </div>
+                    <div class="step-item" data-aos="fade-up">
+                        <h3>04. OPTIMISATION</h3>
+                        <p>Analyse des performances et ajustements en temps réel pour garantir une pérennité maximale.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer style="padding: 50px 0; background: #0a1428; color: white; text-align: center;">
-        <div class="container">
-            <h2 style="margin-bottom:20px">Prêt à changer d'échelle ?</h2>
-            <p style="margin-bottom:30px; opacity:0.7">Consultations exclusives sur réservation uniquement.</p>
-            <a href="mailto:khadijaoulkaid4@gmail.com" class="btn btn-primary">Réserver mon créneau</a>
-            <div style="margin-top:40px; border-top:1px solid rgba(255,255,255,0.1); padding-top:20px; font-size:0.9rem; opacity:0.5">
-                &copy; 2026 MARKLY Advisory. Excellence by Design.
+    <footer class="section-padding" style="background: #000;" id="contact">
+        <div class="container" style="text-align: center;">
+            <h2 style="font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 40px;">PRÊT À DOMINER VOTRE MARCHÉ ?</h2>
+            <a href="tel:+212636221900" class="btn btn-gold" style="font-size: 1.2rem;">+212 6 36 22 19 00</a>
+            <p style="margin-top: 40px; opacity: 0.5;">khadijaoulkaid4@gmail.com</p>
+            <div style="margin-top: 80px; font-size: 0.8rem; letter-spacing: 3px; opacity: 0.3;">
+                © 2026 MARKLY ADVISORY. ALL RIGHTS RESERVED.
             </div>
         </div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialisation AOS
         AOS.init({ duration: 1000, once: true });
 
-        // Barre de progression
-        window.onscroll = function() {
-            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            let scrolled = (winScroll / height) * 100;
-            document.getElementById("scroll-progress").style.width = scrolled + "%";
-        };
-
-        // Rotation des vidéos en arrière-plan
+        // VIDEO ROTATION
         const slides = document.querySelectorAll('.video-slide');
         let current = 0;
         setInterval(() => {
             slides[current].classList.remove('active');
             current = (current + 1) % slides.length;
             slides[current].classList.add('active');
-        }, 10000);
+        }, 8000);
 
-        // Animation des chiffres
-        const counters = document.querySelectorAll('.stat-number');
+        // COUNTER ANIMATION
+        const counters = document.querySelectorAll('.counter');
         const countObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if(entry.isIntersecting) {
                     const target = +entry.target.getAttribute('data-target');
                     let count = 0;
-                    const updateCount = () => {
-                        const inc = target / 100;
+                    const update = () => {
+                        const speed = target / 50;
                         if(count < target) {
-                            count += inc;
-                            entry.target.innerText = Math.ceil(count) + (target === 95 ? "%" : "+");
-                            setTimeout(updateCount, 20);
-                        } else {
-                            entry.target.innerText = target + (target === 95 ? "%" : "+");
-                        }
+                            count += speed;
+                            entry.target.innerText = Math.ceil(count);
+                            setTimeout(update, 30);
+                        } else { entry.target.innerText = target; }
                     };
-                    updateCount();
-                    countObserver.unobserve(entry.target);
+                    update();
                 }
             });
         }, { threshold: 1 });
-
         counters.forEach(c => countObserver.observe(c));
-
-        // Effet de parallaxe sur l'image
-        document.addEventListener('mousemove', (e) => {
-            const img = document.getElementById('tilt-image');
-            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-            img.style.transform = `rotateY(${moveX}deg) rotateX(${-moveY}deg)`;
-        });
     </script>
 </body>
 </html>
