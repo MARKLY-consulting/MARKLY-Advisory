@@ -3,2048 +3,312 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MARKLY Advisory - Conseil Business & Stratégie Projet</title>
+    <title>MARKLY Advisory - Excellence & Stratégie</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
-        /* ===== VARIABLES ET RESET ===== */
         :root {
             --primary: #1a365d;
             --secondary: #c05621;
             --accent: #2d5a27;
             --light: #f8f5f0;
-            --dark: #2d3748;
+            --dark: #1a202c;
             --white: #ffffff;
-            --shadow: 0 10px 30px rgba(26, 54, 93, 0.15);
-            --gradient-primary: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
-            --gradient-secondary: linear-gradient(135deg, #c05621 0%, #dd6b20 100%);
-            --gradient-accent: linear-gradient(135deg, #2d5a27 0%, #38a169 100%);
-            --border-radius: 12px;
-            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --gradient-gold: linear-gradient(135deg, #c05621 0%, #ed8936 100%);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--light); 
+            color: var(--dark); 
+            overflow-x: hidden; 
         }
 
-        html {
-            scroll-behavior: smooth;
+        /* Barre de progression */
+        #scroll-progress {
+            position: fixed; top: 0; left: 0; width: 0%; height: 4px;
+            background: var(--gradient-gold); z-index: 9999;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.7;
-            color: var(--dark);
-            background: var(--light);
-            overflow-x: hidden;
-        }
-
-        /* ===== VIDEO BACKGROUND ===== */
+        /* ===== BACKGROUND VIDEO & OVERLAY ===== */
         .video-background-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            overflow: hidden;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2; overflow: hidden;
         }
-
         .video-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
+            position: absolute; width: 100%; height: 100%;
+            opacity: 0; transition: opacity 1.5s ease;
         }
-
-        .video-slide.active {
-            opacity: 1;
-        }
-
-        .video-slide video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.4) saturate(1.2);
-        }
-
+        .video-slide.active { opacity: 1; }
+        .video-slide video { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.3); }
+        
         .video-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, 
-                rgba(26, 54, 93, 0.85) 0%, 
-                rgba(45, 55, 72, 0.9) 50%, 
-                rgba(192, 86, 33, 0.2) 100%);
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(26,54,93,0.4) 0%, rgba(10,20,40,0.8) 100%);
             z-index: -1;
-        }
-
-        /* ===== CONTROLES VIDEO ===== */
-        .video-controls {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            display: flex;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 8px 12px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 102, 204, 0.2);
-        }
-
-        .video-controls button {
-            background: var(--gradient-secondary);
-            border: none;
-            color: white;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-        }
-
-        .video-controls button:hover {
-            transform: scale(1.1);
-        }
-
-        /* ===== LAYOUT GENERAL ===== */
-        .horizontal-layout {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            position: relative;
-            z-index: 1;
-        }
-
-        .main-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        /* ===== ANIMATIONS ===== */
-        @keyframes revealContent {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes floatImage {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes highlightPulse {
-            0%, 100% {
-                box-shadow: 0 0 0 0 rgba(192, 86, 33, 0.4);
-            }
-            50% {
-                box-shadow: 0 0 0 20px rgba(192, 86, 33, 0);
-            }
-        }
-
-        @keyframes stepGlow {
-            0%, 100% {
-                transform: scale(1);
-                box-shadow: 0 5px 15px rgba(192, 86, 33, 0.3);
-            }
-            50% {
-                transform: scale(1.05);
-                box-shadow: 0 10px 25px rgba(192, 86, 33, 0.5);
-            }
-        }
-
-        /* ===== HEADER (CACHÉ) ===== */
-        header {
-            display: none !important;
         }
 
         /* ===== HERO SECTION ===== */
         .hero-section {
-            padding: 0;
-            margin-top: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            position: relative;
-            z-index: 1;
-            text-align: center;
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; color: white; padding: 0 20px;
         }
-
-        .hero-container {
-            display: block;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .hero-content {
-            animation: revealContent 1s ease-out;
-        }
-
         .hero-content h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3.8rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            color: var(--white);
-            line-height: 1.2;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            font-family: 'Montserrat', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px;
         }
+        .hero-content p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 40px; opacity: 0.9; }
 
-        .hero-content p {
-            font-size: 1.4rem;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 3rem;
-            line-height: 1.8;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 3rem;
-        }
-
-        /* ===== BOUTONS ===== */
+        /* ===== BUTTONS ANIMÉS ===== */
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 16px 32px;
-            background: var(--gradient-secondary);
-            color: var(--white);
-            border: none;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 1rem;
-            gap: 12px;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: var(--transition);
-        }
-
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(192, 86, 33, 0.4);
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(5px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--white);
-        }
-
-        /* ===== SERVICES SECTION ===== */
-        .services-section {
-            padding: 100px 0;
-            background: var(--white);
-            position: relative;
+            padding: 16px 35px; border-radius: 50px; text-decoration: none;
+            font-weight: 600; transition: var(--transition); display: inline-flex;
+            align-items: center; gap: 10px; position: relative; overflow: hidden;
             z-index: 1;
         }
+        .btn-primary { background: var(--gradient-gold); color: white; }
+        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(192, 86, 33, 0.3); }
+        
+        .btn-secondary { border: 2px solid white; color: white; margin-left: 15px; }
+        .btn-secondary:hover { background: white; color: var(--primary); }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
-            position: relative;
-        }
+        /* ===== SERVICES - CARTES INTERACTIVES ===== */
+        .services-section { padding: 100px 0; background: white; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; }
 
-        .section-title h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section-title p {
-            font-size: 1.2rem;
-            color: var(--dark);
-            max-width: 600px;
-            margin: 0 auto;
-            opacity: 0.8;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 30px;
-        }
-
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
         .service-card {
-            background: var(--white);
-            padding: 40px 30px;
-            border-radius: var(--border-radius);
-            border: 1px solid rgba(26, 54, 93, 0.1);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            text-align: center;
-            opacity: 0;
-            animation: revealContent 0.8s ease-out forwards;
+            background: #fff; padding: 40px; border-radius: 20px;
+            border: 1px solid #eee; transition: var(--transition);
+            position: relative; cursor: pointer;
         }
-
-        .service-card:nth-child(1) { animation-delay: 0.1s; }
-        .service-card:nth-child(2) { animation-delay: 0.2s; }
-        .service-card:nth-child(3) { animation-delay: 0.3s; }
-        .service-card:nth-child(4) { animation-delay: 0.4s; }
-        .service-card:nth-child(5) { animation-delay: 0.5s; }
-        .service-card:nth-child(6) { animation-delay: 0.6s; }
-
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: var(--shadow);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
             border-color: var(--secondary);
         }
-
-        .service-icon {
-            font-size: 3rem;
-            color: var(--secondary);
-            margin-bottom: 25px;
-            display: inline-block;
-            padding: 20px;
-            background: linear-gradient(135deg, rgba(192, 86, 33, 0.1) 0%, rgba(192, 86, 33, 0.05) 100%);
-            border-radius: 50%;
-            transition: var(--transition);
-        }
-
-        .service-card:hover .service-icon {
-            transform: scale(1.1) rotate(5deg);
-            background: linear-gradient(135deg, rgba(192, 86, 33, 0.2) 0%, rgba(192, 86, 33, 0.1) 100%);
-        }
-
-        /* ===== EXPERTISE SECTION ===== */
-        .expertise-section {
-            padding: 120px 0;
-            background: linear-gradient(135deg, #f8f5f0 0%, #f0ebe3 100%);
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .expertise-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .expertise-photo-container {
-            position: relative;
-            animation: revealContent 0.8s ease-out 0.3s backwards;
-        }
-
-        .expertise-photo {
-            width: 100%;
-            max-width: 500px;
-            height: 600px;
-            border-radius: var(--border-radius);
-            object-fit: cover;
-            box-shadow: var(--shadow);
-            border: 8px solid var(--white);
-            animation: floatImage 8s ease-in-out infinite;
-            object-position: top center;
-            position: relative;
-            z-index: 2;
-            transition: var(--transition);
-        }
-
-        .expertise-photo:hover {
-            transform: scale(1.02);
-            box-shadow: 0 20px 40px rgba(26, 54, 93, 0.25);
-        }
-
-        .photo-badge {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: var(--gradient-secondary);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(192, 86, 33, 0.3);
-            z-index: 3;
-            animation: badgePulse 3s infinite;
-        }
-
-        /* Floating elements animation */
-        .floating-elements {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .floating-element {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--secondary);
-            font-size: 1.2rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            z-index: 1;
-        }
-
-        .element-1 {
-            top: 10%;
-            left: -20px;
-            animation: floatElement1 20s infinite linear;
-        }
-
-        .element-2 {
-            top: 60%;
-            right: -20px;
-            animation: floatElement2 25s infinite linear;
-        }
-
-        .element-3 {
-            bottom: 20%;
-            left: 10%;
-            animation: floatElement3 18s infinite linear;
-        }
-
-        /* Expertise Content Styles */
-        .expertise-header {
-            margin-bottom: 30px;
-        }
-
-        .expertise-header h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-            position: relative;
-            display: inline-block;
-        }
-
-        .expertise-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: var(--gradient-secondary);
-            border-radius: 2px;
-        }
-
-        .expertise-header h3 {
-            font-size: 1.5rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .expertise-tagline {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(192, 86, 33, 0.1);
-            padding: 8px 16px;
-            border-radius: 20px;
-            color: var(--secondary);
-            font-weight: 500;
-            font-size: 0.95rem;
-            margin-top: 10px;
-        }
-
-        .expertise-intro {
-            margin-bottom: 40px;
-        }
-
-        .expertise-intro p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: var(--dark);
-            position: relative;
-            padding-left: 20px;
-            border-left: 3px solid var(--secondary);
-        }
-
-        .highlight-text {
-            color: var(--primary);
-            font-weight: 600;
-            background: linear-gradient(120deg, rgba(192, 86, 33, 0.1) 0%, rgba(192, 86, 33, 0) 100%);
-            padding: 2px 8px;
-            border-radius: 4px;
-        }
-
-        /* Expertise Grid */
-        .expertise-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin: 40px 0;
-        }
-
-        .expertise-card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            border: 1px solid rgba(26, 54, 93, 0.1);
-            transition: var(--transition);
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .expertise-card:nth-child(1) { animation-delay: 0.1s; }
-        .expertise-card:nth-child(2) { animation-delay: 0.2s; }
-        .expertise-card:nth-child(3) { animation-delay: 0.3s; }
-        .expertise-card:nth-child(4) { animation-delay: 0.4s; }
-        .expertise-card:nth-child(5) { animation-delay: 0.5s; }
-        .expertise-card:nth-child(6) { animation-delay: 0.6s; }
-
-        .expertise-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .expertise-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow);
-            border-color: var(--secondary);
-        }
-
-        .expertise-card-icon {
-            width: 45px;
-            height: 45px;
-            background: var(--gradient-secondary);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            flex-shrink: 0;
-            font-size: 1.2rem;
-            transition: var(--transition);
-        }
-
-        .expertise-card:hover .expertise-card-icon {
-            transform: rotate(10deg) scale(1.1);
-        }
-
-        .expertise-card-content h4 {
-            color: var(--primary);
-            font-size: 1rem;
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-
-        .expertise-card-content p {
-            color: var(--dark);
-            font-size: 0.9rem;
-            opacity: 0.8;
-            line-height: 1.5;
-        }
-
-        /* Experience Highlight */
-        .experience-highlight {
-            margin: 40px 0;
-            padding: 25px;
-            background: linear-gradient(135deg, rgba(26, 54, 93, 0.05) 0%, rgba(192, 86, 33, 0.05) 100%);
-            border-radius: var(--border-radius);
-            border-left: 4px solid var(--secondary);
-        }
-
-        .experience-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: var(--white);
-            padding: 15px 25px;
-            border-radius: 50px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-bottom: 15px;
-        }
-
-        .experience-badge i {
-            color: var(--secondary);
-            font-size: 1.8rem;
-        }
-
-        .experience-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .experience-years {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .experience-desc {
-            font-size: 0.9rem;
-            color: var(--dark);
-            opacity: 0.8;
-        }
-
-        .experience-quote {
-            font-style: italic;
-            color: var(--dark);
-            line-height: 1.7;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .experience-quote::before {
-            content: '★';
-            position: absolute;
-            left: 0;
-            color: var(--secondary);
-        }
-
-        /* Quote Box */
-        .quote-box {
-            background: var(--white);
-            padding: 35px;
-            border-radius: var(--border-radius);
-            margin: 40px 0;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(192, 86, 33, 0.1);
-        }
-
-        .quote-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-secondary);
-        }
-
-        .quote-content {
-            position: relative;
-            padding: 20px 0;
-        }
-
-        .quote-icon {
-            color: rgba(192, 86, 33, 0.2);
-            font-size: 2rem;
-            position: absolute;
-        }
-
-        .quote-icon.fa-quote-left {
-            top: 0;
-            left: 0;
-        }
-
-        .quote-icon.fa-quote-right {
-            bottom: 0;
-            right: 0;
-        }
-
-        .quote-content p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--dark);
-            font-style: italic;
-            text-align: center;
-            padding: 0 30px;
-        }
-
-        .quote-signature {
-            text-align: center;
-            margin-top: 25px;
-            padding-top: 25px;
-            border-top: 1px solid rgba(26, 54, 93, 0.1);
-        }
-
-        .signature-line {
-            width: 100px;
-            height: 2px;
-            background: var(--secondary);
-            margin: 0 auto 10px;
-        }
-
-        .signature-name {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-
-        /* Contact CTA */
-        .contact-cta {
-            display: flex;
-            gap: 20px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-
-        .btn-phone {
-            background: var(--gradient-primary);
-            animation: phonePulse 2s infinite;
-        }
-
-        /* New Animations */
-        @keyframes floatElement1 {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(20px, -20px) rotate(90deg); }
-            50% { transform: translate(0, -40px) rotate(180deg); }
-            75% { transform: translate(-20px, -20px) rotate(270deg); }
-        }
-
-        @keyframes floatElement2 {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(-30px, 20px) rotate(120deg); }
-            66% { transform: translate(30px, -20px) rotate(240deg); }
-        }
-
-        @keyframes floatElement3 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(15px, -15px) scale(1.1); }
-        }
-
-        @keyframes badgePulse {
-            0%, 100% { 
-                transform: scale(1);
-                box-shadow: 0 4px 15px rgba(192, 86, 33, 0.3);
-            }
-            50% { 
-                transform: scale(1.05);
-                box-shadow: 0 8px 25px rgba(192, 86, 33, 0.4);
-            }
-        }
-
-        @keyframes phonePulse {
-            0%, 100% { 
-                box-shadow: 0 5px 15px rgba(26, 54, 93, 0.3);
-            }
-            50% { 
-                box-shadow: 0 5px 25px rgba(26, 54, 93, 0.5);
-            }
-        }
-
-        /* ===== PROCESSUS SECTION ===== */
-        .process-section {
-            padding: 100px 0;
-            background: var(--gradient-primary);
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .process-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .process-line {
-            position: absolute;
-            left: 50%;
-            top: 150px;
-            bottom: 150px;
-            width: 4px;
-            background: linear-gradient(to bottom, 
-                rgba(255, 255, 255, 0.2) 0%,
-                var(--secondary) 50%,
-                rgba(255, 255, 255, 0.2) 100%);
-            transform: translateX(-50%);
-            z-index: 1;
-        }
-
-        .process-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 60px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .process-step {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            opacity: 0;
-            transform: translateX(-50px);
-            animation: revealContent 0.8s ease-out forwards;
-        }
-
-        .process-step:nth-child(1) { animation-delay: 0.1s; }
-        .process-step:nth-child(2) { animation-delay: 0.2s; }
-        .process-step:nth-child(3) { animation-delay: 0.3s; }
-        .process-step:nth-child(4) { animation-delay: 0.4s; }
-        .process-step:nth-child(5) { animation-delay: 0.5s; }
-        .process-step:nth-child(6) { animation-delay: 0.6s; }
-        .process-step:nth-child(7) { animation-delay: 0.7s; }
-
-        .process-step:nth-child(even) {
-            flex-direction: row-reverse;
-            transform: translateX(50px);
-        }
-
-        .step-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--gradient-secondary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.8rem;
-            flex-shrink: 0;
-            position: relative;
-            z-index: 3;
-            animation: stepGlow 3s ease-in-out infinite;
-            box-shadow: 0 5px 15px rgba(192, 86, 33, 0.3);
-        }
-
-        .step-content {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .step-content h3 {
-            color: var(--white);
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .step-content p {
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.6;
-        }
-
-        /* ===== STATS SECTION ===== */
-        .stats-section {
-            padding: 80px 0;
-            background: var(--gradient-primary);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: var(--border-radius);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: var(--transition);
-            opacity: 0;
-            animation: revealContent 0.8s ease-out forwards;
-        }
-
-        .stat-item:nth-child(1) { animation-delay: 0.1s; }
-        .stat-item:nth-child(2) { animation-delay: 0.2s; }
-        .stat-item:nth-child(3) { animation-delay: 0.3s; }
-        .stat-item:nth-child(4) { animation-delay: 0.4s; }
-
-        .stat-item:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            font-family: 'Montserrat', sans-serif;
-            color: var(--white);
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.9);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        /* ===== TEMOIGNAGES SECTION ===== */
-        .testimonials-section {
-            padding: 100px 0;
-            background: linear-gradient(135deg, var(--light) 0%, #f0ebe3 100%);
-            position: relative;
-            z-index: 1;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .testimonial-card {
-            background: var(--white);
-            padding: 40px 30px;
-            border-radius: var(--border-radius);
-            border: 1px solid rgba(26, 54, 93, 0.1);
-            box-shadow: var(--shadow);
-            position: relative;
-            transition: var(--transition);
-            opacity: 0;
-            animation: revealContent 0.8s ease-out forwards;
-        }
-
-        .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
-        .testimonial-card:nth-child(2) { animation-delay: 0.2s; }
-        .testimonial-card:nth-child(3) { animation-delay: 0.3s; }
-
-        .testimonial-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: 20px;
-            left: 25px;
-            font-size: 4rem;
-            color: rgba(192, 86, 33, 0.2);
-            font-family: serif;
-            line-height: 1;
-        }
-
-        .testimonial-content {
-            position: relative;
-            z-index: 1;
-            margin-bottom: 25px;
-            line-height: 1.8;
-            color: var(--dark);
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(26, 54, 93, 0.1);
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--secondary);
-        }
-
-        .author-info h4 {
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
-
-        .author-info p {
-            color: var(--dark);
-            opacity: 0.7;
-            font-size: 0.9rem;
-        }
-
-        /* ===== CONTACT SECTION ===== */
-        .contact-section {
-            padding: 100px 0;
-            background: var(--light);
-            position: relative;
-            z-index: 1;
-        }
-
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: start;
-        }
-
-        .contact-info {
-            background: var(--white);
-            padding: 50px;
-            border-radius: var(--border-radius);
-            border: 1px solid rgba(26, 54, 93, 0.1);
-            box-shadow: var(--shadow);
-            position: relative;
-            opacity: 0;
-            animation: revealContent 0.8s ease-out forwards;
-        }
-
-        .contact-info::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-secondary);
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            margin-bottom: 30px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid rgba(26, 54, 93, 0.05);
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient-secondary);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            flex-shrink: 0;
-        }
-
-        .contact-form-container {
-            background: var(--white);
-            padding: 50px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            opacity: 0;
-            animation: revealContent 0.8s ease-out 0.2s forwards;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--primary);
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid rgba(26, 54, 93, 0.1);
-            border-radius: 8px;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--secondary);
-            box-shadow: 0 0 0 3px rgba(192, 86, 33, 0.1);
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background: var(--gradient-primary);
-            color: var(--white);
-            padding: 60px 0 30px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            text-align: left;
-        }
-
-        .footer-column h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: var(--white);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--white);
-            padding-left: 5px;
-        }
-
-        .footer-bottom {
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
+        .service-icon { 
+            font-size: 2.5rem; color: var(--secondary); margin-bottom: 20px;
+            transition: transform 0.5s ease;
+        }
+        .service-card:hover .service-icon { transform: rotateY(180deg); }
+
+        /* ===== EXPERTISE - EFFET FLOAT ===== */
+        .expertise-section { padding: 100px 0; background: var(--light); overflow: hidden; }
+        .expertise-flex { display: flex; align-items: center; gap: 60px; flex-wrap: wrap; }
+        .expertise-image-wrapper { flex: 1; min-width: 300px; position: relative; }
+        .expertise-photo { 
+            width: 100%; border-radius: 30px; 
+            box-shadow: 20px 20px 60px rgba(0,0,0,0.1); 
+            transition: transform 0.3s ease-out;
+        }
+        .expertise-content { flex: 1.2; min-width: 300px; }
+
+        /* ===== STATS ANIMÉES ===== */
+        .stats-section { 
+            padding: 80px 0; background: var(--primary); color: white;
+            background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+        }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); text-align: center; }
+        .stat-number { font-size: 3.5rem; font-weight: 700; color: var(--secondary); display: block; }
+
+        /* ===== PROCESSUS TIMELINE ===== */
+        .process-step { 
+            display: flex; gap: 30px; margin-bottom: 50px; 
+            background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px;
+            backdrop-filter: blur(5px); transition: var(--transition);
+        }
+        .process-step:hover { background: rgba(255,255,255,0.1); transform: translateX(10px); }
+        .step-number { 
+            font-size: 2rem; font-weight: 700; color: var(--secondary); 
+            opacity: 0.5; min-width: 50px; 
         }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 1200px) {
-            .container, .header-container {
-                padding: 0 30px;
-            }
-            
-            .hero-content h1 {
-                font-size: 3.2rem;
-            }
-            
-            .expertise-photo {
-                height: 550px;
-            }
-            
-            .testimonials-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 992px) {
-            .hero-content h1 {
-                font-size: 2.8rem;
-            }
-            
-            .hero-content p {
-                font-size: 1.2rem;
-            }
-            
-            .hero-container,
-            .expertise-container,
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .process-step {
-                flex-direction: column !important;
-                text-align: center;
-                gap: 20px;
-            }
-            
-            .process-line {
-                display: none;
-            }
-            
-            .video-controls {
-                display: none;
-            }
-            
-            .expertise-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
         @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-content p {
-                font-size: 1.1rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .hero-buttons .btn {
-                width: 100%;
-                max-width: 300px;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .section-title h2 {
-                font-size: 2.2rem;
-            }
-            
-            .expertise-header h2 {
-                font-size: 2.2rem;
-            }
-            
-            .expertise-photo {
-                height: 450px;
-                max-width: 350px;
-                margin: 0 auto;
-            }
-            
-            .contact-cta {
-                flex-direction: column;
-            }
-            
-            .contact-cta .btn {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .container, .header-container {
-                padding: 0 20px;
-            }
-            
-            .hero-content h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero-content p {
-                font-size: 1rem;
-            }
-            
-            .expertise-photo {
-                height: 400px;
-                max-width: 300px;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .stat-item {
-                padding: 30px 15px;
-            }
-            
-            .stat-number {
-                font-size: 2.5rem;
-            }
-            
-            .photo-badge {
-                padding: 8px 15px;
-                font-size: 0.8rem;
-                bottom: 10px;
-                right: 10px;
-            }
-            
-            .step-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
-            }
-            
-            .quote-content p {
-                padding: 0 15px;
-                font-size: 1rem;
-            }
-            
-            .expertise-card {
-                padding: 15px;
-            }
+            .hero-content h1 { font-size: 2.5rem; }
+            .btn-secondary { margin-left: 0; margin-top: 15px; }
+            .expertise-flex { flex-direction: column; }
         }
     </style>
 </head>
 <body>
-    <!-- VIDEO BACKGROUND -->
+
+    <div id="scroll-progress"></div>
+
     <div class="video-background-container">
-        <div class="video-slide active" data-id="1">
-            <video autoplay muted loop playsinline>
-                <source src="https://github.com/user-attachments/assets/ed3e1a7f-9b87-42a6-990e-b0ac339ba345" type="video/mp4">
-            </video>
-        </div>
-        
-        <div class="video-slide" data-id="2">
-            <video autoplay muted loop playsinline>
-                <source src="https://github.com/user-attachments/assets/037967e6-9bef-4acb-bce6-8ad32f4f21aa" type="video/mp4">
-            </video>
-        </div>
-        
-        <div class="video-slide" data-id="3">
-            <video autoplay muted loop playsinline>
-                <source src="https://github.com/user-attachments/assets/24da5c31-505a-40be-90ff-8198b912d469" type="video/mp4">
-            </video>
-        </div>
-        
-        <div class="video-slide" data-id="4">
-            <video autoplay muted loop playsinline>
-                <source src="https://github.com/user-attachments/assets/9980c02c-8593-442c-b10e-aaaeffbc8bf6" type="video/mp4">
-            </video>
-        </div>
-        
-        <div class="video-slide" data-id="5">
-            <video autoplay muted loop playsinline>
-                <source src="https://github.com/user-attachments/assets/de173946-56af-416e-b455-52796d049a50" type="video/mp4">
-            </video>
-        </div>
+        <div class="video-slide active"><video autoplay muted loop playsinline><source src="https://github.com/user-attachments/assets/ed3e1a7f-9b87-42a6-990e-b0ac339ba345" type="video/mp4"></video></div>
+        <div class="video-slide"><video autoplay muted loop playsinline><source src="https://github.com/user-attachments/assets/037967e6-9bef-4acb-bce6-8ad32f4f21aa" type="video/mp4"></video></div>
     </div>
-    
     <div class="video-overlay"></div>
-    
-    <!-- CONTROLES VIDEO -->
-    <div class="video-controls">
-        <button id="prev-video" title="Vidéo précédente">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <button id="play-pause" title="Pause/Play">
-            <i class="fas fa-pause"></i>
-        </button>
-        <button id="next-video" title="Vidéo suivante">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-    </div>
 
-    <!-- MAIN CONTENT -->
-    <div class="horizontal-layout">
-        <main class="main-content">
-            <!-- HERO SECTION -->
-            <section class="hero-section" id="accueil">
-                <div class="container">
-                    <div class="hero-container">
-                        <div class="hero-content">
-                            <h1>Excellence en Conseil Business & Stratégie de Projet</h1>
-                            <p>MARKLY Advisory transforme les visions entrepreneuriales en succès tangibles grâce à une approche stratégique sur-mesure et un accompagnement d'excellence.</p>
-                            <div class="hero-buttons">
-                                <a href="#services" class="btn">
-                                    <i class="fas fa-rocket"></i>
-                                    Découvrir nos services
-                                </a>
-                                <a href="#contact" class="btn btn-secondary">
-                                    <i class="fas fa-calendar-check"></i>
-                                    Consultation gratuite
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+    <section class="hero-section">
+        <div class="hero-content" data-aos="zoom-out" data-aos-duration="1500">
+            <h1 data-aos="fade-up" data-aos-delay="200">MARKLY <span style="color:var(--secondary)">Advisory</span></h1>
+            <p data-aos="fade-up" data-aos-delay="400">Architecte de votre réussite business. Nous transformons vos défis complexes en stratégies de croissance exponentielle.</p>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
+                <a href="#services" class="btn btn-primary"><i class="fas fa-lightbulb"></i> Nos Solutions</a>
+                <a href="#contact" class="btn btn-secondary">Expertise Directe</a>
+            </div>
+        </div>
+    </section>
 
-            <!-- SERVICES SECTION -->
-            <section class="services-section" id="services">
-                <div class="container">
-                    <div class="section-title">
-                        <h2>Nos Services Premium</h2>
-                        <p>Une gamme complète de services stratégiques conçus pour propulser votre projet vers l'excellence</p>
-                    </div>
-                    <div class="services-grid">
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <h3>Business Plan Stratégique</h3>
-                            <p>Création de business plans complets et convaincants pour projets naissants ou en cours de développement.</p>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-project-diagram"></i>
-                            </div>
-                            <h3>Suivi de Projet Expert</h3>
-                            <p>Accompagnement continu et analyse régulière pour garantir le succès et l'efficacité de votre projet.</p>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-chart-pie"></i>
-                            </div>
-                            <h3>Analyse Stratégique Avancée</h3>
-                            <p>Études approfondies et recommandations pour optimiser la performance et la rentabilité de votre entreprise.</p>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <h3>Développement Web Élite</h3>
-                            <p>Création de sites web professionnels et performants pour présenter votre activité avec élégance.</p>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-comments"></i>
-                            </div>
-                            <h3>Consultation Business</h3>
-                            <p>Conseils stratégiques personnalisés pour surmonter les défis et saisir les opportunités de marché.</p>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-hands-helping"></i>
-                            </div>
-                            <h3>Résolution Stratégique</h3>
-                            <p>Aide spécialisée pour identifier et résoudre les difficultés spécifiques de votre entreprise.</p>
-                        </div>
-                    </div>
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Ingénierie Stratégique</h2>
+                <p>Des services haute performance pour leaders exigeants.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-chart-line service-icon"></i>
+                    <h3>Business Scaling</h3>
+                    <p>Business plans structurés pour lever des fonds et conquérir de nouveaux marchés.</p>
                 </div>
-            </section>
-
-            <!-- EXPERTISE SECTION (MODIFIÉE) -->
-            <section class="expertise-section" id="expertise">
-                <div class="container">
-                    <div class="section-title">
-                        <h2>Notre Expertise Exclusive</h2>
-                        <p>Une experte dédiée à votre succès stratégique et juridique</p>
-                    </div>
-                    
-                    <div class="expertise-container">
-                        <div class="expertise-photo-container">
-                            <img src="https://github.com/user-attachments/assets/87e53a92-c9f2-4fa8-bde4-a159854242cd" 
-                                 alt="Khadija.O - Juriste & Consultante en Stratégie d'Entreprise" 
-                                 class="expertise-photo">
-                            <div class="photo-badge">
-                                <i class="fas fa-award"></i> Expert Juridique & Stratégique
-                            </div>
-                            <!-- Animation decorative -->
-                            <div class="floating-elements">
-                                <div class="floating-element element-1"><i class="fas fa-balance-scale"></i></div>
-                                <div class="floating-element element-2"><i class="fas fa-chart-line"></i></div>
-                                <div class="floating-element element-3"><i class="fas fa-handshake"></i></div>
-                            </div>
-                        </div>
-                        
-                        <div class="expertise-content">
-                            <div class="expertise-header">
-                                <h2>Khadija.O</h2>
-                                <h3>Juriste & Consultante en Stratégie d'Entreprise</h3>
-                                <div class="expertise-tagline">
-                                    <i class="fas fa-star"></i> Spécialiste en droit des affaires
-                                </div>
-                            </div>
-                            
-                            <div class="expertise-intro">
-                                <p>
-                                    <span class="highlight-text">Spécialiste en droit des affaires</span>, je vous accompagne dans la transformation de vos projets en succès durables grâce à une approche pluridisciplinaire unique.
-                                </p>
-                            </div>
-                            
-                            <div class="expertise-grid">
-                                <div class="expertise-card card-1">
-                                    <div class="expertise-card-icon">
-                                        <i class="fas fa-gavel"></i>
-                                    </div>
-                                    <div class="expertise-card-content">
-                                        <h4>Droit des Affaires Contentieux</h4>
-                                        <p>Approche pragmatique des litiges commerciaux</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="expertise-card card-2">
-                                    <div class="expertise-card-icon">
-                                        <i class="fas fa-briefcase"></i>
-                                    </div>
-                                    <div class="expertise-card-content">
-                                        <h4>Difficultés des Entreprises</h4>
-                                        <p>Accompagnement stratégique dans les situations complexes</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="expertise-card card-3">
-                                    <div class="expertise-card-icon">
-                                        <i class="fas fa-cogs"></i>
-                                    </div>
-                                    <div class="expertise-card-content">
-                                        <h4>Business Management</h4>
-                                        <p>Optimisation des processus et gestion opérationnelle</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="expertise-card card-4">
-                                    <div class="expertise-card-icon">
-                                        <i class="fas fa-search-chart"></i>
-                                    </div>
-                                    <div class="expertise-card-content">
-                                        <h4>Analyse Stratégique</h4>
-                                        <p>Études de marché et recommandations éclairées</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="expertise-card card-5">
-                                    <div class="expertise-card-icon">
-                                        <i class="fas fa-shield-alt"></i>
-                                    </div>
-                                    <div class="expertise-card-content">
-                                        <h4>Conformité Juridique</h4>
-                                        <p>Sécurisation des activités et prévention des risques</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="expertise-card card-6">
-                                    <div class="expertise-card-icon">
-                                        <i class="fas fa-rocket"></i>
-                                    </div>
-                                    <div class="expertise-card-content">
-                                        <h4>Stratégie de Croissance</h4>
-                                        <p>Développement durable et expansion maîtrisée</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="experience-highlight">
-                                <div class="experience-badge">
-                                    <i class="fas fa-medal"></i>
-                                    <div class="experience-text">
-                                        <span class="experience-years">2 ans</span>
-                                        <span class="experience-desc">d'expérience réussie en conseil stratégique</span>
-                                    </div>
-                                </div>
-                                <p class="experience-quote">
-                                    Avec 2 ans d'expérience réussie en conseil stratégique, je mets mon expertise au service de votre réussite.
-                                </p>
-                            </div>
-                            
-                            <div class="quote-box">
-                                <div class="quote-content">
-                                    <i class="fas fa-quote-left quote-icon"></i>
-                                    <p>"Votre succès juridique et commercial est ma priorité absolue. Je combine une expertise juridique solide avec une vision stratégique pragmatique pour créer des solutions sur-mesure qui protègent, optimisent et développent durablement votre entreprise."</p>
-                                    <i class="fas fa-quote-right quote-icon"></i>
-                                </div>
-                                <div class="quote-signature">
-                                    <div class="signature-line"></div>
-                                    <span class="signature-name">Khadija.O</span>
-                                </div>
-                            </div>
-                            
-                            <div class="contact-cta">
-                                <a href="tel:+212636221900" class="btn btn-phone">
-                                    <i class="fas fa-phone-alt"></i>
-                                    +212 6 36 22 19 00
-                                </a>
-                                <a href="mailto:khadijaoulkaid4@gmail.com" class="btn btn-secondary">
-                                    <i class="fas fa-envelope"></i>
-                                    Contactez-moi
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-shield-halved service-icon"></i>
+                    <h3>Audit & Conformité</h3>
+                    <p>Sécurisation juridique intégrale de vos actifs et de vos opérations commerciales.</p>
                 </div>
-            </section>
-
-            <!-- PROCESSUS SECTION -->
-            <section class="process-section" id="processus">
-                <div class="container">
-                    <div class="section-title" style="color: white;">
-                        <h2 style="color: white;">Notre Processus</h2>
-                        <p style="color: rgba(255, 255, 255, 0.9);">Une méthodologie éprouvée pour garantir votre succès</p>
-                    </div>
-                    
-                    <div class="process-container">
-                        <div class="process-line"></div>
-                        
-                        <div class="process-steps">
-                            <div class="process-step">
-                                <div class="step-icon">
-                                    <i class="fas fa-handshake"></i>
-                                </div>
-                                <div class="step-content">
-                                    <h3>Contact</h3>
-                                    <p>Premier échange pour comprendre vos besoins et objectifs spécifiques.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="process-step">
-                                <div class="step-icon">
-                                    <i class="fas fa-search"></i>
-                                </div>
-                                <div class="step-content">
-                                    <h3>Pré-analyse</h3>
-                                    <p>Évaluation initiale de votre situation et identification des opportunités.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="process-step">
-                                <div class="step-icon">
-                                    <i class="fas fa-calendar-check"></i>
-                                </div>
-                                <div class="step-content">
-                                    <h3>Consultation gratuite</h3>
-                                    <p>Rencontre détaillée pour définir les axes stratégiques prioritaires.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="process-step">
-                                <div class="step-icon">
-                                    <i class="fas fa-file-contract"></i>
-                                </div>
-                                <div class="step-content">
-                                    <h3>Proposition stratégique</h3>
-                                    <p>Élaboration d'un plan d'action personnalisé avec objectifs mesurables.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="process-step">
-                                <div class="step-icon">
-                                    <i class="fas fa-check-circle"></i>
-                                </div>
-                                <div class="step-content">
-                                    <h3>Validation</h3>
-                                    <p>Validation commune du plan stratégique et définition du calendrier.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="process-step">
-                                <div class="step-icon">
-                                    <i class="fas fa-hands-helping"></i>
-                                </div>
-                                <div class="step-content">
-                                    <h3>Accompagnement</h3>
-                                    <p>Mise en œuvre avec suivi régulier et ajustements si nécessaire.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="process-step">
-                                <div class="step-icon">
-                                    <i class="fas fa-chart-line"></i>
-                                </div>
-                                <div class="step-content">
-                                    <h3>Résultats & optimisation</h3>
-                                    <p>Analyse des résultats et optimisation continue pour performance maximale.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- STATS SECTION -->
-            <section class="stats-section" id="stats">
-                <div class="container">
-                    <div class="section-title" style="color: white;">
-                        <h2 style="color: white;">Notre Impact</h2>
-                        <p style="color: rgba(255, 255, 255, 0.9);">Des résultats concrets qui témoignent de notre expertise</p>
-                    </div>
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="stat-number">95%</div>
-                            <div class="stat-label">Satisfaction Client</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">150+</div>
-                            <div class="stat-label">Projets Accomplis</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">45%</div>
-                            <div class="stat-label">Croissance Moyenne</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">24/7</div>
-                            <div class="stat-label">Support Dédié</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CONTACT SECTION -->
-            <section class="contact-section" id="contact">
-                <div class="container">
-                    <div class="section-title">
-                        <h2>Contactez-nous</h2>
-                        <p>Prenez rendez-vous pour une consultation stratégique personnalisée</p>
-                    </div>
-                    <div class="contact-container">
-                        <div class="contact-info">
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-phone"></i>
-                                </div>
-                                <div>
-                                    <h4>Téléphone</h4>
-                                    <p>+212 6 36 22 19 00</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div>
-                                    <h4>Email</h4>
-                                    <p>khadijaoulkaid4@gmail.com</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-calendar-check"></i>
-                                </div>
-                                <div>
-                                    <h4>Disponibilité</h4>
-                                    <p>Consultations sur réservation</p>
-                                </div>
-                            </div>
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-laptop-house"></i>
-                                </div>
-                                <div>
-                                    <h4>Modalités</h4>
-                                    <p>Présentiel ou à distance</p>
-                                </div>
-                            </div>
-                            <div style="margin-top: 30px;">
-                                <a href="mailto:khadijaoulkaid4@gmail.com?subject=Demande de consultation MARKLY Advisory" class="btn" style="width: 100%;">
-                                    <i class="fas fa-paper-plane"></i>
-                                    Réserver une consultation
-                                </a>
-                            </div>
-                        </div>
-                        <!-- TÉMOIGNAGES -->
-                        <div class="contact-form-container" style="padding: 30px;">
-                            <h3 style="margin-bottom: 30px; color: var(--primary); text-align: center;">Témoignages Clients</h3>
-                            <div class="testimonials-grid" style="grid-template-columns: 1fr; gap: 20px; margin-top: 0;">
-                                <div class="testimonial-card" style="animation-delay: 0.1s; opacity: 0; animation: revealContent 0.8s ease-out forwards;">
-                                    <div class="testimonial-content">
-                                        "MARKLY Advisory a transformé notre vision en un plan d'action concret. Leur approche stratégique nous a permis de doubler notre chiffre d'affaires en seulement 6 mois."
-                                    </div>
-                                    <div class="testimonial-author">
-                                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
-                                             alt="Ahmed B." 
-                                             class="author-avatar">
-                                        <div class="author-info">
-                                            <h4>Ahmed B.</h4>
-                                            <p>CEO, TechStart Maroc</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="testimonial-card" style="animation-delay: 0.2s; opacity: 0; animation: revealContent 0.8s ease-out 0.2s forwards;">
-                                    <div class="testimonial-content">
-                                        "L'expertise juridique et stratégique de Khadija a été déterminante pour notre expansion. Elle a su identifier des opportunités que nous n'avions même pas envisagées."
-                                    </div>
-                                    <div class="testimonial-author">
-                                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
-                                             alt="Sophie M." 
-                                             class="author-avatar">
-                                        <div class="author-info">
-                                            <h4>Sophie M.</h4>
-                                            <p>Directrice, GreenFood SA</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="testimonial-card" style="animation-delay: 0.3s; opacity: 0; animation: revealContent 0.8s ease-out 0.3s forwards;">
-                                    <div class="testimonial-content">
-                                        "Un accompagnement sur-mesure qui a dépassé nos attentes. Le business plan élaboré nous a permis d'obtenir le financement nécessaire pour notre projet."
-                                    </div>
-                                    <div class="testimonial-author">
-                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
-                                             alt="Karim L." 
-                                             class="author-avatar">
-                                        <div class="author-info">
-                                            <h4>Karim L.</h4>
-                                            <p>Fondateur, Artisan Digital</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <!-- FOOTER -->
-        <footer>
-            <div class="container">
-                <div class="footer-container">
-                    <div class="footer-column">
-                        <h3>MARKLY Advisory</h3>
-                        <p style="color: rgba(255, 255, 255, 0.8); margin-top: 20px;">
-                            Votre partenaire stratégique pour transformer les visions en succès concrets.
-                        </p>
-                        <div style="margin-top: 20px; display: flex; gap: 15px;">
-                            <a href="#" style="color: white; font-size: 1.2rem;">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="#" style="color: white; font-size: 1.2rem;">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" style="color: white; font-size: 1.2rem;">
-                                <i class="fab fa-facebook"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="footer-column">
-                        <h3>Services</h3>
-                        <ul class="footer-links">
-                            <li><a href="#services">Business Plan</a></li>
-                            <li><a href="#services">Suivi de Projet</a></li>
-                            <li><a href="#services">Analyse Stratégique</a></li>
-                            <li><a href="#services">Développement Web</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h3>Navigation</h3>
-                        <ul class="footer-links">
-                            <li><a href="#accueil">Accueil</a></li>
-                            <li><a href="#services">Services</a></li>
-                            <li><a href="#expertise">Expertise</a></li>
-                            <li><a href="#processus">Processus</a></li>
-                            <li><a href="#stats">Résultats</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h3>Contact</h3>
-                        <ul class="footer-links">
-                            <li><i class="fas fa-phone" style="margin-right: 10px;"></i> +212 6 36 22 19 00</li>
-                            <li><i class="fas fa-envelope" style="margin-right: 10px;"></i> khadijaoulkaid4@gmail.com</li>
-                            <li><i class="fas fa-clock" style="margin-right: 10px;"></i> Lun - Ven: 9h - 18h</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <p>&copy; 2024 MARKLY Advisory. Tous droits réservés.</p>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-rocket service-icon"></i>
+                    <h3>Digital Mastery</h3>
+                    <p>Développement d'écosystèmes web optimisés pour la conversion et l'autorité.</p>
                 </div>
             </div>
-        </footer>
-    </div>
+        </div>
+    </section>
 
-    <!-- JAVASCRIPT -->
+    <section class="expertise-section">
+        <div class="container">
+            <div class="expertise-flex">
+                <div class="expertise-image-wrapper" data-aos="fade-right">
+                    <img src="https://github.com/user-attachments/assets/87e53a92-c9f2-4fa8-bde4-a159854242cd" alt="Expertise" class="expertise-photo" id="tilt-image">
+                </div>
+                <div class="expertise-content" data-aos="fade-left">
+                    <span style="color:var(--secondary); font-weight:bold; text-transform:uppercase">Profil Elite</span>
+                    <h2 style="font-size:2.5rem; margin:10px 0 25px">Khadija.O</h2>
+                    <p style="font-size:1.1rem; line-height:1.8; margin-bottom:20px">
+                        Juriste de formation et stratège par passion. J'allie la rigueur du droit à l'agilité du business management pour offrir une vision à 360° de vos projets.
+                    </p>
+                    <div class="stats-grid" style="text-align:left; margin-top:30px">
+                        <div>
+                            <span class="stat-number" data-target="150">0</span>
+                            <p>Projets Propulsés</p>
+                        </div>
+                        <div>
+                            <span class="stat-number" data-target="95">0</span>
+                            <p>% Satisfaction</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="section-title" style="color:white">
+                <h2>Méthode MARKLY</h2>
+            </div>
+            <div class="process-list" style="max-width:800px; margin: 0 auto">
+                <div class="process-step" data-aos="fade-left">
+                    <div class="step-number">01</div>
+                    <div>
+                        <h3>Diagnostic Profond</h3>
+                        <p>Analyse chirurgicale de votre modèle actuel pour identifier les leviers cachés.</p>
+                    </div>
+                </div>
+                <div class="process-step" data-aos="fade-left" data-aos-delay="200">
+                    <div class="step-number">02</div>
+                    <div>
+                        <h3>Architecture de Solution</h3>
+                        <p>Conception d'un plan d'action sur-mesure avec des KPIs de réussite clairs.</p>
+                    </div>
+                </div>
+                <div class="process-step" data-aos="fade-left" data-aos-delay="400">
+                    <div class="step-number">03</div>
+                    <div>
+                        <h3>Exécution & Suivi</h3>
+                        <p>Accompagnement terrain pour garantir l'atteinte des objectifs stratégiques.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="padding: 50px 0; background: #0a1428; color: white; text-align: center;">
+        <div class="container">
+            <h2 style="margin-bottom:20px">Prêt à changer d'échelle ?</h2>
+            <p style="margin-bottom:30px; opacity:0.7">Consultations exclusives sur réservation uniquement.</p>
+            <a href="mailto:khadijaoulkaid4@gmail.com" class="btn btn-primary">Réserver mon créneau</a>
+            <div style="margin-top:40px; border-top:1px solid rgba(255,255,255,0.1); padding-top:20px; font-size:0.9rem; opacity:0.5">
+                &copy; 2026 MARKLY Advisory. Excellence by Design.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Système de rotation des vidéos
-            const videoSlides = document.querySelectorAll('.video-slide');
-            let currentVideoIndex = 0;
-            let isPlaying = true;
-            let rotationInterval;
-            
-            function showVideo(index) {
-                videoSlides.forEach(slide => {
-                    slide.classList.remove('active');
-                    const video = slide.querySelector('video');
-                    if (video) video.pause();
-                });
-                
-                currentVideoIndex = (index + videoSlides.length) % videoSlides.length;
-                videoSlides[currentVideoIndex].classList.add('active');
-                
-                const currentVideo = videoSlides[currentVideoIndex].querySelector('video');
-                if (currentVideo && isPlaying) {
-                    currentVideo.play();
-                }
-            }
-            
-            function startRotation() {
-                rotationInterval = setInterval(() => {
-                    showVideo(currentVideoIndex + 1);
-                }, 8000);
-            }
-            
-            document.getElementById('prev-video').addEventListener('click', () => {
-                showVideo(currentVideoIndex - 1);
-                resetRotation();
-            });
-            
-            document.getElementById('next-video').addEventListener('click', () => {
-                showVideo(currentVideoIndex + 1);
-                resetRotation();
-            });
-            
-            document.getElementById('play-pause').addEventListener('click', () => {
-                const playPauseBtn = document.getElementById('play-pause');
-                const currentVideo = videoSlides[currentVideoIndex].querySelector('video');
-                
-                if (isPlaying) {
-                    if (currentVideo) currentVideo.pause();
-                    clearInterval(rotationInterval);
-                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-                    playPauseBtn.title = 'Play';
-                } else {
-                    if (currentVideo) currentVideo.play();
-                    startRotation();
-                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                    playPauseBtn.title = 'Pause';
-                }
-                
-                isPlaying = !isPlaying;
-            });
-            
-            function resetRotation() {
-                clearInterval(rotationInterval);
-                if (isPlaying) {
-                    startRotation();
-                }
-            }
-            
-            startRotation();
-            
-            // Animation des statistiques
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        if (entry.target.classList.contains('stat-item')) {
-                            const number = entry.target.querySelector('.stat-number');
-                            if (number && !number.classList.contains('animated')) {
-                                number.classList.add('animated');
-                                const text = number.textContent;
-                                const finalValue = parseFloat(text);
-                                let current = 0;
-                                const increment = finalValue / 50;
-                                const timer = setInterval(() => {
-                                    current += increment;
-                                    if (current >= finalValue) {
-                                        current = finalValue;
-                                        clearInterval(timer);
-                                    }
-                                    number.textContent = Math.round(current) + (text.includes('+') ? '+' : '');
-                                }, 30);
-                            }
+        // Initialisation AOS
+        AOS.init({ duration: 1000, once: true });
+
+        // Barre de progression
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("scroll-progress").style.width = scrolled + "%";
+        };
+
+        // Rotation des vidéos en arrière-plan
+        const slides = document.querySelectorAll('.video-slide');
+        let current = 0;
+        setInterval(() => {
+            slides[current].classList.remove('active');
+            current = (current + 1) % slides.length;
+            slides[current].classList.add('active');
+        }, 10000);
+
+        // Animation des chiffres
+        const counters = document.querySelectorAll('.stat-number');
+        const countObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    const target = +entry.target.getAttribute('data-target');
+                    let count = 0;
+                    const updateCount = () => {
+                        const inc = target / 100;
+                        if(count < target) {
+                            count += inc;
+                            entry.target.innerText = Math.ceil(count) + (target === 95 ? "%" : "+");
+                            setTimeout(updateCount, 20);
+                        } else {
+                            entry.target.innerText = target + (target === 95 ? "%" : "+");
                         }
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            document.querySelectorAll('.stat-item').forEach(el => {
-                observer.observe(el);
+                    };
+                    updateCount();
+                    countObserver.unobserve(entry.target);
+                }
             });
+        }, { threshold: 1 });
 
-            // Animation photo
-            const expertisePhoto = document.querySelector('.expertise-photo');
-            if (expertisePhoto) {
-                expertisePhoto.addEventListener('mouseenter', () => {
-                    expertisePhoto.style.transform = 'scale(1.02)';
-                });
-                expertisePhoto.addEventListener('mouseleave', () => {
-                    expertisePhoto.style.transform = 'scale(1)';
-                });
-            }
+        counters.forEach(c => countObserver.observe(c));
 
-            // Animation pour les cartes d'expertise
-            const expertiseCards = document.querySelectorAll('.expertise-card');
-
-            const expertiseObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-            expertiseCards.forEach(card => {
-                expertiseObserver.observe(card);
-            });
-
-            // Animation pour le texte highlight
-            const highlightText = document.querySelector('.highlight-text');
-            if (highlightText) {
-                highlightText.addEventListener('mouseenter', () => {
-                    highlightText.style.background = 'linear-gradient(120deg, rgba(192, 86, 33, 0.2) 0%, rgba(192, 86, 33, 0.1) 100%)';
-                });
-                highlightText.addEventListener('mouseleave', () => {
-                    highlightText.style.background = 'linear-gradient(120deg, rgba(192, 86, 33, 0.1) 0%, rgba(192, 86, 33, 0) 100%)';
-                });
-            }
-
-            // Smooth scroll
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
+        // Effet de parallaxe sur l'image
+        document.addEventListener('mousemove', (e) => {
+            const img = document.getElementById('tilt-image');
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            img.style.transform = `rotateY(${moveX}deg) rotateX(${-moveY}deg)`;
         });
     </script>
 </body>
