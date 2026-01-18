@@ -26,7 +26,7 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-soft); color: var(--text); overflow-x: hidden; }
 
         .container { max-width: 1300px; margin: 0 auto; padding: 0 30px; }
-        .section-padding { padding: 80px 0; }
+        .section-padding { padding: 100px 0; }
         
         h2.section-title { font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; color: var(--primary); text-align: center; margin-bottom: 10px; }
         .gold-line { width: 60px; height: 3px; background: var(--gold); margin: 0 auto 30px; }
@@ -71,15 +71,8 @@
 
         /* ===== PROCESSUS (ORDRE 3x2) ===== */
         .process-section { background: var(--cream); }
-        .process-grid { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); /* 3 colonnes pour l'équilibre */
-            gap: 20px; 
-        }
-        .process-card { 
-            background: white; padding: 35px; position: relative; 
-            border: 1px solid rgba(197, 160, 89, 0.1); transition: var(--transition); 
-        }
+        .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .process-card { background: white; padding: 35px; position: relative; border: 1px solid rgba(197, 160, 89, 0.1); transition: var(--transition); }
         .process-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
         .process-num { position: absolute; top: 10px; right: 15px; font-size: 3.5rem; font-weight: 900; color: rgba(10, 20, 40, 0.05); }
         .process-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--primary); margin-bottom: 10px; }
@@ -248,21 +241,24 @@
                 <div class="contact-box" data-aos="fade-right">
                     <i class="fas fa-phone-alt"></i>
                     <h3>Réservation</h3>
-                    <p>+212 6 36 22 19 00</p>
+                    <p style="font-weight: 700;">+212 6 36 22 19 00</p>
+                    <p style="margin-top: 5px;">khadijaoulkaid4@gmail.com</p>
                     <a href="https://wa.me/212636221900?text=Bonjour%20MARKLY%20Advisory" target="_blank" class="btn btn-gold" style="margin-top: 20px; width: 100%; justify-content: center;">WhatsApp</a>
                 </div>
                 <div class="contact-box" style="background: var(--primary); color: white;" data-aos="fade-left">
                     <i class="fas fa-video"></i>
                     <h3>Visioconférence</h3>
-                    <p>Consultation gratuite (45 min)</p>
-                    <a href="mailto:khadijaoulkaid4@gmail.com" class="btn btn-gold" style="margin-top: 20px; width: 100%; justify-content: center;">Planifier</a>
+                    <p>khadijaoulkaid4@gmail.com</p>
+                    <p style="margin-top: 5px;">Consultation gratuite (45 min)</p>
+                    <a href="mailto:khadijaoulkaid4@gmail.com" class="btn btn-gold" style="margin-top: 20px; width: 100%; justify-content: center;">Planifier par Mail</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer style="padding: 40px 0; text-align: center;">
-        <h2 style="color: var(--gold); font-family: Cormorant Garamond; font-size: 2.2rem; margin-bottom: 15px;">MARKLY ADVISORY</h2>
+    <footer>
+        <h2 style="color: var(--gold); font-family: Cormorant Garamond; font-size: 2.2rem; margin-bottom: 10px;">MARKLY ADVISORY</h2>
+        <p style="opacity: 0.7; margin-bottom: 20px;">khadijaoulkaid4@gmail.com | +212 6 36 22 19 00</p>
         <p style="opacity: 0.5; font-size: 0.8rem; letter-spacing: 2px;">© 2025 MARKLY ADVISORY. TOUS DROITS RÉSERVÉS.</p>
     </footer>
 
