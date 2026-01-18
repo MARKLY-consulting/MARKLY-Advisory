@@ -6,878 +6,355 @@
     <title>MARKLY Advisory - Excellence & Stratégie</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         :root {
-            --primary: #0a1428;
+            --primary: #1a365d;
             --secondary: #c05621;
-            --accent: #2d5a27;
-            --light: #f8f5f0;
-            --dark: #1a202c;
+            --gold: #c5a059;
+            --light-gold: #f4ece1;
             --white: #ffffff;
-            --gray-light: #f5f7fa;
-            --gray-dark: #4a5568;
-            --gradient-gold: linear-gradient(135deg, #c05621 0%, #ed8936 100%);
-            --gradient-dark: linear-gradient(135deg, #0a1428 0%, #1a365d 100%);
-            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            --shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            --shadow-hover: 0 30px 60px rgba(0, 0, 0, 0.15);
+            --bg-soft: #fdfcfb;
+            --text: #2d3748;
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-soft); color: var(--text); overflow-x: hidden; }
 
-        html { 
-            scroll-behavior: smooth; 
-        }
+        /* Background Video Subtil */
+        .video-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; opacity: 0.15; }
+        video { width: 100%; height: 100%; object-fit: cover; }
 
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background: var(--white); 
-            color: var(--dark); 
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        /* ===== BARRE DE PROGRESSION ===== */
-        #scroll-progress {
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 0%; 
-            height: 4px;
-            background: var(--gradient-gold); 
-            z-index: 9999;
-            transition: width 0.1s ease;
-        }
-
-        /* ===== VIDEO BACKGROUND ===== */
-        .video-background-container {
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%;
-            z-index: -2; 
-            overflow: hidden;
-        }
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 30px; }
+        .section-padding { padding: 100px 0; }
         
-        .video-slide {
-            position: absolute; 
-            width: 100%; 
-            height: 100%;
-            opacity: 0; 
-            transition: opacity 1.5s ease;
+        h2.section-title { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: var(--primary); text-align: center; margin-bottom: 10px; }
+        .gold-line { width: 80px; height: 3px; background: var(--gold); margin: 0 auto 50px; }
+
+        /* ===== HERO ===== */
+        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 8vw, 6rem); color: var(--primary); line-height: 1.1; }
+        .hero p { font-size: 1.3rem; max-width: 850px; margin: 30px auto 45px; font-weight: 300; line-height: 1.6; }
+        .btn { padding: 20px 40px; text-decoration: none; font-weight: 700; letter-spacing: 1px; transition: var(--transition); display: inline-flex; align-items: center; gap: 12px; border: 1px solid var(--gold); }
+        .btn-gold { background: var(--gold); color: white; }
+        .btn-gold:hover { background: transparent; color: var(--gold); transform: translateY(-5px); }
+        .btn-outline { color: var(--primary); border-color: var(--primary); margin-left: 15px; }
+
+        /* ===== SERVICES ===== */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .service-card { background: white; padding: 50px 40px; border: 1px solid #eee; transition: var(--transition); text-align: center; }
+        .service-card:hover { border-color: var(--gold); transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.05); }
+        .service-card i { font-size: 3rem; color: var(--gold); margin-bottom: 25px; }
+        .service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--primary); margin-bottom: 15px; }
+        .service-card p { font-size: 1.1rem; line-height: 1.6; opacity: 0.8; }
+
+        /* ===== EXPERTISE ===== */
+        .expertise-flex { display: flex; align-items: center; gap: 80px; flex-wrap: wrap; }
+        .expertise-img { flex: 1; min-width: 380px; }
+        .expertise-img img { width: 100%; border-radius: 4px; box-shadow: 30px 30px 0 var(--light-gold); }
+        .expertise-text { flex: 1.2; min-width: 380px; }
+        .expertise-text h2 { font-family: 'Cormorant Garamond', serif; font-size: 4rem; margin: 10px 0; color: var(--primary); }
+        .stats-row { display: flex; gap: 50px; margin-top: 40px; }
+        .stat-item b { font-size: 3rem; color: var(--gold); display: block; font-family: 'Cormorant Garamond', serif; }
+
+        /* ===== NOUVEAU DESIGN PROCESSUS (GRID DYNAMIQUE) ===== */
+        .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .process-card { 
+            background: white; padding: 40px; position: relative; overflow: hidden;
+            border: 1px solid #f0f0f0; transition: var(--transition); z-index: 1;
         }
+        .process-card:hover { border-color: var(--gold); background: var(--primary); }
+        .process-card:hover * { color: white !important; }
         
-        .video-slide.active { 
-            opacity: 1; 
-        }
-        
-        .video-slide video { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            filter: brightness(0.3) saturate(1.2);
-        }
-        
-        .video-overlay {
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%;
-            background: radial-gradient(
-                circle at center,
-                rgba(10, 20, 40, 0.7) 0%,
-                rgba(10, 20, 40, 0.9) 100%
-            );
-            z-index: -1;
-        }
-
-        /* ===== CONTAINER ===== */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* ===== PROCESSUS SECTION - NOUVEAU DESIGN COMPACT ===== */
-        .process-section {
-            padding: 80px 0;
-            background: var(--white);
-            position: relative;
-        }
-
-        .process-section .section-title h2 {
-            color: var(--primary);
-        }
-
-        .process-section .section-title p {
-            color: var(--gray-dark);
-        }
-
-        /* Design 1: Tableau Compact */
-        .process-table {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-top: 40px;
-        }
-
-        .process-cell {
-            background: var(--light);
-            border-radius: 12px;
-            padding: 25px 20px;
-            border-left: 4px solid var(--secondary);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .process-cell:hover {
-            transform: translateY(-5px);
-            background: white;
-            box-shadow: var(--shadow);
-        }
-
-        .process-cell-number {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 2rem;
-            font-weight: 800;
-            color: rgba(192, 86, 33, 0.1);
+        .process-num { 
+            position: absolute; top: -10px; right: 10px; font-size: 6rem; 
+            font-weight: 900; color: rgba(197, 160, 89, 0.1); z-index: -1; 
             font-family: 'Montserrat', sans-serif;
         }
+        .process-card i { font-size: 2rem; color: var(--gold); margin-bottom: 20px; display: block; }
+        .process-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; margin-bottom: 15px; color: var(--primary); }
+        .process-card p { font-size: 1.1rem; line-height: 1.6; opacity: 0.9; }
 
-        .process-cell h3 {
-            font-size: 1.1rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+        /* Étape 7 spéciale large */
+        .step-7 { grid-column: span 3; display: flex; align-items: center; gap: 40px; }
 
-        .process-cell h3 i {
-            color: var(--secondary);
-            font-size: 1rem;
-        }
+        /* ===== IMPACT STATS ===== */
+        .impact-section { background: var(--primary); color: white; text-align: center; }
+        .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; }
+        .impact-item b { font-size: 4rem; color: var(--gold); display: block; font-family: 'Cormorant Garamond', serif; }
+        .impact-item span { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; }
 
-        .process-cell p {
-            font-size: 0.9rem;
-            color: var(--gray-dark);
-            line-height: 1.5;
-        }
+        /* ===== CONTACT & VISIO ===== */
+        .contact-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .contact-box { background: white; padding: 50px; border-top: 5px solid var(--gold); text-align: center; transition: var(--transition); }
+        .contact-box:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .contact-box i { font-size: 2.5rem; color: var(--gold); margin-bottom: 25px; }
+        .contact-box h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 15px; color: var(--primary); }
+        .contact-box p { font-size: 1.1rem; margin-bottom: 5px; }
 
-        /* Design 2: Timeline Horizontale */
-        .horizontal-timeline {
-            display: flex;
-            overflow-x: auto;
-            gap: 15px;
-            padding: 20px 0 40px;
-            margin-top: 30px;
-            scrollbar-width: thin;
-            scrollbar-color: var(--secondary) transparent;
-        }
+        footer { background: #0a1428; color: white; padding: 80px 0 40px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 50px; }
 
-        .horizontal-timeline::-webkit-scrollbar {
-            height: 6px;
+        @media (max-width: 1024px) { 
+            .process-grid { grid-template-columns: 1fr 1fr; } 
+            .step-7 { grid-column: span 2; }
         }
-
-        .horizontal-timeline::-webkit-scrollbar-track {
-            background: var(--light);
-            border-radius: 3px;
-        }
-
-        .horizontal-timeline::-webkit-scrollbar-thumb {
-            background: var(--secondary);
-            border-radius: 3px;
-        }
-
-        .timeline-step {
-            min-width: 200px;
-            flex-shrink: 0;
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: var(--shadow);
-            border-top: 3px solid var(--secondary);
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .timeline-step:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .step-indicator {
-            width: 30px;
-            height: 30px;
-            background: var(--gradient-gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
-        .timeline-step h3 {
-            font-size: 1rem;
-            color: var(--primary);
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .timeline-step p {
-            font-size: 0.85rem;
-            color: var(--gray-dark);
-            line-height: 1.5;
-        }
-
-        /* Design 3: Grille Compacte avec Icons */
-        .process-icons-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            margin-top: 40px;
-        }
-
-        .process-icon-item {
-            background: white;
-            border-radius: 12px;
-            padding: 25px 15px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .process-icon-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow);
-            border-color: var(--secondary);
-        }
-
-        .icon-circle {
-            width: 50px;
-            height: 50px;
-            background: var(--gradient-gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            margin: 0 auto 15px;
-            transition: var(--transition);
-        }
-
-        .process-icon-item:hover .icon-circle {
-            transform: rotate(15deg) scale(1.1);
-        }
-
-        .process-icon-item h3 {
-            font-size: 1rem;
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-
-        .process-icon-item p {
-            font-size: 0.8rem;
-            color: var(--gray-dark);
-            line-height: 1.4;
-        }
-
-        .step-number-small {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--secondary);
-            background: rgba(192, 86, 33, 0.1);
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Design 4: Cards avec accordéon */
-        .process-accordion {
-            max-width: 800px;
-            margin: 40px auto 0;
-        }
-
-        .accordion-item {
-            background: white;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .accordion-header {
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .accordion-header:hover {
-            background: var(--light);
-        }
-
-        .accordion-number {
-            width: 35px;
-            height: 35px;
-            background: var(--gradient-gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 0.9rem;
-            flex-shrink: 0;
-        }
-
-        .accordion-title {
-            font-size: 1rem;
-            color: var(--primary);
-            flex: 1;
-        }
-
-        .accordion-icon {
-            color: var(--secondary);
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .accordion-content {
-            padding: 0 20px 20px 70px;
-            display: none;
-            font-size: 0.9rem;
-            color: var(--gray-dark);
-            line-height: 1.6;
-        }
-
-        .accordion-item.active .accordion-content {
-            display: block;
-        }
-
-        .accordion-item.active .accordion-icon {
-            transform: rotate(180deg);
-        }
-
-        /* ===== AUTRES SECTIONS (styles restants identiques) ===== */
-        .hero-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 100px 20px 80px;
-            position: relative;
-        }
-
-        .hero-content h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            line-height: 1.1;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 40px;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-
-        .hero-highlight {
-            color: var(--secondary);
-        }
-
-        .btn {
-            padding: 18px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            font-size: 1rem;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: var(--transition);
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary { 
-            background: var(--gradient-gold); 
-            color: white; 
-        }
-        
-        .btn-primary:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 20px 40px rgba(192, 86, 33, 0.3); 
-        }
-        
-        .btn-secondary { 
-            background: transparent; 
-            border: 2px solid white; 
-            color: white; 
-            margin-left: 15px; 
-        }
-        
-        .btn-secondary:hover { 
-            background: white; 
-            color: var(--primary); 
-            border-color: white;
-        }
-
-        .section-title { 
-            text-align: center; 
-            margin-bottom: 40px; 
-        }
-        
-        .section-title h2 { 
-            font-size: clamp(2rem, 5vw, 3rem); 
-            color: var(--primary); 
-            margin-bottom: 15px; 
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--gradient-gold);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            font-size: 1.1rem;
-            color: var(--gray-dark);
-            max-width: 600px;
-            margin: 20px auto 0;
-            line-height: 1.6;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .process-table,
-            .process-icons-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .horizontal-timeline {
-                gap: 10px;
-            }
-            
-            .timeline-step {
-                min-width: 180px;
-                padding: 15px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .process-table,
-            .process-icons-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .timeline-step {
-                min-width: 160px;
-            }
-            
-            .accordion-header {
-                padding: 15px;
-            }
-            
-            .accordion-content {
-                padding: 0 15px 15px 60px;
-            }
+        @media (max-width: 768px) { 
+            .process-grid, .contact-methods, .expertise-flex, .footer-grid, .step-7 { grid-template-columns: 1fr; grid-column: span 1; } 
+            h2.section-title { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Barre de progression -->
-    <div id="scroll-progress"></div>
-
-    <!-- Background vidéo -->
-    <div class="video-background-container">
-        <div class="video-slide active">
-            <video autoplay muted loop playsinline>
-                <source src="https://github.com/user-attachments/assets/ed3e1a7f-9b87-42a6-990e-b0ac339ba345" type="video/mp4">
-            </video>
-        </div>
-        <div class="video-slide">
-            <video autoplay muted loop playsinline>
-                <source src="https://github.com/user-attachments/assets/037967e6-9bef-4acb-bce6-8ad32f4f21aa" type="video/mp4">
-            </video>
-        </div>
+    <div class="video-bg">
+        <video autoplay muted loop playsinline><source src="https://github.com/user-attachments/assets/ed3e1a7f-9b87-42a6-990e-b0ac339ba345" type="video/mp4"></video>
     </div>
-    
-    <div class="video-overlay"></div>
 
-    <!-- HERO SECTION -->
-    <section class="hero-section" id="accueil">
+    <section class="hero">
+        <div class="container" data-aos="fade-up">
+            <p style="letter-spacing: 6px; font-weight: 700; color: var(--gold); margin-bottom: 20px;">MARKLY ADVISORY</p>
+            <h1>Excellence en Conseil Business<br>& Stratégie Projet</h1>
+            <p>Nous transformons vos visions entrepreneuriales en succès tangibles grâce à une approche stratégique sur-mesure.</p>
+            <div class="hero-btns">
+                <a href="#services" class="btn btn-gold">DÉCOUVRIR NOS SERVICES</a>
+                <a href="#contact" class="btn btn-outline">CONSULTATION GRATUITE</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section-padding">
         <div class="container">
-            <div class="hero-content" data-aos="zoom-out" data-aos-duration="1500">
-                <h1 data-aos="fade-up" data-aos-delay="200">MARKLY <span class="hero-highlight">Advisory</span></h1>
-                <p data-aos="fade-up" data-aos-delay="400">Excellence en Conseil Business & Stratégie Projet. Nous transformons vos visions entrepreneuriales en succès tangibles grâce à une approche stratégique sur-mesure.</p>
-                <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
-                    <a href="#services" class="btn btn-primary">
-                        <i class="fas fa-rocket"></i> Découvrir nos services
-                    </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        <i class="fas fa-calendar-check"></i> Consultation gratuite
-                    </a>
+            <h2 class="section-title" data-aos="fade-up">Nos Services Premium</h2>
+            <div class="gold-line"></div>
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <h3>Business Plan Stratégique</h3>
+                    <p>Création de business plans complets et convaincants pour projets naissants ou en développement.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-tasks"></i>
+                    <h3>Suivi de Projet Expert</h3>
+                    <p>Accompagnement continu et analyse régulière pour garantir le succès et l'efficacité de votre projet.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-chart-pie"></i>
+                    <h3>Analyse Stratégique</h3>
+                    <p>Études approfondies et recommandations pour optimiser la performance et la rentabilité de votre entreprise.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up">
+                    <i class="fas fa-code"></i>
+                    <h3>Développement Web Élite</h3>
+                    <p>Création de sites web professionnels et performants pour présenter votre activité avec élégance.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Consultation Business</h3>
+                    <p>Conseils stratégiques personnalisés pour surmonter les défis et saisir les opportunités de marché.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Résolution Stratégique</h3>
+                    <p>Aide spécialisée pour identifier et résoudre les difficultés spécifiques de votre entreprise.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PROCESSUS SECTION - NOUVEAU DESIGN COMPACT -->
-    <section class="process-section" id="processus">
+    <section class="section-padding" style="background: white;">
         <div class="container">
-            <div class="section-title" data-aos="fade-up">
-                <h2>Notre Processus en 7 Étapes</h2>
-                <p>Une méthodologie éprouvée pour transformer vos projets en succès</p>
+            <div class="expertise-flex">
+                <div class="expertise-img" data-aos="fade-right">
+                    <img src="https://github.com/user-attachments/assets/87e53a92-c9f2-4fa8-bde4-a159854242cd" alt="Khadija O.">
+                </div>
+                <div class="expertise-text" data-aos="fade-left">
+                    <p style="color: var(--gold); font-weight: 700; letter-spacing: 2px;">VOTRE PARTENAIRE DE CONFIANCE</p>
+                    <h2>Khadija.O</h2>
+                    <h4 style="color: var(--gold); margin-bottom: 25px;">Juriste & Consultante en Stratégie d'Entreprise</h4>
+                    <p style="font-size: 1.15rem; line-height: 1.8;">Spécialiste en droit des affaires, je vous accompagne dans la transformation de vos projets en succès durables grâce à une approche pluridisciplinaire unique.</p>
+                    
+                    <div class="stats-row">
+                        <div class="stat-item"><b class="counter" data-target="150">0</b><span>Projets Accomplis</span></div>
+                        <div class="stat-item"><b class="counter" data-target="95">0</b><span>% Satisfaction</span></div>
+                        <div class="stat-item"><b class="counter" data-target="2">0</b><span>Ans d'Expérience</span></div>
+                    </div>
+                </div>
             </div>
-            
-            <!-- Option 1: Tableau Compact -->
-            <div class="process-table" data-aos="fade-up">
-                <div class="process-cell">
-                    <div class="process-cell-number">01</div>
-                    <h3><i class="fas fa-handshake"></i> Contact</h3>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Notre Processus</h2>
+            <p style="text-align:center; opacity:0.6; margin-bottom: 20px;">Une méthodologie éprouvée en 7 étapes</p>
+            <div class="gold-line"></div>
+
+            <div class="process-grid">
+                <div class="process-card" data-aos="fade-up">
+                    <div class="process-num">01</div>
+                    <i class="fas fa-paper-plane"></i>
+                    <h3>Contact</h3>
                     <p>Premier échange pour comprendre vos besoins et objectifs spécifiques.</p>
                 </div>
-                <div class="process-cell">
-                    <div class="process-cell-number">02</div>
-                    <h3><i class="fas fa-search"></i> Pré-analyse</h3>
+                <div class="process-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="process-num">02</div>
+                    <i class="fas fa-search-plus"></i>
+                    <h3>Pré-analyse</h3>
                     <p>Évaluation initiale de votre situation et identification des opportunités.</p>
                 </div>
-                <div class="process-cell">
-                    <div class="process-cell-number">03</div>
-                    <h3><i class="fas fa-calendar-check"></i> Consultation</h3>
+                <div class="process-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="process-num">03</div>
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>Consultation</h3>
                     <p>Rencontre détaillée pour définir les axes stratégiques prioritaires.</p>
                 </div>
-                <div class="process-cell">
-                    <div class="process-cell-number">04</div>
-                    <h3><i class="fas fa-file-contract"></i> Proposition</h3>
+                <div class="process-card" data-aos="fade-up">
+                    <div class="process-num">04</div>
+                    <i class="fas fa-file-signature"></i>
+                    <h3>Proposition</h3>
                     <p>Élaboration d'un plan d'action personnalisé avec objectifs mesurables.</p>
                 </div>
-                <div class="process-cell">
-                    <div class="process-cell-number">05</div>
-                    <h3><i class="fas fa-check-circle"></i> Validation</h3>
+                <div class="process-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="process-num">05</div>
+                    <i class="fas fa-check-double"></i>
+                    <h3>Validation</h3>
                     <p>Validation commune du plan stratégique et définition du calendrier.</p>
                 </div>
-                <div class="process-cell">
-                    <div class="process-cell-number">06</div>
-                    <h3><i class="fas fa-hands-helping"></i> Accompagnement</h3>
+                <div class="process-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="process-num">06</div>
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Accompagnement</h3>
                     <p>Mise en œuvre avec suivi régulier et ajustements si nécessaire.</p>
                 </div>
-                <div class="process-cell">
-                    <div class="process-cell-number">07</div>
-                    <h3><i class="fas fa-chart-line"></i> Résultats</h3>
-                    <p>Analyse des résultats et optimisation continue pour performance maximale.</p>
-                </div>
-            </div>
-
-            <!-- Option 2: Timeline Horizontale -->
-            <!--
-            <div class="horizontal-timeline" data-aos="fade-up">
-                <div class="timeline-step">
-                    <div class="step-indicator">01</div>
-                    <h3><i class="fas fa-handshake"></i> Contact</h3>
-                    <p>Premier échange pour comprendre vos besoins et objectifs.</p>
-                </div>
-                <div class="timeline-step">
-                    <div class="step-indicator">02</div>
-                    <h3><i class="fas fa-search"></i> Pré-analyse</h3>
-                    <p>Évaluation initiale et identification des opportunités.</p>
-                </div>
-                <div class="timeline-step">
-                    <div class="step-indicator">03</div>
-                    <h3><i class="fas fa-calendar-check"></i> Consultation</h3>
-                    <p>Rencontre pour définir les axes stratégiques.</p>
-                </div>
-                <div class="timeline-step">
-                    <div class="step-indicator">04</div>
-                    <h3><i class="fas fa-file-contract"></i> Proposition</h3>
-                    <p>Plan d'action personnalisé avec objectifs mesurables.</p>
-                </div>
-                <div class="timeline-step">
-                    <div class="step-indicator">05</div>
-                    <h3><i class="fas fa-check-circle"></i> Validation</h3>
-                    <p>Validation du plan et définition du calendrier.</p>
-                </div>
-                <div class="timeline-step">
-                    <div class="step-indicator">06</div>
-                    <h3><i class="fas fa-hands-helping"></i> Accompagnement</h3>
-                    <p>Mise en œuvre avec suivi et ajustements.</p>
-                </div>
-                <div class="timeline-step">
-                    <div class="step-indicator">07</div>
-                    <h3><i class="fas fa-chart-line"></i> Résultats</h3>
-                    <p>Analyse et optimisation pour performance maximale.</p>
-                </div>
-            </div>
-            -->
-
-            <!-- Option 3: Grille avec Icons -->
-            <!--
-            <div class="process-icons-grid" data-aos="fade-up">
-                <div class="process-icon-item">
-                    <div class="step-number-small">01</div>
-                    <div class="icon-circle">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h3>Contact</h3>
-                    <p>Premier échange pour comprendre vos besoins</p>
-                </div>
-                <div class="process-icon-item">
-                    <div class="step-number-small">02</div>
-                    <div class="icon-circle">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3>Pré-analyse</h3>
-                    <p>Évaluation initiale et identification opportunités</p>
-                </div>
-                <div class="process-icon-item">
-                    <div class="step-number-small">03</div>
-                    <div class="icon-circle">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
-                    <h3>Consultation</h3>
-                    <p>Rencontre pour axes stratégiques prioritaires</p>
-                </div>
-                <div class="process-icon-item">
-                    <div class="step-number-small">04</div>
-                    <div class="icon-circle">
-                        <i class="fas fa-file-contract"></i>
-                    </div>
-                    <h3>Proposition</h3>
-                    <p>Plan d'action personnalisé avec objectifs</p>
-                </div>
-                <div class="process-icon-item">
-                    <div class="step-number-small">05</div>
-                    <div class="icon-circle">
-                        <i class="fas fa-check-circle"></i>
-                    </div>
-                    <h3>Validation</h3>
-                    <p>Validation du plan et calendrier</p>
-                </div>
-                <div class="process-icon-item">
-                    <div class="step-number-small">06</div>
-                    <div class="icon-circle">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <h3>Accompagnement</h3>
-                    <p>Mise en œuvre avec suivi régulier</p>
-                </div>
-                <div class="process-icon-item">
-                    <div class="step-number-small">07</div>
-                    <div class="icon-circle">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Résultats</h3>
-                    <p>Analyse et optimisation performance</p>
-                </div>
-            </div>
-            -->
-
-            <!-- Option 4: Accordéon -->
-            <!--
-            <div class="process-accordion" data-aos="fade-up">
-                <div class="accordion-item active">
-                    <div class="accordion-header">
-                        <div class="accordion-number">01</div>
-                        <div class="accordion-title">Contact - Premier échange pour comprendre vos besoins</div>
-                        <i class="fas fa-chevron-down accordion-icon"></i>
-                    </div>
-                    <div class="accordion-content">
-                        Premier échange pour comprendre vos besoins et objectifs spécifiques. Nous établissons une base solide pour notre collaboration.
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <div class="accordion-number">02</div>
-                        <div class="accordion-title">Pré-analyse - Évaluation de votre situation</div>
-                        <i class="fas fa-chevron-down accordion-icon"></i>
-                    </div>
-                    <div class="accordion-content">
-                        Évaluation initiale de votre situation et identification des opportunités de croissance et d'amélioration.
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <div class="accordion-number">03</div>
-                        <div class="accordion-title">Consultation - Définition des axes stratégiques</div>
-                        <i class="fas fa-chevron-down accordion-icon"></i>
-                    </div>
-                    <div class="accordion-content">
-                        Rencontre détaillée pour définir les axes stratégiques prioritaires et établir une vision commune.
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <div class="accordion-number">04</div>
-                        <div class="accordion-title">Proposition - Plan d'action personnalisé</div>
-                        <i class="fas fa-chevron-down accordion-icon"></i>
-                    </div>
-                    <div class="accordion-content">
-                        Élaboration d'un plan d'action personnalisé avec objectifs mesurables et étapes claires.
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <div class="accordion-number">05</div>
-                        <div class="accordion-title">Validation - Accord sur le plan stratégique</div>
-                        <i class="fas fa-chevron-down accordion-icon"></i>
-                    </div>
-                    <div class="accordion-content">
-                        Validation commune du plan stratégique et définition du calendrier d'exécution.
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <div class="accordion-number">06</div>
-                        <div class="accordion-title">Accompagnement - Mise en œuvre et suivi</div>
-                        <i class="fas fa-chevron-down accordion-icon"></i>
-                    </div>
-                    <div class="accordion-content">
-                        Mise en œuvre avec suivi régulier et ajustements si nécessaire pour garantir le succès.
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <div class="accordion-number">07</div>
-                        <div class="accordion-title">Résultats - Analyse et optimisation</div>
-                        <i class="fas fa-chevron-down accordion-icon"></i>
-                    </div>
-                    <div class="accordion-content">
-                        Analyse des résultats et optimisation continue pour performance maximale et croissance durable.
+                <div class="process-card step-7" data-aos="fade-up">
+                    <div class="process-num">07</div>
+                    <i class="fas fa-trophy" style="font-size: 3rem;"></i>
+                    <div>
+                        <h3>Résultats & Optimisation</h3>
+                        <p>Analyse des résultats et optimisation continue pour une performance maximale sur le long terme.</p>
                     </div>
                 </div>
             </div>
-            -->
         </div>
     </section>
 
-    <!-- SCRIPTS -->
+    <section class="section-padding impact-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Notre Impact</h2>
+            <div class="impact-grid">
+                <div class="impact-item"><b class="counter" data-target="98">0</b><span>Satisfaction Client</span></div>
+                <div class="impact-item"><b class="counter" data-target="150">0</b><span>Projets Accomplis</span></div>
+                <div class="impact-item"><b class="counter" data-target="45">0</b><span>Croissance Moyenne</span></div>
+                <div class="impact-item"><b class="counter" data-target="24">0</b><span>Support Dédié 24/7</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Témoignages Clients</h2>
+            <div class="gold-line"></div>
+            <div class="services-grid">
+                <div class="service-card" style="text-align: left;">
+                    <i class="fas fa-quote-left" style="opacity: 0.1;"></i>
+                    <p style="font-style: italic; font-size: 1.1rem; margin-bottom: 25px;">"MARKLY Advisory a transformé notre vision en un plan d'action concret. Notre chiffre d'affaires a doublé en 6 mois."</p>
+                    <h5 style="color: var(--primary); font-size: 1.2rem;">Ahmed B.</h5>
+                    <small>CEO, TechStart Maroc</small>
+                </div>
+                <div class="service-card" style="text-align: left;">
+                    <i class="fas fa-quote-left" style="opacity: 0.1;"></i>
+                    <p style="font-style: italic; font-size: 1.1rem; margin-bottom: 25px;">"L'expertise juridique de Khadija a été déterminante pour notre expansion. Elle a vu des opportunités invisibles."</p>
+                    <h5 style="color: var(--primary); font-size: 1.2rem;">Sophie M.</h5>
+                    <small>Directrice, GreenFood SA</small>
+                </div>
+                <div class="service-card" style="text-align: left;">
+                    <i class="fas fa-quote-left" style="opacity: 0.1;"></i>
+                    <p style="font-style: italic; font-size: 1.1rem; margin-bottom: 25px;">"Un accompagnement sur-mesure exceptionnel. Le business plan nous a permis d'obtenir notre financement."</p>
+                    <h5 style="color: var(--primary); font-size: 1.2rem;">Karim L.</h5>
+                    <small>Fondateur, Artisan Digital</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding" style="background: white;">
+        <div class="container">
+            <h2 class="section-title">Contact Direct</h2>
+            <div class="gold-line"></div>
+            <div class="contact-methods">
+                <div class="contact-box" data-aos="fade-up">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Téléphone Direct</h3>
+                    <p>+212 6 36 22 19 00</p>
+                    <p>khadijaoulkaid4@gmail.com</p>
+                    <p style="color: var(--gold); font-weight: 700; margin-top: 15px;">Lun - Ven: 9h - 18h</p>
+                    <a href="tel:+212636221900" class="btn btn-gold" style="margin-top: 30px; width: 100%; justify-content: center;">RÉSERVER MAINTENANT</a>
+                </div>
+                <div class="contact-box" data-aos="fade-up" data-aos-delay="150">
+                    <i class="fas fa-video"></i>
+                    <h3>Consultation Virtuelle</h3>
+                    <p>Visio-conférence sécurisée</p>
+                    <p>Durée: 45-60 minutes</p>
+                    <p style="color: var(--gold); font-weight: 700; margin-top: 15px;">Première consultation gratuite</p>
+                    <a href="mailto:khadijaoulkaid4@gmail.com" class="btn btn-primary" style="margin-top: 30px; width: 100%; justify-content: center; border-color: var(--primary); color: var(--primary);">RÉSERVER UNE VISIO</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h2 style="color: var(--gold); font-family: Cormorant Garamond; font-size: 2.5rem; margin-bottom: 20px;">MARKLY ADVISORY</h2>
+                    <p style="opacity: 0.7; line-height: 1.8;">Votre partenaire stratégique pour transformer les visions en succès concrets. Excellence en Conseil Business & Stratégie Projet.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 25px; letter-spacing: 2px;">NAVIGATION</h4>
+                    <p style="margin-bottom: 15px;"><a href="#services" style="color: white; text-decoration: none; opacity: 0.6;">Nos Services</a></p>
+                    <p style="margin-bottom: 15px;"><a href="#contact" style="color: white; text-decoration: none; opacity: 0.6;">Contact</a></p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 25px; letter-spacing: 2px;">CONTACT</h4>
+                    <p style="opacity: 0.6; margin-bottom: 15px;">+212 6 36 22 19 00</p>
+                    <p style="opacity: 0.6;">khadijaoulkaid4@gmail.com</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; text-align: center; opacity: 0.4; font-size: 0.8rem; letter-spacing: 2px;">
+                © 2026 MARKLY ADVISORY. TOUS DROITS RÉSERVÉS. | CONÇU POUR L'EXCELLENCE
+            </div>
+        </div>
+    </footer>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialisation AOS
-        AOS.init({ 
-            duration: 1000, 
-            once: true,
-            offset: 100
-        });
+        AOS.init({ duration: 1000, once: true });
 
-        // Barre de progression
-        window.onscroll = function() {
-            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            let scrolled = (winScroll / height) * 100;
-            document.getElementById("scroll-progress").style.width = scrolled + "%";
-        };
-
-        // Rotation des vidéos en arrière-plan
-        const slides = document.querySelectorAll('.video-slide');
-        let current = 0;
-        
-        function rotateSlides() {
-            slides[current].classList.remove('active');
-            current = (current + 1) % slides.length;
-            slides[current].classList.add('active');
-        }
-        
-        setInterval(rotateSlides, 8000);
-
-        // Gestion des accordéons (si activés)
-        const accordionItems = document.querySelectorAll('.accordion-item');
-        accordionItems.forEach(item => {
-            const header = item.querySelector('.accordion-header');
-            header.addEventListener('click', () => {
-                accordionItems.forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.classList.remove('active');
-                    }
-                });
-                item.classList.toggle('active');
-            });
-        });
-
-        // Smooth scroll pour les liens d'ancrage
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+        // Compteur animés
+        const counters = document.querySelectorAll('.counter');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    const target = +entry.target.getAttribute('data-target');
+                    let count = 0;
+                    const update = () => {
+                        const inc = target / 60;
+                        if(count < target) {
+                            count += inc;
+                            entry.target.innerText = Math.ceil(count);
+                            setTimeout(update, 25);
+                        } else { entry.target.innerText = target; }
+                    };
+                    update();
                 }
             });
-        });
+        }, { threshold: 1 });
+        counters.forEach(c => observer.observe(c));
     </script>
 </body>
 </html>
