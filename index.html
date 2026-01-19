@@ -11,12 +11,12 @@
 
     <style>
         :root {
-            --primary: #0a1428;
-            --secondary: #1a365d;
-            --gold: #c5a059;
-            --cream: #f4ece1;
-            --bg-soft: #f9f7f5;      
-            --text: #2d3748;
+            --primary: #0a1428;      /* Bleu nuit profond */
+            --secondary: #1a365d;    /* Navy */
+            --gold: #b38b45;         /* Or plus chaud pour contraste */
+            --cream: #ffffff;        /* Blanc pur pour la clarté */
+            --bg-soft: #fcfcfc;      /* Fond perle très léger */
+            --text: #1a202c;         /* Texte plus sombre pour lisibilité */
             --white: #ffffff;
             --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -28,41 +28,37 @@
         .container { max-width: 1300px; margin: 0 auto; padding: 0 30px; }
         .section-padding { padding: 100px 0; }
         
-        h2.section-title { font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; color: var(--primary); text-align: center; margin-bottom: 10px; }
-        .gold-line { width: 60px; height: 3px; background: var(--gold); margin: 0 auto 30px; }
+        h2.section-title { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: var(--primary); text-align: center; margin-bottom: 10px; }
+        .gold-line { width: 80px; height: 3px; background: var(--gold); margin: 0 auto 30px; }
 
-        /* ===== BACKGROUND VIDEO SYSTEM (ÉCLAIRCIE) ===== */
-        .video-background-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden; background: #000; }
+        /* ===== BACKGROUND VIDEO SYSTEM ===== */
+        .video-background-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden; background: #fff; }
         .video-slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 2s ease; }
-        
-        /* Augmentation de l'opacité de 0.15 à 0.40 pour une meilleure visibilité */
-        .video-slide.active { opacity: 0.40; } 
-        
+        .video-slide.active { opacity: 0.45; } /* Vidéo bien visible */
         .video-slide video { width: 100%; height: 100%; object-fit: cover; }
 
-        /* ===== LANDING PAGE DESIGN (Moins de blanc sur le dessus) ===== */
+        /* ===== LANDING PAGE DESIGN ===== */
         .hero { 
             height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative;
-            /* Dégradé plus transparent pour voir la vidéo à travers */
-            background: radial-gradient(circle at center, rgba(255,255,255,0.4) 0%, rgba(244,236,225,0.2) 100%);
+            background: radial-gradient(circle at center, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.1) 100%);
         }
-        .hero-tagline { font-weight: 700; color: var(--gold); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 20px; display: block; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
-        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.2rem, 7vw, 6.5rem); color: var(--primary); line-height: 1.05; margin-bottom: 30px; text-shadow: 0 2px 10px rgba(255,255,255,0.5); }
-        .hero p { font-size: 1.3rem; color: var(--primary); max-width: 750px; margin: 0 auto 45px; line-height: 1.7; font-weight: 600; text-shadow: 0 1px 2px rgba(255,255,255,0.8); }
+        .hero-tagline { font-weight: 700; color: var(--gold); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 20px; display: block; }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.2rem, 7vw, 6.5rem); color: var(--primary); line-height: 1.05; margin-bottom: 30px; }
+        .hero p { font-size: 1.4rem; color: var(--primary); max-width: 750px; margin: 0 auto 45px; line-height: 1.7; font-weight: 600; }
         
         .btn { padding: 20px 45px; text-decoration: none; font-weight: 700; transition: var(--transition); display: inline-flex; align-items: center; gap: 12px; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; }
         .btn-gold { background: var(--gold); color: white; border: 1px solid var(--gold); }
         .btn-gold:hover { background: var(--primary); border-color: var(--primary); transform: translateY(-5px); }
-        .btn-outline { color: var(--primary); border: 2px solid var(--primary); margin-left: 15px; background: rgba(255,255,255,0.3); }
+        .btn-outline { color: var(--primary); border: 2px solid var(--primary); margin-left: 15px; background: rgba(255,255,255,0.4); backdrop-filter: blur(5px); }
         .btn-outline:hover { background: var(--primary); color: white; }
 
         /* ===== SERVICES ===== */
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
-        .service-card { background: white; padding: 40px; border-bottom: 4px solid var(--gold); transition: var(--transition); text-align: center; }
-        .service-card:hover { background: var(--primary); transform: translateY(-10px); }
+        .service-card { background: white; padding: 40px; border-bottom: 4px solid var(--gold); transition: var(--transition); text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+        .service-card:hover { border-color: var(--primary); transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
         .service-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
         .service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; margin-bottom: 12px; color: var(--primary); }
-        .service-card:hover h3, .service-card:hover p { color: white; }
+        .service-card:hover h3, .service-card:hover p { color: var(--primary); }
 
         /* ===== EXPERTISE ===== */
         .expertise-section { background: var(--primary); color: white; }
@@ -75,18 +71,18 @@
         .success-check { font-size: 1.2rem; color: var(--gold); font-weight: 600; display: inline-flex; align-items: center; gap: 15px; padding: 20px; border: 1px dashed rgba(197, 160, 89, 0.4); border-radius: 4px; background: rgba(197, 160, 89, 0.05); }
 
         /* ===== PROCESSUS ===== */
-        .process-section { background: var(--cream); }
+        .process-section { background: var(--white); }
         .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .process-card { background: white; padding: 35px; position: relative; border: 1px solid rgba(197, 160, 89, 0.1); transition: var(--transition); }
-        .process-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
-        .process-num { position: absolute; top: 10px; right: 15px; font-size: 3.5rem; font-weight: 900; color: rgba(10, 20, 40, 0.05); }
+        .process-card { background: var(--bg-soft); padding: 35px; position: relative; border: 1px solid #eee; transition: var(--transition); }
+        .process-card:hover { border-color: var(--gold); transform: translateY(-5px); background: white; box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
+        .process-num { position: absolute; top: 10px; right: 15px; font-size: 3.5rem; font-weight: 900; color: rgba(179, 139, 69, 0.1); }
         .process-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: var(--primary); margin-bottom: 10px; }
 
         /* ===== TÉMOIGNAGES ===== */
         .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
-        .testimonial-card { background: white; padding: 30px; border: 1px solid #eee; transition: var(--transition); }
+        .testimonial-card { background: white; padding: 30px; border: 1px solid #eee; transition: var(--transition); box-shadow: 0 5px 15px rgba(0,0,0,0.02); }
         .testimonial-card:hover { transform: translateY(-5px); border-color: var(--gold); }
-        .testimonial-content { font-size: 0.95rem; line-height: 1.6; font-style: italic; margin-bottom: 20px; position: relative; }
+        .testimonial-content { font-size: 0.95rem; line-height: 1.6; font-style: italic; margin-bottom: 20px; position: relative; color: #4a5568; }
         .testimonial-author { display: flex; align-items: center; gap: 15px; }
         .author-avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); }
         .author-info h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--primary); }
@@ -94,7 +90,7 @@
 
         /* ===== CONTACT ===== */
         .contact-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .contact-box { background: white; padding: 40px; border-left: 8px solid var(--gold); }
+        .contact-box { background: white; padding: 40px; border-left: 8px solid var(--gold); box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
 
         footer { background: #050a14; color: white; padding: 60px 0 40px; text-align: center; }
 
@@ -261,9 +257,9 @@
         </div>
     </section>
 
-    <footer>
+    <footer style="padding: 40px 0; text-align: center;">
         <h2 style="color: var(--gold); font-family: Cormorant Garamond; font-size: 2.2rem; margin-bottom: 10px;">MARKLY ADVISORY</h2>
-        <p style="opacity: 0.7; margin-bottom: 20px;">khadijaoulkaid4@gmail.com | +212 6 36 22 19 00</p>
+        <p style="opacity: 0.7; margin-bottom: 20px; color: var(--primary);">khadijaoulkaid4@gmail.com | +212 6 36 22 19 00</p>
         <p style="opacity: 0.5; font-size: 0.8rem; letter-spacing: 2px;">© 2025 MARKLY ADVISORY. TOUS DROITS RÉSERVÉS.</p>
     </footer>
 
