@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markly Advisory | Conseil Stratégique & Business Plan Maroc</title>
-    
-    <meta name="description" content="Markly Advisory - Expert en conseil stratégique, business plan et ingénierie de projet au Maroc. Accompagnement sur-mesure pour entrepreneurs et PME.">
-    <meta name="keywords" content="conseil stratégique Maroc, business plan Casablanca, expert droit des affaires, accompagnement PME Maroc, Markly Advisory">
+    <title>MARKLY Advisory - Stratégie & Excellence</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -16,272 +13,208 @@
         :root {
             --primary: #0a1428;
             --gold: #b38b45;
-            --bg-light: #ffffff;
-            --bg-soft: #f9f7f4;
+            --white: #ffffff;
+            --bg-light: #fcfcfc;
             --text: #1a202c;
-            --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            --transition: all 0.5s ease;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-light); color: var(--text); overflow-x: hidden; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--white); color: var(--text); line-height: 1.6; }
 
         .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 25px; }
-        .section-padding { padding: 100px 0; }
-        
-        h2.section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 3.5rem); color: var(--primary); text-align: center; margin-bottom: 10px; }
-        .gold-line { width: 60px; height: 3px; background: var(--gold); margin: 0 auto 50px; }
+        .section-padding { padding: 120px 0; }
 
-        /* 1. NAVIGATION FIXED */
-        nav {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
-            padding: 20px 0; transition: var(--transition);
-            background: rgba(10, 20, 40, 0.8); backdrop-filter: blur(10px);
+        /* ===== TITRES LARGE ===== */
+        h2.section-title { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: var(--primary); text-align: center; margin-bottom: 40px; }
+        .gold-line { width: 80px; height: 3px; background: var(--gold); margin: -30px auto 60px; }
+
+        /* ===== LANDING PAGE (VIDÉO) ===== */
+        .hero { 
+            height: 100vh; display: flex; align-items: center; justify-content: center; 
+            text-align: center; position: relative; background: #000; color: white;
         }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: white; text-decoration: none; font-weight: 700; letter-spacing: 2px; }
-        .logo span { color: var(--gold); }
-        .nav-links { display: none; gap: 30px; }
-        .nav-links a { color: white; text-decoration: none; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
-        .nav-links a:hover { color: var(--gold); }
-        @media (min-width: 992px) { .nav-links { display: flex; } }
-
-        /* 2. HERO LANDING */
-        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; background: #000; color: white; }
-        .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        .hero-video-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
         .video-slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 2s ease; }
         .video-slide.active { opacity: 0.6; }
         .video-slide video { width: 100%; height: 100%; object-fit: cover; }
-        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10,20,40,0.6); z-index: 1; }
-        .hero-content { position: relative; z-index: 2; max-width: 900px; }
-        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 8vw, 6rem); margin-bottom: 25px; line-height: 1.1; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10,20,40,0.5); z-index: 1; }
+        
+        .hero-content { position: relative; z-index: 2; width: 90%; }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 8vw, 6.5rem); line-height: 1.1; margin-bottom: 20px; }
+        .hero p { font-size: 1.5rem; font-weight: 300; margin-bottom: 40px; }
 
-        .btn { padding: 18px 45px; text-decoration: none; font-weight: 700; transition: var(--transition); display: inline-flex; align-items: center; gap: 10px; border-radius: 50px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; }
+        .btn { padding: 20px 45px; text-decoration: none; font-weight: 700; transition: var(--transition); display: inline-flex; align-items: center; gap: 10px; border-radius: 50px; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; }
         .btn-gold { background: var(--gold); color: white; border: 1px solid var(--gold); }
-        .btn-gold:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(179,139,69,0.3); }
+        .btn-gold:hover { background: transparent; color: var(--gold); transform: translateY(-5px); }
 
-        /* 5. FAQ SECTION */
-        .faq-section { background: var(--bg-soft); }
-        .faq-grid { display: grid; gap: 20px; max-width: 800px; margin: 0 auto; }
-        .faq-item { background: white; padding: 25px; border-radius: 10px; border: 1px solid #eee; }
-        .faq-item h4 { color: var(--primary); margin-bottom: 10px; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; }
+        /* ===== SERVICES ===== */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+        .service-card { padding: 60px 40px; background: white; border: 1px solid #eee; text-align: center; transition: var(--transition); }
+        .service-card:hover { border-color: var(--gold); transform: translateY(-10px); }
+        .service-card i { font-size: 3rem; color: var(--gold); margin-bottom: 25px; }
+        .service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 15px; }
 
-        /* 7. FORMULAIRE DE CONTACT */
-        .contact-form-container { background: white; padding: 50px; border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.05); }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
-        .form-group input, .form-group select, .form-group textarea { 
-            width: 100%; padding: 15px; border: 1px solid #eee; border-radius: 8px; font-family: inherit; transition: 0.3s;
+        /* ===== PROCESSUS (3 COLONNES SANS VIDE) ===== */
+        .process-section { background: var(--bg-light); }
+        .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        .process-card { background: white; padding: 40px; border: 1px solid #eee; position: relative; transition: var(--transition); }
+        .process-card:hover { border-color: var(--gold); }
+        .process-num { font-size: 4rem; font-weight: 900; color: rgba(179,139,69,0.1); font-family: 'Cormorant Garamond'; position: absolute; top: 10px; right: 20px; }
+        .process-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; margin-bottom: 10px; color: var(--primary); }
+        .process-card p { font-size: 1.1rem; color: #555; }
+
+        /* ===== EXPERTISE KHADIJA (IMAGE ET TEXTE À CÔTÉ) ===== */
+        .expertise-section { background: #fff; }
+        .expertise-flex { display: flex; align-items: flex-start; gap: 60px; }
+        .expertise-img { flex: 1; position: sticky; top: 50px; }
+        .expertise-img img { width: 100%; border-radius: 10px; box-shadow: 30px 30px 0 var(--gold); }
+        
+        .expertise-text { flex: 1.5; text-align: left; }
+        .expertise-text h2 { font-family: 'Cormorant Garamond', serif; font-size: 4rem; color: var(--primary); margin-bottom: 10px; }
+        .expertise-text h4 { font-size: 1.5rem; color: var(--gold); margin-bottom: 30px; font-family: 'Cormorant Garamond', serif; }
+        .expertise-text p { font-size: 1.2rem; margin-bottom: 25px; color: #444; text-align: justify; }
+        
+        .vision-box { background: var(--bg-light); padding: 40px; border-radius: 10px; margin-top: 40px; border-left: 5px solid var(--gold); }
+        .vision-box h5 { font-size: 1.2rem; margin-bottom: 15px; color: var(--primary); font-weight: 700; }
+        .success-badge { display: inline-block; margin-top: 30px; font-weight: 700; font-size: 1.2rem; color: var(--gold); }
+
+        /* ===== CONTACT ===== */
+        .contact-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .contact-box { padding: 60px; text-align: center; border: 1px solid #eee; transition: var(--transition); }
+        .contact-box:hover { border-color: var(--gold); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .contact-box i { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
+
+        footer { background: var(--primary); color: white; padding: 60px 0; text-align: center; }
+
+        /* RESPONSIVE MOBILE */
+        @media (max-width: 992px) {
+            .expertise-flex { flex-direction: column; }
+            .process-grid { grid-template-columns: repeat(2, 1fr); }
+            .expertise-img { position: static; width: 100%; max-width: 500px; margin: 0 auto; }
         }
-        .form-group input:focus { border-color: var(--gold); outline: none; }
-
-        /* WHATSAPP FLOAT */
-        .whatsapp-float {
-            position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white;
-            width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 2000; transition: 0.3s;
+        @media (max-width: 768px) {
+            .process-grid, .contact-methods { grid-template-columns: 1fr; }
+            h2.section-title { font-size: 2.5rem; }
+            .hero h1 { font-size: 3rem; }
         }
-        .whatsapp-float:hover { transform: scale(1.1); }
-
-        /* FOOTER COMPLET */
-        footer { background: var(--primary); color: white; padding: 80px 0 40px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 50px; margin-bottom: 50px; }
-        .footer-col h4 { color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 20px; }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 12px; }
-        .footer-col ul li a { color: rgba(255,255,255,0.7); text-decoration: none; transition: 0.3s; font-size: 0.9rem; }
-        .footer-col ul li a:hover { color: var(--gold); padding-left: 5px; }
-
-        @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; text-align: center; } }
     </style>
 </head>
 <body>
 
-    <a href="https://wa.me/212636221900" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <nav id="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo">MARKLY<span>ADVISORY</span></a>
-            <div class="nav-links">
-                <a href="#">Accueil</a>
-                <a href="#services">Services</a>
-                <a href="#processus">Processus</a>
-                <a href="#vision">Vision</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <a href="tel:+212636221900" class="btn btn-gold" style="padding: 10px 20px; font-size: 0.7rem;">Urgence Stratégique</a>
-        </div>
-    </nav>
-
     <section class="hero">
-        <div class="hero-video">
+        <div class="hero-video-container">
             <div class="video-slide active"><video autoplay muted loop playsinline><source src="https://github.com/user-attachments/assets/ed3e1a7f-9b87-42a6-990e-b0ac339ba345" type="video/mp4"></video></div>
             <div class="video-slide"><video autoplay muted loop playsinline><source src="https://github.com/user-attachments/assets/037967e6-9bef-4acb-bce6-8ad32f4f21aa" type="video/mp4"></video></div>
         </div>
         <div class="hero-overlay"></div>
-        <div class="container hero-content" data-aos="zoom-out">
-            <span style="color:var(--gold); letter-spacing:8px; font-weight:700; text-transform:uppercase; display:block; margin-bottom:20px;">Elite Strategy Partner</span>
-            <h1>L'Architecture de votre Réussite Business</h1>
-            <p>Conseil stratégique de précision au Maroc pour transformer vos visions en succès tangibles.</p>
-            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-                <a href="#contact" class="btn btn-gold">Consultation Gratuite</a>
-                <a href="#services" class="btn btn-outline" style="border: 1px solid white; color: white;">Nos expertises</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-padding" style="background: var(--primary); color: white; text-align: center;">
-        <div class="container">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px;">
-                <div data-aos="fade-up">
-                    <h2 style="color: var(--gold); font-size: 3rem; font-family: Cormorant Garamond;">50+</h2>
-                    <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">Projets accompagnés</p>
-                </div>
-                <div data-aos="fade-up" data-aos-delay="100">
-                    <h2 style="color: var(--gold); font-size: 3rem; font-family: Cormorant Garamond;">95%</h2>
-                    <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">Satisfaction Client</p>
-                </div>
-                <div data-aos="fade-up" data-aos-delay="200">
-                    <h2 style="color: var(--gold); font-size: 3rem; font-family: Cormorant Garamond;">100%</h2>
-                    <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">Objectifs Atteints</p>
-                </div>
-            </div>
+        <div class="container hero-content" data-aos="fade-up">
+            <p style="color:var(--gold); letter-spacing:8px; font-weight:700; text-transform:uppercase; margin-bottom:10px;">MARKLY ADVISORY</p>
+            <h1>L'Architecture de votre<br>Succès Business</h1>
+            <p>Conseil stratégique et ingénierie de projet d'excellence.</p>
+            <a href="#contact" class="btn btn-gold">Prendre rendez-vous</a>
         </div>
     </section>
 
     <section id="services" class="section-padding">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">Nos Services Premium</h2>
-            <div class="gold-line" data-aos="fade-up"></div>
+            <div class="gold-line"></div>
             <div class="services-grid">
                 <div class="service-card" data-aos="fade-up">
                     <i class="fas fa-chess-knight"></i>
                     <h3>Business Plan</h3>
-                    <p>Stratégies financières pour vos projets ambitieux à Casablanca et partout au Maroc.</p>
+                    <p style="font-size:1.1rem;">Conception de structures stratégiques et financières pour vos projets les plus ambitieux.</p>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <i class="fas fa-chart-line"></i>
                     <h3>Suivi Expert</h3>
-                    <p>Pilotage de KPIs et accompagnement opérationnel pour PME.</p>
+                    <p style="font-size:1.1rem;">Accompagnement opérationnel et pilotage de KPIs pour garantir votre rentabilité.</p>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <i class="fas fa-balance-scale"></i>
                     <h3>Analyse Stratégique</h3>
-                    <p>Expertise juridique et sécurisation de vos actifs commerciaux.</p>
+                    <p style="font-size:1.1rem;">Sécurisation juridique et optimisation de vos actifs commerciaux.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section-padding faq-section">
+    <section class="process-section section-padding">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Questions Fréquentes</h2>
-            <div class="gold-line" data-aos="fade-up"></div>
-            <div class="faq-grid">
-                <div class="faq-item" data-aos="fade-up">
-                    <h4>Combien de temps pour un business plan ?</h4>
-                    <p>Le délai moyen est de 2 à 4 semaines selon la complexité du projet.</p>
-                </div>
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
-                    <h4>La première consultation est-elle gratuite ?</h4>
-                    <p>Oui, nous offrons un diagnostic stratégique de 30 minutes sans engagement.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="section-padding">
-        <div class="container">
-            <h2 class="section-title">Réserver un Audit Stratégique</h2>
+            <h2 class="section-title" data-aos="fade-up">Notre Processus</h2>
             <div class="gold-line"></div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px; align-items: center;">
-                <div class="contact-info" data-aos="fade-right">
-                    <h3 style="font-family: Cormorant Garamond; font-size: 2rem; margin-bottom: 20px;">Parlons de votre projet</h3>
-                    <p style="margin-bottom: 30px;">📍 Casablanca • Rabat • Marrakech • En ligne</p>
-                    <p>📧 khadijaoulkaid4@gmail.com</p>
-                    <p>📞 +212 6 36 22 19 00</p>
+            <div class="process-grid">
+                <div class="process-card" data-aos="fade-up"><div class="process-num">01</div><h3>Contact</h3><p>Analyse initiale de vos besoins.</p></div>
+                <div class="process-card" data-aos="fade-up" data-aos-delay="50"><div class="process-num">02</div><h3>Pré-analyse</h3><p>Évaluation de la situation actuelle.</p></div>
+                <div class="process-card" data-aos="fade-up" data-aos-delay="100"><div class="process-num">03</div><h3>Consultation</h3><p>Définition des axes stratégiques.</p></div>
+                <div class="process-card" data-aos="fade-up" data-aos-delay="150"><div class="process-num">04</div><h3>Proposition</h3><p>Plan d'action et indicateurs de succès.</p></div>
+                <div class="process-card" data-aos="fade-up" data-aos-delay="200"><div class="process-num">05</div><h3>Validation</h3><p>Accord commun sur le calendrier.</p></div>
+                <div class="process-card" data-aos="fade-up" data-aos-delay="250"><div class="process-num">06</div><h3>Accompagnement</h3><p>Mise en œuvre et suivi régulier.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding expertise-section">
+        <div class="container">
+            <div class="expertise-flex">
+                <div class="expertise-img" data-aos="fade-right">
+                    <img src="https://github.com/user-attachments/assets/87e53a92-c9f2-4fa8-bde4-a159854242cd" alt="Khadija Oulkaid">
                 </div>
-                <div class="contact-form-container" data-aos="fade-left">
-                    <form action="#">
-                        <div class="form-group">
-                            <label>Nom complet</label>
-                            <input type="text" placeholder="Votre nom" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Service souhaité</label>
-                            <select>
-                                <option>Business Plan Stratégique</option>
-                                <option>Suivi de Projet</option>
-                                <option>Analyse & Droit des Affaires</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Message</label>
-                            <textarea rows="4" placeholder="Décrivez votre besoin..."></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-gold" style="width: 100%;">Envoyer la demande</button>
-                    </form>
+                <div class="expertise-text" data-aos="fade-left">
+                    <span style="color:var(--gold); font-weight:700; letter-spacing:3px;">EXPERTE DÉDIÉE</span>
+                    <h2>Khadija.O</h2>
+                    <h4>Juriste & Consultante en Stratégie d'Entreprise</h4>
+                    
+                    <p>Depuis mes premières expériences, j'ai été captivée par l'écosystème des affaires – surtout par ses défis. J'ai observé combien d'entreprises se heurtaient à des obstacles juridiques ou stratégiques qui freinaient leur expansion.</p>
+                    
+                    <p>Forte d'un Master en Droit des Affaires, ma conviction est forgée : le droit et la stratégie ne devraient pas être des contraintes, mais des leviers de croissance. Markly Advisory est né de cette dualité : une passion pour l'accompagnement et une expertise solide pour transformer les complexités en avantages compétitifs.</p>
+                    
+                    <div class="vision-box">
+                        <h5>Notre Valeur Ajoutée</h5>
+                        <p>Nous ne voyons pas les difficultés comme des problèmes, mais comme des opportunités de structuration. Nous accompagnons là où les autres s'arrêtent : Comprendre, Structurer, Anticiper et Pérenniser.</p>
+                    </div>
+
+                    <p style="margin-top:20px;">Parce qu'une entreprise bien accompagnée n'est pas seulement une entreprise qui survit, mais une entreprise qui prospère.</p>
+                    
+                    <div class="success-badge">
+                        A réussi à mener à bien plusieurs projets stratégiques ✅
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding" style="background:var(--bg-light);">
+        <div class="container">
+            <h2 class="section-title">Nous Contacter</h2>
+            <div class="gold-line"></div>
+            <div class="contact-methods">
+                <div class="contact-box" data-aos="fade-up">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>WhatsApp</h3>
+                    <p style="font-weight:700; font-size:1.4rem; margin-bottom:10px;">+212 6 36 22 19 00</p>
+                    <a href="https://wa.me/212636221900?text=Bonjour%20MARKLY%20Advisory" target="_blank" class="btn btn-gold">Message Direct</a>
+                </div>
+                <div class="contact-box" data-aos="fade-up" data-aos-delay="100" style="background:var(--primary); color:white; border:none;">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p style="font-weight:700; font-size:1.2rem; margin-bottom:10px;">khadijaoulkaid4@gmail.com</p>
+                    <a href="mailto:khadijaoulkaid4@gmail.com" class="btn btn-gold">Envoyer un Mail</a>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>MARKLY ADVISORY</h4>
-                    <p style="font-size: 0.9rem; opacity: 0.7;">Votre partenaire de croissance stratégique au Maroc. Excellence, Rigueur et Innovation.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Liens Rapides</h4>
-                    <ul>
-                        <li><a href="#">Accueil</a></li>
-                        <li><a href="#services">Expertises</a></li>
-                        <li><a href="#contact">Consultation</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Légal</h4>
-                    <ul>
-                        <li><a href="#">Mentions Légales</a></li>
-                        <li><a href="#">Confidentialité</a></li>
-                        <li><a href="#">CGV</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Suivez-nous</h4>
-                    <div style="display: flex; gap: 20px; font-size: 1.5rem;">
-                        <a href="#" style="color: white;"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" style="color: white;"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div style="text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; font-size: 0.8rem; opacity: 0.5;">
-                © 2025 MARKLY ADVISORY. TOUS DROITS RÉSERVÉS.
-            </div>
-        </div>
+        <h2 style="font-family: 'Cormorant Garamond'; color: var(--gold); font-size: 2.5rem; margin-bottom: 10px;">MARKLY ADVISORY</h2>
+        <p style="opacity:0.5; letter-spacing:2px;">© 2025 TOUS DROITS RÉSERVÉS.</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1000, once: true });
-        
-        // Navigation Scroll Effect
-        window.onscroll = function() {
-            const nav = document.getElementById('navbar');
-            if (window.pageYOffset > 100) {
-                nav.style.padding = "10px 0";
-                nav.style.background = "rgba(10, 20, 40, 0.95)";
-            } else {
-                nav.style.padding = "20px 0";
-                nav.style.background = "rgba(10, 20, 40, 0.8)";
-            }
-        };
-
-        // Video Rotation
         const slides = document.querySelectorAll('.video-slide');
         let current = 0;
         setInterval(() => {
@@ -289,22 +222,6 @@
             current = (current + 1) % slides.length;
             slides[current].classList.add('active');
         }, 10000);
-    </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Markly Advisory",
-      "image": "https://votre-url.com/logo.png",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Casablanca",
-        "addressCountry": "MA"
-      },
-      "telephone": "+212636221900",
-      "url": "https://markly-advisory.com"
-    }
     </script>
 </body>
 </html>
