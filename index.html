@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MARKLY Advisory - Excellence & Stratégie</title>
+    <title>MARKLY Advisory - Stratégie de Précision</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
@@ -14,152 +14,169 @@
             --primary: #0a1428;
             --secondary: #1a365d;
             --gold: #b38b45;
-            --white: #ffffff;
-            --bg-soft: #fcfcfc;
+            --accent-soft: #f4ece1;
             --text: #1a202c;
-            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: var(--text); overflow-x: hidden; }
 
-        .container { width: 100%; max-width: 1300px; margin: 0 auto; padding: 0 20px; }
-        .section-padding { padding: 60px 0; }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 25px; }
+        .section-padding { padding: 120px 0; }
 
-        h2.section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 5vw, 3.5rem); color: var(--primary); text-align: center; margin-bottom: 10px; }
-        .gold-line { width: 60px; height: 3px; background: var(--gold); margin: 0 auto 30px; }
+        /* Titres intelligents */
+        .section-header { margin-bottom: 60px; }
+        .section-header span { color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; display: block; margin-bottom: 15px; }
+        .section-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4rem); color: var(--primary); line-height: 1.1; }
 
-        /* ===== LANDING AVEC VIDÉO UNIQUEMENT ICI ===== */
+        /* ===== LANDING PAGE ÉPURÉE ===== */
         .hero { 
-            height: 100vh; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            text-align: center; 
-            position: relative;
-            overflow: hidden;
-            background: #000; /* Fond noir pour faire ressortir la vidéo */
-            color: white;
+            height: 100vh; display: flex; align-items: center; justify-content: center; 
+            text-align: center; position: relative; background: #fff; padding-top: 50px;
         }
 
-        .hero-video-wrapper {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+        .hero-video-box {
+            position: absolute; top: 10%; left: 5%; right: 5%; bottom: 10%;
+            z-index: 0; border-radius: 40px; overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.2);
         }
 
-        .video-slide {
-            position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 2s ease;
-        }
-        .video-slide.active { opacity: 0.6; } /* Vidéo très claire et visible */
+        .video-slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 2s ease; }
+        .video-slide.active { opacity: 0.7; }
         .video-slide video { width: 100%; height: 100%; object-fit: cover; }
 
-        .hero-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, rgba(10,20,40,0.4) 0%, rgba(10,20,40,0.7) 100%);
-            z-index: 1;
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(10,20,40,0.5), rgba(10,20,40,0.2)); z-index: 1; }
+
+        .hero-content { position: relative; z-index: 2; color: white; width: 90%; }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 10vw, 7rem); margin-bottom: 30px; letter-spacing: -2px; }
+        .hero p { font-size: clamp(1.1rem, 3vw, 1.5rem); max-width: 700px; margin: 0 auto 50px; font-weight: 300; line-height: 1.5; opacity: 0.9; }
+
+        /* Boutons sophistiqués */
+        .btn { 
+            padding: 22px 45px; text-decoration: none; font-weight: 700; transition: var(--transition); 
+            display: inline-flex; align-items: center; gap: 15px; border-radius: 100px;
+            font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px;
         }
-
-        .hero-content { position: relative; z-index: 2; width: 90%; }
-        .hero-tagline { font-weight: 700; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; display: block; font-size: 0.9rem; }
-        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 8vw, 6rem); line-height: 1.1; margin-bottom: 25px; }
-        .hero p { font-size: clamp(1rem, 3vw, 1.3rem); max-width: 800px; margin: 0 auto 35px; font-weight: 400; color: #f0f0f0; }
-        
-        .hero-btns { display: flex; flex-direction: column; align-items: center; gap: 15px; }
-        @media (min-width: 768px) { .hero-btns { flex-direction: row; justify-content: center; } }
-
-        .btn { padding: 15px 35px; text-decoration: none; font-weight: 700; transition: var(--transition); display: inline-flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; border: 1px solid var(--gold); }
         .btn-gold { background: var(--gold); color: white; }
-        .btn-gold:hover { background: transparent; color: var(--gold); }
-        .btn-outline { color: white; border-color: white; }
+        .btn-gold:hover { transform: scale(1.05); box-shadow: 0 20px 40px rgba(179,139,69,0.3); }
+        .btn-outline { border: 2px solid white; color: white; margin-left: 20px; }
         .btn-outline:hover { background: white; color: var(--primary); }
 
-        /* ===== SERVICES ===== */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .service-card { background: var(--white); padding: 30px; border-bottom: 4px solid var(--gold); transition: var(--transition); text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .service-card i { font-size: 2.2rem; color: var(--gold); margin-bottom: 15px; }
-        .service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; margin-bottom: 10px; color: var(--primary); }
+        /* ===== SERVICES - GRILLE INTELLIGENTE ===== */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        .service-card { 
+            padding: 60px 40px; border: 1px solid #f0f0f0; transition: var(--transition);
+            background: #fff; position: relative;
+        }
+        .service-card:hover { border-color: var(--gold); transform: translateY(-15px); }
+        .service-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 30px; }
+        .service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 20px; color: var(--primary); }
+        .service-card p { font-size: 1rem; line-height: 1.7; color: #555; }
 
-        /* ===== EXPERTISE (ADAPTÉ MOBILE) ===== */
-        .expertise-section { background: var(--primary); color: white; overflow: hidden; }
-        .expertise-flex { display: flex; flex-direction: column; align-items: center; gap: 40px; }
-        @media (min-width: 992px) { .expertise-flex { flex-direction: row; text-align: left; } }
+        /* ===== EXPERTISE - ASYMÉTRIQUE ===== */
+        .expertise-section { background: var(--accent-soft); overflow: visible; }
+        .expertise-flex { display: flex; align-items: center; gap: 100px; flex-direction: column; }
+        @media (min-width: 992px) { .expertise-flex { flex-direction: row; } }
 
-        .expertise-img { width: 100%; max-width: 450px; }
-        .expertise-img img { width: 100%; border-radius: 4px; box-shadow: 15px 15px 0 var(--gold); }
+        .expertise-img { position: relative; flex: 1; }
+        .expertise-img img { width: 100%; max-width: 500px; border-radius: 0 100px 0 100px; box-shadow: 40px -40px 0 #fff; }
         
-        .expertise-text { width: 100%; }
-        .expertise-text h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 6vw, 4rem); margin: 10px 0; color: white; }
-        .expertise-text h4 { font-size: 1.2rem; color: var(--gold); margin-bottom: 20px; font-family: 'Cormorant Garamond', serif; }
-        .success-check { font-size: 1.1rem; color: var(--gold); font-weight: 600; padding: 15px; border: 1px dashed rgba(197, 160, 89, 0.4); display: block; background: rgba(197, 160, 89, 0.05); text-align: center; }
+        .expertise-text { flex: 1.2; }
+        .expertise-text h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 7vw, 5rem); color: var(--primary); margin-bottom: 30px; }
+        .success-check { 
+            background: white; padding: 30px; display: inline-flex; align-items: center; gap: 20px;
+            font-size: 1.2rem; font-weight: 700; color: var(--primary); border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
 
-        /* ===== PROCESSUS (ADAPTÉ MOBILE) ===== */
-        .process-section { background: #fdfcfb; }
-        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
-        .process-card { background: white; padding: 25px; position: relative; border: 1px solid #eee; transition: var(--transition); }
-        .process-num { position: absolute; top: 5px; right: 10px; font-size: 2.5rem; font-weight: 900; color: rgba(179, 139, 69, 0.1); }
-        .process-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--primary); margin-bottom: 5px; }
+        /* ===== PROCESSUS - STEPPER MINIMALISTE ===== */
+        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .process-card { padding: 40px; background: white; border-top: 5px solid var(--accent-soft); transition: var(--transition); }
+        .process-card:hover { border-top-color: var(--gold); background: #fafafa; }
+        .process-num { font-size: 3.5rem; font-weight: 800; color: var(--accent-soft); font-family: 'Cormorant Garamond', serif; transition: var(--transition); }
+        .process-card:hover .process-num { color: var(--gold); }
+        .process-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--primary); }
 
-        /* ===== TÉMOIGNAGES (ADAPTÉ MOBILE) ===== */
-        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .testimonial-card { background: white; padding: 25px; border: 1px solid #eee; }
-        .testimonial-author { display: flex; align-items: center; gap: 10px; margin-top: 15px; }
-        .author-avatar { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--gold); }
+        /* ===== TÉMOIGNAGES - ÉPURÉS ===== */
+        .testimonial-card { padding: 40px; border: 1px solid #eee; text-align: left; }
+        .testimonial-content { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; line-height: 1.5; color: var(--primary); font-style: italic; margin-bottom: 30px; }
+        .author-info h5 { font-weight: 700; color: var(--primary); }
+        .author-info span { color: var(--gold); font-size: 0.8rem; font-weight: 700; }
 
-        /* ===== CONTACT (ADAPTÉ MOBILE) ===== */
-        .contact-methods { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        /* ===== CONTACT - CARDS LUXE ===== */
+        .contact-methods { display: grid; grid-template-columns: 1fr; gap: 30px; }
         @media (min-width: 768px) { .contact-methods { grid-template-columns: 1fr 1fr; } }
-        .contact-box { background: white; padding: 30px; border-left: 6px solid var(--gold); box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; }
-        .contact-box i { font-size: 2rem; color: var(--gold); margin-bottom: 15px; }
+        .contact-box { 
+            background: white; padding: 60px 40px; text-align: center; border: 1px solid #f0f0f0;
+            transition: var(--transition);
+        }
+        .contact-box:hover { border-color: var(--gold); box-shadow: 0 40px 80px rgba(0,0,0,0.05); }
+        .contact-box.dark { background: var(--primary); color: white; border: none; }
+        .contact-box i { font-size: 3rem; color: var(--gold); margin-bottom: 25px; }
 
-        footer { background: #050a14; color: white; padding: 40px 0; text-align: center; }
+        footer { background: var(--primary); color: white; padding: 100px 0 50px; text-align: center; }
+        footer h2 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--gold); margin-bottom: 20px; }
+        footer p { opacity: 0.6; letter-spacing: 2px; }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero-video-box { border-radius: 20px; top: 5%; bottom: 5%; }
+            .btn { width: 100%; margin: 10px 0; }
+            .btn-outline { margin-left: 0; }
+            .section-padding { padding: 80px 0; }
+        }
     </style>
 </head>
 <body>
 
     <section class="hero">
-        <div class="hero-video-wrapper">
+        <div class="hero-video-box">
             <div class="video-slide active">
-                <video autoplay muted loop playsinline poster="">
+                <video autoplay muted loop playsinline>
                     <source src="https://github.com/user-attachments/assets/ed3e1a7f-9b87-42a6-990e-b0ac339ba345" type="video/mp4">
                 </video>
             </div>
             <div class="video-slide">
-                <video autoplay muted loop playsinline poster="">
+                <video autoplay muted loop playsinline>
                     <source src="https://github.com/user-attachments/assets/037967e6-9bef-4acb-bce6-8ad32f4f21aa" type="video/mp4">
                 </video>
             </div>
+            <div class="hero-overlay"></div>
         </div>
-        <div class="hero-overlay"></div>
+
         <div class="container hero-content" data-aos="zoom-in">
-            <span class="hero-tagline">Stratégie • Conseil • Excellence</span>
-            <h1>L'Architecture de votre Réussite Business</h1>
-            <p>MARKLY Advisory transforme les visions complexes en succès tangibles grâce à une ingénierie stratégique de précision.</p>
-            <div class="hero-btns">
+            <span class="hero-tagline" data-aos="fade-up">Elite Strategy Partner</span>
+            <h1>L'Art de Bâtir<br>votre Succès</h1>
+            <p>Nous transformons les visions complexes en succès tangibles grâce à une ingénierie stratégique de précision.</p>
+            <div class="hero-btns" data-aos="fade-up" data-aos-delay="200">
                 <a href="#services" class="btn btn-gold">Nos Solutions</a>
-                <a href="#contact" class="btn btn-outline">Consultation</a>
+                <a href="#contact" class="btn btn-outline">Expertise</a>
             </div>
         </div>
     </section>
 
     <section id="services" class="section-padding">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Nos Services Premium</h2>
-            <div class="gold-line"></div>
+            <div class="section-header" data-aos="fade-up">
+                <span>Nos Piliers</span>
+                <h2>Services Premium</h2>
+            </div>
             <div class="services-grid">
                 <div class="service-card" data-aos="fade-up">
                     <i class="fas fa-chess-knight"></i>
                     <h3>Business Plan</h3>
-                    <p>Conception de structures stratégiques pour vos projets ambitieux.</p>
+                    <p>Conception de structures stratégiques pour vos projets les plus ambitieux.</p>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <i class="fas fa-chart-line"></i>
                     <h3>Suivi Expert</h3>
-                    <p>Accompagnement rigoureux pour garantir votre rentabilité.</p>
+                    <p>Accompagnement rigoureux pour garantir votre rentabilité maximale.</p>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <i class="fas fa-balance-scale"></i>
                     <h3>Analyse Stratégique</h3>
-                    <p>Expertise approfondie pour sécuriser vos actifs commerciaux.</p>
+                    <p>Expertise juridique et business pour sécuriser vos actifs commerciaux.</p>
                 </div>
             </div>
         </div>
@@ -172,79 +189,110 @@
                     <img src="https://github.com/user-attachments/assets/87e53a92-c9f2-4fa8-bde4-a159854242cd" alt="Khadija O.">
                 </div>
                 <div class="expertise-text" data-aos="fade-left">
-                    <span style="color: var(--gold); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem;">Votre Experte Dédiée</span>
+                    <span style="color: var(--gold); font-weight: 700; letter-spacing: 3px;">EXPERTE DÉDIÉE</span>
                     <h2>Khadija.O</h2>
-                    <h4>Juriste & Consultante en Stratégie d'Entreprise</h4>
-                    <p style="margin-bottom: 25px; line-height: 1.6; opacity: 0.9;">Spécialiste en droit des affaires, je vous accompagne dans la transformation de vos projets grâce à une approche pluridisciplinaire unique.</p>
+                    <h4>Juriste & Consultante en Stratégie</h4>
+                    <p style="margin-bottom: 40px; font-size: 1.2rem; line-height: 1.8;">Spécialiste en droit des affaires, j'accompagne la transformation de vos projets grâce à une approche pluridisciplinaire unique alliant loi et profit.</p>
                     <div class="success-check">
-                        <span>A réussi à mener à bien plusieurs projets stratégiques ✅</span>
+                        <i class="fas fa-check-circle" style="color: var(--gold); font-size: 2rem;"></i>
+                        <span>Plusieurs projets stratégiques menés avec succès ✅</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section-padding process-section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Notre Processus</h2>
-            <div class="gold-line"></div>
-            <div class="process-grid">
-                <div class="process-card" data-aos="fade-up"><div class="process-num">01</div><h3>Contact</h3><p>Premier échange pour vos besoins.</p></div>
-                <div class="process-card" data-aos="fade-up" data-aos-delay="100"><div class="process-num">02</div><h3>Pré-analyse</h3><p>Évaluation de votre situation.</p></div>
-                <div class="process-card" data-aos="fade-up" data-aos-delay="200"><div class="process-num">03</div><h3>Consultation</h3><p>Définition des axes stratégiques.</p></div>
-                <div class="process-card" data-aos="fade-up"><div class="process-num">04</div><h3>Proposition</h3><p>Plan d'action et objectifs.</p></div>
-                <div class="process-card" data-aos="fade-up" data-aos-delay="100"><div class="process-num">05</div><h3>Validation</h3><p>Accord sur le calendrier.</p></div>
-                <div class="process-card" data-aos="fade-up" data-aos-delay="200"><div class="process-num">06</div><h3>Accompagnement</h3><p>Mise en œuvre et suivi.</p></div>
-            </div>
-        </div>
-    </section>
-
     <section class="section-padding">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Témoignages</h2>
-            <div class="gold-line"></div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card" data-aos="fade-up">
-                    <p style="font-style: italic; font-size: 0.9rem;">"MARKLY Advisory a transformé notre vision en un plan concret. Notre CA a doublé en 6 mois."</p>
-                    <div class="testimonial-author"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=100&q=80" alt="" class="author-avatar"><div><h5 style="font-size: 0.9rem;">Ahmed B.</h5><p style="font-size: 0.7rem; color: var(--gold);">CEO, TechStart</p></div></div>
+            <div class="section-header" data-aos="fade-up">
+                <span>Méthodologie</span>
+                <h2>Notre Processus</h2>
+            </div>
+            <div class="process-grid">
+                <div class="process-card" data-aos="fade-up">
+                    <div class="process-num">01</div>
+                    <h3>Contact</h3>
+                    <p>Premier échange pour comprendre vos besoins réels.</p>
                 </div>
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
-                    <p style="font-style: italic; font-size: 0.9rem;">"L'expertise de Khadija a été déterminante. Elle a identifié des opportunités majeures."</p>
-                    <div class="testimonial-author"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" alt="" class="author-avatar"><div><h5 style="font-size: 0.9rem;">Sophie M.</h5><p style="font-size: 0.7rem; color: var(--gold);">Directrice, GreenFood</p></div></div>
+                <div class="process-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="process-num">02</div>
+                    <h3>Pré-analyse</h3>
+                    <p>Évaluation holistique de votre situation actuelle.</p>
                 </div>
-                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
-                    <p style="font-style: italic; font-size: 0.9rem;">"Un accompagnement exceptionnel. Le business plan a convaincu nos investisseurs."</p>
-                    <div class="testimonial-author"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="" class="author-avatar"><div><h5 style="font-size: 0.9rem;">Karim L.</h5><p style="font-size: 0.7rem; color: var(--gold);">Fondateur, Artisan Dig.</p></div></div>
+                <div class="process-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="process-num">03</div>
+                    <h3>Consultation</h3>
+                    <p>Définition précise des axes stratégiques prioritaires.</p>
+                </div>
+                <div class="process-card" data-aos="fade-up">
+                    <div class="process-num">04</div>
+                    <h3>Proposition</h3>
+                    <p>Plan d'action détaillé et objectifs mesurables.</p>
+                </div>
+                <div class="process-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="process-num">05</div>
+                    <h3>Validation</h3>
+                    <p>Accord mutuel sur le calendrier d'exécution.</p>
+                </div>
+                <div class="process-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="process-num">06</div>
+                    <h3>Accompagnement</h3>
+                    <p>Mise en œuvre proactive et suivi de performance.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="section-padding" style="background: #fcfcfc;">
+    <section class="section-padding" style="background: #fafafa;">
         <div class="container">
-            <h2 class="section-title">Contact Direct</h2>
-            <div class="gold-line"></div>
-            <div class="contact-methods">
-                <div class="contact-box" data-aos="fade-up">
-                    <i class="fas fa-phone-alt"></i>
-                    <h3>WhatsApp</h3>
-                    <p style="font-size: 1.1rem; font-weight: 700; margin-bottom: 15px;">+212 6 36 22 19 00</p>
-                    <a href="https://wa.me/212636221900?text=Bonjour%20MARKLY%20Advisory" target="_blank" class="btn btn-gold" style="width: 100%;">Réserver</a>
+            <div class="section-header" data-aos="fade-up">
+                <span>Retours</span>
+                <h2>Témoignages</h2>
+            </div>
+            <div class="services-grid">
+                <div class="testimonial-card" data-aos="fade-up">
+                    <div class="testimonial-content">"MARKLY Advisory a transformé notre vision en plan concret. CA doublé en 6 mois."</div>
+                    <div class="author-info"><h5>Ahmed B.</h5><span>CEO, TechStart Maroc</span></div>
                 </div>
-                <div class="contact-box" style="background: var(--primary); color: white;" data-aos="fade-up" data-aos-delay="100">
-                    <i class="fas fa-envelope"></i>
-                    <h3>Email</h3>
-                    <p style="font-size: 1rem; margin-bottom: 15px;">khadijaoulkaid4@gmail.com</p>
-                    <a href="mailto:khadijaoulkaid4@gmail.com" class="btn btn-gold" style="width: 100%;">Écrire</a>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-content">"L'expertise de Khadija a identifié des opportunités que nous ne voyions pas."</div>
+                    <div class="author-info"><h5>Sophie M.</h5><span>Directrice, GreenFood SA</span></div>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-content">"Le business plan a convaincu nos investisseurs dès la première présentation."</div>
+                    <div class="author-info"><h5>Karim L.</h5><span>Fondateur, Artisan Digital</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="contact-methods">
+                <div class="contact-box" data-aos="fade-right">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Direct</h3>
+                    <p style="font-weight: 700; font-size: 1.4rem;">+212 6 36 22 19 00</p>
+                    <p style="margin-bottom: 25px;">khadijaoulkaid4@gmail.com</p>
+                    <a href="https://wa.me/212636221900" class="btn btn-gold">WhatsApp</a>
+                </div>
+                <div class="contact-box dark" data-aos="fade-left">
+                    <i class="fas fa-video"></i>
+                    <h3>Visioconférence</h3>
+                    <p>Première consultation offerte</p>
+                    <p style="margin-bottom: 25px; opacity: 0.7;">Disponible 9h - 18h</p>
+                    <a href="mailto:khadijaoulkaid4@gmail.com" class="btn btn-gold">Réserver</a>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <h2 style="color: var(--gold); font-family: Cormorant Garamond; font-size: 2rem; margin-bottom: 10px;">MARKLY ADVISORY</h2>
-        <p style="opacity: 0.7; font-size: 0.9rem;">khadijaoulkaid4@gmail.com | +212 6 36 22 19 00</p>
-        <p style="opacity: 0.4; font-size: 0.7rem; margin-top: 15px;">© 2025 MARKLY ADVISORY. TOUS DROITS RÉSERVÉS.</p>
+        <div class="container">
+            <h2>MARKLY ADVISORY</h2>
+            <p>khadijaoulkaid4@gmail.com | +212 6 36 22 19 00</p>
+            <p style="margin-top: 40px; font-size: 0.7rem;">© 2025 MARKLY ADVISORY. TOUS DROITS RÉSERVÉS.</p>
+        </div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
