@@ -6,32 +6,9 @@
     <title>MARKLY Advisory - Conseil Stratégique & Droit des Affaires</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Markly Advisory : Conseil stratégique et ingénierie de projet au Maroc. Business plans, stratégies financières, analyse stratégique. Expertise droit des affaires pour entrepreneurs.">
-    <meta name="keywords" content="conseil stratégique, business plan, Maroc, entrepreneuriat, droit des affaires, accompagnement PME, Casablanca, levée de fonds">
+    <meta name="description" content="Markly Advisory : Conseil stratégique et ingénierie de projet. Business plans, stratégies financières, analyse stratégique. Expertise droit des affaires pour entrepreneurs.">
+    <meta name="keywords" content="conseil stratégique, business plan, entrepreneuriat, droit des affaires, accompagnement PME, levée de fonds">
     <meta name="author" content="Markly Advisory">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="MARKLY Advisory - L'Architecture de votre Succès">
-    <meta property="og:description" content="Conseil stratégique et ingénierie de projet pour transformer vos visions en réalités pérennes.">
-    <meta property="og:type" content="website">
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Markly Advisory",
-        "description": "Conseil stratégique et ingénierie de projet",
-        "address": {
-            "@type": "PostalAddress",
-            "addressCountry": "Morocco"
-        },
-        "email": "khadijaoulkaid4@gmail.com",
-        "telephone": "+212-636-221900",
-        "areaServed": ["Morocco", "Africa"],
-        "serviceType": ["Business Consulting", "Legal Consulting", "Strategic Planning"]
-    }
-    </script>
     
     <!-- Styles & Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -417,18 +394,6 @@
             transform: translate(-5px, -5px);
             box-shadow: -35px 35px 0 var(--gold);
         }
-        
-        .success-badge { 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 10px; 
-            padding: 15px 25px; 
-            background: white; 
-            border-radius: 10px; 
-            font-weight: 700; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
-            margin-top: 20px;
-        }
 
         /* ===== VALEURS ===== */
         .values-section {
@@ -556,54 +521,60 @@
             margin-bottom: 20px;
         }
 
-        /* ===== FORMULAIRE ===== */
-        .form-section {
-            background: var(--bg-light);
+        /* ===== ZONE INTERVENTION ===== */
+        .zone-section {
+            background: var(--bg-soft);
         }
         
-        .contact-form {
-            max-width: 600px;
-            margin: 50px auto 0;
+        .zone-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .zone-card {
             background: white;
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--primary);
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 1rem;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
             transition: var(--transition);
+            border: 1px solid #f0f0f0;
         }
         
-        .form-control:focus {
-            outline: none;
+        .zone-card:hover {
+            transform: translateY(-10px);
             border-color: var(--gold);
-            box-shadow: 0 0 0 3px rgba(179,139,69,0.1);
+            box-shadow: 0 15px 30px rgba(179,139,69,0.1);
         }
         
-        select.form-control {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23b38b45' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 15px center;
-            background-size: 16px;
-            padding-right: 40px;
+        .zone-card i {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+        
+        .zone-remote {
+            background: var(--primary);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .zone-remote::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(179,139,69,0.1) 0%, transparent 70%);
+            z-index: 0;
+        }
+        
+        .zone-remote * {
+            position: relative;
+            z-index: 1;
         }
 
         /* ===== FOOTER ===== */
@@ -739,7 +710,7 @@
             .container { padding: 0 15px; }
             .btn { padding: 15px 30px; }
             .service-card { padding: 30px 20px; }
-            .contact-form { padding: 30px 20px; }
+            .zone-card { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -755,6 +726,7 @@
                 <a href="#processus">Processus</a>
                 <a href="#vision">Vision</a>
                 <a href="#expertise">Expertise</a>
+                <a href="#zone">Zone d'intervention</a>
                 <a href="#contact" class="btn btn-outline" style="padding: 10px 25px; font-size: 0.8rem;">Contact</a>
             </nav>
             
@@ -805,19 +777,16 @@
                     <i class="fas fa-chess-knight"></i>
                     <h3>Business Plan Stratégique</h3>
                     <p>Structuration financière, modélisation économique et stratégies de croissance pour vos projets ambitieux. Analyse de marché approfondie et plan d'action détaillé.</p>
-                    <a href="#contact" style="color: var(--gold); text-decoration: none; font-weight: 600; margin-top: 20px; display: inline-block;">En savoir plus →</a>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <i class="fas fa-chart-line"></i>
                     <h3>Suivi Expert & Pilotage</h3>
                     <p>Accompagnement opérationnel rigoureux avec définition et suivi de KPIs pour une rentabilité maximale. Tableaux de bord personnalisés et revues stratégiques régulières.</p>
-                    <a href="#contact" style="color: var(--gold); text-decoration: none; font-weight: 600; margin-top: 20px; display: inline-block;">En savoir plus →</a>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <i class="fas fa-balance-scale"></i>
                     <h3>Analyse Stratégique & Juridique</h3>
                     <p>Sécurisation de vos actifs commerciaux, optimisation des décisions business et due diligence. Protection intellectuelle et conformité réglementaire.</p>
-                    <a href="#contact" style="color: var(--gold); text-decoration: none; font-weight: 600; margin-top: 20px; display: inline-block;">En savoir plus →</a>
                 </div>
             </div>
         </div>
@@ -997,6 +966,40 @@
         </div>
     </section>
 
+    <!-- Zone d'intervention -->
+    <section id="zone" class="section-padding zone-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Zone d'Intervention</h2>
+            <div class="gold-line" data-aos="fade-up"></div>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 50px; color: #666; font-size: 1.1rem;" data-aos="fade-up">
+                Un accompagnement flexible adapté à vos besoins, que vous soyez à distance ou en présentiel.
+            </p>
+            
+            <div class="zone-grid">
+                <div class="zone-card" data-aos="fade-up">
+                    <i class="fas fa-video"></i>
+                    <h3>Consultation à distance</h3>
+                    <p>Visio-conférences sécurisées pour un accompagnement flexible et efficace, quel que soit votre emplacement.</p>
+                    <p style="color: var(--gold); font-weight: 600; margin-top: 15px;">Disponible partout</p>
+                </div>
+                
+                <div class="zone-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Rencontre sur rendez-vous</h3>
+                    <p>Séances en présentiel planifiées selon vos disponibilités et besoins spécifiques.</p>
+                    <p style="color: var(--gold); font-weight: 600; margin-top: 15px;">Sur rendez-vous</p>
+                </div>
+                
+                <div class="zone-card zone-remote" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-globe-africa"></i>
+                    <h3>Accompagnement international</h3>
+                    <p>Expertise adaptée aux marchés émergents avec compréhension des spécificités locales.</p>
+                    <p style="color: var(--gold); font-weight: 600; margin-top: 15px;">Afrique & International</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Expertise Section -->
     <section id="expertise" class="section-padding expertise-section">
         <div class="container">
@@ -1021,16 +1024,11 @@
                             <i class="fas fa-graduation-cap" style="color: var(--gold); margin-right: 8px;"></i> Master Droit des Affaires
                         </span>
                         <span style="background: white; padding: 10px 20px; border-radius: 30px; font-weight: 600; font-size: 0.9rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                            <i class="fas fa-briefcase" style="color: var(--gold); margin-right: 8px;"></i> +5 ans d'expérience
+                            <i class="fas fa-briefcase" style="color: var(--gold); margin-right: 8px;"></i> Expertise Juridique & Stratégique
                         </span>
                         <span style="background: white; padding: 10px 20px; border-radius: 30px; font-weight: 600; font-size: 0.9rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                            <i class="fas fa-globe" style="color: var(--gold); margin-right: 8px;"></i> Expertise Maroc & International
+                            <i class="fas fa-globe" style="color: var(--gold); margin-right: 8px;"></i> Accompagnement à Distance
                         </span>
-                    </div>
-                    
-                    <div class="success-badge">
-                        <i class="fas fa-check-circle" style="color: var(--gold);"></i>
-                        <span>Plus de 50 projets stratégiques menés avec succès ✅</span>
                     </div>
                 </div>
             </div>
@@ -1075,64 +1073,6 @@
         </div>
     </section>
 
-    <!-- Formulaire Section -->
-    <section class="section-padding form-section">
-        <div class="container">
-            <div class="contact-form" data-aos="fade-up">
-                <h3 style="text-align: center; margin-bottom: 30px; color: var(--primary);">Formulaire de Contact</h3>
-                
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Nom complet *</label>
-                        <input type="text" id="name" class="form-control" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Adresse email *</label>
-                        <input type="email" id="email" class="form-control" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone">Téléphone</label>
-                        <input type="tel" id="phone" class="form-control">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="company">Entreprise / Projet</label>
-                        <input type="text" id="company" class="form-control">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="service">Service intéressé *</label>
-                        <select id="service" class="form-control" required>
-                            <option value="">Sélectionnez un service</option>
-                            <option value="business-plan">Business Plan Stratégique</option>
-                            <option value="suivi-expert">Suivi Expert & Pilotage</option>
-                            <option value="analyse">Analyse Stratégique & Juridique</option>
-                            <option value="autre">Autre (précisez dans le message)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Votre message *</label>
-                        <textarea id="message" class="form-control" rows="5" required></textarea>
-                    </div>
-                    
-                    <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
-                        <input type="checkbox" id="consent" required style="width: auto;">
-                        <label for="consent" style="margin-bottom: 0; font-size: 0.9rem;">
-                            J'accepte que mes données soient utilisées pour répondre à ma demande (RGPD)
-                        </label>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 20px;">
-                        <i class="fas fa-paper-plane"></i> Envoyer ma demande
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -1140,12 +1080,11 @@
                 <div class="footer-column">
                     <h4>Markly Advisory</h4>
                     <p style="opacity: 0.8; line-height: 1.6;">
-                        Conseil stratégique et ingénierie de projet. Expertise droit des affaires pour entrepreneurs et PME au Maroc et à l'international.
+                        Conseil stratégique et ingénierie de projet. Expertise droit des affaires pour entrepreneurs.
                     </p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
                 
@@ -1155,38 +1094,32 @@
                         <li><a href="#services">Business Plan Stratégique</a></li>
                         <li><a href="#services">Suivi Expert & Pilotage</a></li>
                         <li><a href="#services">Analyse Stratégique & Juridique</a></li>
-                        <li><a href="#services">Accompagnement PME</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
                     <h4>Liens Utiles</h4>
                     <ul class="footer-links">
-                        <li><a href="#vision">À propos</a></li>
+                        <li><a href="#vision">Notre vision</a></li>
                         <li><a href="#processus">Notre processus</a></li>
+                        <li><a href="#zone">Zone d'intervention</a></li>
                         <li><a href="#contact">Contact</a></li>
-                        <li><a href="#" onclick="alert('Page en construction')">Blog</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h4>Zone d'Intervention</h4>
+                    <h4>Modalités</h4>
                     <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt" style="color: var(--gold); margin-right: 10px;"></i> Casablanca, Maroc</li>
-                        <li><i class="fas fa-map-marker-alt" style="color: var(--gold); margin-right: 10px;"></i> Rabat, Maroc</li>
-                        <li><i class="fas fa-map-marker-alt" style="color: var(--gold); margin-right: 10px;"></i> Marrakech, Maroc</li>
-                        <li><i class="fas fa-globe" style="color: var(--gold); margin-right: 10px;"></i> Accompagnement à distance</li>
+                        <li><i class="fas fa-video" style="color: var(--gold); margin-right: 10px;"></i> Consultation à distance</li>
+                        <li><i class="fas fa-handshake" style="color: var(--gold); margin-right: 10px;"></i> Rencontre sur rendez-vous</li>
+                        <li><i class="fas fa-clock" style="color: var(--gold); margin-right: 10px;"></i> Horaires flexibles</li>
+                        <li><i class="fas fa-file-contract" style="color: var(--gold); margin-right: 10px;"></i> Contrat sur mesure</li>
                     </ul>
                 </div>
             </div>
             
             <div class="copyright">
                 <p>© 2025 MARKLY ADVISORY. TOUS DROITS RÉSERVÉS.</p>
-                <p style="margin-top: 10px; font-size: 0.8rem;">
-                    <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; margin: 0 10px;" onclick="alert('Page en construction')">Mentions légales</a> | 
-                    <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; margin: 0 10px;" onclick="alert('Page en construction')">Politique de confidentialité</a> | 
-                    <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; margin: 0 10px;" onclick="alert('Page en construction')">CGV</a>
-                </p>
             </div>
         </div>
     </footer>
@@ -1259,26 +1192,6 @@
             currentTestimonial = currentTestimonial === 1 ? 2 : 1;
             showTestimonial(currentTestimonial);
         }, 8000);
-        
-        // Formulaire de contact
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Récupérer les données du formulaire
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                company: document.getElementById('company').value,
-                service: document.getElementById('service').value,
-                message: document.getElementById('message').value
-            };
-            
-            // Ici, normalement on enverrait les données à un serveur
-            // Pour l'exemple, on simule un envoi réussi
-            alert('Merci ! Votre message a été envoyé. Nous vous répondrons dans les 24 heures.');
-            this.reset();
-        });
         
         // Scroll header
         window.addEventListener('scroll', function() {
