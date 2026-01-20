@@ -377,7 +377,7 @@
         
         .expertise-flex { 
             display: flex; 
-            align-items: center; 
+            align-items: start; /* Changé de center à start */
             gap: 80px; 
             flex-wrap: wrap; 
         }
@@ -704,6 +704,10 @@
             .hero-content { padding: 20px; }
             .hero h1 { font-size: clamp(2rem, 6vw, 3.5rem); }
             .expertise-img img { box-shadow: 0 15px 0 var(--gold); }
+            .expertise-flex { 
+                flex-direction: column;
+                align-items: center;
+            }
         }
         
         @media (max-width: 480px) { 
@@ -1000,7 +1004,7 @@
         </div>
     </section>
 
-    <!-- Expertise Section -->
+    <!-- Expertise Section - MODIFIÉE -->
     <section id="expertise" class="section-padding expertise-section">
         <div class="container">
             <div class="expertise-flex">
@@ -1008,26 +1012,26 @@
                     <img src="https://github.com/user-attachments/assets/87e53a92-c9f2-4fa8-bde4-a159854242cd" alt="Khadija O. - Juriste Consultante">
                 </div>
                 <div class="expertise-text" data-aos="fade-left">
-                    <span style="color:var(--gold); font-weight:700; letter-spacing:3px; text-transform: uppercase;">Experte Dédiée</span>
-                    <h2 style="font-family: 'Cormorant Garamond'; font-size: 3rem;">Khadija O.</h2>
-                    <h4 style="color: var(--gold); font-family: 'Cormorant Garamond'; font-size: 1.5rem; margin-bottom: 20px;">
+                    <span style="color:var(--gold); font-weight:700; letter-spacing:3px; text-transform: uppercase; display: block; margin-bottom: 10px;">Experte Dédiée</span>
+                    <h2 style="font-family: 'Cormorant Garamond'; font-size: 3rem; margin-bottom: 15px; color: var(--primary);">Khadija O.</h2>
+                    <h4 style="color: var(--gold); font-family: 'Cormorant Garamond'; font-size: 1.5rem; margin-bottom: 25px; font-weight: 600;">
                         Juriste & Consultante en Stratégie d'Entreprise
                     </h4>
-                    <p style="font-size:1.1rem; line-height:1.8; margin-bottom:30px; opacity:0.9;">
+                    <p style="font-size:1.1rem; line-height:1.8; margin-bottom:30px; color: #444;">
                         Titulaire d'un Master en Droit des Affaires, Contentieux et Professions Judiciaires, je mets ma double expertise 
                         juridique et stratégique au service des entrepreneurs. Mon approche unique allie rigueur légale et vision business 
                         pour transformer vos idées les plus ambitieuses en réalités pérennes et sécurisées.
                     </p>
                     
                     <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 30px;">
-                        <span style="background: white; padding: 10px 20px; border-radius: 30px; font-weight: 600; font-size: 0.9rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                            <i class="fas fa-graduation-cap" style="color: var(--gold); margin-right: 8px;"></i> Master Droit des Affaires
+                        <span style="background: white; padding: 12px 25px; border-radius: 30px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: inline-flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-graduation-cap" style="color: var(--gold); font-size: 1.1rem;"></i> Master Droit des Affaires
                         </span>
-                        <span style="background: white; padding: 10px 20px; border-radius: 30px; font-weight: 600; font-size: 0.9rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                            <i class="fas fa-briefcase" style="color: var(--gold); margin-right: 8px;"></i> Expertise Juridique & Stratégique
+                        <span style="background: white; padding: 12px 25px; border-radius: 30px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: inline-flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-balance-scale" style="color: var(--gold); font-size: 1.1rem;"></i> Expertise Juridique & Stratégique
                         </span>
-                        <span style="background: white; padding: 10px 20px; border-radius: 30px; font-weight: 600; font-size: 0.9rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                            <i class="fas fa-globe" style="color: var(--gold); margin-right: 8px;"></i> Accompagnement à Distance
+                        <span style="background: white; padding: 12px 25px; border-radius: 30px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: inline-flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-laptop-house" style="color: var(--gold); font-size: 1.1rem;"></i> Accompagnement à Distance
                         </span>
                     </div>
                 </div>
