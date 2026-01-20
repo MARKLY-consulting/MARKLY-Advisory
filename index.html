@@ -377,9 +377,14 @@
         
         .expertise-flex { 
             display: flex; 
-            align-items: start; /* Changé de center à start */
+            align-items: flex-start; /* Changé à flex-start pour aligner en haut */
             gap: 80px; 
             flex-wrap: wrap; 
+        }
+        
+        .expertise-img { 
+            flex: 1; 
+            min-width: 300px;
         }
         
         .expertise-img img { 
@@ -393,6 +398,11 @@
         .expertise-img img:hover {
             transform: translate(-5px, -5px);
             box-shadow: -35px 35px 0 var(--gold);
+        }
+        
+        .expertise-text { 
+            flex: 1; 
+            min-width: 300px;
         }
 
         /* ===== VALEURS ===== */
@@ -1023,16 +1033,30 @@
                         pour transformer vos idées les plus ambitieuses en réalités pérennes et sécurisées.
                     </p>
                     
-                    <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 30px;">
-                        <span style="background: white; padding: 12px 25px; border-radius: 30px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: inline-flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-graduation-cap" style="color: var(--gold); font-size: 1.1rem;"></i> Master Droit des Affaires
-                        </span>
-                        <span style="background: white; padding: 12px 25px; border-radius: 30px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: inline-flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-balance-scale" style="color: var(--gold); font-size: 1.1rem;"></i> Expertise Juridique & Stratégique
-                        </span>
-                        <span style="background: white; padding: 12px 25px; border-radius: 30px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: inline-flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-laptop-house" style="color: var(--gold); font-size: 1.1rem;"></i> Accompagnement à Distance
-                        </span>
+                    <div style="display: flex; flex-direction: column; gap: 20px; margin-bottom: 30px;">
+                        <div style="display: flex; align-items: flex-start; gap: 15px;">
+                            <i class="fas fa-check-circle" style="color: var(--gold); font-size: 1.2rem; margin-top: 3px;"></i>
+                            <div>
+                                <h5 style="margin: 0 0 5px 0; color: var(--primary); font-weight: 600;">Des projets menés avec succès et satisfaction</h5>
+                                <p style="margin: 0; color: #666; font-size: 0.95rem;">Une approche orientée résultats garantissant des réalisations concrètes.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: flex-start; gap: 15px;">
+                            <i class="fas fa-check-circle" style="color: var(--gold); font-size: 1.2rem; margin-top: 3px;"></i>
+                            <div>
+                                <h5 style="margin: 0 0 5px 0; color: var(--primary); font-weight: 600;">Un accompagnement professionnel sur mesure</h5>
+                                <p style="margin: 0; color: #666; font-size: 0.95rem;">Des solutions personnalisées adaptées à chaque entrepreneur et projet.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: flex-start; gap: 15px;">
+                            <i class="fas fa-check-circle" style="color: var(--gold); font-size: 1.2rem; margin-top: 3px;"></i>
+                            <div>
+                                <h5 style="margin: 0 0 5px 0; color: var(--primary); font-weight: 600;">Une vision réglementaire au service du monde des affaires</h5>
+                                <p style="margin: 0; color: #666; font-size: 0.95rem;">L'expertise juridique transformée en avantage concurrentiel.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
