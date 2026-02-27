@@ -12,719 +12,636 @@
     
     <!-- Styles & Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
-        :root {
-            --primary: #0a1428;
-            --gold: #b38b45;
-            --bg-light: #ffffff;
-            --bg-soft: #f9f7f4;
-            --text: #1a202c;
-            --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-light); color: var(--text); overflow-x: hidden; line-height: 1.7; }
+        :root {
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --gold: #b89b6e;
+            --light-bg: #f9f9f9;
+            --border: #eeeeee;
+            --transition: all 0.4s ease;
+        }
 
-        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 25px; }
-        .section-padding { padding: 100px 0; }
-        
-        h2.section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 3.5rem); color: var(--primary); text-align: center; margin-bottom: 10px; }
-        .gold-line { width: 60px; height: 3px; background: var(--gold); margin: 0 auto 50px; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-        /* ===== NAVIGATION ===== */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .gold-line {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 0 auto 50px;
+        }
+
+        /* Navigation */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            z-index: 1000;
-            background: rgba(10, 20, 40, 0.95);
+            background: rgba(255,255,255,0.95);
             backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
             padding: 20px 0;
             transition: var(--transition);
         }
-        
+
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
+            font-weight: 600;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            color: var(--text);
         }
-        
+
         .logo span {
             color: var(--gold);
         }
-        
+
         .nav-links {
             display: flex;
             gap: 40px;
             align-items: center;
         }
-        
+
         .nav-links a {
-            color: white;
             text-decoration: none;
-            font-weight: 600;
+            color: var(--text);
             font-size: 0.9rem;
-            letter-spacing: 1px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
             transition: var(--transition);
-            text-transform: uppercase;
         }
-        
+
         .nav-links a:hover {
             color: var(--gold);
         }
-        
+
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
-            color: white;
             font-size: 1.5rem;
             cursor: pointer;
+            color: var(--text);
         }
 
-        /* ===== HERO ===== */
-        .hero { 
-            height: 100vh; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            text-align: center; 
-            position: relative; 
-            background: #000; 
+        /* Hero avec vidéo */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
             color: white;
-            margin-top: 0;
-        }
-        
-        .hero-video { 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            z-index: 0; 
-        }
-        
-        .video-slide { 
-            position: absolute; 
-            width: 100%; 
-            height: 100%; 
-            opacity: 0; 
-            transition: opacity 2s ease; 
-        }
-        
-        .video-slide.active { 
-            opacity: 0.6; 
-        }
-        
-        .video-slide video { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-        }
-        
-        .hero-overlay { 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background: rgba(10,20,40,0.6); 
-            z-index: 1; 
-        }
-        
-        .hero-content { 
-            position: relative; 
-            z-index: 2; 
-            max-width: 900px; 
-            padding-top: 80px;
-        }
-        
-        .hero h1 { 
-            font-family: 'Cormorant Garamond', serif; 
-            font-size: clamp(2.5rem, 8vw, 6rem); 
-            margin-bottom: 25px; 
-            line-height: 1.1; 
+            overflow: hidden;
         }
 
-        .btn { 
-            padding: 18px 45px; 
-            text-decoration: none; 
-            font-weight: 700; 
-            transition: var(--transition); 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 10px; 
-            border-radius: 50px;
-            font-size: 0.85rem; 
-            text-transform: uppercase; 
-            letter-spacing: 2px;
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .video-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 2s ease;
+        }
+
+        .video-slide.active {
+            opacity: 0.5;
+        }
+
+        .video-slide video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 500;
+            margin-bottom: 25px;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 40px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: var(--transition);
             cursor: pointer;
             border: none;
         }
-        
-        .btn-gold { 
-            background: var(--gold); 
-            color: white; 
-            border: 1px solid var(--gold); 
-        }
-        
-        .btn-gold:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 15px 30px rgba(179,139,69,0.3); 
-            background: #c99a4e;
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-        }
-        
-        .btn-outline:hover {
+
+        .btn-gold {
             background: var(--gold);
             color: white;
         }
 
-        /* ===== SERVICES ===== */
-        .services-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 30px; 
-            margin-top: 50px;
+        .btn-gold:hover {
+            background: transparent;
+            color: white;
+            border: 1px solid white;
         }
-        
-        .service-card { 
-            padding: 50px 40px; 
-            background: white; 
-            border-radius: 15px; 
-            transition: var(--transition); 
-            border: 1px solid #f0f0f0; 
-            text-align: center; 
-            position: relative;
-            overflow: hidden;
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
         }
-        
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
+
+        .btn-outline:hover {
             background: var(--gold);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s ease;
+            border-color: var(--gold);
         }
-        
-        .service-card:hover::before {
-            transform: scaleX(1);
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
         }
-        
-        .service-card:hover { 
-            transform: translateY(-10px); 
-            border-color: var(--gold); 
-            box-shadow: 0 20px 40px rgba(10,20,40,0.1);
+
+        .service-card {
+            padding: 50px 40px;
+            background: var(--light-bg);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid transparent;
         }
-        
-        .service-card i { 
-            font-size: 3rem; 
-            color: var(--gold); 
-            margin-bottom: 25px; 
+
+        .service-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 25px;
+        }
+
+        .service-card h3 {
+            font-weight: 500;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .service-card p {
+            color: #666;
+            font-weight: 300;
+            font-size: 0.95rem;
+        }
+
+        /* Processus */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .process-card {
+            padding: 40px 30px;
+            background: var(--light-bg);
+            position: relative;
             transition: var(--transition);
         }
-        
-        .service-card:hover i {
-            transform: scale(1.1);
-        }
 
-        /* ===== PROCESSUS ===== */
-        .process-grid { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 20px; 
-            margin-top: 50px;
-        }
-        
-        .process-card { 
-            padding: 40px; 
-            background: white; 
-            border: 1px solid #eee; 
-            transition: var(--transition); 
-            border-radius: 10px; 
-            position: relative;
-            height: 100%;
-        }
-        
         .process-card:hover {
-            border-color: var(--gold);
-            box-shadow: 0 10px 30px rgba(179,139,69,0.1);
-        }
-        
-        .process-num { 
-            font-size: 3.5rem; 
-            font-weight: 900; 
-            color: rgba(179,139,69,0.1); 
-            font-family: 'Cormorant Garamond'; 
-            position: absolute; 
-            top: 10px; 
-            right: 20px; 
+            background: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
 
-        /* ===== VISION ===== */
-        .vision-section { 
-            background: var(--bg-light); 
-            line-height: 1.8; 
+        .process-num {
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--gold);
+            opacity: 0.3;
+            margin-bottom: 20px;
+            font-family: 'Cormorant Garamond', serif;
         }
-        
-        .vision-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 60px; 
-            align-items: start; 
+
+        .process-card h3 {
+            font-weight: 500;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
         }
-        
-        .vision-text p { 
-            margin-bottom: 20px; 
-            font-size: 1.1rem; 
-            color: #444; 
+
+        .process-card p {
+            color: #666;
+            font-weight: 300;
+            font-size: 0.9rem;
         }
-        
-        .vision-highlight { 
-            font-family: 'Cormorant Garamond', serif; 
-            font-size: 2rem; 
-            color: var(--primary); 
-            font-style: italic; 
-            margin-bottom: 30px; 
-            border-left: 4px solid var(--gold); 
-            padding-left: 20px; 
+
+        /* Vision */
+        .vision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .vision-text p {
+            color: #666;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .vision-highlight {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
             line-height: 1.4;
+            margin: 30px 0;
+            color: var(--text);
+            border-left: 2px solid var(--gold);
+            padding-left: 20px;
         }
-        
-        .vision-box { 
-            background: var(--bg-soft); 
-            padding: 40px; 
-            border-radius: 20px; 
-            position: relative;
+
+        .vision-list {
+            list-style: none;
         }
-        
-        .vision-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 1px solid var(--gold);
-            border-radius: 20px;
-            transform: translate(10px, 10px);
-            z-index: -1;
-            opacity: 0.5;
+
+        .vision-list li {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+            color: #666;
+            font-weight: 300;
         }
-        
-        .vision-box h3 { 
-            font-family: 'Cormorant Garamond', serif; 
-            font-size: 1.8rem; 
-            color: var(--gold); 
-            margin-bottom: 20px; 
+
+        .vision-list i {
+            color: var(--gold);
+            margin-top: 5px;
         }
-        
-        .vision-list { 
-            list-style: none; 
-        }
-        
-        .vision-list li { 
-            margin-bottom: 15px; 
-            display: flex; 
-            gap: 15px; 
-            align-items: baseline; 
-        }
-        
-        .vision-list li i { 
-            color: var(--gold); 
-            flex-shrink: 0;
-        }
-        
-        .vision-list li b { 
-            color: var(--primary); 
-            text-transform: uppercase; 
-            font-size: 0.9rem; 
-            letter-spacing: 1px; 
+
+        .vision-list strong {
+            color: var(--text);
+            font-weight: 500;
             display: block;
             margin-bottom: 5px;
         }
 
-        /* ===== EXPERTISE ===== */
-        .expertise-section { 
-            background: var(--bg-soft); 
-            border-top: 1px solid #eee; 
-        }
-        
-        .expertise-flex { 
-            display: flex; 
-            align-items: flex-start;
-            gap: 80px; 
-            flex-wrap: wrap; 
-        }
-        
-        .expertise-img { 
-            flex: 1; 
-            min-width: 300px;
-        }
-        
-        .expertise-img img { 
-            width: 100%; 
-            max-width: 450px; 
-            border-radius: 20px; 
-            box-shadow: -30px 30px 0 var(--gold); 
-            transition: var(--transition);
-        }
-        
-        .expertise-img img:hover {
-            transform: translate(-5px, -5px);
-            box-shadow: -35px 35px 0 var(--gold);
-        }
-        
-        .expertise-text { 
-            flex: 1; 
-            min-width: 300px;
-        }
-
-        /* ===== VALEURS ===== */
-        .values-section {
-            background: var(--primary);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .values-section .section-title {
-            color: white;
-        }
-        
-        .values-section .gold-line {
-            background: white;
-        }
-        
-        .values-grid {
+        /* Expertise */
+        .expertise-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .value-card {
-            text-align: center;
-            padding: 40px 30px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            transition: var(--transition);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .value-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255,255,255,0.1);
-            border-color: var(--gold);
-        }
-        
-        .value-card i {
-            font-size: 2.5rem;
-            color: var(--gold);
-            margin-bottom: 20px;
-        }
-
-        /* ===== TEMOIGNAGES ===== */
-        .testimonials-section {
-            background: var(--bg-soft);
-        }
-        
-        .testimonials-slider {
-            max-width: 800px;
-            margin: 50px auto 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .testimonial {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            text-align: center;
-            display: none;
-        }
-        
-        .testimonial.active {
-            display: block;
-            animation: fadeIn 0.8s ease;
-        }
-        
-        .client-info {
-            display: flex;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
             align-items: center;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .client-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--bg-soft);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: var(--gold);
-            font-size: 1.5rem;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ===== CONTACT ===== */
-        .contact-methods { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 30px; 
-            margin-top: 50px;
-        }
-        
-        .contact-box { 
-            padding: 60px; 
-            text-align: center; 
-            background: white; 
-            border-radius: 20px; 
-            border: 1px solid #f0f0f0; 
-            transition: var(--transition); 
-        }
-        
-        .contact-box:hover {
-            transform: translateY(-10px);
-            border-color: var(--gold);
-            box-shadow: 0 20px 40px rgba(179,139,69,0.1);
-        }
-        
-        .contact-box i {
-            font-size: 3rem;
-            color: var(--gold);
-            margin-bottom: 20px;
-        }
-
-        /* ===== ZONE INTERVENTION ===== */
-        .zone-section {
-            background: var(--bg-soft);
-        }
-        
-        .zone-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .zone-card {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            text-align: center;
-            transition: var(--transition);
-            border: 1px solid #f0f0f0;
-        }
-        
-        .zone-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--gold);
-            box-shadow: 0 15px 30px rgba(179,139,69,0.1);
-        }
-        
-        .zone-card i {
-            font-size: 2.5rem;
-            color: var(--gold);
-            margin-bottom: 20px;
-        }
-        
-        .zone-remote {
-            background: var(--primary);
-            color: white;
+        .expertise-img {
             position: relative;
-            overflow: hidden;
-        }
-        
-        .zone-remote::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(179,139,69,0.1) 0%, transparent 70%);
-            z-index: 0;
-        }
-        
-        .zone-remote * {
-            position: relative;
-            z-index: 1;
         }
 
-        /* ===== FOOTER SIMPLIFIÉ ===== */
-        footer { 
-            background: var(--primary); 
-            color: white; 
-            padding: 50px 0 30px; 
+        .expertise-img img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 20px 20px 0 var(--gold);
         }
-        
-        .footer-social {
-            text-align: center;
+
+        .expertise-tag {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 15px;
         }
-        
-        .footer-social h4 {
+
+        .expertise-content h3 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
+            font-size: 2.5rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .expertise-sub {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 300;
+            margin-bottom: 25px;
+        }
+
+        .expertise-content p {
+            color: #666;
+            font-weight: 300;
             margin-bottom: 30px;
+        }
+
+        .expertise-list {
+            list-style: none;
+        }
+
+        .expertise-list li {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 12px;
+            color: #666;
+            font-weight: 300;
+        }
+
+        .expertise-list i {
             color: var(--gold);
         }
-        
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            padding: 50px 40px;
+            background: var(--light-bg);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            background: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .contact-card i {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .contact-card h3 {
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .contact-card p {
+            color: #666;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .contact-phone {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            text-decoration: none;
+            border: 1px solid var(--gold);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .contact-btn-gold {
+            background: var(--gold);
+            color: white;
+        }
+
+        .contact-btn-gold:hover {
+            background: transparent;
+            color: var(--gold);
+        }
+
+        .contact-btn-outline {
+            background: transparent;
+            color: var(--gold);
+        }
+
+        .contact-btn-outline:hover {
+            background: var(--gold);
+            color: white;
+        }
+
+        /* Footer Simple */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 50px 0 30px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 25px;
+        }
+
+        .footer-logo span {
+            color: var(--gold);
+        }
+
         .social-links {
             display: flex;
-            gap: 30px;
+            gap: 20px;
             justify-content: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
-        
+
         .social-links a {
             color: white;
-            font-size: 2rem;
+            font-size: 1.2rem;
             transition: var(--transition);
-            width: 70px;
-            height: 70px;
-            background: rgba(255,255,255,0.1);
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
         }
-        
+
         .social-links a:hover {
             color: var(--gold);
-            transform: translateY(-5px);
-            background: rgba(255,255,255,0.2);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.6);
-            font-size: 0.9rem;
+            border-color: var(--gold);
+            transform: translateY(-3px);
         }
 
-        /* ===== BOUTON WHATSAPP ===== */
+        .copyright {
+            font-size: 0.8rem;
+            opacity: 0.5;
+            letter-spacing: 0.5px;
+        }
+
+        /* WhatsApp Button */
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
             right: 30px;
             background: #25D366;
             color: white;
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
-            z-index: 1000;
-            transition: var(--transition);
+            font-size: 1.6rem;
             text-decoration: none;
-        }
-        
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+            transition: var(--transition);
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
         }
 
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 992px) { 
-            .process-grid, .vision-grid { grid-template-columns: 1fr; } 
-            .expertise-flex { gap: 40px; }
-            .expertise-img img { box-shadow: 0 20px 0 var(--gold); }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 70px 0;
+            }
+
+            h2 {
+                font-size: 2.5rem;
+            }
+
             .nav-links {
                 position: fixed;
                 top: 80px;
                 left: 0;
                 width: 100%;
-                background: var(--primary);
+                background: white;
                 flex-direction: column;
                 padding: 30px;
                 gap: 20px;
+                border-bottom: 1px solid var(--border);
                 transform: translateY(-100%);
                 opacity: 0;
                 transition: var(--transition);
                 pointer-events: none;
             }
-            
+
             .nav-links.active {
                 transform: translateY(0);
                 opacity: 1;
                 pointer-events: all;
             }
-            
+
             .mobile-menu-btn {
                 display: block;
             }
-        }
-        
-        @media (max-width: 768px) { 
-            .section-padding { padding: 60px 0; }
-            .contact-box { padding: 40px 25px; }
-            .hero-content { padding: 20px; }
-            .hero h1 { font-size: clamp(2rem, 6vw, 3.5rem); }
-            .expertise-img img { box-shadow: 0 15px 0 var(--gold); }
-            .expertise-flex { 
-                flex-direction: column;
-                align-items: center;
+
+            .process-grid {
+                grid-template-columns: 1fr;
             }
-            .social-links a {
-                width: 60px;
-                height: 60px;
-                font-size: 1.8rem;
+
+            .vision-grid,
+            .expertise-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
-        }
-        
-        @media (max-width: 480px) { 
-            .container { padding: 0 15px; }
-            .btn { padding: 15px 30px; }
-            .service-card { padding: 30px 20px; }
-            .zone-card { padding: 30px 20px; }
-            .social-links {
-                gap: 20px;
-            }
-            .social-links a {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
+
+            .hero h1 {
+                font-size: 3rem;
             }
         }
     </style>
@@ -741,8 +658,7 @@
                 <a href="#processus">Processus</a>
                 <a href="#vision">Vision</a>
                 <a href="#expertise">Expertise</a>
-                <a href="#zone">Zone d'intervention</a>
-                <a href="#contact" class="btn btn-outline" style="padding: 10px 25px; font-size: 0.8rem;">Contact</a>
+                <a href="#contact">Contact</a>
             </nav>
             
             <button class="mobile-menu-btn" id="menuBtn">
@@ -751,7 +667,7 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero avec vidéo -->
     <section class="hero">
         <div class="hero-video">
             <div class="video-slide active">
@@ -766,136 +682,124 @@
             </div>
         </div>
         <div class="hero-overlay"></div>
-        <div class="container hero-content" data-aos="zoom-out">
-            <span style="color:var(--gold); letter-spacing:8px; font-weight:700; text-transform:uppercase; display:block; margin-bottom:20px;">Markly Advisory</span>
+        
+        <div class="hero-content" data-aos="fade-up">
+            <div class="hero-subtitle">MARKLY ADVISORY</div>
             <h1>L'Architecture de votre Succès</h1>
-            <p style="font-weight: 300; opacity: 0.9; margin-bottom: 40px; font-size: 1.2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
-                Conseil stratégique et ingénierie de projet pour transformer vos visions en réalités pérennes.
-            </p>
-            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-                <a href="#contact" class="btn btn-gold">Démarrer un projet</a>
-                <a href="#services" class="btn btn-outline">Découvrir nos services</a>
+            <p>Conseil stratégique et ingénierie de projet pour transformer vos visions en réalités pérennes.</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="#contact" class="btn btn-gold">Démarrer</a>
+                <a href="#services" class="btn btn-outline">Découvrir</a>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="section-padding">
+    <!-- Services -->
+    <section id="services">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Nos Services</h2>
+            <h2 data-aos="fade-up">Services</h2>
             <div class="gold-line" data-aos="fade-up"></div>
-            <p style="text-align: center; max-width: 700px; margin: 0 auto 50px; color: #666; font-size: 1.1rem;" data-aos="fade-up">
-                Des solutions sur-mesure alliant expertise juridique et vision stratégique pour chaque étape de votre croissance.
-            </p>
             <div class="services-grid">
                 <div class="service-card" data-aos="fade-up">
                     <i class="fas fa-chess-knight"></i>
-                    <h3>Business Plan Stratégique</h3>
-                    <p>Structuration financière, modélisation économique et stratégies de croissance pour vos projets ambitieux. Analyse de marché approfondie et plan d'action détaillé.</p>
+                    <h3>Business Plan</h3>
+                    <p>Structuration financière, modélisation économique et stratégies de croissance.</p>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <i class="fas fa-chart-line"></i>
-                    <h3>Suivi Expert & Pilotage</h3>
-                    <p>Accompagnement opérationnel rigoureux avec définition et suivi de KPIs pour une rentabilité maximale. Tableaux de bord personnalisés et revues stratégiques régulières.</p>
+                    <h3>Suivi & Pilotage</h3>
+                    <p>Accompagnement opérationnel avec KPIs pour une rentabilité maximale.</p>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <i class="fas fa-balance-scale"></i>
-                    <h3>Analyse Stratégique & Juridique</h3>
-                    <p>Sécurisation de vos actifs commerciaux, optimisation des décisions business et due diligence. Protection intellectuelle et conformité réglementaire.</p>
+                    <h3>Analyse Juridique</h3>
+                    <p>Sécurisation de vos actifs et optimisation des décisions business.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Processus Section -->
-    <section id="processus" class="section-padding">
+    <!-- Processus -->
+    <section id="processus" style="background: var(--light-bg);">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Notre Processus</h2>
+            <h2 data-aos="fade-up">Processus</h2>
             <div class="gold-line" data-aos="fade-up"></div>
-            <p style="text-align: center; max-width: 700px; margin: 0 auto 50px; color: #666; font-size: 1.1rem;" data-aos="fade-up">
-                Une méthodologie éprouvée en 6 étapes pour garantir l'efficacité et la réussite de chaque projet.
-            </p>
             <div class="process-grid">
                 <div class="process-card" data-aos="fade-up">
                     <div class="process-num">01</div>
-                    <h3>Contact & Diagnostic</h3>
-                    <p>Analyse approfondie de vos besoins, objectifs et contexte spécifique. Première consultation offerte.</p>
+                    <h3>Contact</h3>
+                    <p>Analyse de vos besoins et objectifs</p>
                 </div>
                 <div class="process-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="process-num">02</div>
-                    <h3>Pré-analyse</h3>
-                    <p>Évaluation détaillée de votre situation actuelle, forces et axes d'amélioration.</p>
+                    <h3>Diagnostic</h3>
+                    <p>Évaluation de votre situation actuelle</p>
                 </div>
                 <div class="process-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="process-num">03</div>
-                    <h3>Consultation Stratégique</h3>
-                    <p>Définition des axes prioritaires et élaboration de la feuille de route.</p>
+                    <h3>Stratégie</h3>
+                    <p>Définition des axes prioritaires</p>
                 </div>
                 <div class="process-card" data-aos="fade-up">
                     <div class="process-num">04</div>
-                    <h3>Proposition Sur-Mesure</h3>
-                    <p>Plan d'action détaillé avec indicateurs de succès et livrables clairs.</p>
+                    <h3>Proposition</h3>
+                    <p>Plan d'action détaillé</p>
                 </div>
                 <div class="process-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="process-num">05</div>
-                    <h3>Validation Collaborative</h3>
-                    <p>Accord commun sur le calendrier, les étapes et les responsabilités.</p>
+                    <h3>Validation</h3>
+                    <p>Accord sur le calendrier</p>
                 </div>
                 <div class="process-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="process-num">06</div>
-                    <h3>Accompagnement Intégral</h3>
-                    <p>Mise en œuvre, suivi régulier et ajustements pour garantir les résultats.</p>
+                    <h3>Accompagnement</h3>
+                    <p>Mise en œuvre et suivi</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Vision Section -->
-    <section id="vision" class="section-padding vision-section">
+    <!-- Vision -->
+    <section id="vision">
         <div class="container">
             <div class="vision-grid">
                 <div class="vision-text" data-aos="fade-right">
-                    <h2 class="section-title" style="text-align: left;">Notre Vision & Genèse</h2>
-                    <div class="gold-line" style="margin: 20px 0 40px 0;"></div>
-                    <p>Depuis mes premières expériences professionnelles, j'ai été captivée par l'écosystème des affaires – non pas seulement par ses succès, mais surtout par ses défis. J'ai observé combien d'entreprises, pourtant pleines de potentiel, se heurtaient à des obstacles juridiques, financiers ou stratégiques qui freinaient leur expansion.</p>
+                    <h2 style="text-align: left;">Vision</h2>
+                    <div class="gold-line" style="margin: 20px 0 30px;"></div>
+                    <p>Depuis mes premières expériences professionnelles, j'ai été captivée par l'écosystème des affaires et ses défis.</p>
                     <div class="vision-highlight">
-                        "Le droit et la stratégie ne devraient pas être des contraintes, mais des leviers de croissance."
+                        "Le droit et la stratégie comme leviers de croissance."
                     </div>
-                    <p>Cette fascination a guidé tout mon parcours, aboutissant à un Master en Droit des Affaires. Markly Advisory est né de cette dualité entre passion juridique et ambition entrepreneuriale. Forte de cette double expertise, j'accompagne aujourd'hui les entrepreneurs à transformer leurs défis en opportunités de structuration.</p>
+                    <p>Markly Advisory est né de cette dualité entre passion juridique et ambition entrepreneuriale.</p>
                 </div>
-                <div class="vision-box" data-aos="fade-left">
-                    <h3>Pourquoi nous choisir ?</h3>
-                    <p style="margin-bottom: 25px; font-style: italic; color: var(--primary);">
-                        "La vraie valeur d'un conseil réside dans sa capacité à être mis en œuvre par ceux qui font vivre l'entreprise au quotidien : vous."
-                    </p>
-                    
+                <div data-aos="fade-left">
                     <ul class="vision-list">
                         <li>
-                            <i class="fas fa-check"></i> 
+                            <i class="fas fa-check"></i>
                             <div>
-                                <b>Approche Unique</b>
+                                <strong>Approche Unique</strong>
                                 Double compétence juridique & stratégique
                             </div>
                         </li>
                         <li>
-                            <i class="fas fa-check"></i> 
+                            <i class="fas fa-check"></i>
                             <div>
-                                <b>Valeurs Fondatrices</b>
-                                Comprendre, Structurer, Anticiper et Accompagner
+                                <strong>Valeurs Fondatrices</strong>
+                                Comprendre, Structurer, Anticiper
                             </div>
                         </li>
                         <li>
-                            <i class="fas fa-check"></i> 
+                            <i class="fas fa-check"></i>
                             <div>
-                                <b>Promesse Engagée</b>
-                                Votre succès est notre seule mesure de réussite
+                                <strong>Promesse</strong>
+                                Votre succès est notre mesure de réussite
                             </div>
                         </li>
                         <li>
-                            <i class="fas fa-check"></i> 
+                            <i class="fas fa-check"></i>
                             <div>
-                                <b>Expertise Ciblée</b>
-                                Spécialiste des marchés émergents et croissance PME
+                                <strong>Expertise</strong>
+                                Spécialiste des marchés émergents
                             </div>
                         </li>
                     </ul>
@@ -904,223 +808,75 @@
         </div>
     </section>
 
-    <!-- Valeurs Section -->
-    <section class="section-padding values-section">
+    <!-- Expertise -->
+    <section id="expertise" style="background: var(--light-bg);">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Nos Valeurs Fondamentales</h2>
-            <div class="gold-line" data-aos="fade-up"></div>
-            <div class="values-grid">
-                <div class="value-card" data-aos="fade-up">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Sécurité & Confiance</h3>
-                    <p>Protection absolue de vos intérêts et confidentialité garantie par des clauses strictes.</p>
-                </div>
-                <div class="value-card" data-aos="fade-up" data-aos-delay="100">
-                    <i class="fas fa-bullseye"></i>
-                    <h3>Résultats Concrets</h3>
-                    <p>Orientation vers des indicateurs mesurables et impacts réels sur votre activité.</p>
-                </div>
-                <div class="value-card" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-handshake"></i>
-                    <h3>Partenaire Engagé</h3>
-                    <p>Votre défi devient le nôtre. Engagement total jusqu'à la réussite du projet.</p>
-                </div>
-                <div class="value-card" data-aos="fade-up" data-aos-delay="300">
-                    <i class="fas fa-lightbulb"></i>
-                    <h3>Pragmatisme & Vision</h3>
-                    <p>Solutions applicables, adaptées à votre réalité terrain, sans jargon inutile.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Témoignages Section -->
-    <section class="section-padding testimonials-section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Témoignages Clients</h2>
-            <div class="gold-line" data-aos="fade-up"></div>
-            
-            <div class="testimonials-slider">
-                <div class="testimonial active" id="testimonial1">
-                    <i class="fas fa-quote-left" style="color: var(--gold); font-size: 2rem; margin-bottom: 20px;"></i>
-                    <p style="font-size: 1.1rem; line-height: 1.8;">
-                        "Grâce à l'expertise de Markly Advisory, notre levée de fonds a été menée avec une rigueur exemplaire. La double compétence juridique et stratégique a fait toute la différence."
-                    </p>
-                    <div class="client-info">
-                        <div class="client-avatar">ML</div>
-                        <div style="text-align: left;">
-                            <h4 style="margin: 0; color: var(--primary);">Mohammed L.</h4>
-                            <p style="margin: 0; color: #666; font-size: 0.9rem;">CEO, Startup Tech</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial" id="testimonial2">
-                    <i class="fas fa-quote-left" style="color: var(--gold); font-size: 2rem; margin-bottom: 20px;"></i>
-                    <p style="font-size: 1.1rem; line-height: 1.8;">
-                        "L'accompagnement stratégique nous a permis de doubler notre rentabilité en 6 mois. La vision business alliée à la rigueur juridique est un atout précieux."
-                    </p>
-                    <div class="client-info">
-                        <div class="client-avatar">SA</div>
-                        <div style="text-align: left;">
-                            <h4 style="margin: 0; color: var(--primary);">Sarah A.</h4>
-                            <p style="margin: 0; color: #666; font-size: 0.9rem;">Directrice, PME Agroalimentaire</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div style="text-align: center; margin-top: 30px;">
-                    <button onclick="showTestimonial(1)" style="background: none; border: none; cursor: pointer; margin: 0 5px;">
-                        <i class="fas fa-circle" style="color: var(--gold); font-size: 0.8rem;"></i>
-                    </button>
-                    <button onclick="showTestimonial(2)" style="background: none; border: none; cursor: pointer; margin: 0 5px;">
-                        <i class="fas fa-circle" style="color: #ddd; font-size: 0.8rem;"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Zone d'intervention -->
-    <section id="zone" class="section-padding zone-section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Zone d'Intervention</h2>
-            <div class="gold-line" data-aos="fade-up"></div>
-            <p style="text-align: center; max-width: 700px; margin: 0 auto 50px; color: #666; font-size: 1.1rem;" data-aos="fade-up">
-                Un accompagnement flexible adapté à vos besoins, que vous soyez à distance ou en présentiel.
-            </p>
-            
-            <div class="zone-grid">
-                <div class="zone-card" data-aos="fade-up">
-                    <i class="fas fa-video"></i>
-                    <h3>Consultation à distance</h3>
-                    <p>Visio-conférences sécurisées pour un accompagnement flexible et efficace, quel que soit votre emplacement.</p>
-                    <p style="color: var(--gold); font-weight: 600; margin-top: 15px;">Disponible partout</p>
-                </div>
-                
-                <div class="zone-card" data-aos="fade-up" data-aos-delay="100">
-                    <i class="fas fa-handshake"></i>
-                    <h3>Rencontre sur rendez-vous</h3>
-                    <p>Séances en présentiel planifiées selon vos disponibilités et besoins spécifiques.</p>
-                    <p style="color: var(--gold); font-weight: 600; margin-top: 15px;">Sur rendez-vous</p>
-                </div>
-                
-                <div class="zone-card zone-remote" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-globe-africa"></i>
-                    <h3>Accompagnement international</h3>
-                    <p>Expertise adaptée aux marchés émergents avec compréhension des spécificités locales.</p>
-                    <p style="color: var(--gold); font-weight: 600; margin-top: 15px;">Afrique & International</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Expertise Section -->
-    <section id="expertise" class="section-padding expertise-section">
-        <div class="container">
-            <div class="expertise-flex">
+            <div class="expertise-grid">
                 <div class="expertise-img" data-aos="fade-right">
-                    <img src="https://github.com/user-attachments/assets/87e53a92-c9f2-4fa8-bde4-a159854242cd" alt="Khadija O. - Juriste Consultante">
+                    <img src="https://github.com/user-attachments/assets/87e53a92-c9f2-4fa8-bde4-a159854242cd" alt="Khadija O.">
                 </div>
-                <div class="expertise-text" data-aos="fade-left">
-                    <span style="color:var(--gold); font-weight:700; letter-spacing:3px; text-transform: uppercase; display: block; margin-bottom: 10px;">Experte Dédiée</span>
-                    <h2 style="font-family: 'Cormorant Garamond'; font-size: 3rem; margin-bottom: 15px; color: var(--primary);">Khadija O.</h2>
-                    <h4 style="color: var(--gold); font-family: 'Cormorant Garamond'; font-size: 1.5rem; margin-bottom: 25px; font-weight: 600;">
-                        Juriste & Consultante en Stratégie d'Entreprise
-                    </h4>
-                    <p style="font-size:1.1rem; line-height:1.8; margin-bottom:30px; color: #444;">
-                        Titulaire d'un Master en Droit des Affaires, Contentieux et Professions Judiciaires, je mets ma double expertise 
-                        juridique et stratégique au service des entrepreneurs. Mon approche unique allie rigueur légale et vision business 
-                        pour transformer vos idées les plus ambitieuses en réalités pérennes et sécurisées.
-                    </p>
+                <div class="expertise-content" data-aos="fade-left">
+                    <div class="expertise-tag">Experte Dédiée</div>
+                    <h3>Khadija O.</h3>
+                    <div class="expertise-sub">Juriste & Consultante en Stratégie d'Entreprise</div>
+                    <p>Master en Droit des Affaires, Contentieux et Professions Judiciaires. Double expertise juridique et stratégique pour transformer vos idées en réalités pérennes et sécurisées.</p>
                     
-                    <div style="display: flex; flex-direction: column; gap: 20px; margin-bottom: 30px;">
-                        <div style="display: flex; align-items: flex-start; gap: 15px;">
-                            <i class="fas fa-check-circle" style="color: var(--gold); font-size: 1.2rem; margin-top: 3px;"></i>
-                            <div>
-                                <h5 style="margin: 0 0 5px 0; color: var(--primary); font-weight: 600;">Des projets menés avec succès et satisfaction</h5>
-                                <p style="margin: 0; color: #666; font-size: 0.95rem;">Une approche orientée résultats garantissant des réalisations concrètes.</p>
-                            </div>
-                        </div>
-                        
-                        <div style="display: flex; align-items: flex-start; gap: 15px;">
-                            <i class="fas fa-check-circle" style="color: var(--gold); font-size: 1.2rem; margin-top: 3px;"></i>
-                            <div>
-                                <h5 style="margin: 0 0 5px 0; color: var(--primary); font-weight: 600;">Un accompagnement professionnel sur mesure</h5>
-                                <p style="margin: 0; color: #666; font-size: 0.95rem;">Des solutions personnalisées adaptées à chaque entrepreneur et projet.</p>
-                            </div>
-                        </div>
-                        
-                        <div style="display: flex; align-items: flex-start; gap: 15px;">
-                            <i class="fas fa-check-circle" style="color: var(--gold); font-size: 1.2rem; margin-top: 3px;"></i>
-                            <div>
-                                <h5 style="margin: 0 0 5px 0; color: var(--primary); font-weight: 600;">Une vision réglementaire au service du monde des affaires</h5>
-                                <p style="margin: 0; color: #666; font-size: 0.95rem;">L'expertise juridique transformée en avantage concurrentiel.</p>
-                            </div>
-                        </div>
-                    </div>
+                    <ul class="expertise-list">
+                        <li><i class="fas fa-check-circle"></i> Des projets menés avec succès</li>
+                        <li><i class="fas fa-check-circle"></i> Accompagnement professionnel sur mesure</li>
+                        <li><i class="fas fa-check-circle"></i> Vision réglementaire au service du business</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section-padding">
+    <!-- Contact -->
+    <section id="contact">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Nous Contacter</h2>
+            <h2 data-aos="fade-up">Contact</h2>
             <div class="gold-line" data-aos="fade-up"></div>
-            <p style="text-align: center; max-width: 700px; margin: 0 auto 50px; color: #666; font-size: 1.1rem;" data-aos="fade-up">
-                Discutons de votre projet. Choisissez le canal qui vous convient le mieux pour échanger.
-            </p>
             
-            <div class="contact-methods">
-                <div class="contact-box" data-aos="fade-up">
-                    <i class="fab fa-whatsapp" style="font-size: 3rem;"></i>
-                    <h3>WhatsApp Business</h3>
-                    <p style="color: #666; margin: 20px 0;">Réponse rapide sous 2 heures</p>
-                    <p style="font-weight:700; font-size:1.4rem; margin-bottom:20px; color: var(--primary);">+212 621-900645</p>
-                    <a href="https://wa.me/212621900645?text=Bonjour%20Markly%20Advisory,%20je%20suis%20intéressé%20par%20vos%20services%20de%20conseil." 
-                       class="btn btn-gold" 
-                       style="width:100%; justify-content:center;"
-                       target="_blank">
-                       <i class="fab fa-whatsapp"></i> Message Direct
-                    </a>
+            <div class="contact-grid">
+                <div class="contact-card" data-aos="fade-up">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>WhatsApp</h3>
+                    <p>Réponse rapide sous 2h</p>
+                    <div class="contact-phone">+212 621-900645</div>
+                    <a href="https://wa.me/212621900645?text=Bonjour%20Markly%20Advisory" class="contact-btn contact-btn-gold" target="_blank">Message Direct</a>
                 </div>
                 
-                <div class="contact-box" style="background:var(--primary); color:white;" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-envelope" style="font-size: 3rem;"></i>
-                    <h3>Email Professionnel</h3>
-                    <p style="opacity: 0.8; margin: 20px 0;">Pour les dossiers détaillés et documents</p>
-                    <p style="font-weight:700; font-size:1.2rem; margin-bottom:20px;">khadijaoulkaid4@gmail.com</p>
-                    <a href="mailto:khadijaoulkaid4@gmail.com?subject=Demande%20de%20contact%20Markly%20Advisory" 
-                       class="btn btn-gold" 
-                       style="width:100%; justify-content:center; background: white; color: var(--primary);">
-                       <i class="fas fa-paper-plane"></i> Envoyer un Mail
-                    </a>
+                <div class="contact-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>Pour les dossiers détaillés</p>
+                    <div style="margin-bottom: 25px; font-size: 0.95rem;">khadijaoulkaid4@gmail.com</div>
+                    <a href="mailto:khadijaoulkaid4@gmail.com?subject=Demande%20de%20contact" class="contact-btn contact-btn-outline">Envoyer</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer Simplifié avec Badges Sociaux -->
+    <!-- Footer Simple -->
     <footer>
         <div class="container">
-            <div class="footer-social">
-                <h4>MARKLY<span style="color: var(--gold);">.</span></h4>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/khadija-oulkaid-75060122b" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://www.tiktok.com/@khadija.olai" target="_blank"><i class="fab fa-tiktok"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                </div>
+            <div class="footer-logo">
+                MARKLY<span>.</span>
+            </div>
+            
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/khadija-oulkaid-75060122b" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.tiktok.com/@khadija.olai" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
             
             <div class="copyright">
-                <p>© 2025 MARKLY ADVISORY. TOUS DROITS RÉSERVÉS.</p>
+                © 2025 MARKLY ADVISORY — Tous droits réservés
             </div>
         </div>
     </footer>
 
-    <!-- Bouton WhatsApp Flottant -->
+    <!-- WhatsApp Float -->
     <a href="https://wa.me/212621900645" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
@@ -1130,11 +886,11 @@
     <script>
         // Initialisation AOS
         AOS.init({ 
-            duration: 1000, 
+            duration: 800, 
             once: true,
-            offset: 100 
+            offset: 50 
         });
-        
+
         // Slides vidéo
         const slides = document.querySelectorAll('.video-slide');
         let current = 0;
@@ -1142,9 +898,9 @@
             slides[current].classList.remove('active');
             current = (current + 1) % slides.length;
             slides[current].classList.add('active');
-        }, 10000);
-        
-        // Navigation mobile
+        }, 8000);
+
+        // Menu mobile
         const menuBtn = document.getElementById('menuBtn');
         const navLinks = document.getElementById('navLinks');
         
@@ -1154,50 +910,24 @@
                 ? '<i class="fas fa-times"></i>' 
                 : '<i class="fas fa-bars"></i>';
         });
-        
-        // Fermer le menu en cliquant sur un lien
+
+        // Fermer menu sur clic lien
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
                 menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
             });
         });
-        
-        // Témoignages slider
-        function showTestimonial(number) {
-            document.querySelectorAll('.testimonial').forEach(testimonial => {
-                testimonial.classList.remove('active');
-            });
-            
-            document.getElementById(`testimonial${number}`).classList.add('active');
-            
-            // Mettre à jour les boutons
-            document.querySelectorAll('.testimonials-slider button').forEach((btn, index) => {
-                const icon = btn.querySelector('i');
-                if (index === number - 1) {
-                    icon.style.color = 'var(--gold)';
-                } else {
-                    icon.style.color = '#ddd';
-                }
-            });
-        }
-        
-        // Auto-slide témoignages
-        let currentTestimonial = 1;
-        setInterval(() => {
-            currentTestimonial = currentTestimonial === 1 ? 2 : 1;
-            showTestimonial(currentTestimonial);
-        }, 8000);
-        
-        // Scroll header
+
+        // Header scroll
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
-            if (window.scrollY > 100) {
+            if (window.scrollY > 50) {
                 header.style.padding = '15px 0';
-                header.style.background = 'rgba(10, 20, 40, 0.98)';
+                header.style.background = 'rgba(255,255,255,0.98)';
             } else {
                 header.style.padding = '20px 0';
-                header.style.background = 'rgba(10, 20, 40, 0.95)';
+                header.style.background = 'rgba(255,255,255,0.95)';
             }
         });
     </script>
