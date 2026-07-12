@@ -396,84 +396,6 @@
             font-weight: 600;
         }
 
-        /* ── À propos ── */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            text-align: left;
-        }
-        .about-text p {
-            color: var(--muted);
-            font-weight: 300;
-            margin-bottom: 20px;
-        }
-        .about-text .quote {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 500;
-            line-height: 1.5;
-            color: var(--text);
-            border-left: 3px solid var(--gold);
-            padding-left: 24px;
-            margin: 28px 0;
-            font-style: italic;
-        }
-
-        .about-list {
-            list-style: none;
-        }
-        .about-list li {
-            display: flex;
-            gap: 14px;
-            align-items: flex-start;
-            margin-bottom: 16px;
-            color: var(--muted);
-            font-weight: 300;
-        }
-        .about-list li i {
-            color: var(--gold);
-            margin-top: 4px;
-            font-size: 0.9rem;
-        }
-        .about-list li strong {
-            color: var(--text);
-            font-weight: 600;
-            display: block;
-        }
-
-        .about-image {
-            position: relative;
-        }
-        .about-image img {
-            width: 100%;
-            border-radius: var(--radius);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
-        }
-        .about-image .badge {
-            position: absolute;
-            bottom: -16px;
-            right: -16px;
-            background: var(--gold);
-            color: var(--white);
-            padding: 18px 28px;
-            border-radius: var(--radius);
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            box-shadow: 0 8px 24px rgba(184, 148, 76, 0.25);
-        }
-        .about-image .badge span {
-            display: block;
-            font-size: 1.6rem;
-            font-weight: 700;
-            font-family: 'Playfair Display', serif;
-        }
-
         /* ── Expertise ── */
         .expertise-grid {
             display: grid;
@@ -711,10 +633,6 @@
         }
 
         @media (max-width: 992px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
             .process-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -779,14 +697,6 @@
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
-
-            .about-image .badge {
-                position: relative;
-                bottom: auto;
-                right: auto;
-                margin-top: -10px;
-                text-align: center;
-            }
         }
 
         @media (max-width: 480px) {
@@ -827,7 +737,6 @@
                 <a href="#services">Services</a>
                 <a href="#expertise">Expertise</a>
                 <a href="#process">Process</a>
-                <a href="#about">À propos</a>
                 <a href="#contact" class="nav-cta">Contact</a>
             </nav>
 
@@ -1043,71 +952,8 @@
         </div>
     </section>
 
-    <!-- ─── À propos ─── -->
-    <section id="about" style="background: var(--light-bg);">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-text" data-aos="fade-right">
-                    <h2>À propos</h2>
-                    <div class="gold-line-left"></div>
-                    <p>
-                        MARKLY Advisory est né d'une conviction : le droit et la stratégie
-                        ne doivent pas être deux mondes séparés. Forte d'une double
-                        formation en droit des affaires et en stratégie d'entreprise,
-                        notre approche est résolument hybride.
-                    </p>
-                    <div class="quote">
-                        « Comprendre les enjeux juridiques pour construire des stratégies
-                        gagnantes, anticiper les risques pour libérer la croissance. »
-                    </div>
-                    <p>
-                        Nous accompagnons les entrepreneurs, les PME et les start-ups
-                        dans la sécurisation de leurs projets et l'optimisation de leurs
-                        décisions, avec une vision à long terme.
-                    </p>
-
-                    <ul class="about-list">
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <div>
-                                <strong>Expertise juridique & stratégique</strong>
-                                Une double compétence pour des solutions complètes.
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <div>
-                                <strong>Approche sur mesure</strong>
-                                Chaque projet est unique, chaque accompagnement est personnalisé.
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <div>
-                                <strong>Engagement & disponibilité</strong>
-                                Un interlocuteur dédié, une réponse rapide, une relation de confiance.
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="about-image" data-aos="fade-left">
-                    <img
-                    src="https://github.com/user-attachments/assets/87e53a92-c9f2-4fa8-bde4-a159854242cd"
-                    alt="Khadija Oulkaïd · Juriste & Consultante"
-                    loading="lazy"
-                    />
-                    <div class="badge">
-                        <span>Khadija O.</span>
-                        Juriste · Consultante stratégique
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- ─── Témoignages ─── -->
-    <section id="testimonials">
+    <section id="testimonials" style="background: var(--light-bg);">
         <div class="container">
             <h2 data-aos="fade-up">Ils nous font confiance</h2>
             <div class="gold-line" data-aos="fade-up"></div>
@@ -1119,9 +965,8 @@
                 <div class="testimonial-card" data-aos="fade-up">
                     <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <blockquote>
-                        « Un accompagnement d'une grande rigueur. Khadija a su allier
-                        précision juridique et vision stratégique pour nous aider à
-                        structurer notre levée de fonds. »
+                        « Un accompagnement d'une grande rigueur. Une approche qui a su allier
+                        précision juridique et vision stratégique pour structurer notre levée de fonds. »
                     </blockquote>
                     <div class="author">Sophie M.</div>
                     <div class="role">CEO · Start-up Fintech</div>
@@ -1141,9 +986,8 @@
                 <div class="testimonial-card" data-aos="fade-up" data-aos-delay="160">
                     <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <blockquote>
-                        « Une expertise rare dans le secteur des biotech. Khadija a
-                        su anticiper les risques et nous accompagner dans des
-                        négociations complexes. Un vrai partenaire. »
+                        « Une expertise rare dans le secteur des biotech. Une capacité à
+                        anticiper les risques et à négocier des accords complexes. Un vrai partenaire. »
                     </blockquote>
                     <div class="author">Dr. Amina R.</div>
                     <div class="role">Fondatrice · Biotech</div>
@@ -1153,7 +997,7 @@
     </section>
 
     <!-- ─── Contact ─── -->
-    <section id="contact" style="background: var(--light-bg);">
+    <section id="contact">
         <div class="container">
             <h2 data-aos="fade-up">Contact</h2>
             <div class="gold-line" data-aos="fade-up"></div>
@@ -1199,17 +1043,14 @@
             </p>
 
             <div class="footer-socials">
-                <a href="https://www.linkedin.com/in/khadija-oulkaid-75060122b" target="_blank" aria-label="LinkedIn">
+                <a href="#" target="_blank" aria-label="LinkedIn">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="https://www.tiktok.com/@khadija.olai" target="_blank" aria-label="TikTok">
+                <a href="#" target="_blank" aria-label="TikTok">
                     <i class="fab fa-tiktok"></i>
                 </a>
                 <a href="#" target="_blank" aria-label="Instagram">
                     <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#" target="_blank" aria-label="YouTube">
-                    <i class="fab fa-youtube"></i>
                 </a>
             </div>
 
